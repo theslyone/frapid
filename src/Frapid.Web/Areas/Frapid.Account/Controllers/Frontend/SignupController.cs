@@ -9,6 +9,9 @@ using Frapid.Areas;
 using Frapid.Areas.CSRF;
 using Frapid.Framework.Extensions;
 using Frapid.WebsiteBuilder.Controllers;
+using Frapid.Events;
+using Frapid.Events.Interfaces;
+using Frapid.Events.EventPublishers;
 
 namespace Frapid.Account.Controllers.Frontend
 {
@@ -88,6 +91,12 @@ namespace Frapid.Account.Controllers.Frontend
         public async Task<ActionResult> PostAsync(Registration model)
         {
             bool result = await SignUpModel.SignUpAsync(this.HttpContext, this.Tenant, model, this.RemoteUser).ConfigureAwait(true);
+            UserEvent userEvent = new UserEvent();
+            userEvent.User.Email = model.Email;
+            userEvent.User.Name = model.Name;
+            userEvent.CreationDate = DateTime.Now;
+            userEvent.Tenant = this.Tenant;
+            DefaultEventPublisher.GetInstance().EntityInserted(userEvent);
             return this.Ok(result);
         }
     }

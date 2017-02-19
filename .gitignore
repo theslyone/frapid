@@ -35,4 +35,5 @@ src/Frapid.Web/Areas/Frapid.POS/
 src/Frapid.Web/Areas/MixERP.Inventory/
 src/Frapid.Web/Areas/MixERP.Purchases/
 src/Frapid.Web/Areas/MixERP.Sales/
+src/Frapid.Web/Areas/Frapid.Paylink/
 src/Frapid.Web/Reports/
