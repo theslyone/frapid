@@ -1,7 +1,7 @@
 # config.custom_field_view view
 
 | Schema | [config](../../schemas/config.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Materialized View Name | custom_field_view |
 | Owner | frapid_db_user |
 | Tablespace | DEFAULT |
@@ -20,18 +20,14 @@
     custom_field_setup.field_name,
     custom_field_setup.field_label,
     custom_field_setup.description,
-    custom_field_data_types.data_type,
-    custom_field_data_types.is_number,
-    custom_field_data_types.is_date,
-    custom_field_data_types.is_boolean,
-    custom_field_data_types.is_long_text,
+    custom_field_data_types.underlying_type,
     custom_fields.resource_id,
     custom_fields.value
    FROM config.custom_field_setup
      JOIN config.custom_field_data_types ON custom_field_data_types.data_type::text = custom_field_setup.data_type::text
      JOIN config.custom_field_forms ON custom_field_forms.form_name::text = custom_field_setup.form_name::text
      JOIN config.custom_fields ON custom_fields.custom_field_setup_id = custom_field_setup.custom_field_setup_id
-  ORDER BY custom_field_setup.field_order;
+  WHERE NOT custom_field_setup.deleted;
 ```
 
 

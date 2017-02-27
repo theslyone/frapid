@@ -10,20 +10,17 @@ namespace Frapid.Mapper.Query.Insert
         protected override Sql GetSql<T>(string tableName, string primaryKeyName, bool autoincrement, T poco)
         {
             var dictionary = poco.AsDictionary();
-            var ignored = poco.GetIgnoredColumns();
 
             List<string> columns;
 
             if (autoincrement)
             {
                 columns = dictionary.Keys.Where(x => x.ToUnderscoreLowerCase() != primaryKeyName)
-                    .Where(x => !ignored.Contains(x))
                     .Select(key => $"\"{key.ToUnderscoreLowerCase()}\"").ToList();
             }
             else
             {
                 columns = dictionary.Keys
-                    .Where(x => !ignored.Contains(x))
                     .Select(key => $"\"{key.ToUnderscoreLowerCase()}\"").ToList();
             }
 
@@ -49,13 +46,11 @@ namespace Frapid.Mapper.Query.Insert
             if (autoincrement)
             {
                 values = dictionary.Where(x => x.Key.ToUnderscoreLowerCase() != primaryKeyName)
-                    .Where(x => !ignored.Contains(x.Key))
                     .Select(x => x.Value).ToList();
             }
             else
             {
                 values = dictionary.Values
-                    .Where(x => !ignored.Contains(x))
                     .Select(x => x).ToList();
             }
 

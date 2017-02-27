@@ -27,7 +27,7 @@ namespace Frapid.Backups.Postgres
             var batchFile = new BatchFile(this.FileName, this.Server, this.PgDumpPath, this.Tenant);
             this.BatchFileName = batchFile.Create();
 
-            using(var process = new System.Diagnostics.Process())
+            using (var process = new System.Diagnostics.Process())
             {
                 process.StartInfo.FileName = this.BatchFileName;
 
@@ -56,7 +56,7 @@ namespace Frapid.Backups.Postgres
 
         private void Data_Received(object sender, DataReceivedEventArgs e)
         {
-            if(!string.IsNullOrWhiteSpace(e.Data))
+            if (!string.IsNullOrWhiteSpace(e.Data))
             {
                 var progress = this.Progress;
 
@@ -68,7 +68,7 @@ namespace Frapid.Backups.Postgres
         {
             var complete = this.BackupComplete;
 
-            if(complete != null)
+            if (complete != null)
             {
                 var batchFile = new BatchFile(this.BatchFileName);
                 batchFile.Delete();

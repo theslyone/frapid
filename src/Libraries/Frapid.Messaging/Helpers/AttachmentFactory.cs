@@ -11,13 +11,13 @@ namespace Frapid.Messaging.Helpers
         {
             var attachments = new List<Attachment>();
 
-            if(files != null)
+            if (files != null)
             {
-                foreach(string file in files)
+                foreach (string file in files)
                 {
-                    if(!string.IsNullOrWhiteSpace(file))
+                    if (!string.IsNullOrWhiteSpace(file))
                     {
-                        using(var attachment = new Attachment(file, MediaTypeNames.Application.Octet))
+                        using (var attachment = new Attachment(file, MediaTypeNames.Application.Octet))
                         {
                             var disposition = attachment.ContentDisposition;
                             disposition.CreationDate = File.GetCreationTime(file);

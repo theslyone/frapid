@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Frapid.Framework.Extensions;
-using Frapid.TokenManager.DTO;
 using Jose;
 using Newtonsoft.Json;
 

@@ -7,7 +7,7 @@ using StackExchange.Redis.Extensions.Newtonsoft;
 
 namespace Frapid.ApplicationState.CacheFactory
 {
-    public class RedisCacheFactory: ICacheFactory
+    public class RedisCacheFactory : ICacheFactory
     {
         public RedisCacheFactory()
         {
@@ -29,7 +29,7 @@ namespace Frapid.ApplicationState.CacheFactory
         {
             bool result = this.Client.SearchKeys(key).Any();
 
-            if(result)
+            if (result)
             {
                 this.Client.Remove(key);
             }
@@ -42,7 +42,7 @@ namespace Frapid.ApplicationState.CacheFactory
 
         public static ConnectionMultiplexer GetConnection()
         {
-            if(Redis == null)
+            if (Redis == null)
             {
                 string cs = RedisConnectionString.GetConnectionString();
                 Redis = ConnectionMultiplexer.Connect(cs);

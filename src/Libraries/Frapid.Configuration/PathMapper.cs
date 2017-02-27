@@ -16,22 +16,22 @@ namespace Frapid.Configuration
 
         public static string MapPath(string path)
         {
-            if(string.IsNullOrWhiteSpace(PathToRootDirectory))
+            if (string.IsNullOrWhiteSpace(PathToRootDirectory))
             {
                 PathToRootDirectory = HostingEnvironment.MapPath("~/");
             }
 
-            if(string.IsNullOrWhiteSpace(PathToRootDirectory))
+            if (string.IsNullOrWhiteSpace(PathToRootDirectory))
             {
                 return path;
             }
 
-            if(path.StartsWith("~/"))
+            if (path.StartsWith("~/"))
             {
                 path = path.Remove(0, 2);
             }
 
-            if(path.StartsWith("/"))
+            if (path.StartsWith("/"))
             {
                 path = path.Remove(0, 1);
             }

@@ -11,7 +11,7 @@ using Serilog;
 
 namespace Frapid.Messaging.Smtp
 {
-    public sealed class Processor: IEmailProcessor
+    public sealed class Processor : IEmailProcessor
     {
         public SmtpHost Host { get; private set; }
         public ICredentials Credentials { get; private set; }
@@ -19,7 +19,7 @@ namespace Frapid.Messaging.Smtp
 
         public void InitializeConfig(string database)
         {
-            var config = new Config(database, null);
+            var config = new EmailConfig(database, null);
             var host = EmailHelper.GetSmtpHost(config);
             var credentials = EmailHelper.GetCredentials(config);
 
@@ -38,42 +38,42 @@ namespace Frapid.Messaging.Smtp
 
         public async Task<bool> SendAsync(EmailMessage email, bool deleteAttachmentes, params string[] attachments)
         {
-            if(string.IsNullOrWhiteSpace(email.SentTo))
+            if (string.IsNullOrWhiteSpace(email.SendTo))
             {
-                throw new ArgumentNullException(email.SentTo);
+                throw new ArgumentNullException(email.SendTo);
             }
 
-            if(string.IsNullOrWhiteSpace(email.Message))
+            if (string.IsNullOrWhiteSpace(email.Message))
             {
                 throw new ArgumentNullException(email.Message);
             }
 
-            var addresses = email.SentTo.Split(',');
+            var addresses = email.SendTo.Split(',');
 
-            foreach(var validator in addresses.Select(address => new Validator(address)))
+            foreach (var validator in addresses.Select(address => new Validator(address)))
             {
                 validator.Validate();
 
-                if(!validator.IsValid)
+                if (!validator.IsValid)
                 {
                     return false;
                 }
             }
 
             addresses = addresses.Distinct().ToArray();
-            email.SentTo = string.Join(",", addresses);
+            email.SendTo = string.Join(",", addresses);
             email.Status = Status.Executing;
 
 
-            using(var mail = new MailMessage(email.FromEmail, email.SentTo))
+            using (var mail = new MailMessage(email.FromIdentifier, email.SendTo))
             {
-                if(attachments != null)
+                if (attachments != null)
                 {
-                    foreach(string file in attachments)
+                    foreach (string file in attachments)
                     {
-                        if(!string.IsNullOrWhiteSpace(file))
+                        if (!string.IsNullOrWhiteSpace(file))
                         {
-                            if(File.Exists(file))
+                            if (File.Exists(file))
                             {
                                 var attachment = new Attachment(file, MediaTypeNames.Application.Octet);
 
@@ -92,7 +92,7 @@ namespace Frapid.Messaging.Smtp
                     }
                 }
 
-                using(var smtp = new SmtpClient(this.Host.Address, this.Host.Port))
+                using (var smtp = new SmtpClient(this.Host.Address, this.Host.Port))
                 {
                     smtp.DeliveryMethod = this.Host.DeliveryMethod;
                     smtp.PickupDirectoryLocation = this.Host.PickupDirectory;
@@ -108,26 +108,26 @@ namespace Frapid.Messaging.Smtp
 
                         mail.SubjectEncoding = Encoding.UTF8;
 
-                        mail.ReplyToList.Add(new MailAddress(email.FromEmail, email.FromName));
+                        mail.ReplyToList.Add(new MailAddress(email.FromIdentifier, email.FromName));
 
                         await smtp.SendMailAsync(mail).ConfigureAwait(false);
 
                         email.Status = Status.Completed;
                         return true;
                     }
-                    catch(SmtpException ex)
+                    catch (SmtpException ex)
                     {
                         email.Status = Status.Failed;
-                        Log.Warning(@"Could not send email to {To}. {Ex}. ", email.SentTo, ex);
+                        Log.Warning(@"Could not send email to {To}. {Ex}. ", email.SendTo, ex);
                     }
                     finally
                     {
-                        foreach(IDisposable item in mail.Attachments)
+                        foreach (IDisposable item in mail.Attachments)
                         {
                             item?.Dispose();
                         }
 
-                        if(deleteAttachmentes)
+                        if (deleteAttachmentes)
                         {
                             this.DeleteFiles(attachments);
                         }
@@ -140,7 +140,7 @@ namespace Frapid.Messaging.Smtp
 
         private void DeleteFiles(params string[] files)
         {
-            foreach(string file in files.Where(file => !string.IsNullOrWhiteSpace(file)).Where(File.Exists))
+            foreach (string file in files.Where(file => !string.IsNullOrWhiteSpace(file)).Where(File.Exists))
             {
                 File.Delete(file);
             }

@@ -122,12 +122,12 @@ String.prototype.toFormattedHours = function () {
         return "";
     };
 
-    if (!window.Resources.Labels.NHours) {
+    if (!window.i18n.NHours) {
         return this;
     };
 
 
-    var val = stringFormat(window.Resources.Labels.NHours(), this);
+    var val = stringFormat(window.i18n.NHours, this);
     return val;
 };
 
@@ -136,11 +136,11 @@ String.prototype.toFormattedMinutes = function () {
         return "";
     };
 
-    if (!window.Resources.Labels.NMinutes) {
+    if (!window.i18n.NMinutes) {
         return this;
     };
 
 
-    var val = stringFormat(window.Resources.Labels.NMinutes(), this);
+    var val = stringFormat(window.i18n.NMinutes, this);
     return val;
 };

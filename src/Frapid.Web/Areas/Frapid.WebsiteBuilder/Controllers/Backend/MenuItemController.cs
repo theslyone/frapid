@@ -12,7 +12,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [MenuPolicy(OverridePath = "/dashboard/website/menus")]
         public ActionResult Index()
         {
-            return this.FrapidView(this.GetRazorView<AreaRegistration>("MenuItem/Index.cshtml", this.Tenant));
+            return this.FrapidView(this.GetRazorView<AreaRegistration>("Backend/MenuItem/Index.cshtml", this.Tenant));
         }
     }
 }

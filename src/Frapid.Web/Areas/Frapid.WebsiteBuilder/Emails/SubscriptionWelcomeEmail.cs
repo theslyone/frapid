@@ -22,8 +22,8 @@ namespace Frapid.WebsiteBuilder.Emails
 
             string file = HostingEnvironment.MapPath(string.Format(CultureInfo.InvariantCulture, TemplatePath, tenant));
 
-            if(file == null ||
-               !File.Exists(file))
+            if (file == null ||
+                !File.Exists(file))
             {
                 return string.Empty;
             }
@@ -41,17 +41,17 @@ namespace Frapid.WebsiteBuilder.Emails
         {
             var config = EmailProcessor.GetDefaultConfig(tenant);
             string domain = HttpContext.Current.Request.Url.Host;
-            string subject = string.Format(CultureInfo.InvariantCulture, "Thank you for subscribing to {0}", domain);
+            string subject = string.Format(CultureInfo.InvariantCulture, Resources.ThankYourForSubscribingToSite, domain);
 
             return new EmailQueue
-                   {
-                       AddedOn = DateTimeOffset.UtcNow,
-                       FromName = config?.FromName,
-                       ReplyTo = config?.FromEmail,
-                       Subject = subject,
-                       Message = this.GetMessage(tenant, model),
-                       SendTo = model.EmailAddress
-                   };
+            {
+                AddedOn = DateTimeOffset.UtcNow,
+                FromName = config?.FromName,
+                ReplyTo = config?.FromEmail,
+                Subject = subject,
+                Message = this.GetMessage(tenant, model),
+                SendTo = model.EmailAddress
+            };
         }
 
         public async Task SendAsync(string tenant, Subscribe model)
@@ -63,14 +63,14 @@ namespace Frapid.WebsiteBuilder.Emails
                 await manager.AddAsync().ConfigureAwait(false);
 
                 var processor = EmailProcessor.GetDefault(tenant);
-                if(processor != null)
+                if (processor != null)
                 {
-                    if(string.IsNullOrWhiteSpace(email.ReplyTo))
+                    if (string.IsNullOrWhiteSpace(email.ReplyTo))
                     {
                         email.ReplyTo = processor.Config.FromEmail;
                     }
 
-                    await manager.ProcessMailQueueAsync(processor).ConfigureAwait(false);                    
+                    await manager.ProcessQueueAsync(processor).ConfigureAwait(false);
                 }
             }
             catch

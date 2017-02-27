@@ -1,27 +1,28 @@
 ﻿$("#ConfirmEmailInputEmail").hide();
+
 $(document).ready(function () {
-    window.validator.initialize($(".reset.plainPassword.segment"));
+    window.validator.initialize($(".reset.password.segment"));
 });
 
 $("#EmailInputEmail").blur(function () {
     function request(email) {
-        var url = "/account/reset/validate-email?email=" + email;
+        const url = "/account/reset/validate-email?email=" + email;
         return window.getAjaxRequest(url, "POST");
     };
 
     var el = $(this);
-    var email = el.val();
+    const email = el.val();
 
     if (!email) {
         return;
     };
 
     $("#ResetButton").addClass("disabled");
-    var ajax = request(email);
+    const ajax = request(email);
 
     ajax.success(function (response) {
         if (response) {
-            $(".big.error").html("We do not have an account with this email address.");
+            $(".big.error").html(window.translate("NoAccountWithThisEmail"));
             window.makeDirty(el);
         } else {
             $(".big.error").html("");
@@ -34,18 +35,18 @@ $("#EmailInputEmail").blur(function () {
 
 $("#ResetButton").click(function () {
     function request(model) {
-        var url = "/account/reset";
-        var data = JSON.stringify(model);
+        const url = "/account/reset";
+        const data = JSON.stringify(model);
 
         return window.getAjaxRequest(url, "POST", data);
     };
 
     function validate() {
         $(".big.error").html("");
-        var formEl = $(".reset.plainPassword.segment");
+        const formEl = $(".reset.password.segment");
         var isValid = window.validator.validate(formEl);
 
-        var hp = $("#ConfirmEmailInputEmail").val();
+        const hp = $("#ConfirmEmailInputEmail").val();
 
         if (hp) {
             isValid = false;
@@ -56,19 +57,19 @@ $("#ResetButton").click(function () {
 
     $(".big.error").html("");
 
-    var isValid = validate();
+    const isValid = validate();
     if (!isValid) {
         return;
     };
 
 
-    var formEl = $(".reset.plainPassword.segment");
+    const formEl = $(".reset.password.segment");
     formEl.addClass("loading");
-    var model = window.serializeForm(formEl);
-    var token = $("#TokenInputHidden").val();
+    const model = window.serializeForm(formEl);
+    const token = $("#TokenInputHidden").val();
     model.Token = token;
 
-    var ajax = request(model);
+    const ajax = request(model);
     ajax.success(function (response) {
         if (response) {
             window.location = "/account/reset/email-sent";

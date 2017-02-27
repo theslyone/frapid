@@ -10,7 +10,7 @@ using Frapid.Dashboard.Controllers;
 namespace Frapid.Authorization.Controllers
 {
     [AntiForgery]
-    public class MenuAccessGroupPolicyController: DashboardController
+    public class MenuAccessGroupPolicyController : DashboardController
     {
         [RestrictAnonymous]
         [Route("dashboard/authorization/menu-access/group-policy")]
@@ -35,7 +35,7 @@ namespace Frapid.Authorization.Controllers
         [Route("dashboard/authorization/menu-access/group-policy")]
         public async Task<ActionResult> SaveGroupPolicyAsync(GroupMenuPolicyInfo model)
         {
-            if(!this.ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.InvalidModelState(this.ModelState);
             }

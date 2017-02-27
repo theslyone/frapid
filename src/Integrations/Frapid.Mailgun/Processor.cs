@@ -8,7 +8,7 @@ using Serilog;
 
 namespace Frapid.Mailgun
 {
-    public class Processor: IEmailProcessor
+    public class Processor : IEmailProcessor
     {
         public IEmailConfig Config { get; set; }
         public bool IsEnabled { get; set; }
@@ -20,13 +20,13 @@ namespace Frapid.Mailgun
 
             this.IsEnabled = this.Config.Enabled;
 
-            if(!this.IsEnabled)
+            if (!this.IsEnabled)
             {
                 return;
             }
 
-            if(string.IsNullOrWhiteSpace(config.ApiKey) ||
-               string.IsNullOrWhiteSpace(config.SecretKey))
+            if (string.IsNullOrWhiteSpace(config.ApiKey) ||
+                string.IsNullOrWhiteSpace(config.SecretKey))
             {
                 this.IsEnabled = false;
             }
@@ -43,7 +43,7 @@ namespace Frapid.Mailgun
 
             var config = this.Config as Config;
 
-            if(config == null)
+            if (config == null)
             {
                 email.Status = Status.Cancelled;
                 return false;
@@ -52,22 +52,22 @@ namespace Frapid.Mailgun
             try
             {
                 var client = new RestClient
-                             {
-                                 BaseUrl = new Uri("https://api.mailgun.net/v3"),
-                                 Authenticator = new HttpBasicAuthenticator("api", config.ApiKey)
-                             };
+                {
+                    BaseUrl = new Uri("https://api.mailgun.net/v3"),
+                    Authenticator = new HttpBasicAuthenticator("api", config.ApiKey)
+                };
 
                 var request = new RestRequest
-                              {
-                                  Resource = "{domain}/messages",
-                                  Method = Method.POST
-                              };
+                {
+                    Resource = "{domain}/messages",
+                    Method = Method.POST
+                };
 
                 request.AddParameter("domain", config.DomainName, ParameterType.UrlSegment);
-                request.AddParameter("from", this.GetEmailAccount(email.FromEmail, email.FromName));
+                request.AddParameter("from", this.GetEmailAccount(email.FromIdentifier, email.FromName));
                 request.AddParameter("reply-to", this.GetEmailAccount(email.ReplyToEmail, email.ReplyToName));
 
-                foreach(string recipient in email.SentTo.Split(','))
+                foreach (string recipient in email.SendTo.Split(','))
                 {
                     request.AddParameter("to", recipient.Trim());
                 }
@@ -80,14 +80,14 @@ namespace Frapid.Mailgun
                 return true;
             }
                 // ReSharper disable once CatchAllClause
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 email.Status = Status.Failed;
-                Log.Warning(@"Could not send email to {To} using Mailgun API. {Ex}. ", email.SentTo, ex);
+                Log.Warning(@"Could not send email to {To} using Mailgun API. {Ex}. ", email.SendTo, ex);
             }
             finally
             {
-                if(deleteAttachmentes)
+                if (deleteAttachmentes)
                 {
                     FileHelper.DeleteFiles(attachments);
                 }
@@ -98,7 +98,7 @@ namespace Frapid.Mailgun
 
         private string GetEmailAccount(string email, string name)
         {
-            if(string.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 return email;
             }

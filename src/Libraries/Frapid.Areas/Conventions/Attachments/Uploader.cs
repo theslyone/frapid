@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Frapid.Configuration;
+using Frapid.i18n;
 using Serilog;
 
 namespace Frapid.Areas.Conventions.Attachments
@@ -29,14 +30,14 @@ namespace Frapid.Areas.Conventions.Attachments
         {
             if (this.Files.Count > 1)
             {
-                throw new UploadException("Only single file may be uploaded");
+                throw new UploadException(Resources.OnlyASingleFileMayBeUploaded);
             }
 
             var file = this.Files[0];
 
             if (file == null)
             {
-                throw new UploadException("No file was uploaded");
+                throw new UploadException(Resources.NoFileWasUploaded);
             }
 
             string path = PathMapper.MapPath($"/Tenants/{this.Tenant}/Areas/{this.Area.AreaName}/attachments/");
@@ -60,8 +61,7 @@ namespace Frapid.Areas.Conventions.Attachments
 
             if (fileName == null)
             {
-                this.Logger.Verbose(
-                    "Could not upload resource because the posted attachment file name is null or invalid.");
+                this.Logger.Verbose("Could not upload resource because the posted attachment file name is null or invalid.");
                 throw new UploadException("Invalid data.");
             }
 
@@ -69,8 +69,7 @@ namespace Frapid.Areas.Conventions.Attachments
 
             if (!this.AllowedExtensions.Contains(extension))
             {
-                this.Logger.Warning(
-                    "Could not upload avatar resource because the uploaded file {file} has invalid extension.",
+                this.Logger.Warning("Could not upload avatar resource because the uploaded file {file} has invalid extension.",
                     fileName);
                 throw new UploadException("Invalid data.");
             }

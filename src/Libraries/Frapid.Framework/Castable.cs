@@ -17,7 +17,7 @@ namespace Frapid.Framework
 
             try
             {
-                return (T)converter.ConvertFromString(input);
+                return (T) converter.ConvertFromString(input);
             }
             catch
             {

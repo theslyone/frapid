@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Web;
 using SendGrid.Helpers.Mail;
 
@@ -8,39 +9,36 @@ namespace Frapid.SendGridMail
     {
         internal static Mail AddAttachments(Mail message, string[] attachments)
         {
-            if(attachments != null)
+            if (attachments == null)
             {
-                foreach(string file in attachments)
+                return message;
+            }
+
+            foreach (string file in attachments)
+            {
+                if (string.IsNullOrWhiteSpace(file) || !File.Exists(file))
                 {
-                    if(!string.IsNullOrWhiteSpace(file))
-                    {
-                        if(File.Exists(file))
-                        {
-                            using(var stream = new FileStream(file, FileMode.Open))
-                            {
-                                using (var reader = new StreamReader(stream))
-                                {
-                                    string fileName = new FileInfo(file).Name;
-
-                                    var attachment = new Attachment
-                                    {
-                                        Filename = fileName,
-                                        Content = reader.ReadToEnd(),
-                                        Type = MimeMapping.GetMimeMapping(file),
-                                        Disposition = "attachment",
-                                        ContentId = fileName
-                                    };
-
-                                    message.AddAttachment(attachment);
-                                }
-                            }
-                        }
-                    }
+                    continue;
                 }
+
+                var bytes = File.ReadAllBytes(file);
+                string content = Convert.ToBase64String(bytes);
+
+                string fileName = new FileInfo(file).Name;
+
+                var attachment = new Attachment
+                {
+                    Filename = fileName,
+                    Content = content,
+                    Type = MimeMapping.GetMimeMapping(file),
+                    Disposition = "attachment",
+                    ContentId = fileName
+                };
+
+                message.AddAttachment(attachment);
             }
 
             return message;
         }
-
     }
 }

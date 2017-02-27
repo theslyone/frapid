@@ -1,44 +1,42 @@
 using System;
 using System.Web.Mvc;
-using Frapid.ApplicationState;
-using Frapid.ApplicationState.CacheFactory;
 using Frapid.Areas;
 using Frapid.AssetBundling;
 using Frapid.Configuration;
 using Frapid.Framework.Extensions;
+using Frapid.Framework.StaticContent;
 using Serilog;
 
 namespace Frapid.Web.Controllers
 {
     [Route("assets")]
-    public sealed class AssetsController : FrapidController
+    public sealed class AssetsController : BaseController
     {
-        public AssetsController()
-        {
-            this.Factory = new DefaultCacheFactory();
-        }
-
         private bool IsDevelopment()
         {
             string value = ConfigurationManager.GetConfigurationValue("ParameterConfigFileLocation", "IsDevelopment");
             return value.Or("").ToUpperInvariant().StartsWith("T");
         }
 
-        private ICacheFactory Factory { get; }
 
-        private string GetContents(string key)
+        private Bundler GetStyleBundler(Asset asset)
         {
             if (this.IsDevelopment())
             {
-                return null;
+                return new DevelopmentStyleBundler(Log.Logger, asset);
             }
 
-            return this.Factory.Get<string>(key);
+            return new ProductionStyleBundler(Log.Logger, asset);
         }
 
-        private void SetContents(string key, string contents, DateTimeOffset expiresOn)
+        private Bundler GetScriptBundler(Asset asset)
         {
-            this.Factory.Add(key, contents, expiresOn);
+            if (this.IsDevelopment())
+            {
+                return new DevelopmentScriptBundler(Log.Logger, asset);
+            }
+
+            return new ProductionScriptBundler(Log.Logger, asset);
         }
 
         [Route("assets/js/{*name}")]
@@ -51,16 +49,9 @@ namespace Frapid.Web.Controllers
                 return this.HttpNotFound();
             }
 
-            string key = "assets.scripts." + name;
-            string contents = this.GetContents(key);
 
-            if (string.IsNullOrWhiteSpace(contents))
-            {
-                var compressor = new ScriptBundler(Log.Logger, asset);
-                contents = compressor.Compress();
-
-                this.SetContents(key, contents, DateTimeOffset.UtcNow.AddMinutes(asset.CacheDurationInMinutes));
-            }
+            var compressor = this.GetScriptBundler(asset);
+            string contents = compressor.Compress();
 
             this.Response.Cache.SetMaxAge(TimeSpan.FromMinutes(asset.CacheDurationInMinutes));
             return this.Content(contents, "text/javascript");
@@ -70,16 +61,9 @@ namespace Frapid.Web.Controllers
         public ActionResult Css(string name)
         {
             var asset = AssetDiscovery.FindByName(name);
-            string key = "assets.styles." + name;
-            string contents = this.GetContents(key);
 
-            if (string.IsNullOrWhiteSpace(contents))
-            {
-                var compressor = new StyleBundler(Log.Logger, asset);
-                contents = compressor.Compress();
-
-                this.SetContents(key, contents, DateTimeOffset.UtcNow.AddMinutes(asset.CacheDurationInMinutes));
-            }
+            var compressor = this.GetStyleBundler(asset);
+            string contents = compressor.Compress();
 
             this.Response.Cache.SetMaxAge(TimeSpan.FromMinutes(asset.CacheDurationInMinutes));
             return this.Content(contents, "text/css");

@@ -15,7 +15,6 @@ namespace Frapid.Reports.HtmlConverters
         {
             string id = Guid.NewGuid().ToString();
 
-            //public directory is allowed direct access
             string source = $"/Tenants/{tenant}/Temp/{id}.html";
 
             if (string.IsNullOrWhiteSpace(destination))
@@ -42,7 +41,14 @@ namespace Frapid.Reports.HtmlConverters
 
         private void ToPdf(string source, string destination)
         {
-            PdfConvert.Environment.WkHtmlToPdfPath = ConfigurationManager.GetConfigurationValue("ParameterConfigFileLocation", "WkhtmltopdfExecutablePath");
+            string executablePath = ConfigurationManager.GetConfigurationValue("ReportConfigFileLocation", "WkhtmltopdfExecutablePath");
+
+            if (string.IsNullOrWhiteSpace(executablePath) || !File.Exists(executablePath))
+            {
+                return;
+            }
+
+            PdfConvert.Environment.WkHtmlToPdfPath = executablePath;
             PdfConvert.Environment.Timeout = 30000;
 
             PdfConvert.ConvertHtmlToPdf(new PdfDocument

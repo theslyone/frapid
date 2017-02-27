@@ -6,17 +6,18 @@ using Frapid.Account.Emails;
 using Frapid.Account.InputModels;
 using Frapid.Account.ViewModels;
 using Frapid.Areas;
+using Frapid.i18n;
 
 namespace Frapid.Account.RemoteAuthentication
 {
     public class FacebookAuthentication
     {
-        public string Tenant { get; }
-
         public FacebookAuthentication(string tenant)
         {
             this.Tenant = tenant;
         }
+
+        public string Tenant { get; }
 
         public string ProviderName => "Facebook";
 
@@ -40,29 +41,28 @@ namespace Frapid.Account.RemoteAuthentication
 
         public async Task<LoginResult> AuthenticateAsync(FacebookAccount account, RemoteUser user)
         {
-            var facebookUser = GetFacebookUserInfo(account.Token);
+            var facebookUser = this.GetFacebookUserInfo(account.Token);
 
-            if (!Validate(facebookUser, account.FacebookUserId, account.Email))
+            if (!this.Validate(facebookUser, account.FacebookUserId, account.Email))
             {
                 return new LoginResult
                 {
                     Status = false,
-                    Message = "Access is denied"
+                    Message = Resources.AccessIsDenied
                 };
             }
 
             var result =
                 await
-                    FacebookSignIn.SignInAsync(this.Tenant, account.FacebookUserId, account.Email, account.OfficeId,
-                        facebookUser.Name, account.Token, user.Browser,
-                        user.IpAddress, account.Culture).ConfigureAwait(false);
+                    FacebookSignIn.SignInAsync(this.Tenant, account.FacebookUserId, account.Email, account.OfficeId, facebookUser.Name, account.Token, user.Browser, user.IpAddress, account.Culture)
+                        .ConfigureAwait(false);
 
             if (result.Status)
             {
                 if (!await Registrations.HasAccountAsync(this.Tenant, account.Email).ConfigureAwait(false))
                 {
                     string template = "~/Tenants/{tenant}/Areas/Frapid.Account/EmailTemplates/welcome-email-other.html";
-                    var welcomeEmail = new WelcomeEmail(facebookUser, template, ProviderName);
+                    var welcomeEmail = new WelcomeEmail(facebookUser, template, this.ProviderName);
                     await welcomeEmail.SendAsync(this.Tenant).ConfigureAwait(false);
                 }
             }

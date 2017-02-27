@@ -4,18 +4,25 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | queue_id | NOT NULL | bigint | 0 |  |
-| 2 | from_name | NOT NULL | character varying | 256 |  |
-| 3 | reply_to | NOT NULL | character varying | 256 |  |
-| 4 | subject | NOT NULL | character varying | 256 |  |
-| 5 | send_to | NOT NULL | character varying | 256 |  |
-| 6 | attachments |  | text | 0 |  |
-| 7 | message | NOT NULL | text | 0 |  |
-| 8 | added_on | NOT NULL | timestamp with time zone | 0 |  |
-| 9 | delivered | NOT NULL | boolean | 0 |  |
-| 10 | delivered_on |  | timestamp with time zone | 0 |  |
-| 11 | canceled | NOT NULL | boolean | 0 |  |
-| 12 | canceled_on |  | timestamp with time zone | 0 |  |
+| 1 | queue_id | [ ] | bigint | 0 |  |
+| 2 | from_name | [ ] | character varying | 256 |  |
+| 3 | from_email | [ ] | character varying | 256 |  |
+| 4 | reply_to | [ ] | character varying | 256 |  |
+| 5 | reply_to_name | [ ] | character varying | 256 |  |
+| 6 | subject | [ ] | character varying | 256 |  |
+| 7 | send_to | [ ] | character varying | 256 |  |
+| 8 | attachments | [x] | text | 0 |  |
+| 9 | message | [ ] | text | 0 |  |
+| 10 | added_on | [ ] | timestamp with time zone | 0 |  |
+| 11 | send_on | [ ] | timestamp with time zone | 0 |  |
+| 12 | delivered | [ ] | boolean | 0 |  |
+| 13 | delivered_on | [x] | timestamp with time zone | 0 |  |
+| 14 | canceled | [ ] | boolean | 0 |  |
+| 15 | canceled_on | [x] | timestamp with time zone | 0 |  |
+| 16 | is_test | [ ] | boolean | 0 |  |
+| 17 | audit_user_id | [x] | integer | 0 |  |
+| 18 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 19 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -23,6 +30,7 @@
 
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
+| 17 | [audit_user_id](../account/users.md) | email_queue_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -46,9 +54,13 @@
 | # | Column Name | Default |
 | --- | --- | --- |
 | 1 | queue_id | nextval('config.email_queue_queue_id_seq'::regclass) |
-| 8 | added_on | now() |
-| 9 | delivered | false |
-| 11 | canceled | false |
+| 10 | added_on | now() |
+| 11 | send_on | now() |
+| 12 | delivered | false |
+| 14 | canceled | false |
+| 16 | is_test | false |
+| 18 | audit_ts | now() |
+| 19 | deleted | false |
 
 
 **Triggers**

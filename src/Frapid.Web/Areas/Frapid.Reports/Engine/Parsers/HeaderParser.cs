@@ -2,12 +2,13 @@
 {
     public sealed class HeaderParser
     {
-        public string Path { get; set; }
-
         public HeaderParser(string path)
         {
             this.Path = path;
         }
+
+        public string Path { get; set; }
+
         public bool Get()
         {
             var candidate = XmlHelper.GetNode(this.Path, "/FrapidReport/Header");

@@ -8,6 +8,7 @@ namespace Frapid.Messaging.DTO
     public sealed class EmailQueue : IPoco
     {
         public long QueueId { get; set; }
+        public string ApplicationName { get; set; }
         public string FromName { get; set; }
         public string FromEmail { get; set; }
         public string ReplyTo { get; set; }

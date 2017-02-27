@@ -10,8 +10,7 @@ namespace Frapid.WebsiteBuilder.Models
         public static IEnumerable<MenuItemView> GetMenus(string tenant, string menuName)
         {
             var task = Task.Run(async () => await Menus.GetMenuItemsAsync(tenant, menuName).ConfigureAwait(false));
-
-            return task.Result;
+            return task.GetAwaiter().GetResult();
         }
     }
 }

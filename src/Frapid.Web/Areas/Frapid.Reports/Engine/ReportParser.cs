@@ -6,9 +6,6 @@ namespace Frapid.Reports.Engine
 {
     public sealed class ReportParser
     {
-        public string Path { get; set; }
-        private Report Report { get; }
-
         public ReportParser(string path, string tenant, List<Parameter> parameters)
         {
             this.Path = path;
@@ -19,6 +16,9 @@ namespace Frapid.Reports.Engine
                 Parameters = parameters
             };
         }
+
+        public string Path { get; set; }
+        private Report Report { get; }
 
 
         public Report Get()

@@ -1,7 +1,7 @@
 # Frapid Framework
 
 Thank you for visiting frapid github repository. Frapid is open source application development
-framework released under **MIT License**.
+framework released under **Apache v2.0 License**.
 
 
 # Introduction

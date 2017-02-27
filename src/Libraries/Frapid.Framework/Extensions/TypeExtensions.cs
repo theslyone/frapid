@@ -46,7 +46,7 @@ namespace Frapid.Framework.Extensions
         {
             var members = new List<T>();
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            foreach(var assembly in assemblies)
+            foreach (var assembly in assemblies)
             {
                 try
                 {
@@ -56,16 +56,16 @@ namespace Frapid.Framework.Extensions
 
                     members.AddRange(membersInAssembly);
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     var loadException = ex as ReflectionTypeLoadException;
 
-                    if(loadException != null)
+                    if (loadException != null)
                     {
                         var typeLoadException = loadException;
                         var loaderExceptions = typeLoadException.LoaderExceptions;
 
-                        foreach(var exception in loaderExceptions)
+                        foreach (var exception in loaderExceptions)
                         {
                             Log.Error(exception.Message);
                         }

@@ -1,7 +1,7 @@
 # public.html type
 
 | Schema | [public](../../schemas/public.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Type Name | html |
 | Base Type | text |
 | Owner | frapid_db_user |

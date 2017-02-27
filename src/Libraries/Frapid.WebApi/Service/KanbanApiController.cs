@@ -8,7 +8,7 @@ using Frapid.WebApi.DataAccess;
 
 namespace Frapid.WebApi.Service
 {
-    public class KanbanApiController: FrapidApiController
+    public class KanbanApiController : FrapidApiController
     {
         [AcceptVerbs("GET", "HEAD")]
         [Route("~/api/kanbans/get-by-resources")]
@@ -24,11 +24,11 @@ namespace Frapid.WebApi.Service
                 var repository = new KanbanRepository(this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.GetAsync(kanbanIds, resourceIds).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (

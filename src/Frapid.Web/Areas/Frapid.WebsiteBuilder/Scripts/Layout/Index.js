@@ -1,4 +1,5 @@
-$(".dropdown").dropdown();
+//Todo: Remove Semantic UI Dropdown dependency 
+//$(".dropdown").dropdown({placeholder: false, forceSelection: false});
 
 var container = $("#container");
 var closeButton = $("#CloseButton");
@@ -32,7 +33,7 @@ var treeContainer = $(".tree.container");
 
 
 var uploadButton = $("#UploadButton");
-var uploadModal = $('#UploadModal');
+var uploadModal = $("#UploadModal");
 var uploadModalMessage = $("#UploadModal .message");
 var uploadModalImage = $("#UploadModal .preview");
 
@@ -41,39 +42,38 @@ var viewerImage = $("#viewer img");
 var uploadThemeInputFile = $("#UploadThemeInputFile");
 
 
-uploadButton.click(function () {
+uploadButton.click(function() {
     uploadModalMessage.hide();
     uploadModal.modal({
         blurring: true,
-        onHide: function () {
+        onHide: function() {
             loadResources();
         }
-    }).modal('show');
+    }).modal("show");
 });
 
 function confirmAction() {
-    var areYouSure = window.Resources.Questions.AreYouSure() || "Are you sure?";
+    const areYouSure = window.Resources.AreYouSure || "Are you sure?";
     return confirm(areYouSure);
 };
 
-fileInputFile.change(function () {
+fileInputFile.change(function() {
     window.clearTimeout(window.fileTimeOut);
 });
 
 
-fileInputFile.on("readComplete", function () {
-    setTimeout(function () {
+fileInputFile.on("readComplete", function() {
+    setTimeout(function() {
         uploadModal.modal("refresh");
     }, 200);
 });
 
 
-
-fileInputFile.on("done", function () {
+fileInputFile.on("done", function() {
     uploadModalMessage.show();
 
-    window.fileTimeOut = setTimeout(function () {
-        uploadModalImage.fadeOut(1000, function () {
+    window.fileTimeOut = setTimeout(function() {
+        uploadModalImage.fadeOut(1000, function() {
             uploadModalMessage.hide();
             uploadModalImage.attr("src", "/Static/images/logo.png").fadeIn(1000);
         });
@@ -81,7 +81,7 @@ fileInputFile.on("done", function () {
 });
 
 
-closeButton.click(function () {
+closeButton.click(function() {
     themeContainer.fadeIn(500);
     treeContainer.hide();
     actionContainer.hide();
@@ -89,7 +89,7 @@ closeButton.click(function () {
 
 function setFileUploadHandler(container) {
     var url = "/dashboard/my/website/themes/resources/upload?themeName={0}&container={1}";
-    var theme = themeDropdown.val();
+    const theme = themeDropdown.val();
     url = window.stringFormat(url, theme, container);
 
     fileInputFile.attr("data-handler", url);
@@ -107,32 +107,34 @@ function deleteItem(el) {
 
     el = $(el);
     var resource = el.attr("data-path");
-    var theme = themeDropdown.val();
+    const theme = themeDropdown.val();
 
-    var message = window.stringFormat('Are you sure you want to delete the following file?\n\n/Themes/{0}/{1}', theme, resource);
+    //"Are you sure you want to delete the following file?\n\n/Themes/{0}/{1}"
+    const message = window.stringFormat(window.translate("FileDeleteConfirmationMessage"), theme, resource);
+
     if (!confirm(message)) {
         return;
     };
 
 
-    var ajax = request(theme, resource);
+    const ajax = request(theme, resource);
 
-    ajax.fail(function (xhr) {
+    ajax.fail(function(xhr) {
         window.displayMessage(window.getAjaxErrorMessage(xhr));
     });
 
-    ajax.success(function () {
+    ajax.success(function() {
         window.displaySuccess();
         loadResources();
 
         window.ace.edit("editor").setValue("");
 
-        viewerImage.fadeOut(1000, function () {
+        viewerImage.fadeOut(1000, function() {
             viewerImage.attr("src", "");
         });
 
-        $("[data-container]").each(function () {
-            var el = $(this);
+        $("[data-container]").each(function() {
+            const el = $(this);
 
             if (el.attr("data-container") === resource) {
                 el.attr("data-container", "");
@@ -143,20 +145,21 @@ function deleteItem(el) {
 
 function save() {
     function request(theme, container, file, contents) {
-        var url = "/dashboard/my/website/themes/resources/edit/file";
+        const url = "/dashboard/my/website/themes/resources/edit/file";
 
-        var model = {
+        const model = {
             themeName: theme,
             container: container,
             file: file,
             contents: contents
         };
 
-        var data = JSON.stringify(model);
+        const data = JSON.stringify(model);
 
         return window.getAjaxRequest(url, "PUT", data);
     };
-    var el = saveButton;
+
+    const el = saveButton;
     var file = el.attr("data-path");
 
     if (!file) {
@@ -169,19 +172,19 @@ function save() {
 
     var theme = themeDropdown.val();
     var container = "";
-    var contents = window.ace.edit("editor").getValue();
+    const contents = window.ace.edit("editor").getValue();
 
     if (file.substring(file.length - 5) === ".less") {
-        window.less.render(contents, { compress: false }, function (e, output) {
-            var compiled = request(theme, container, file.replace(".less", ".css"), output.css);
-            compiled.success(function () {
-                window.displayMessage("Successfully saved compiled css file.", "success");
+        window.less.render(contents, { compress: false }, function(e, output) {
+            const compiled = request(theme, container, file.replace(".less", ".css"), output.css);
+            compiled.success(function() {
+                window.displayMessage(window.translate("SuccessfullySavedCompiledCssFile"), "success");
             });
         });
-        window.less.render(contents, { compress: true }, function (e, output) {
-            var compiled = request(theme, container, file.replace(".less", ".min.css"), output.css);
-            compiled.success(function () {
-                window.displayMessage("Successfully saved minified css file.", "success");
+        window.less.render(contents, { compress: true }, function(e, output) {
+            const compiled = request(theme, container, file.replace(".less", ".min.css"), output.css);
+            compiled.success(function() {
+                window.displayMessage(window.translate("SuccessfullySavedMinifiedCssFile"), "success");
             });
         });
     };
@@ -190,24 +193,24 @@ function save() {
         return;
     };
 
-    var ajax = request(theme, container, file, contents);
+    const ajax = request(theme, container, file, contents);
 
-    ajax.fail(function (xhr) {
+    ajax.fail(function(xhr) {
         window.displayMessage(window.getAjaxErrorMessage(xhr));
     });
 
-    ajax.success(function () {
+    ajax.success(function() {
         window.displaySuccess();
     });
-    
+
 };
 
-saveButton.click(function () {
+saveButton.click(function() {
     save();
 });
 
 
-$(window).keypress(function (event) {
+$(window).keypress(function(event) {
     if (!(event.which === 115 && event.ctrlKey) && !(event.which === 19)) return true;
     save();
     event.preventDefault();
@@ -217,32 +220,32 @@ $(window).keypress(function (event) {
 
 function createFile(el) {
     function request(theme, container, file, contents) {
-        var url = "/dashboard/my/website/themes/resources/create/file";
+        const url = "/dashboard/my/website/themes/resources/create/file";
 
-        var model = {
+        const model = {
             themeName: theme,
             container: container,
             file: file,
             contents: contents
         };
 
-        var data = JSON.stringify(model);
+        const data = JSON.stringify(model);
 
         return window.getAjaxRequest(url, "PUT", data);
     };
 
     el = $(el);
-    var theme = themeDropdown.val();
-    var container = el.parent().find(".container.label").attr("data-container");
-    var file = el.parent().find("input").val();
+    const theme = themeDropdown.val();
+    const container = el.parent().find(".container.label").attr("data-container");
+    const file = el.parent().find("input").val();
 
-    var ajax = request(theme, container, file, "");
+    const ajax = request(theme, container, file, "");
 
-    ajax.fail(function (xhr) {
+    ajax.fail(function(xhr) {
         window.displayMessage(window.getAjaxErrorMessage(xhr));
     });
 
-    ajax.success(function () {
+    ajax.success(function() {
         fileModal.modal("hide");
         window.displaySuccess();
         loadResources();
@@ -262,17 +265,17 @@ function createFolder(el) {
     };
 
     el = $(el);
-    var theme = themeDropdown.val();
-    var container = el.parent().find(".container.label").attr("data-container");
-    var folder = el.parent().find("input").val();
+    const theme = themeDropdown.val();
+    const container = el.parent().find(".container.label").attr("data-container");
+    const folder = el.parent().find("input").val();
 
-    var ajax = request(theme, container, folder);
+    const ajax = request(theme, container, folder);
 
-    ajax.fail(function (xhr) {
+    ajax.fail(function(xhr) {
         window.displayMessage(window.getAjaxErrorMessage(xhr));
     });
 
-    ajax.success(function () {
+    ajax.success(function() {
         folderModal.modal("hide");
         window.displaySuccess();
         loadResources();
@@ -280,8 +283,8 @@ function createFolder(el) {
 };
 
 function toggleEditorTheme() {
-    var editor = window.ace.edit("editor");
-    var theme = editor.getTheme();
+    const editor = window.ace.edit("editor");
+    const theme = editor.getTheme();
 
     if (theme === "ace/theme/xcode") {
         editor.setTheme("ace/theme/monokai");
@@ -291,14 +294,14 @@ function toggleEditorTheme() {
 };
 
 function displayBlob(path) {
-    var theme = themeDropdown.val();
-    path = "/dashboard/my/website/themes/blob?themeName=" + theme + "&file=" + path;
+    const theme = themeDropdown.val();
+    path = `/dashboard/my/website/themes/blob?themeName=${theme}&file=${path}`;
 
-    var format = path.split('.').pop().toLowerCase();
+    var format = path.split(".").pop().toLowerCase();
 
     if (isContent(format)) {
-        $.get(path, function (response) {
-            var editor = window.ace.edit("editor");
+        $.get(path, function(response) {
+            const editor = window.ace.edit("editor");
             editor.setValue(response, -1);
             setAceMode(format);
         }, "text");
@@ -307,7 +310,7 @@ function displayBlob(path) {
         $("#editor").fadeIn(300);
         return;
     } else {
-        var editor = window.ace.edit("editor");
+        const editor = window.ace.edit("editor");
         editor.setValue("");
         setAceMode("");
     };
@@ -318,7 +321,7 @@ function displayBlob(path) {
 };
 
 function isContent(extension) {
-    var candidates = ["html", "cshtml", "vbhtml", "xml", "config", "js", "json", "css", "less", "scss", "md"];
+    const candidates = ["html", "cshtml", "vbhtml", "xml", "config", "js", "json", "css", "less", "scss", "md"];
     if (candidates.indexOf(extension) !== -1) {
         return true;
     };
@@ -326,7 +329,7 @@ function isContent(extension) {
 };
 
 function ToWellKnownType(extension) {
-    var candidates = [
+    const candidates = [
         {
             extensions: ["json", "js", "jscript", "jsfile"],
             wellKnownExtension: ["javascript"]
@@ -346,9 +349,9 @@ function ToWellKnownType(extension) {
     ];
 
 
-    var match = window.Enumerable
+    const match = window.Enumerable
         .From(candidates)
-        .Where(function (x) {
+        .Where(function(x) {
             return x.extensions.indexOf(extension) !== -1;
         }).FirstOrDefault();
 
@@ -361,7 +364,7 @@ function ToWellKnownType(extension) {
 };
 
 function setAceMode(extension) {
-    var editor = window.ace.edit("editor");
+    const editor = window.ace.edit("editor");
 
     if (!extension) {
         editor.getSession().setMode("ace/mode/html");
@@ -369,12 +372,12 @@ function setAceMode(extension) {
 
     extension = ToWellKnownType(extension);
 
-    var mode = "ace/mode/" + (extension || "html");
+    const mode = `ace/mode/${extension || "html"}`;
     editor.getSession().setMode(mode);
 };
 
 function isImage(extension) {
-    var candidates = ["png", "jpg", "jpeg", "tiff", "bmp", "gif"];
+    const candidates = ["png", "jpg", "jpeg", "tiff", "bmp", "gif"];
     if (candidates.indexOf(extension) !== -1) {
         return true;
     };
@@ -382,15 +385,15 @@ function isImage(extension) {
 };
 
 function displayImage(path) {
-    var theme = themeDropdown.val();
-    var format = path.split('.').pop().toLowerCase();
+    const theme = themeDropdown.val();
+    const format = path.split(".").pop().toLowerCase();
 
     if (!isImage(format)) {
         displayBlob(path);
         return;
     };
 
-    path = "/dashboard/my/website/themes/blob?themeName=" + theme + "&file=" + path;
+    path = `/dashboard/my/website/themes/blob?themeName=${theme}&file=${path}`;
 
     saveButton.hide();
 
@@ -401,16 +404,16 @@ function displayImage(path) {
 };
 
 function loadTree(model) {
-    container.jstree('destroy');
+    container.jstree("destroy");
 
     container.jstree({
         'core': {
             'data': model
         }
-    }).on('changed.jstree', function (e, data) {
-        var parent = data.instance.get_node(data.instance.get_node(data.selected[0]).parent).original;
-        var model = data.instance.get_node(data.selected[0]).original;
-        var path = model.path;
+    }).on("changed.jstree", function(e, data) {
+        const parent = data.instance.get_node(data.instance.get_node(data.selected[0]).parent).original;
+        const model = data.instance.get_node(data.selected[0]).original;
+        const path = model.path;
 
         var container = "";
 
@@ -428,9 +431,9 @@ function loadTree(model) {
 
         setFileUploadHandler(container);
         displayImage(path);
-    }).on('loaded.jstree', function (e, data) {
-        var instance = $(container).jstree(true);
-        for (var i in instance._model.data) {
+    }).on("loaded.jstree", function(e, data) {
+        const instance = $(container).jstree(true);
+        for (let i in instance._model.data) {
             if (instance._model.data.hasOwnProperty(i)) {
                 if (i === "#") {
                     continue;
@@ -446,24 +449,24 @@ function loadTree(model) {
 
 function loadResources() {
     function request(themeName) {
-        var url = "/dashboard/my/website/themes/resources?themeName=" + themeName;
+        const url = `/dashboard/my/website/themes/resources?themeName=${themeName}`;
         return window.getAjaxRequest(url);
     };
 
-    var themeName = themeDropdown.val();
+    const themeName = themeDropdown.val();
     $("[data-theme]").text(themeName);
 
     if (!themeName) {
         return;
     };
 
-    var ajax = request(themeName);
+    const ajax = request(themeName);
 
-    ajax.fail(function (xhr) {
+    ajax.fail(function(xhr) {
         window.displayMessage(window.getAjaxErrorMessage(xhr));
     });
 
-    ajax.success(function (response) {
+    ajax.success(function(response) {
         loadTree(response);
         setFileUploadHandler("");
     });
@@ -472,30 +475,30 @@ function loadResources() {
     treeContainer.fadeIn(500);
 };
 
-loadButton.click(function () {
+loadButton.click(function() {
     loadResources();
     actionContainer.show();
 });
 
 function loadThemes() {
     function request() {
-        var url = "/dashboard/my/website/themes";
+        const url = "/dashboard/my/website/themes";
         return window.getAjaxRequest(url);
     };
 
-    var ajax = request();
+    const ajax = request();
 
-    ajax.fail(function (xhr) {
+    ajax.fail(function(xhr) {
         window.displayMessage(window.getAjaxErrorMessage(xhr));
     });
 
-    ajax.success(function (response) {
+    ajax.success(function(response) {
         themeDropdown.bindAjaxData(response, false, null, null, null, true);
     });
 };
 
-var stringUnEncode = function (str) {
-    return str.replace(/&amp;/g, '&').replace(/&quot;/g, "\"");
+var stringUnEncode = function(str) {
+    return str.replace(/&amp;/g, "&").replace(/&quot;/g, "\"");
 };
 
 function initializeAceEditor() {
@@ -503,7 +506,7 @@ function initializeAceEditor() {
         return;
     };
 
-    var editor = window.ace.edit("editor");
+    const editor = window.ace.edit("editor");
     editor.$blockScrolling = Infinity;
     $("#editor").removeClass("initially, hidden");
     editor.setTheme("ace/theme/xcode");
@@ -524,10 +527,9 @@ function displayNewThemeModal() {
     newThemeModal.find("form")[0].reset();
 
     newThemeModal.modal({ blurring: true })
-    .modal('setting', 'closable', false)
-    .modal("show");
+        .modal("setting", "closable", false)
+        .modal("show");
 };
-
 
 
 function remoteUpload() {
@@ -538,18 +540,18 @@ function remoteUpload() {
         return window.getAjaxRequest(url, "POST");
     };
 
-    var url = remoteUploadUrl.val();
+    const url = remoteUploadUrl.val();
 
     if (window.isNullOrWhiteSpace(url)) {
         return;
     };
 
     onNewThemeBegin();
-    var ajax = request(url);
+    const ajax = request(url);
 
-    ajax.success(function (response) {
+    ajax.success(function(response) {
         if (!response.success) {
-            var error = response.error;
+            const error = response.error;
             onNewThemeError(error);
             return;
         };
@@ -557,16 +559,16 @@ function remoteUpload() {
         onNewThemeComplete();
     });
 
-    ajax.fail(function (xhr) {
-        var error = window.getAjaxErrorMessage(xhr);
+    ajax.fail(function(xhr) {
+        const error = window.getAjaxErrorMessage(xhr);
         onNewThemeError(error);
     });
 };
 
 function createTheme() {
     function request(model) {
-        var url = "/dashboard/my/website/themes/create";
-        var data = JSON.stringify(model);
+        const url = "/dashboard/my/website/themes/create";
+        const data = JSON.stringify(model);
         return window.getAjaxRequest(url, "POST", data);
     };
 
@@ -574,24 +576,24 @@ function createTheme() {
         return window.validator.validate(newThemeForm, null, true);
     };
 
-    var isValid = validate();
+    const isValid = validate();
 
     if (!isValid) {
         return;
     };
 
-    var model = window.serializeForm(newThemeForm);
+    const model = window.serializeForm(newThemeForm);
 
     onNewThemeBegin();
 
-    var ajax = request(model);
+    const ajax = request(model);
 
-    ajax.success(function () {
+    ajax.success(function() {
         onNewThemeComplete();
     });
 
-    ajax.fail(function (xhr) {
-        var error = window.getAjaxErrorMessage(xhr);
+    ajax.fail(function(xhr) {
+        const error = window.getAjaxErrorMessage(xhr);
         onNewThemeError(error);
     });
 };
@@ -615,28 +617,28 @@ function onNewThemeComplete() {
     window.loadThemes();
 };
 
-uploadThemeInputFile.change(function () {
+uploadThemeInputFile.change(function() {
     onNewThemeBegin();
 });
 
-uploadThemeInputFile.on("error", function (e, data) {
-    var error = data.message;
+uploadThemeInputFile.on("error", function(e, data) {
+    const error = data.message;
     onNewThemeError(error);
 });
 
-uploadThemeInputFile.on("done", function (e, data) {
+uploadThemeInputFile.on("done", function(e, data) {
     if (data.response.success) {
         onNewThemeComplete();
         return;
     };
 
-    var error = data.response;
+    const error = data.response;
     onNewThemeError(error);
     return;
 });
 
 function displayDeleteThemeModal() {
-    var theme = themeDropdown.val();
+    const theme = themeDropdown.val();
 
     if (!theme) {
         return;
@@ -651,10 +653,10 @@ function displayDeleteThemeModal() {
 
 function showDeleteThemeModal() {
     deleteThemeModalExceptionMessageHeader.text("").parent().hide();
-    $('#DeleteThemeModal').modal('hide');
+    $("#DeleteThemeModal").modal("hide");
 };
 
-deleteThemeButton.click(function () {
+deleteThemeButton.click(function() {
     function request(theme) {
         var url = "/dashboard/my/website/themes/delete?themeName=";
         url += theme;
@@ -666,22 +668,25 @@ deleteThemeButton.click(function () {
         return;
     };
 
-    var theme = themeNameText.text();
+    const theme = themeNameText.text();
     if (!theme) {
         return;
     };
 
-    var ajax = request(theme);
+    const ajax = request(theme);
 
-    ajax.success(function () {
+    ajax.success(function() {
         deleteThemeModal.modal("hide");
         loadThemes();
-        themeDropdown.dropdown("clear");
+        //Todo: Remove Semantic UI Dropdown dependency 
+        // themeDropdown.dropdown("clear");
+        themeDropdown.find(":selected").removeAttr("selected");
+
         window.displaySuccess();
     });
 
-    ajax.fail(function (response) {
-        var error = response.responseText;
+    ajax.fail(function(response) {
+        const error = response.responseText;
         deleteThemeModalExceptionMessageHeader.text(error).parent().show();
     });
 });

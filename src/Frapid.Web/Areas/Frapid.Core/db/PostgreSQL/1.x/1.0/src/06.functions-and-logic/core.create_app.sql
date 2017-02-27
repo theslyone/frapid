@@ -1,6 +1,7 @@
 DROP FUNCTION IF EXISTS core.create_app
 (
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _name                                       text,
     _version_number                             text,
     _publisher                                  text,
@@ -13,6 +14,7 @@ DROP FUNCTION IF EXISTS core.create_app
 CREATE FUNCTION core.create_app
 (
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _name                                       text,
     _version_number                             text,
     _publisher                                  text,
@@ -33,6 +35,7 @@ BEGIN
     ) THEN
         UPDATE core.apps
         SET
+			i18n_key = _i18n_key,
             name = _name,
             version_number = _version_number,
             publisher = _publisher,
@@ -42,8 +45,8 @@ BEGIN
         WHERE
             app_name = _app_name;
     ELSE
-        INSERT INTO core.apps(app_name, name, version_number, publisher, published_on, icon, landing_url)
-        SELECT _app_name, _name, _version_number, _publisher, _published_on, _icon, _landing_url;
+        INSERT INTO core.apps(app_name, i18n_key, name, version_number, publisher, published_on, icon, landing_url)
+        SELECT _app_name, _i18n_key, _name, _version_number, _publisher, _published_on, _icon, _landing_url;
     END IF;
 
     DELETE FROM core.app_dependencies

@@ -1,7 +1,9 @@
 using System;
+using System.Runtime.Serialization;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
+    [Serializable]
     public sealed class ThemeInfoException : Exception
     {
         public ThemeInfoException()
@@ -13,6 +15,10 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         }
 
         public ThemeInfoException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        public ThemeInfoException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

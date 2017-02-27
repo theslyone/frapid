@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
+    [Serializable]
     public sealed class ResourceUploadException : Exception
     {
         public ResourceUploadException()
@@ -13,6 +15,10 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         }
 
         public ResourceUploadException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        public ResourceUploadException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

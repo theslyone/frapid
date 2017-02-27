@@ -21,7 +21,6 @@ namespace Frapid.Dashboard.ViewModels
         public string DecimalSeparator { get; set; }
         public int CurrencyDecimalPlaces { get; set; }
         public string CurrencySymbol { get; set; }
-        public string DatepickerFormat { get; set; }
         public bool DatepickerShowWeekNumber { get; set; }
         public int DatepickerWeekStartDay { get; set; }
         public string DatepickerNumberOfMonths { get; set; }

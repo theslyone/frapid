@@ -24,7 +24,7 @@ namespace MixERP.Social.Controllers.Service
 
             if (this.Request.Files.Count > 1)
             {
-                return this.Failed("Only single file may be uploaded.", HttpStatusCode.BadRequest);
+                return this.Failed(Resources.OnlyASingleFileMayBeUploaded, HttpStatusCode.BadRequest);
             }
 
             try

@@ -3,7 +3,7 @@ using Frapid.DataAccess;
 
 namespace Frapid.ApplicationState.Models
 {
-    public class LoginView: IPoco
+    public class LoginView : IPoco
     {
         public long LoginId { get; set; }
         public string Name { get; set; }

@@ -56,18 +56,18 @@ namespace Frapid.DataAccess.Subtext
         /// </summary>
         public bool ReadNextSection()
         {
-            if(this.IsQuote)
+            if (this.IsQuote)
             {
                 this.ReadQuotedString();
                 return false;
             }
 
-            if(this.BeginDashDashComment)
+            if (this.BeginDashDashComment)
             {
                 return this.ReadDashDashComment();
             }
 
-            if(this.BeginSlashStarComment)
+            if (this.BeginSlashStarComment)
             {
                 this.ReadSlashStarComment();
                 return false;
@@ -79,10 +79,10 @@ namespace Frapid.DataAccess.Subtext
         protected virtual bool ReadDashDashComment()
         {
             this.Splitter.Append(this.Current);
-            while(this.Splitter.Next())
+            while (this.Splitter.Next())
             {
                 this.Splitter.Append(this.Current);
-                if(this.EndOfLine)
+                if (this.EndOfLine)
                 {
                     break;
                 }
@@ -94,7 +94,7 @@ namespace Frapid.DataAccess.Subtext
 
         protected virtual void ReadSlashStarComment()
         {
-            if(this.ReadSlashStarCommentWithResult())
+            if (this.ReadSlashStarCommentWithResult())
             {
                 this.Splitter.SetParser(new SeparatorLineReader(this.Splitter));
             }
@@ -103,16 +103,16 @@ namespace Frapid.DataAccess.Subtext
         private bool ReadSlashStarCommentWithResult()
         {
             this.Splitter.Append(this.Current);
-            while(this.Splitter.Next())
+            while (this.Splitter.Next())
             {
-                if(this.BeginSlashStarComment)
+                if (this.BeginSlashStarComment)
                 {
                     this.ReadSlashStarCommentWithResult();
                     continue;
                 }
                 this.Splitter.Append(this.Current);
 
-                if(this.EndSlashStarComment)
+                if (this.EndSlashStarComment)
                 {
                     return true;
                 }
@@ -123,10 +123,10 @@ namespace Frapid.DataAccess.Subtext
         protected virtual void ReadQuotedString()
         {
             this.Splitter.Append(this.Current);
-            while(this.Splitter.Next())
+            while (this.Splitter.Next())
             {
                 this.Splitter.Append(this.Current);
-                if(this.IsQuote)
+                if (this.IsQuote)
                 {
                     return;
                 }
@@ -151,9 +151,9 @@ namespace Frapid.DataAccess.Subtext
 
         protected char Peek()
         {
-            if(!this.HasNext)
+            if (!this.HasNext)
                 return char.MinValue;
-            return (char)this.Splitter.Peek();
+            return (char) this.Splitter.Peek();
         }
 
         protected bool WhiteSpace => char.IsWhiteSpace(this.Splitter.Current);

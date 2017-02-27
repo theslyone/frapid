@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using Frapid.Configuration;
@@ -8,11 +7,11 @@ using Frapid.Configuration.Db;
 using Frapid.DataAccess;
 using Frapid.DataAccess.Models;
 using Frapid.DbPolicy;
+using Frapid.i18n;
 using Frapid.Mapper;
-using Frapid.Mapper.Query.Insert;
-using Frapid.Mapper.Types;
-using Serilog;
 using Frapid.Mapper.Query.Delete;
+using Frapid.Mapper.Query.Insert;
+using Serilog;
 
 namespace Frapid.WebApi.DataAccess
 {
@@ -52,11 +51,11 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information("Access to Page #{Page} of the filtered entity \"Filter\" was denied to the user with Login ID {LoginId}. Filters: {Filters}.", pageNumber, this.LoginId, filters);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
-            long offset = (pageNumber - 1) * 50;
+            long offset = (pageNumber - 1)*50;
             var sql = new Sql("SELECT * FROM config.filters WHERE 1 = 1");
 
             FilterManager.AddFilters(ref sql, new Filter(), filters);
@@ -84,7 +83,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information("Access to create default filter '{FilterName}' for {ObjectName} was denied to the user with Login ID {LoginId}.", filterName, objectName, this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -116,7 +115,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information("Access to delete entity \"Filter\" with Filter Name {FilterName} was denied to the user with Login ID {LoginId}.", filterName, this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -136,7 +135,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information("Access to add entity \"Filter\" was denied to the user with Login ID {LoginId}. {filters}", this.LoginId, filters);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -167,7 +166,7 @@ namespace Frapid.WebApi.DataAccess
                             }).ConfigureAwait(false);
 
 
-                    foreach (long filterId in toDelete.Select(x=>x.FilterId))
+                    foreach (long filterId in toDelete.Select(x => x.FilterId))
                     {
                         await db.DeleteAsync(filterId, "config.filters", "filter_id").ConfigureAwait(false);
                     }
@@ -202,7 +201,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information("Access to delete default filter for {ObjectName} was denied to the user with Login ID {LoginId}.", objectName, this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 

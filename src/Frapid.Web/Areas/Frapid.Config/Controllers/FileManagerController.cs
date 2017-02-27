@@ -5,13 +5,12 @@ using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using Frapid.Areas.Authorization;
+using Frapid.Areas.CSRF;
 using Frapid.Config.Models;
-using Frapid.Configuration;
 using Frapid.Dashboard;
 using Frapid.Dashboard.Controllers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using Frapid.Areas.CSRF;
 
 namespace Frapid.Config.Controllers
 {
@@ -35,14 +34,14 @@ namespace Frapid.Config.Controllers
 
             if (path == null || !Directory.Exists(path))
             {
-                return this.Failed("Path not found", HttpStatusCode.NotFound);
+                return this.Failed(I18N.PathNotFound, HttpStatusCode.NotFound);
             }
 
             var resource = FileManagerResource.Get(path);
             resource = FileManagerResource.NormalizePath(path, resource);
 
             string json = JsonConvert.SerializeObject(resource, Formatting.None,
-                new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+                new JsonSerializerSettings {ContractResolver = new CamelCasePropertyNamesContractResolver()});
 
             return this.Content(json, "application/json");
         }
@@ -125,13 +124,13 @@ namespace Frapid.Config.Controllers
         {
             if (this.Request.Files.Count > 1)
             {
-                return this.Failed("Only single file may be uploaded", HttpStatusCode.BadRequest);
+                return this.Failed(I18N.OnlyASingleFileMayBeUploaded, HttpStatusCode.BadRequest);
             }
 
             var file = this.Request.Files[0];
             if (file == null)
             {
-                return this.Failed("No file was uploaded", HttpStatusCode.BadRequest);
+                return this.Failed(I18N.NoFileWasUploaded, HttpStatusCode.BadRequest);
             }
 
             try

@@ -10,7 +10,7 @@
     padding: 0 !important;
 }
 
-.pusher, .ng-scope {
+.pusher, .report-panel, [data-ng-view] {
     height: 100% !important;
 }
 
@@ -33,10 +33,10 @@
         display: inline-flex;
         font-size: 0.8em;
         height: 3.5em;
-        margin: 2px;
-        padding: 0.8em;
+        margin: 0 2px;
+        padding: 0.8em 0.5em;
+        width: 2em;
         text-shadow: 2px 2px 20px white;
-        width: 2.5em;
     }
 
         .toolbar .button:hover {
@@ -68,4 +68,8 @@ iframe {
     font-weight: 600;
     text-transform: uppercase;
     color: #666;
+}
+
+select {
+    background-color: transparent !important;
 }

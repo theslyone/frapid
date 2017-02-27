@@ -17,17 +17,17 @@ namespace Frapid.Framework
 
             var writer = XmlWriter.Create
                 (
-                 xml,
-                 new XmlWriterSettings
-                 {
-                     Encoding = Encoding.UTF8,
-                     Indent = false
-                 });
+                    xml,
+                    new XmlWriterSettings
+                    {
+                        Encoding = Encoding.UTF8,
+                        Indent = false
+                    });
 
             writer.WriteStartElement("urlset", "http://www.sitemaps.org/schemas/sitemap/0.9");
 
             var urls = await GetUrlsAsync(tenant).ConfigureAwait(false);
-            foreach(var url in urls)
+            foreach (var url in urls)
             {
                 writer.WriteStartElement("url");
 
@@ -37,13 +37,13 @@ namespace Frapid.Framework
                 //W3C Datetime format
 
 
-                if(url.ChangeFrequency != SiteMapChangeFrequency.Undefined)
+                if (url.ChangeFrequency != SiteMapChangeFrequency.Undefined)
                 {
                     WriteTag(ref writer, "changefreq", url.ChangeFrequency.ToString().ToLowerInvariant());
                 }
 
-                if(url.Priority >= 0 &&
-                   url.Priority <= 1)
+                if (url.Priority >= 0 &&
+                    url.Priority <= 1)
                 {
                     WriteTag(ref writer, "priority", url.Priority.ToString("F1"));
                 }
@@ -72,9 +72,12 @@ namespace Frapid.Framework
 
             var iType = typeof(ISiteMapGenerator);
 
-            var members = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes()).Where(x => iType.IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract).Select(Activator.CreateInstance);
+            var members = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .Where(x => iType.IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
+                .Select(Activator.CreateInstance);
 
-            foreach(ISiteMapGenerator member in members)
+            foreach (ISiteMapGenerator member in members)
             {
                 try
                 {

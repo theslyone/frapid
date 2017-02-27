@@ -10,18 +10,18 @@ using Serilog;
 
 namespace Frapid.WebApi
 {
-    public class RestAuthorizeAttribute: AuthorizeAttribute
+    public class RestAuthorizeAttribute : AuthorizeAttribute
     {
         protected override bool IsAuthorized(HttpActionContext context)
         {
-            if(context == null)
+            if (context == null)
             {
                 throw new ArgumentNullException(nameof(context));
             }
 
             var user = context.RequestContext.Principal as ClaimsPrincipal;
 
-            if(user?.Identity == null)
+            if (user?.Identity == null)
             {
                 return false;
             }
@@ -37,32 +37,34 @@ namespace Frapid.WebApi
             string clientToken = context.Request.GetBearerToken();
             string tenant = TenantConvention.GetTenant();
 
-            if(string.IsNullOrWhiteSpace(clientToken))
+            if (string.IsNullOrWhiteSpace(clientToken))
             {
                 return false;
             }
 
 
-            if(loginId <= 0)
+            if (loginId <= 0)
             {
-                Log.Warning
-                    ("Invalid login claims supplied. Access was denied to user {userId}/{email} for officeId {officeId} having the loginId {loginId}. Token: {clientToken}.", userId, email, officeId, loginId, clientToken);
-                Thread.Sleep(new Random().Next(1, 60) * 1000);
+                Log.Warning("Invalid login claims supplied. Access was denied to user {userId}/{email} for officeId {officeId} having the loginId {loginId}. Token: {clientToken}.", userId, email,
+                    officeId, loginId, clientToken);
+                Thread.Sleep(new Random().Next(1, 60)*1000);
                 return false;
             }
 
-            if(expriesOn <= DateTimeOffset.UtcNow)
+            if (expriesOn <= DateTimeOffset.UtcNow)
             {
-                Log.Debug("Token expired. Access was denied to user {userId}/{email} for officeId {officeId} having the loginId {loginId}. Token: {clientToken}.", userId, email, officeId, loginId, clientToken);
+                Log.Debug("Token expired. Access was denied to user {userId}/{email} for officeId {officeId} having the loginId {loginId}. Token: {clientToken}.", userId, email, officeId, loginId,
+                    clientToken);
                 return false;
             }
 
 
-            bool isValid = AccessTokens.IsValidAsync(tenant, clientToken, ipAddress, userAgent).Result;
+            bool isValid = AccessTokens.IsValidAsync(tenant, clientToken, ipAddress, userAgent).GetAwaiter().GetResult();
 
-            if(expriesOn <= DateTimeOffset.UtcNow)
+            if (expriesOn <= DateTimeOffset.UtcNow)
             {
-                Log.Debug("Token invalid. Access was denied to user {userId}/{email} for officeId {officeId} having the loginId {loginId}. Token: {clientToken}.", userId, email, officeId, loginId, clientToken);
+                Log.Debug("Token invalid. Access was denied to user {userId}/{email} for officeId {officeId} having the loginId {loginId}. Token: {clientToken}.", userId, email, officeId, loginId,
+                    clientToken);
                 return false;
             }
 

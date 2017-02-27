@@ -4,9 +4,12 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | app_dependency_id | NOT NULL | integer | 0 |  |
-| 2 | app_name |  | character varying | 100 |  |
-| 3 | depends_on |  | character varying | 100 |  |
+| 1 | app_dependency_id | [ ] | integer | 0 |  |
+| 2 | app_name | [x] | character varying | 100 |  |
+| 3 | depends_on | [x] | character varying | 100 |  |
+| 4 | audit_user_id | [x] | integer | 0 |  |
+| 5 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 6 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -39,6 +42,8 @@
 | # | Column Name | Default |
 | --- | --- | --- |
 | 1 | app_dependency_id | nextval('core.app_dependencies_app_dependency_id_seq'::regclass) |
+| 5 | audit_ts | now() |
+| 6 | deleted | false |
 
 
 **Triggers**

@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+using Humanizer;
 
 namespace Frapid.Mapper.Helpers
 {
@@ -7,30 +6,8 @@ namespace Frapid.Mapper.Helpers
     {
         public string Convert(string name)
         {
-            return new string(this.ToTitleCase(name).ToArray());
-        }
-
-        private IEnumerable<char> ToTitleCase(string name)
-        {
-            bool newWord = true;
-
-            foreach (char c in name)
-            {
-                if (newWord)
-                {
-                    yield return char.ToUpper(c);
-                    newWord = false;
-                }
-                else
-                {
-                    yield return char.ToLower(c);
-                }
-
-                if (c == ' ')
-                {
-                    newWord = true;
-                }
-            }
+            string converted = name.Humanize(LetterCasing.Title).Replace(" ", "");
+            return converted;
         }
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace Frapid.Framework
 {
-    public sealed class UrlCombiner: IUrlCombiner
+    public sealed class UrlCombiner : IUrlCombiner
     {
         public string Combine(string domain, string path)
         {

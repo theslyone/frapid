@@ -8,11 +8,11 @@ namespace Frapid.Reports.HtmlConverters
     {
         public static void WriteHtml(string path, string html)
         {
-            string file = PathMapper.MapPath(path);
+            string contents = PathMapper.MapPath(path);
 
-            if (file != null)
+            if (contents != null)
             {
-                File.WriteAllText(file, html, Encoding.UTF8);
+                File.WriteAllText(contents, html, new UTF8Encoding(false));
             }
         }
     }

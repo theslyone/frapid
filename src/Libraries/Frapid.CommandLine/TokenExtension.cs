@@ -1,13 +1,11 @@
-﻿using System.Linq;
-
-namespace frapid
+﻿namespace frapid
 {
     public static class TokenExtension
     {
         public static string GetTokenOn(this string token, int index)
         {
             var tokens = token.Split(' ');
-            if(tokens.Length > index)
+            if (tokens.Length > index)
             {
                 return tokens[index];
             }

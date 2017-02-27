@@ -589,11 +589,12 @@ CREATE TABLE core.apps
 (
 	app_id										SERIAL,
     app_name                                    national character varying(100) PRIMARY KEY,
+	i18n_key									national character varying(200) NOT NULL,
     name                                        national character varying(100),
     version_number                              national character varying(100),
     publisher                                   national character varying(100),
     published_on                                date,
-    icon                                        national character varying(100),
+    icon                                        text,
     landing_url                                 text,
     audit_user_id                           	integer,
     audit_ts                                	TIMESTAMP WITH TIME ZONE DEFAULT(NOW()),
@@ -619,6 +620,7 @@ CREATE TABLE core.menus
 (
     menu_id                                     SERIAL PRIMARY KEY,
     sort                                        integer,
+	i18n_key									national character varying(200) NOT NULL,
     app_name                                    national character varying(100) NOT NULL REFERENCES core.apps,
     menu_name                                   national character varying(100) NOT NULL,
     url                                         text,
@@ -632,17 +634,6 @@ CREATE TABLE core.menus
 CREATE UNIQUE INDEX menus_app_name_menu_name_uix
 ON core.menus(UPPER(app_name), UPPER(menu_name))
 WHERE NOT deleted;
-
-CREATE TABLE core.menu_locale
-(
-    menu_locale_id                              SERIAL PRIMARY KEY,
-    menu_id                                     integer NOT NULL REFERENCES core.menus,
-    culture                                     national character varying(12) NOT NULL,
-    menu_text                                   national character varying(250) NOT NULL,
-    audit_user_id                           	integer,
-    audit_ts                                	TIMESTAMP WITH TIME ZONE DEFAULT(NOW()),
-	deleted										boolean DEFAULT(false)
-);
 
 CREATE TABLE core.currencies
 (
@@ -850,6 +841,7 @@ WHERE NOT core.offices.deleted;
 DROP FUNCTION IF EXISTS core.create_app
 (
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _name                                       text,
     _version_number                             text,
     _publisher                                  text,
@@ -862,6 +854,7 @@ DROP FUNCTION IF EXISTS core.create_app
 CREATE FUNCTION core.create_app
 (
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _name                                       text,
     _version_number                             text,
     _publisher                                  text,
@@ -882,6 +875,7 @@ BEGIN
     ) THEN
         UPDATE core.apps
         SET
+			i18n_key = _i18n_key,
             name = _name,
             version_number = _version_number,
             publisher = _publisher,
@@ -891,8 +885,8 @@ BEGIN
         WHERE
             app_name = _app_name;
     ELSE
-        INSERT INTO core.apps(app_name, name, version_number, publisher, published_on, icon, landing_url)
-        SELECT _app_name, _name, _version_number, _publisher, _published_on, _icon, _landing_url;
+        INSERT INTO core.apps(app_name, i18n_key, name, version_number, publisher, published_on, icon, landing_url)
+        SELECT _app_name, _i18n_key, _name, _version_number, _publisher, _published_on, _icon, _landing_url;
     END IF;
 
     DELETE FROM core.app_dependencies
@@ -910,6 +904,7 @@ DROP FUNCTION IF EXISTS core.create_menu
 (
     _sort                                       integer,
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _menu_name                                  text,
     _url                                        text,
     _icon                                       text,
@@ -920,6 +915,7 @@ DROP FUNCTION IF EXISTS core.create_menu
 (
     _sort                                       integer,
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _menu_name                                  text,
     _url                                        text,
     _icon                                       text,
@@ -930,6 +926,7 @@ CREATE FUNCTION core.create_menu
 (
     _sort                                       integer,
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _menu_name                                  text,
     _url                                        text,
     _icon                                       text,
@@ -950,6 +947,7 @@ BEGIN
     ) THEN
         UPDATE core.menus
         SET
+			i18n_key = _i18n_key,
             sort = _sort,
             url = _url,
             icon = _icon,
@@ -958,8 +956,8 @@ BEGIN
        AND LOWER(menu_name) = LOWER(_menu_name)
        RETURNING menu_id INTO _menu_id;        
     ELSE
-        INSERT INTO core.menus(sort, app_name, menu_name, url, icon, parent_menu_id)
-        SELECT _sort, _app_name, _menu_name, _url, _icon, _parent_menu_id
+        INSERT INTO core.menus(sort, app_name, i18n_key, menu_name, url, icon, parent_menu_id)
+        SELECT _sort, _app_name, _i18n_key, _menu_name, _url, _icon, _parent_menu_id
         RETURNING menu_id INTO _menu_id;        
     END IF;
 
@@ -973,6 +971,7 @@ CREATE FUNCTION core.create_menu
 (
     _sort                                       integer,
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _menu_name                                  text,
     _url                                        text,
     _icon                                       text,
@@ -989,7 +988,7 @@ BEGIN
     AND LOWER(app_name) = LOWER(_app_name)
 	AND NOT core.menus.deleted;
 
-    RETURN core.create_menu(_sort, _app_name, _menu_name, _url, _icon, _parent_menu_id);
+    RETURN core.create_menu(_sort, _app_name, _i18n_key, _menu_name, _url, _icon, _parent_menu_id);
 END
 $$
 LANGUAGE plpgsql;
@@ -998,6 +997,7 @@ LANGUAGE plpgsql;
 DROP FUNCTION IF EXISTS core.create_menu
 (
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _menu_name                                  text,
     _url                                        text,
     _icon                                       text,
@@ -1007,6 +1007,7 @@ DROP FUNCTION IF EXISTS core.create_menu
 CREATE FUNCTION core.create_menu
 (
     _app_name                                   text,
+	_i18n_key									national character varying(200),
     _menu_name                                  text,
     _url                                        text,
     _icon                                       text,
@@ -1016,7 +1017,7 @@ RETURNS integer
 AS
 $$
 BEGIN
-    RETURN core.create_menu(0, _app_name, _menu_name, _url, _icon, _parent_menu_name);
+    RETURN core.create_menu(0, _app_name, _i18n_key, _menu_name, _url, _icon, _parent_menu_name);
 END
 $$
 LANGUAGE plpgsql;

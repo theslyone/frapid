@@ -18,7 +18,7 @@ namespace Frapid.Framework.Extensions
         {
             if (typeof(T) == typeof(object))
             {
-                return (T)input;
+                return (T) input;
             }
 
             var castable = new Castable();

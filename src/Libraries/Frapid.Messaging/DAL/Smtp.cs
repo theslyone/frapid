@@ -11,7 +11,7 @@ namespace Frapid.Messaging.DAL
     {
         public static async Task<SmtpConfig> GetConfigAsync(string tenant)
         {
-            using(var db = DbProvider.GetDatabase(tenant))
+            using (var db = DbProvider.GetDatabase(tenant))
             {
                 var sql = new Sql("SELECT * FROM config.smtp_configs");
                 sql.Where("enabled=@0", true);

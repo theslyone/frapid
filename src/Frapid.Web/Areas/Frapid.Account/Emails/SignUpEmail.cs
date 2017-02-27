@@ -12,9 +12,9 @@ namespace Frapid.Account.Emails
 {
     public class SignUpEmail
     {
+        private readonly HttpContextBase _context;
         private readonly Registration _registration;
         private readonly string _registrationId;
-        private readonly HttpContextBase _context;
 
         public SignUpEmail(HttpContextBase context, Registration registration, string registrationId)
         {
@@ -74,7 +74,7 @@ namespace Frapid.Account.Emails
         {
             string template = this.GetTemplate(tenant);
             string parsed = this.ParseTemplate(this._context, template);
-            string subject = "Confirm Your Registration at " + this._context.Request.Url.Authority;
+            string subject = string.Format(I18N.ConfirmRegistrationAtSite, this._context.Request.Url?.Authority);
 
             var processor = EmailProcessor.GetDefault(tenant);
 
@@ -85,7 +85,7 @@ namespace Frapid.Account.Emails
                 var queue = new MailQueueManager(tenant, email);
 
                 await queue.AddAsync().ConfigureAwait(false);
-                await queue.ProcessMailQueueAsync(processor).ConfigureAwait(false);
+                await queue.ProcessQueueAsync(processor).ConfigureAwait(false);
             }
         }
     }

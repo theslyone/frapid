@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Hosting;
-using Frapid.Configuration;
 using Serilog;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
@@ -34,7 +33,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             if (path == null || !Directory.Exists(path))
             {
                 Log.Warning("Could not upload resource because the directory {directory} does not exist.", path);
-                throw new ResourceUploadException("Invalid path. Check the log for more details.");
+                throw new ResourceUploadException(Resources.InvalidPathCheckLogs);
             }
 
             path = Path.Combine(path, this.Container);
@@ -42,7 +41,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             if (!Directory.Exists(path))
             {
                 Log.Warning("Could not upload resource because the directory {directory} does not exist.", path);
-                throw new ResourceUploadException("Invalid path. Check application logs for more information.");
+                throw new ResourceUploadException(Resources.InvalidPathCheckLogs);
             }
 
 
@@ -51,8 +50,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             if (fileName == null)
             {
                 Log.Warning("Could not upload resource because the posted file name is null or invalid.");
-                throw new ResourceUploadException(
-                    "Could not upload resource because the posted file name is null or invalid.");
+                throw new ResourceUploadException(Resources.CouldNotUploadResourceInvalidFileName);
             }
 
             var allowed = FrapidConfig.GetAllowedUploadExtensions(tenant);
@@ -60,10 +58,8 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             if (!allowed.Contains(extension))
             {
-                Log.Warning("Could not upload resource because the uploaded file {file} has invalid extension.",
-                    fileName);
-                throw new ResourceUploadException(
-                    "Could not upload resource because the uploaded file has invalid extension.");
+                Log.Warning("Could not upload resource because the uploaded file {file} has invalid extension.", fileName);
+                throw new ResourceUploadException(Resources.CouldNotUploadResourceInvalidFileExtension);
             }
 
             var stream = this.PostedFile.InputStream;

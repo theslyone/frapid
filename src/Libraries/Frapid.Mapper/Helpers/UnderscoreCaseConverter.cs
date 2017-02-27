@@ -1,4 +1,5 @@
-using System.Collections.Generic;
+using Frapid.Framework.Extensions;
+using Humanizer;
 
 namespace Frapid.Mapper.Helpers
 {
@@ -6,39 +7,8 @@ namespace Frapid.Mapper.Helpers
     {
         public string Convert(string name)
         {
-            var letters = new List<char> { name[0] };
-
-            int length = name.Length;
-
-            for (int i = 1; i < length; i++)
-            {
-                char letter = name[i];
-
-                if (char.IsUpper(letter))
-                {
-                    letters.Add('_');
-                    letters.Add(letter);
-                }
-                else if (char.IsNumber(letter))
-                {
-                    char previous = name[i - 1];
-
-
-                    if (!char.IsNumber(previous))
-                    {
-                        letters.Add('_');
-                    }
-
-                    letters.Add(letter);
-                }
-                else
-                {
-                    letters.Add(letter);
-                }
-            }
-
-            string result = string.Concat(letters).ToLowerInvariant();
-            return result;
+            string converted = name.Humanize(LetterCasing.Title).Or("").Replace(" ", "_").ToLowerInvariant();
+            return converted;
         }
     }
 }

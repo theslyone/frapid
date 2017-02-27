@@ -35,8 +35,8 @@ namespace Frapid.Backups
                                 backup.Compress();
                                 backup.Clean();
                             },
-                            error => { Log.Error($"Could not backup because and error occurred. \n\n{error}"); })
-                        .Wait();
+                            error => { Log.Error($"Could not backup because an error occurred. \n\n{error}"); })
+                        .GetAwaiter().GetResult();
                 }
                 catch (Exception ex)
                 {

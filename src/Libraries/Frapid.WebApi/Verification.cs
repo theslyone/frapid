@@ -6,8 +6,10 @@ namespace Frapid.WebApi
     {
         [Required]
         public object PrimaryKeyValue { get; set; }
+
         [Required]
         public short VerificationStatusId { get; set; }
+
         [Required]
         public string Reason { get; set; }
     }

@@ -11,15 +11,16 @@ namespace Frapid.Framework.Extensions
 {
     public static class RequestExtensions
     {
-        public static readonly string[] IpAddressHeaders = {
-                                                               "CF-Connecting-IP",
-                                                               "HTTP_X_FORWARDED_FOR",
-                                                               "REMOTE_ADDR"
-                                                           };
+        public static readonly string[] IpAddressHeaders =
+        {
+            "CF-Connecting-IP",
+            "HTTP_X_FORWARDED_FOR",
+            "REMOTE_ADDR"
+        };
 
         public static string GetClientIpAddress(this HttpContextBase context)
         {
-            foreach(string ip in IpAddressHeaders.Select(header => context.Request.Headers[header]).Where(ip => !string.IsNullOrWhiteSpace(ip)))
+            foreach (string ip in IpAddressHeaders.Select(header => context.Request.Headers[header]).Where(ip => !string.IsNullOrWhiteSpace(ip)))
             {
                 return ip;
             }
@@ -27,7 +28,7 @@ namespace Frapid.Framework.Extensions
 
             string ipAddress = context?.Request?.UserHostAddress != null ? IPAddress.Parse(context.Request.UserHostAddress).ToString() : null;
 
-            if(!string.IsNullOrWhiteSpace(ipAddress))
+            if (!string.IsNullOrWhiteSpace(ipAddress))
             {
                 return ipAddress;
             }
@@ -37,13 +38,13 @@ namespace Frapid.Framework.Extensions
 
         public static string GetClientIpAddress(this IRequest request)
         {
-            foreach(string ip in IpAddressHeaders.Select(header => request.Headers[header]).Where(ip => !string.IsNullOrWhiteSpace(ip)))
+            foreach (string ip in IpAddressHeaders.Select(header => request.Headers[header]).Where(ip => !string.IsNullOrWhiteSpace(ip)))
             {
                 return ip;
             }
 
             object ipAddress;
-            if(request.Environment.TryGetValue("server.RemoteIpAddress", out ipAddress))
+            if (request.Environment.TryGetValue("server.RemoteIpAddress", out ipAddress))
             {
                 return ipAddress as string;
             }
@@ -56,14 +57,14 @@ namespace Frapid.Framework.Extensions
             var context = request.Properties["MS_HttpContext"] as HttpContextBase;
             string ipAddress = GetClientIpAddress(context);
 
-            if(!string.IsNullOrWhiteSpace(ipAddress))
+            if (!string.IsNullOrWhiteSpace(ipAddress))
             {
                 return ipAddress;
             }
 
             var owinContext = request.Properties["MS_OwinContext"] as OwinContext;
 
-            foreach(string ip in IpAddressHeaders.Select(header => owinContext?.Request.Headers[header]).Where(ip => !string.IsNullOrWhiteSpace(ip)))
+            foreach (string ip in IpAddressHeaders.Select(header => owinContext?.Request.Headers[header]).Where(ip => !string.IsNullOrWhiteSpace(ip)))
             {
                 return ip;
             }
@@ -76,7 +77,7 @@ namespace Frapid.Framework.Extensions
         {
             string ua = context?.Request?.UserAgent;
 
-            if(!string.IsNullOrWhiteSpace(ua))
+            if (!string.IsNullOrWhiteSpace(ua))
             {
                 return ua;
             }
@@ -89,7 +90,7 @@ namespace Frapid.Framework.Extensions
             var context = request.Properties["MS_HttpContext"] as HttpContextBase;
             string ua = context?.Request?.UserAgent;
 
-            if(!string.IsNullOrWhiteSpace(ua))
+            if (!string.IsNullOrWhiteSpace(ua))
             {
                 return ua;
             }
@@ -129,7 +130,7 @@ namespace Frapid.Framework.Extensions
         //ASP.net MVC
         public static string GetClientToken(this HttpRequestBase request)
         {
-            if(!request.Cookies.AllKeys.Contains("access_token"))
+            if (!request.Cookies.AllKeys.Contains("access_token"))
             {
                 return string.Empty;
             }
@@ -140,7 +141,7 @@ namespace Frapid.Framework.Extensions
 
         public static string GetClientToken(this IRequest request)
         {
-            if(!request.Cookies.ContainsKey("access_token"))
+            if (!request.Cookies.ContainsKey("access_token"))
             {
                 return string.Empty;
             }

@@ -1,19 +1,19 @@
 ﻿@model string
 
 @{
-    ViewBag.Title = "Frapid Dashboard";
+    ViewBag.Title = @I18N.FrapidReport;
 }
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Frapid Report</title>
-    <link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/Styles/source.css"/>
+    <title>@I18N.FrapidReport</title>
+    <link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/styles/source.css"/>
 </head>
 <body>
     @Html.Action("ReportMarkup", new { path = Model })
 
-    <script src="/i18n/resources.js"></script>
+    <script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
     <script src="/assets/js/backend.js"></script>
 
     <script>

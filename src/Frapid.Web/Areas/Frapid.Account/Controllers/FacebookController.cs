@@ -8,7 +8,7 @@ using Npgsql;
 namespace Frapid.Account.Controllers
 {
     [AntiForgery]
-    public class FacebookController: BaseAuthenticationController
+    public class FacebookController : BaseAuthenticationController
     {
         [Route("account/facebook/sign-in")]
         [HttpPost]
@@ -21,7 +21,7 @@ namespace Frapid.Account.Controllers
                 var result = await auth.AuthenticateAsync(account, this.RemoteUser).ConfigureAwait(false);
                 return await this.OnAuthenticatedAsync(result).ConfigureAwait(true);
             }
-            catch(NpgsqlException)
+            catch (NpgsqlException)
             {
                 return this.Json("Access is denied.");
             }

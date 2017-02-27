@@ -267,11 +267,12 @@ DROP FUNCTION auth.get_apps;
 
 GO
 
-CREATE FUNCTION auth.get_apps(@user_id integer, @office_id integer, @culture national character varying(500))
+CREATE FUNCTION auth.get_apps(@user_id integer, @office_id integer)
 RETURNS @result TABLE
 (
 	app_id								integer,
     app_name                            national character varying(500),
+	i18n_key							national character varying(500),
     name                                national character varying(500),
     version_number                      national character varying(500),
     publisher                           national character varying(500),
@@ -285,6 +286,7 @@ BEGIN
     SELECT
 		core.apps.app_id,
         core.apps.app_name,
+		core.apps.i18n_key,
         core.apps.name,
         core.apps.version_number,
         core.apps.publisher,
@@ -295,7 +297,7 @@ BEGIN
     WHERE core.apps.app_name IN
     (
         SELECT DISTINCT menus.app_name
-        FROM auth.get_menu(@user_id, @office_id, @culture)
+        FROM auth.get_menu(@user_id, @office_id)
         AS menus
     );
     
@@ -315,8 +317,7 @@ GO
 CREATE PROCEDURE auth.get_group_menu_policy
 (
     @role_id        integer,
-    @office_id      integer,
-    @culture        national character varying(500)
+    @office_id      integer
 )
 AS
 BEGIN
@@ -328,7 +329,9 @@ BEGIN
 		row_number                      integer,
 		menu_id                         integer,
 		app_name                        national character varying(500),
+		app_i18n_key					national character varying(500),
 		menu_name                       national character varying(500),
+		i18n_key						national character varying(500),
 		allowed                         bit,
 		url                             national character varying(500),
 		sort                            integer,
@@ -355,6 +358,7 @@ BEGIN
     SET
         app_name        = core.menus.app_name,
         menu_name       = core.menus.menu_name,
+		i18n_key		= core.menus.i18n_key,
         url             = core.menus.url,
         sort            = core.menus.sort,
         icon            = core.menus.icon,
@@ -365,12 +369,10 @@ BEGIN
 
     UPDATE @result
     SET
-        menu_name       = core.menu_locale.menu_text
+        app_i18n_key    = core.apps.i18n_key
     FROM @result AS result
-    INNER JOIN core.menu_locale    
-    ON core.menu_locale.menu_id = result.menu_id
-    WHERE core.menu_locale.culture = @culture;
-    
+    INNER JOIN core.apps
+    ON core.apps.app_name = result.app_name;
 
     SELECT * FROM @result
     ORDER BY app_name, sort, menu_id;
@@ -391,14 +393,15 @@ GO
 CREATE FUNCTION auth.get_menu
 (
     @user_id                            integer, 
-    @office_id                          integer, 
-    @culture                            national character varying(500)
+    @office_id                          integer
 )
 RETURNS @result TABLE
 (
 	menu_id                             integer,
 	app_name                            national character varying(500),
+	app_i18n_key						national character varying(500),
 	menu_name                           national character varying(500),
+	i18n_key							national character varying(500),
 	url                                 national character varying(500),
 	sort                                integer,
 	icon                                national character varying(500),
@@ -406,8 +409,6 @@ RETURNS @result TABLE
 )
 AS
 BEGIN
-
-
     DECLARE @role_id                    integer;
 
     SELECT
@@ -451,6 +452,7 @@ BEGIN
     UPDATE @result
     SET
         app_name        = core.menus.app_name,
+		i18n_key		= core.menus.i18n_key,
         menu_name       = core.menus.menu_name,
         url             = core.menus.url,
         sort            = core.menus.sort,
@@ -462,12 +464,10 @@ BEGIN
 
     UPDATE @result
     SET
-        menu_name       = core.menu_locale.menu_text
+        app_i18n_key   = core.apps.i18n_key
     FROM @result AS result
-    INNER JOIN core.menu_locale    
-    ON core.menu_locale.menu_id = result.menu_id
-    WHERE core.menu_locale.culture = @culture;
-    
+    INNER JOIN core.apps    
+    ON core.apps.app_name = result.app_name;    
 
     RETURN;
 END;
@@ -487,8 +487,7 @@ GO
 CREATE PROCEDURE auth.get_user_menu_policy
 (
     @user_id        integer,
-    @office_id      integer,
-    @culture        national character varying(500)
+    @office_id      integer
 )
 AS
 BEGIN
@@ -500,7 +499,9 @@ BEGIN
 		row_number                      integer,
 		menu_id                         integer,
 		app_name                        national character varying(500),
+		app_i18n_key					national character varying(500),
 		menu_name                       national character varying(500),
+		i18n_key						national character varying(500),
 		allowed                         bit,
 		disallowed                      bit,
 		url                             national character varying(500),
@@ -555,6 +556,7 @@ BEGIN
     UPDATE @result
     SET
         app_name        = core.menus.app_name,
+		i18n_key		= core.menus.i18n_key,
         menu_name       = core.menus.menu_name,
         url             = core.menus.url,
         sort            = core.menus.sort,
@@ -566,12 +568,10 @@ BEGIN
 
     UPDATE @result
     SET
-        menu_name       = core.menu_locale.menu_text
+        app_i18n_key       = core.apps.i18n_key
     FROM @result AS result
-    INNER JOIN core.menu_locale
-    ON core.menu_locale.menu_id = result.menu_id
-    WHERE core.menu_locale.culture = @culture;
-    
+    INNER JOIN core.apps
+    ON core.apps.app_name = result.app_name;    
 
     SELECT * FROM @result
     ORDER BY app_name, sort, menu_id;
@@ -958,16 +958,16 @@ GO
 
 
 -->-->-- src/Frapid.Web/Areas/Frapid.Authorization/db/SQL Server/1.x/1.0/src/03.menus/0.menus.sql --<--<--
-EXECUTE core.create_app 'Frapid.Authorization', 'Authorization', '1.0', 'MixERP Inc.', 'December 1, 2015', 'purple privacy', '/dashboard/authorization/menu-access/group-policy', '{Frapid.Account}';
+EXECUTE core.create_app 'Frapid.Authorization', 'Authorization', 'Authorization', '1.0', 'MixERP Inc.', 'December 1, 2015', 'purple privacy', '/dashboard/authorization/menu-access/group-policy', '{Frapid.Account}';
 
 
 
-EXECUTE core.create_menu 'Frapid.Authorization', 'Entity Access Policy', '', 'lock', '';
-EXECUTE core.create_menu 'Frapid.Authorization', 'Group Entity Access Policy', '/dashboard/authorization/entity-access/group-policy', 'users', 'Entity Access Policy';
-EXECUTE core.create_menu 'Frapid.Authorization', 'User Entity Access Policy', '/dashboard/authorization/entity-access/user-policy', 'user', 'Entity Access Policy';
-EXECUTE core.create_menu 'Frapid.Authorization', 'Menu Access Policy', '', 'toggle on', '';
-EXECUTE core.create_menu 'Frapid.Authorization', 'Group Policy', '/dashboard/authorization/menu-access/group-policy', 'users', 'Menu Access Policy';
-EXECUTE core.create_menu 'Frapid.Authorization', 'User Policy', '/dashboard/authorization/menu-access/user-policy', 'user', 'Menu Access Policy';
+EXECUTE core.create_menu 'Frapid.Authorization', 'EntityAccessPolicy', 'Entity Access Policy', '', 'lock', '';
+EXECUTE core.create_menu 'Frapid.Authorization', 'GroupEntityAccessPolicy', 'Group Entity Access Policy', '/dashboard/authorization/entity-access/group-policy', 'users', 'Entity Access Policy';
+EXECUTE core.create_menu 'Frapid.Authorization', 'UserEntityAccessPolicy', 'User Entity Access Policy', '/dashboard/authorization/entity-access/user-policy', 'user', 'Entity Access Policy';
+EXECUTE core.create_menu 'Frapid.Authorization', 'MenuAccessPolicy', 'Menu Access Policy', '', 'toggle on', '';
+EXECUTE core.create_menu 'Frapid.Authorization', 'GroupPolicy', 'Group Policy', '/dashboard/authorization/menu-access/group-policy', 'users', 'Menu Access Policy';
+EXECUTE core.create_menu 'Frapid.Authorization', 'UserPolicy', 'User Policy', '/dashboard/authorization/menu-access/user-policy', 'user', 'Menu Access Policy';
 
 GO
 

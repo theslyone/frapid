@@ -4,7 +4,7 @@ using Serilog;
 
 namespace Frapid.Configuration.TenantServices
 {
-    public sealed class StaticDomainCheck: IStaticDomainCheck
+    public sealed class StaticDomainCheck : IStaticDomainCheck
     {
         public StaticDomainCheck(ILogger logger, IDomainSerializer serializer)
         {
@@ -17,7 +17,7 @@ namespace Frapid.Configuration.TenantServices
 
         public bool IsStaticDomain(string domain)
         {
-            if(string.IsNullOrWhiteSpace(domain))
+            if (string.IsNullOrWhiteSpace(domain))
             {
                 return false;
             }

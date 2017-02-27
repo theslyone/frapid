@@ -1,11 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Frapid.Configuration;
-using Frapid.Framework.Extensions;
+using Frapid.Configuration.Models;
 using Frapid.Installer.Helpers;
-using Frapid.Installer.Models;
 
 namespace Frapid.Installer.Tenant
 {
@@ -30,7 +28,7 @@ namespace Frapid.Installer.Tenant
             await db.InstallAsync().ConfigureAwait(false);
 
             InstallerLog.Verbose("Getting installables.");
-            var installables = GetInstallables(tenant);
+            var installables = Installables.GetInstallables(tenant);
 
             foreach (var installable in installables)
             {
@@ -45,31 +43,6 @@ namespace Frapid.Installer.Tenant
                     InstallerLog.Error($"Could not install module {installable.ApplicationName}.");
                 }
             }
-        }
-
-        private static IEnumerable<Installable> GetInstallables(string tenant)
-        {
-            string root = PathMapper.MapPath("~/");
-            var installables = new List<Installable>();
-
-            if (root == null)
-            {
-                return installables;
-            }
-
-            var apps = AppResolver.Installables;
-
-            foreach (var app in apps)
-            {
-                app.SetDependencies();
-
-                if (app.AutoInstall)
-                {
-                    installables.Add(app);
-                }
-            }
-
-            return installables;
         }
     }
 }

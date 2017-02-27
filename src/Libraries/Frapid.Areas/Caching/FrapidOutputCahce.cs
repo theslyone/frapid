@@ -15,7 +15,7 @@ namespace Frapid.Areas.Caching
     public sealed class FrapidOutputCache : DonutOutputCacheAttribute
     {
         /// <summary>
-        /// Gets or sets the cache profile name.
+        ///     Gets or sets the cache profile name.
         /// </summary>
         public string ProfileName { get; set; }
 

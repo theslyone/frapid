@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Frapid.Framework
 {
-    public sealed class AttributeValueInvestigator: IAttributeValueInvestigator
+    public sealed class AttributeValueInvestigator : IAttributeValueInvestigator
     {
         public TValue Investigate<TAttribute, TValue>(Type type, Func<TAttribute, TValue> valueSelector) where TAttribute : Attribute
         {

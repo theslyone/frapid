@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Frapid.Backups.Postgres
 {
-    public sealed class Agent: IDbAgent
+    public sealed class Agent : IDbAgent
     {
         public string Tenant { get; set; }
         public event Progressing Progress;
@@ -18,11 +18,10 @@ namespace Frapid.Backups.Postgres
         {
             await Task.Delay(1).ConfigureAwait(false);
 
-            if(string.IsNullOrWhiteSpace(this.BackupFileLocation))
+            if (string.IsNullOrWhiteSpace(this.BackupFileLocation))
             {
-                string message = "Cannot find a suitable directory to create a PostgreSQL DB Backup.";
-                this.OnOnBackupFail(new ProgressInfo(message));
-                failCallback(message);
+                this.OnOnBackupFail(new ProgressInfo(i18n.Resources.CannotFindPostgreSQLBackupDirectory));
+                failCallback(i18n.Resources.CannotFindPostgreSQLBackupDirectory);
                 return false;
             }
 
@@ -35,24 +34,23 @@ namespace Frapid.Backups.Postgres
             var process = new Process(this.Server, path, this.Tenant);
 
             process.Progress += delegate(ProgressInfo info)
-                                {
-                                    var progress = this.Progress;
-                                    progress?.Invoke(new ProgressInfo(info.Message));
-                                };
+            {
+                var progress = this.Progress;
+                progress?.Invoke(new ProgressInfo(info.Message));
+            };
 
             process.BackupComplete += delegate(object sender, EventArgs args)
-                                      {
-                                          this.OnOnBackupComplete(sender, args);
-                                          successCallback(this.FileName);
-                                      };
+            {
+                this.OnOnBackupComplete(sender, args);
+                successCallback(this.FileName);
+            };
 
             bool result = process.Execute();
 
-            if(!result)
+            if (!result)
             {
-                string message = "Could not create backup.";
-                this.OnOnBackupFail(new ProgressInfo(message));
-                failCallback(message);
+                this.OnOnBackupFail(new ProgressInfo(i18n.Resources.CouldNotCreateBackup));
+                failCallback(i18n.Resources.CouldNotCreateBackup);
                 return false;
             }
 

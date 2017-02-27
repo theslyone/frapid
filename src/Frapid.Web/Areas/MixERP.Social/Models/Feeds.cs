@@ -24,7 +24,7 @@ namespace MixERP.Social.Models
 
         public static async Task<FeedItem> PostAsync(string tenant, Feed model, LoginView meta)
         {
-            string message = "{0} commented on the post you're following.<blockquote>{1}</blockquote>";
+            string message = Resources.UserCommentedOnThePostYoureFollowing;
 
             model.FormattedText = GetFormattedText(model.FormattedText);
             model.AuditTs = DateTimeOffset.UtcNow;
@@ -68,7 +68,7 @@ namespace MixERP.Social.Models
             {
                 if (feed.CreatedBy != meta.UserId)
                 {
-                    throw new FeedException("Access is denied");
+                    throw new FeedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -88,7 +88,7 @@ namespace MixERP.Social.Models
             {
                 if (feed.CreatedBy != meta.UserId)
                 {
-                    throw new FeedException("Access is denied");
+                    throw new FeedException(Resources.AccessIsDenied);
                 }
             }
 

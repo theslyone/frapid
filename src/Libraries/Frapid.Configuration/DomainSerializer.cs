@@ -85,7 +85,7 @@ namespace Frapid.Configuration
                 return;
             }
 
-            File.WriteAllText(path, contents, Encoding.UTF8);
+            File.WriteAllText(path, contents, new UTF8Encoding(false));
         }
     }
 }

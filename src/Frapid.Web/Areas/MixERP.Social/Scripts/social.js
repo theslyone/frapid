@@ -31,8 +31,8 @@ var template = `
                 </div>
             </div>
             <div class ="actions">
-                <a onclick="like(this);" data-feed-id="{FeedId}" class ="like"><i class ='thumbs up icon'></i><span class="toggle like">Like</span></a>
-                <a onclick="comment(this)" class ="comment"><i class='comment icon'></i>Comment</a>
+                <a onclick="like(this);" data-feed-id="{FeedId}" class ="like"><i class ='thumbs up icon'></i><span class="toggle like" data-localize="Like"></span></a>
+                <a onclick="comment(this)" class ="comment"><i class ='comment icon'></i><span  data-localize="Comment"></span></a>
             </div>
             <a class ="story liked by" title="{LikedBy}">
                 <i class='thumbs up icon'></i><span>{TotalLikes}<span>
@@ -46,7 +46,7 @@ var template = `
                 <div class ="left">
                 </div>
                 <div class ="right">
-                    <button data-feed-id="{FeedId}" onclick="postComment(this)" class ="ui basic blue button">Post</button>
+                    <button data-feed-id="{FeedId}" onclick="postComment(this)" class ="ui basic blue button" data-localize="Post"></button>
                 </div>
             </div>
         </div>`;
@@ -64,8 +64,8 @@ var replyTemplate = `
                     <a class ="name">{CreatedByName}:</a>
                     <span>{FormattedText}</span>
                     <div class="meta">
-                        <a class="like" onclick="like(this);" data-feed-id="{FeedId}"><span class ="toggle like">Like</span></a>
-                        <a class="reply" onclick="comment(this)"><span>Reply</span></a>
+                        <a class ="like" onclick="like(this);" data-feed-id="{FeedId}"><span class ="toggle like" data-localize="Like"></span></a>
+                        <a class ="reply" onclick="comment(this)"><span data-localize="Reply"></span></a>
                         <a class ="comment liked by" title="{LikedBy}"><i class ='thumbs up icon'></i><span>{TotalLikes}</span></a>
                         <a class ="refreshing moment" data-time="{EventTimestamp}" title="{EventTimestamp}">{EventTimestamp}</a>
                     </div>
@@ -76,9 +76,7 @@ var replyTemplate = `
             </div>
         </div>`;
 
-var showPrevisouAnchorTemplate = `<a class="show previous comments" onclick="showPreivousComments(this);">
-                                          Show Previous Comments
-                                        </a>`;
+var showPrevisouAnchorTemplate = `<a class="show previous comments" onclick="showPreivousComments(this);" data-localize="ShowPreviousComments"></a>`;
 
 function displayImage(target, file, fileName) {
     const reader = new FileReader();
@@ -162,6 +160,7 @@ $("#UploadInputFile").off("change").on("change", function () {
     };
 
     uploadAttachments(el);
+    window.localize();
 });
 
 $("#UploadAvatarInputFile").on("change", function () {
@@ -280,11 +279,11 @@ function getCard(model) {
     };
 
     if (model.ParentFeedId) {
-        el.find("a span.toggle.like").html("Unlike");
+        el.find("a span.toggle.like").html(window.translate("Unlike"));
         el.find(".meta a.like").addClass("liked");
         el.find(".meta a.like").attr("onclick", "unlike(this);");
     } else {
-        el.find("a.like span").html("Unlike");
+        el.find("a.like span").html(window.translate("Unlike"));
         el.find("a.like").addClass("liked");
         el.find("a.like").attr("onclick", "unlike(this);");
     };
@@ -312,6 +311,8 @@ function createCard(model, prepend) {
         el.find(".post").before(showPrevisouAnchorTemplate);
     };
 
+    window.localize();
+
     return el;
 };
 
@@ -335,6 +336,7 @@ function displayStories(lastFeedId, parentFeedId) {
 
     const ajax = request();
     ajax.success(function (response) {
+
         const model = window.Enumerable.From(response).OrderBy(function (x) {
             return x.ParentFeedId || 0;
         }).ThenBy(function (x) {
@@ -406,14 +408,14 @@ $("#PostButton").off("click").on("click", function () {
         $("#WhatsOnYourMindTextArea").val("");
         $("#UploadInputFile").attr("data-uploaded-files", "");
         $(".add.a.new.post .ui.gallery").html("");
-        window.displayMessage("Awesome!", "success");
+        window.displayMessage(window.translate("Awesome"), "success");
         el.removeClass("loading");
         createCard(response, true);
         window.setMoments();
     });
 
     ajax.fail(function () {
-        window.displayMessage("Something went wrong. :(");
+        window.displayMessage(window.translate("SomethingWentWrong"));
         el.removeClass("loading");
     });
 });
@@ -478,7 +480,7 @@ function postComment(element) {
     });
 
     ajax.fail(function () {
-        window.displayMessage("Something went wrong. :(");
+        window.displayMessage(window.translate("SomethingWentWrong"));
         el.removeClass("loading");
     });
 };
@@ -563,41 +565,11 @@ function loadOlderStories(el) {
     $(document).off("storiesdisplayed").on("storiesdisplayed", function (e, model) {
         if (!model.length) {
             $(el).remove();
-            window.displayMessage("No more stories to display", "info");
+            window.displayMessage(window.translate("NoMoreStoriesToDisplay"), "info");
         };
     });
 };
 
-var scolledToButton = false;
-
-//$(window).scroll(function () {
-//    if (window.scolledToButton) {
-//        return;
-//    };
-
-//    const docViewTop = $(window).scrollTop();
-//    const docViewBottom = docViewTop + $(window).height();
-
-//    const el = $(".load.older.stories.button");
-
-//    if (!el.length) {
-//        return;
-//    };
-
-//    const elemTop = el.offset().top;
-//    const elemBottom = elemTop + el.height();
-
-//    const isVisible = ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
-
-//    if (isVisible) {
-//        el.trigger("click");
-//        window.scolledToButton = true;
-
-//        setTimeout(function () {
-//            window.scolledToButton = false;
-//        }, 2000);
-//    };
-//});
 
 function deleteItem(el) {
     function request(feedId, attachment) {
@@ -668,7 +640,7 @@ function unlike(el) {
     const counterEl = el.closest(".story").find(".liked.by");
     const likedBy = (counterEl.attr("title") || "").split(",");
 
-    const index = likedBy.indexOf("Me");
+    const index = likedBy.indexOf(window.translate("Me"));
 
     if (index > -1) {
         likedBy.splice(index, 1);
@@ -685,12 +657,12 @@ function unlike(el) {
     ajax.success(function () {
         el.attr("onclick", "like(this);");
         el.removeClass("liked");
-        el.find("span").html("Like");
+        el.find("span").html(window.translate("Like"));
         counterEl.find("span").html(totalLikes - 1);
     });
 
     ajax.fail(function () {
-        window.displayMessage("Server returned an error response. Please try again later.");
+        window.displayMessage(window.translate("ServerError"));
     });
 };
 
@@ -725,11 +697,11 @@ function like(el) {
     ajax.success(function () {
         el.attr("onclick", "unlike(this);");
         el.addClass("liked");
-        el.find("span").html("Unlike");
+        el.find("span").html(window.translate("Unlike"));
         counterEl.find("span").html(totalLikes + 1);
     });
 
     ajax.fail(function () {
-        window.displayMessage("Server returned an error response. Please try again later.");
+        window.displayMessage(window.translate("ServerError"));
     });
 };

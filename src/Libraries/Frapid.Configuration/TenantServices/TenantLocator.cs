@@ -3,7 +3,7 @@ using Serilog;
 
 namespace Frapid.Configuration.TenantServices
 {
-    public sealed class TenantLocator: ITenantLocator
+    public sealed class TenantLocator : ITenantLocator
     {
         public TenantLocator(ILogger logger, IDomainNameExtractor domainExtractor, IByConvention convention, ITenantValidator validator, IDomainSerializer serializer)
         {
@@ -25,7 +25,7 @@ namespace Frapid.Configuration.TenantServices
             string domain = this.DomainExtractor.GetDomain(url);
             string tenant = this.Convention.GetTenantName(url, domain);
 
-            if(!this.Validator.IsValid(tenant))
+            if (!this.Validator.IsValid(tenant))
             {
                 this.Logger.Information($"Falling back to default tenant \"{defaultTenant}\" because the requested tenant \"{tenant}\" was invalid.");
                 tenant = defaultTenant;

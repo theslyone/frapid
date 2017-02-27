@@ -24,7 +24,7 @@ whereas, the DTO classes
 * have ```PascalCaseIdentifiers```.
 * should implement ```IPoco interface```.
 * are decorated with ```"TableName" Attribute```.
-* are decorated with ```"PrimaryKey" Attribute```.
+* may be decorated with ```"PrimaryKey" Attribute``` (if the table or view has a primary key defined in it).
 
 ```cs
     [TableName("core.apps")]

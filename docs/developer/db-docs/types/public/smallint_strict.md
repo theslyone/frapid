@@ -1,7 +1,7 @@
 # public.smallint_strict type
 
 | Schema | [public](../../schemas/public.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Type Name | smallint_strict |
 | Base Type | smallint |
 | Owner | frapid_db_user |

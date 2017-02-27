@@ -4,19 +4,20 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | smtp_id | NOT NULL | integer | 0 |  |
-| 2 | configuration_name | NOT NULL | character varying | 256 |  |
-| 3 | enabled | NOT NULL | boolean | 0 |  |
-| 4 | is_default | NOT NULL | boolean | 0 |  |
-| 5 | from_display_name | NOT NULL | character varying | 256 |  |
-| 6 | from_email_address | NOT NULL | character varying | 256 |  |
-| 7 | smtp_host | NOT NULL | character varying | 256 |  |
-| 8 | smtp_enable_ssl | NOT NULL | boolean | 0 |  |
-| 9 | smtp_username | NOT NULL | character varying | 256 |  |
-| 10 | smtp_password | NOT NULL | character varying | 256 |  |
-| 11 | smtp_port | NOT NULL | integer | 0 |  |
-| 12 | audit_user_id |  | integer | 0 |  |
-| 13 | audit_ts |  | timestamp with time zone | 0 |  |
+| 1 | smtp_config_id | [ ] | integer | 0 |  |
+| 2 | configuration_name | [ ] | character varying | 256 |  |
+| 3 | enabled | [ ] | boolean | 0 |  |
+| 4 | is_default | [ ] | boolean | 0 |  |
+| 5 | from_display_name | [ ] | character varying | 256 |  |
+| 6 | from_email_address | [ ] | character varying | 256 |  |
+| 7 | smtp_host | [ ] | character varying | 256 |  |
+| 8 | smtp_enable_ssl | [ ] | boolean | 0 |  |
+| 9 | smtp_username | [ ] | character varying | 256 |  |
+| 10 | smtp_password | [ ] | character varying | 256 |  |
+| 11 | smtp_port | [ ] | integer | 0 |  |
+| 12 | audit_user_id | [x] | integer | 0 |  |
+| 13 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 14 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -32,7 +33,7 @@
 
 | Index Name | Owner | Access Method | Definition | Description |
 | --- | --- | --- | --- | --- |
-| smtp_configs_pkey | frapid_db_user | btree | smtp_id |  |
+| smtp_configs_pkey | frapid_db_user | btree | smtp_config_id |  |
 | smtp_configs_configuration_name_key | frapid_db_user | btree | configuration_name |  |
 
 
@@ -48,12 +49,13 @@
 
 | # | Column Name | Default |
 | --- | --- | --- |
-| 1 | smtp_id | nextval('config.smtp_configs_smtp_id_seq'::regclass) |
+| 1 | smtp_config_id | nextval('config.smtp_configs_smtp_config_id_seq'::regclass) |
 | 3 | enabled | false |
 | 4 | is_default | false |
 | 8 | smtp_enable_ssl | true |
 | 11 | smtp_port | 587 |
 | 13 | audit_ts | now() |
+| 14 | deleted | false |
 
 
 **Triggers**

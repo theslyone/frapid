@@ -60,11 +60,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppResolver.cs" />
     <Compile Include="ApprovedDomain.cs" />
+    <Compile Include="ConsolePathMapper.cs" />
     <Compile Include="Db\DbProvider.cs" />
     <Compile Include="DefaultDomainSerializer.cs" />
     <Compile Include="IDomainSerializer.cs" />
+    <Compile Include="Installables.cs" />
     <Compile Include="InstalledDomainSerializer.cs" />
+    <Compile Include="Models\Installable.cs" />
     <Compile Include="TenantServices\DomainValidator.cs" />
     <Compile Include="TenantServices\Contracts\ISslDomainCheck.cs" />
     <Compile Include="TenantServices\SslDomainCheck.cs" />

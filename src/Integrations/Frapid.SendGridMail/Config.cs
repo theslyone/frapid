@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Frapid.SendGridMail
 {
-    public class Config: IEmailConfig
+    public class Config : IEmailConfig
     {
         public string ApiUser { get; set; }
         public string ApiKey { get; set; }
@@ -21,8 +21,8 @@ namespace Frapid.SendGridMail
             path = string.Format(CultureInfo.InvariantCulture, path, tenant);
             path = HostingEnvironment.MapPath(path);
 
-            if(path == null ||
-               !File.Exists(path))
+            if (path == null ||
+                !File.Exists(path))
             {
                 return new Config();
             }

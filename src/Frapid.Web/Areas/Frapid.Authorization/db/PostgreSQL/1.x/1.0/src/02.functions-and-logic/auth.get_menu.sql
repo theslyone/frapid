@@ -1,21 +1,21 @@
 DROP FUNCTION IF EXISTS auth.get_menu
 (
     _user_id                            integer, 
-    _office_id                          integer, 
-    _culture                            text
+    _office_id                          integer
 );
 
 CREATE FUNCTION auth.get_menu
 (
     _user_id                            integer, 
-    _office_id                          integer, 
-    _culture                            text
+    _office_id                          integer
 )
 RETURNS TABLE
 (
     menu_id                             integer,
     app_name                            national character varying(100),
+	app_i18n_key						national character varying(200),
     menu_name                           national character varying(100),
+	i18n_key							national character varying(200),
     url                                 text,
     sort                                integer,
     icon                                national character varying(100),
@@ -38,7 +38,9 @@ BEGIN
     (
         menu_id                         integer,
         app_name                        national character varying(100),
+		app_i18n_key					national character varying(200),
         menu_name                       national character varying(100),
+		i18n_key						national character varying(200),
         url                             text,
         sort                            integer,
         icon                            national character varying(100),
@@ -86,6 +88,7 @@ BEGIN
     SET
         app_name        = core.menus.app_name,
         menu_name       = core.menus.menu_name,
+		i18n_key	    = core.menus.i18n_key,
         url             = core.menus.url,
         sort            = core.menus.sort,
         icon            = core.menus.icon,
@@ -95,12 +98,10 @@ BEGIN
 
     UPDATE _temp_menu
     SET
-        menu_name       = core.menu_locale.menu_text
-    FROM core.menu_locale
-    WHERE core.menu_locale.menu_id = _temp_menu.menu_id
-    AND core.menu_locale.culture = _culture;
+        app_i18n_key       = core.apps.i18n_key
+    FROM core.apps
+    WHERE core.apps.app_name = _temp_menu.app_name;
     
-
     RETURN QUERY
     SELECT * FROM _temp_menu;
 END

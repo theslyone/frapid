@@ -7,6 +7,7 @@
 	"DocumentationUrl": "http://frapid.com",
 	"AssemblyName": "Frapid.Dashboard",
 	"Version": "1.0",
+	"I18NClassName": "Resources",
 	"RealeasedOn": null,
 	"Description": "Frapid dashboard module.",
 	"Category": "Core Modules",
@@ -18,7 +19,7 @@
     "PatchFilePath" : null,    
 	"InstallSample": false,
 	"My": null,
-	"OverrideTemplatePath": "~/Areas/Frapid.Dashboard/Override",
+	"OverrideTemplatePath": "~/Areas/Frapid.Dashboard/Overrides",
     "OverrideDestination":"~/Tenants/{0}/Areas",
 	"DependsOn": ["Frapid"]
 }

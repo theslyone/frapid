@@ -1,45 +1,45 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "User Management";
+    ViewBag.Title = I18N.CreateANewUser;
     Layout = ViewBag.Layout;
 }
 <div class="ui segment" style="padding: 48px;">
     <div class="ui container">
-        <div class="ui huge header">Create a New User</div>
+        <div class="ui huge header">@I18N.CreateANewUser</div>
         <div class="ui stackable grid">
             <div class="six wide column">
-                <div class="ui big form">
+                <div class="ui form">
                     <div class="field">
-                        <label>Email</label>
+                        <label>@I18N.Email</label>
                         <input type="email" id="EmailInputEmail" required="" />
                     </div>
                     <div class="field">
-                        <label>Name</label>
+                        <label>@I18N.Name</label>
                         <input type="text" id="NameInputText" required="" />
                     </div>
                     <div class="field">
-                        <label>Password</label>
+                        <label>@I18N.Password</label>
                         <input type="password" id="PasswordInputPassword" required="" />
                     </div>
                     <div class="field">
-                        <label>Confirm Password</label>
+                        <label>@I18N.ConfirmPassword</label>
                         <input type="password" id="ConfirmPasswordInputPassword" required="" />
                     </div>
                     <div class="field">
-                        <label>Office</label>
+                        <label>@I18N.Office</label>
                         <select id="OfficeIdSelect" class="ui search dropdown" required=""></select>
                     </div>
                     <div class="field">
-                        <label>Role</label>
+                        <label>@I18N.Role</label>
                         <select id="RoleIdSelect" class="ui search dropdown" required=""></select>
                     </div>
                     <div class="field">
-                        <label>Phone</label>
+                        <label>@I18N.Phone</label>
                         <input type="tel" id="PhoneInputTel" required="" />
                     </div>
 
-                    <button class="ui green big button" id="CreateButton">Create</button>
+                    <button class="ui green button" id="CreateButton">@I18N.Create</button>
                 </div>
             </div>
         </div>
@@ -48,19 +48,20 @@
 
 <script>
     $(".form").addClass("loading");
-    //$(".dropdown").dropdown();
+    //Todo: Remove Semantic UI Dropdown dependency 
+    //$(".dropdown").dropdown({forceSelection: false});
     window.validator.initialize($(".ui.form"));
 
     function bindOffices() {
         function request() {
-            var url = "/api/views/core/offices/display-fields";
+            const url = "/api/views/core/offices/display-fields";
             return window.getAjaxRequest(url);
         };
 
-        var ajax = request();
+        const ajax = request();
 
         ajax.success(function (response) {
-            var select = $("#OfficeIdSelect");
+            const select = $("#OfficeIdSelect");
             var options = "";
 
             $.each(response, function () {
@@ -82,14 +83,14 @@
 
     function bindRoles() {
         function request() {
-            var url = "/api/views/account/roles/display-fields";
+            const url = "/api/views/account/roles/display-fields";
             return window.getAjaxRequest(url);
         };
 
-        var ajax = request();
+        const ajax = request();
 
         ajax.success(function (response) {
-            var select = $("#RoleIdSelect");
+            const select = $("#RoleIdSelect");
             var options = "";
 
             $.each(response, function () {
@@ -109,8 +110,8 @@
 
     $("#CreateButton").off("click").on("click", function() {
         function request(model) {
-            var url = "/dashboard/account/user/add";
-            var data = JSON.stringify(model);
+            const url = "/dashboard/account/user/add";
+            const data = JSON.stringify(model);
 
             return window.getAjaxRequest(url, "POST", data);
         };
@@ -118,13 +119,13 @@
         var form = $(".ui.form");
         form.addClass("loading");
 
-        var model = window.serializeForm(form);
+        const model = window.serializeForm(form);
         if (model.Password !== model.ConfirmPassword) {
-            alert("Confirm password does not match with supplied password.");
+            alert(window.translate("ConfirmPasswordDoesNotMatch"));
             return;
         };
 
-        var ajax = request(model);
+        const ajax = request(model);
 
         ajax.success(function () {
             form.removeClass("loading");
@@ -134,7 +135,7 @@
 
         ajax.fail(function (xhr) {
             form.removeClass("loading");
-            alert(JSON.stringify(xhr));
+            window.logAjaxErrorMessage(xhr);
         });
     });
 </script>

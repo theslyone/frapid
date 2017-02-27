@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Frapid.DataAccess;
 using Frapid.DataAccess.Models;
 using Frapid.DbPolicy;
+using Frapid.i18n;
 using Frapid.Mapper;
 using Serilog;
 
@@ -44,10 +45,9 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        "Access to entity \"KanbanDetail\" was denied to the user with Login ID {LoginId}. KanbanId: {KanbanIds}, ResourceIds {ResourceIds}.",
-                        this.LoginId, kanbanIds, resourceIds);
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information("Access to entity \"KanbanDetail\" was denied to the user with Login ID {LoginId}. KanbanId: {KanbanIds}, ResourceIds {ResourceIds}.", this.LoginId, kanbanIds,
+                        resourceIds);
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 

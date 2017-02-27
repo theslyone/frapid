@@ -19,15 +19,14 @@ namespace Frapid.Config.Models
 
             if (path == null || !Directory.Exists(path))
             {
-                throw new ResourceCreateException(
-                    "Could not create the file or directory because the tenant directory was not found.");
+                throw new ResourceCreateException(I18N.CouldNotCreateFileTenantDirectoryMissing);
             }
 
             path = Path.Combine(path, this.Container);
 
             if (!Directory.Exists(path))
             {
-                throw new ResourceCreateException("Could not create the file or directory is an invalid directory path.");
+                throw new ResourceCreateException(I18N.CouldNotCreateFileOrDirectoryInvalidPath);
             }
 
             path = Path.Combine(path, this.File);
@@ -43,7 +42,7 @@ namespace Frapid.Config.Models
                 return;
             }
 
-            System.IO.File.WriteAllText(path, this.Contents, Encoding.UTF8);
+            System.IO.File.WriteAllText(path, this.Contents, new UTF8Encoding(false));
         }
     }
 }

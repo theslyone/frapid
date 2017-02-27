@@ -16,14 +16,14 @@ namespace Frapid.Configuration.TenantServices
 
         public bool IsValid(string domain)
         {
-            if(string.IsNullOrWhiteSpace(domain))
+            if (string.IsNullOrWhiteSpace(domain))
             {
                 return false;
             }
 
             bool result = this.Serializer.GetMemberSites().Any(d => d == domain);
 
-            if(!result)
+            if (!result)
             {
                 this.Logger.Information($"The domain \"{domain}\" was not found on list of approved domains. Please check your configuration");
             }

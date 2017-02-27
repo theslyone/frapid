@@ -10,6 +10,7 @@ using Frapid.Configuration.Db;
 using Frapid.DataAccess;
 using Frapid.DataAccess.Models;
 using Frapid.DbPolicy;
+using Frapid.i18n;
 using Frapid.Mapper;
 using Frapid.Mapper.Database;
 using Frapid.Mapper.Extensions;
@@ -25,7 +26,7 @@ namespace Frapid.WebApi.DataAccess
 
         public FormRepository(string schemaName, string tableName, string database, long loginId, int userId)
         {
-            var me = AppUsers.GetCurrentAsync().Result;
+            var me = AppUsers.GetCurrentAsync().GetAwaiter().GetResult();
 
             this._ObjectNamespace = Sanitizer.SanitizeIdentifierName(schemaName);
             this._ObjectName = Sanitizer.SanitizeIdentifierName(tableName.Replace("-", "_"));
@@ -59,7 +60,7 @@ namespace Frapid.WebApi.DataAccess
         public bool IsValid { get; set; }
         public long LoginId { get; set; }
         public int OfficeId { get; set; }
-        
+
 
         public async Task<long> CountAsync()
         {
@@ -76,9 +77,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -101,9 +101,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to the export entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to the export entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -131,9 +130,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to the get entity \"{this.FullyQualifiedObjectName}\" filtered by \"{this.PrimaryKey}\" with value {primaryKey} was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to the get entity \"{this.FullyQualifiedObjectName}\" filtered by \"{this.PrimaryKey}\" with value {primaryKey} was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -144,8 +142,7 @@ namespace Frapid.WebApi.DataAccess
 
 
             string sql = $"SELECT * FROM {this.FullyQualifiedObjectName} WHERE deleted=@0 AND {this.PrimaryKey}=@1;";
-            return
-                (await Factory.GetAsync<dynamic>(this.Database, sql, false, primaryKey).ConfigureAwait(false)).FirstOrDefault();
+            return (await Factory.GetAsync<dynamic>(this.Database, sql, false, primaryKey).ConfigureAwait(false)).FirstOrDefault();
         }
 
         public async Task<dynamic> GetFirstAsync()
@@ -163,9 +160,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to the get the first record of entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to the get the first record of entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -192,9 +188,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to the get the previous entity of \"{this.FullyQualifiedObjectName}\" by \"{this.PrimaryKey}\" with value {primaryKey} was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to the get the previous entity of \"{this.FullyQualifiedObjectName}\" by \"{this.PrimaryKey}\" with value {primaryKey} was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -223,9 +218,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to the get the next entity of \"{this.FullyQualifiedObjectName}\" by \"{this.PrimaryKey}\" with value {primaryKey} was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to the get the next entity of \"{this.FullyQualifiedObjectName}\" by \"{this.PrimaryKey}\" with value {primaryKey} was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -256,9 +250,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to the get the last record of entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to the get the last record of entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -288,9 +281,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Keys: {primaryKeys}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Keys: {primaryKeys}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -318,17 +310,16 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to get custom fields for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to get custom fields for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
             string sql;
+
             if (string.IsNullOrWhiteSpace(resourceId))
             {
-                sql =
-                    $"SELECT * FROM config.custom_field_definition_view WHERE table_name='{this.FullyQualifiedObjectName}' ORDER BY field_order;";
+                sql = $"SELECT * FROM config.custom_field_definition_view WHERE table_name='{this.FullyQualifiedObjectName}' ORDER BY field_order;";
                 return await Factory.GetAsync<CustomField>(this.Database, sql).ConfigureAwait(false);
             }
 
@@ -341,10 +332,8 @@ namespace Frapid.WebApi.DataAccess
                         "@0",
                         "@1"
                     });
-            return
-                await
-                    Factory.GetAsync<CustomField>(this.Database, sql, this.FullyQualifiedObjectName, resourceId)
-                        .ConfigureAwait(false);
+
+            return await Factory.GetAsync<CustomField>(this.Database, sql, this.FullyQualifiedObjectName, resourceId).ConfigureAwait(false);
         }
 
         public async Task<IEnumerable<DisplayField>> GetDisplayFieldsAsync()
@@ -362,10 +351,9 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}",
+                    Log.Information($"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}",
                         this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -388,10 +376,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}",
-                        this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}", this.LoginId);
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -431,9 +417,8 @@ namespace Frapid.WebApi.DataAccess
 
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to import entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to import entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -511,17 +496,6 @@ namespace Frapid.WebApi.DataAccess
             }
         }
 
-        public async Task UpdateAsync(Dictionary<string, object> item, object primaryKeyValue, List<CustomField> customFields, EntityView meta)
-        {
-            if (!string.IsNullOrWhiteSpace(meta.PrimaryKey))
-            {
-                this.PrimaryKey = meta.PrimaryKey;
-            }
-
-            this.IdentityColumn = meta.Columns.FirstOrDefault(x => x.IsSerial)?.ColumnName;
-            await this.UpdateAsync(item, primaryKeyValue, customFields).ConfigureAwait(false);
-        }
-
         public async Task UpdateAsync(Dictionary<string, object> item, object primaryKeyValue, List<CustomField> customFields)
         {
             if (string.IsNullOrWhiteSpace(this.Database))
@@ -537,9 +511,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to edit entity \"{this.FullyQualifiedObjectName}\" with Primary Key {this.PrimaryKey} was denied to the user with Login ID {this.LoginId}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to edit entity \"{this.FullyQualifiedObjectName}\" with Primary Key {this.PrimaryKey} was denied to the user with Login ID {this.LoginId}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -590,9 +563,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to delete entity \"{this.FullyQualifiedObjectName}\" with Primary Key {this.PrimaryKey} was denied to the user with Login ID {this.LoginId}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to delete entity \"{this.FullyQualifiedObjectName}\" with Primary Key {this.PrimaryKey} was denied to the user with Login ID {this.LoginId}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -615,9 +587,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to the first page of the entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to the first page of the entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -645,9 +616,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to Page #{pageNumber} of the entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to Page #{pageNumber} of the entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -687,9 +657,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filters: {filters}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filters: {filters}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -714,9 +683,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to Page #{pageNumber} of the filtered entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filters: {filters}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to Page #{pageNumber} of the filtered entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filters: {filters}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -755,9 +723,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filter: {filterName}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filter: {filterName}.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -785,7 +752,7 @@ namespace Frapid.WebApi.DataAccess
                 {
                     Log.Information(
                         $"Access to Page #{pageNumber} of the filtered entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filter: {filterName}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -810,17 +777,6 @@ namespace Frapid.WebApi.DataAccess
             return await Factory.GetAsync<dynamic>(this.Database, sql).ConfigureAwait(false);
         }
 
-        public async Task<object> AddAsync(Dictionary<string, object> item, List<CustomField> customFields, bool skipPrimaryKey, EntityView meta)
-        {
-            if (!string.IsNullOrWhiteSpace(meta.PrimaryKey))
-            {
-                this.PrimaryKey = meta.PrimaryKey;
-            }
-
-            this.IdentityColumn = meta.Columns.FirstOrDefault(x => x.IsSerial)?.ColumnName;
-            return await this.AddAsync(item, customFields, skipPrimaryKey).ConfigureAwait(false);
-        }
-
         public async Task<object> AddAsync(Dictionary<string, object> item, List<CustomField> customFields, bool skipPrimaryKey)
         {
             if (string.IsNullOrWhiteSpace(this.Database))
@@ -836,9 +792,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to add entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. {item}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to add entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. {item}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -876,6 +831,28 @@ namespace Frapid.WebApi.DataAccess
             }
         }
 
+        public async Task UpdateAsync(Dictionary<string, object> item, object primaryKeyValue, List<CustomField> customFields, EntityView meta)
+        {
+            if (!string.IsNullOrWhiteSpace(meta.PrimaryKey))
+            {
+                this.PrimaryKey = meta.PrimaryKey;
+            }
+
+            this.IdentityColumn = meta.Columns.FirstOrDefault(x => x.IsSerial)?.ColumnName;
+            await this.UpdateAsync(item, primaryKeyValue, customFields).ConfigureAwait(false);
+        }
+
+        public async Task<object> AddAsync(Dictionary<string, object> item, List<CustomField> customFields, bool skipPrimaryKey, EntityView meta)
+        {
+            if (!string.IsNullOrWhiteSpace(meta.PrimaryKey))
+            {
+                this.PrimaryKey = meta.PrimaryKey;
+            }
+
+            this.IdentityColumn = meta.Columns.FirstOrDefault(x => x.IsSerial)?.ColumnName;
+            return await this.AddAsync(item, customFields, skipPrimaryKey).ConfigureAwait(false);
+        }
+
         public async Task<IEnumerable<DisplayField>> GetDisplayFieldsAsync(List<Filter> filters)
         {
             if (string.IsNullOrWhiteSpace(this.Database))
@@ -891,10 +868,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}",
-                        this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}", this.LoginId);
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -921,10 +896,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}",
-                        this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}", this.LoginId);
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -1047,9 +1020,8 @@ namespace Frapid.WebApi.DataAccess
                 }
                 if (!this.HasAccess)
                 {
-                    Log.Information(
-                        $"Access to view meta information on entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    Log.Information($"Access to view meta information on entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -1068,7 +1040,7 @@ namespace Frapid.WebApi.DataAccess
                 {
                     Log.Information($"Access to verify entity \"{this.FullyQualifiedObjectName}\" with Primary Key {PrimaryKey} was denied to the user with Login ID {LoginId}.", model.PrimaryKeyValue,
                         this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 

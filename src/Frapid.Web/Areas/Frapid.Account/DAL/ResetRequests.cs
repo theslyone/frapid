@@ -25,9 +25,7 @@ namespace Frapid.Account.DAL
         public static async Task<Reset> RequestAsync(string tenant, ResetInfo model)
         {
             string sql = FrapidDbServer.GetProcedureCommand(tenant, "account.reset_account", new[] {"@0", "@1", "@2"});
-            return
-                (await Factory.GetAsync<Reset>(tenant, sql, model.Email, model.Browser, model.IpAddress).ConfigureAwait(false))
-                    .FirstOrDefault();
+            return (await Factory.GetAsync<Reset>(tenant, sql, model.Email, model.Browser, model.IpAddress).ConfigureAwait(false)).FirstOrDefault();
         }
 
         public static async Task<bool> HasActiveResetRequestAsync(string tenant, string email)

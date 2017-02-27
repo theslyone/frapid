@@ -10,7 +10,7 @@ namespace Frapid.Mapper
 {
     public class Sql
     {
-        private static readonly Regex ParameterPattern = new Regex(@"(?<!@)@\w+", RegexOptions.Compiled);
+        private static readonly Regex ParameterPattern = new Regex(@"(?<!@)@\w+");
         private readonly StringBuilder _builder;
         private readonly List<int> _parameterTokens;
         private List<object> _parameters;
@@ -190,7 +190,23 @@ namespace Frapid.Mapper
 
         public List<object> GetParameterValues()
         {
-            return this._parameters;
+            var parameters = new List<object>();
+
+            foreach (var parameter in this._parameters)
+            {
+                var type = parameter?.GetType();
+
+                if (type != null && type.IsEnum)
+                {
+                    parameters.Add((int)parameter);
+                }
+                else
+                {
+                    parameters.Add(parameter);
+                }
+            }
+
+            return parameters;
         }
     }
 }

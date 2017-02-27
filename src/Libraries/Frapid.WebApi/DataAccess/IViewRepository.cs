@@ -23,7 +23,7 @@ namespace Frapid.WebApi.DataAccess
         /// </summary>
         /// <returns>Returns an enumerable id and value collection for IViewRepository.</returns>
         Task<IEnumerable<DisplayField>> GetDisplayFieldsAsync();
-        
+
         /// <summary>
         ///     Display fields provide a minimal id/value context for data binding IViewRepository.
         /// </summary>

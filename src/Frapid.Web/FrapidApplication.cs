@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using Frapid.Areas;
 using Frapid.Configuration;
@@ -20,14 +21,29 @@ namespace Frapid.Web
             app.Error += this.App_Error;
         }
 
-
         public void Dispose()
         {
         }
 
+        public void InitializeCulture(HttpContext context)
+        {
+            string cultureCode = "en-US";
+            var cultureCookie = context.Request.Cookies["culture"];
+            if (cultureCookie != null)
+            {
+                cultureCode = cultureCookie.Value;
+            }
+
+            var culture = new CultureInfo(cultureCode);
+
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+            CultureInfo.DefaultThreadCurrentCulture = culture;
+        }
+
         private bool IsFont(string url)
         {
-            var candidates = new[] { ".woff", ".woff2", ".ttf", ".font" };
+            var candidates = new[] {".woff", ".woff2", ".ttf", ".font"};
             string file = Path.GetFileName(url);
             return !string.IsNullOrWhiteSpace(file) && candidates.Any(file.EndsWith);
         }
@@ -120,9 +136,10 @@ namespace Frapid.Web
                 return;
             }
 
+            this.InitializeCulture(context);
+
             string domain = TenantConvention.GetDomain();
-            Log.Verbose(
-                $"Got a {context.Request.HttpMethod} request {context.Request.AppRelativeCurrentExecutionFilePath} on domain {domain}.");
+            Log.Verbose($"Got a {context.Request.HttpMethod} request {context.Request.AppRelativeCurrentExecutionFilePath} on domain {domain}.");
 
             bool enforceSsl = TenantConvention.EnforceSsl(domain);
 

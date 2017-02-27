@@ -74,7 +74,7 @@ namespace frapid.Commands.Create
             string originalFile = Path.Combine(this.TempDirectory, original);
             string renamedFile = Path.Combine(this.TempDirectory, renamed);
 
-            if(File.Exists(originalFile))
+            if (File.Exists(originalFile))
             {
                 File.Move(originalFile, renamedFile);
             }

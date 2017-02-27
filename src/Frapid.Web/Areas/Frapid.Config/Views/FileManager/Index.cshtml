@@ -1,14 +1,14 @@
 ﻿@using Frapid.Configuration
 @{
-    ViewBag.Title = "Edit Layout";
+    ViewBag.Title = I18N.EditLayout;
     Layout = ViewBag.Layout;
 }
-<link rel="stylesheet" href="/Scripts/vakata-jstree/dist/themes/default/style.min.css" />
-<script src="/Scripts/vakata-jstree/dist/jstree.min.js"></script>
-<script src="/Scripts/ace-1.2.2/src-min-noconflict/ace.js"></script>
-<script src="/Scripts/ajax-file-upload.js"></script>
-<link href="/Areas/Frapid.Config/Content/FileManager/Index.css" rel="stylesheet">
-<script src="/Scripts/less/less.min.js"></script>
+<link rel="stylesheet" href="/scripts/vakata-jstree/dist/themes/default/style.min.css" />
+<script src="/scripts/vakata-jstree/dist/jstree.min.js"></script>
+<script src="/scripts/ace-1.2.2/src-min-noconflict/ace.js"></script>
+<script src="/scripts/ajax-file-upload.js"></script>
+<link href="/Areas/Frapid.Config/styles/file-manager/index.css" rel="stylesheet">
+<script src="/scripts/less/less.min.js"></script>
     <div class="ui stackable divided grid" style="height: 100%;">
         <div class="thirteen wide full height column attached segment" data-target="editor" id="ActionContainer">
             <div class="action buttons">
@@ -17,28 +17,28 @@
                         <div class="ui basic icon buttons">
                             <button class="ui basic button" data-container="" data-path="" id="SaveButton" style="display: none;">
                                 <i class="save icon"></i>
-                                Save
+                                @I18N.Save
                             </button>
                             <button class="ui basic button" id="UploadButton" data-container="">
                                 <i class="upload icon"></i>
-                                Upload
+                                @I18N.Upload
                             </button>
                             <button class="ui basic button" onclick="$('#FileModal').modal('show');" data-container="" id="CreateFileButton">
                                 <i class="file icon"></i>
-                                Create File
+                                @I18N.CreateFile
                             </button>
                             <button class="ui basic button" onclick="$('#FolderModal').modal('show');" data-container="" id="CreateDirectoryButton">
                                 <i class="folder icon"></i>
-                                Create Folder
+                                @I18N.CreateFolder
                             </button>
                             <button class="ui basic button" data-path="" onclick="deleteItem(this);" id="DeleteButton">
                                 <i class="minus square icon"></i>
-                                Delete
+                                @I18N.Delete
                             </button>
 
                             <button class="ui basic button" onclick="toggleEditorTheme()">
                                 <i class="unhide icon"></i>
-                                Change Contrast
+                                @I18N.ChangeContrast
                             </button>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="ui three wide full height right floated column attached segment" style="overflow: auto;">
             <div class="ui header">
-                Edit Tenant Files
+                @I18N.EditTenantFiles
             </div>
             <div class="ui divider"></div>
             <div class="tree container vpad8" style="display: none;">
@@ -73,4 +73,4 @@
 @Html.Partial("~/Areas/Frapid.Config/Views/FileManager/Shared/FolderModal.cshtml")
 
 
-<script src="/Areas/Frapid.Config/Scripts/FileManager/Index.js"></script>
+<script src="/Areas/Frapid.Config/scripts/file-manager/index.js"></script>

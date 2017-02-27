@@ -46,7 +46,7 @@ namespace Frapid.Framework
         };
 
         public static Type GetWellKnownType(this string value)
-        {            
+        {
             return Aliases.FirstOrDefault(x => x.Value.ToUpperInvariant().Equals(value.Or("").ToUpperInvariant())).Key ?? typeof(object);
         }
     }

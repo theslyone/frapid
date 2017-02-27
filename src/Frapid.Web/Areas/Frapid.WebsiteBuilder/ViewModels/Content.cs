@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using Frapid.WebsiteBuilder.DTO;
 
 namespace Frapid.WebsiteBuilder.ViewModels
 {
-    public class Content: IWebsitePage
+    public class Content : IWebsitePage
     {
         public int ContentId { get; set; }
         public string Alias { get; set; }

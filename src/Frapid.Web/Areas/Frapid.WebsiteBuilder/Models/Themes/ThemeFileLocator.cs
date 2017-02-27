@@ -20,7 +20,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             if (!System.IO.File.Exists(path))
             {
-                throw new ThemeFileLocationException("Could not locate the requested file.");
+                throw new ThemeFileLocationException(Resources.CouldNotLocateRequestedFile);
             }
 
             return path;

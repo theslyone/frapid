@@ -16,8 +16,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             if (path == null || !Directory.Exists(path))
             {
                 Log.Warning("Could not discover theme(s) on path {path}.", path);
-                throw new ThemeDiscoveryException(
-                    "Cannot find the theme directory. Check application logs for more information.");
+                throw new ThemeDiscoveryException(Resources.CannotFindThemeDirectoryCheckLogs);
             }
 
             var directories = Directory.GetDirectories(path);

@@ -83,7 +83,7 @@ namespace Frapid.Reports.Helpers
 
         private static string GetLogo()
         {
-            return AppUsers.GetCurrent().Logo.Or("/Static/images/logo.png");
+            return AppUsers.GetCurrent().Logo.Or("/Static/images/logo-sm.png");
         }
 
         public static string GetCurrentDomainName()
@@ -160,18 +160,22 @@ namespace Frapid.Reports.Helpers
                         expression = expression.Replace(word, value);
                     }
                 }
-                else if (word.StartsWith("{Resources.", StringComparison.OrdinalIgnoreCase))
+                else if (word.StartsWith("{i18n.", StringComparison.OrdinalIgnoreCase))
                 {
                     string res = RemoveBraces(word);
                     var resource = res.Split('.');
 
-                    string key = resource[2];
+                    string key = resource[1];
 
-                    expression = expression.Replace(word, ResourceManager.GetString(tenant, resource[1], key));
+                    expression = expression.Replace(word, LocalizationHelper.Localize(key, false));
                 }
-                else if (word.StartsWith("{DataSource", StringComparison.OrdinalIgnoreCase) &&
-                         word.ToLower(CultureInfo.InvariantCulture).Contains("runningtotalfieldvalue"))
+                else if (word.StartsWith("{DataSource", StringComparison.OrdinalIgnoreCase) && word.ToLower(CultureInfo.InvariantCulture).Contains("runningtotalfieldvalue"))
                 {
+                    if (dataSources == null)
+                    {
+                        return null;
+                    }
+
                     string res = RemoveBraces(word);
                     var resource = res.Split('.');
 

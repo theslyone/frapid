@@ -7,6 +7,7 @@ CREATE PROCEDURE core.create_menu2
 (
     @sort                                       integer,
     @app_name                                   national character varying(100),
+	@i18n_key									national character varying(200),
     @menu_name                                  national character varying(100),
     @url                                        national character varying(100),
     @icon                                       national character varying(100),
@@ -29,6 +30,7 @@ BEGIN
     BEGIN
         UPDATE core.menus
         SET
+			i18n_key = @i18n_key,
             sort = @sort,
             url = @url,
             icon = @icon,
@@ -44,8 +46,8 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO core.menus(sort, app_name, menu_name, url, icon, parent_menu_id)
-        SELECT @sort, @app_name, @menu_name, @url, @icon, @parent_menu_id;
+        INSERT INTO core.menus(sort, app_name, i18n_key, menu_name, url, icon, parent_menu_id)
+        SELECT @sort, @app_name, @i18n_key, @menu_name, @url, @icon, @parent_menu_id;
         
 		SET @menu_id = SCOPE_IDENTITY();
     END;
@@ -63,6 +65,7 @@ GO
 CREATE PROCEDURE core.create_menu
 (
     @app_name                                   national character varying(100),
+	@i18n_key									national character varying(200),
     @menu_name                                  national character varying(100),
     @url                                        national character varying(100),
     @icon                                       national character varying(100),
@@ -81,7 +84,7 @@ BEGIN
 	
 	PRINT @parent_menu_id;
 	
-    EXECUTE core.create_menu2 0, @app_name, @menu_name, @url, @icon, @parent_menu_id;
+    EXECUTE core.create_menu2 0, @app_name, @i18n_key, @menu_name, @url, @icon, @parent_menu_id;
 END;
 
 

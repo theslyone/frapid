@@ -1,6 +1,6 @@
 namespace Frapid.DataAccess.Models
 {
-    public sealed class CustomField: IPoco
+    public sealed class CustomField : IPoco
     {
         public string TableName { get; set; }
         public string KeyName { get; set; }

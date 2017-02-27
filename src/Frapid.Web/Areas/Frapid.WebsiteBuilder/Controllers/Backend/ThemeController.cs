@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using Frapid.Areas;
 using Frapid.Areas.Authorization;
 using Frapid.Areas.CSRF;
-using Frapid.Configuration;
 using Frapid.WebsiteBuilder.Models.Themes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -16,7 +15,7 @@ using Newtonsoft.Json.Serialization;
 namespace Frapid.WebsiteBuilder.Controllers.Backend
 {
     [AntiForgery]
-    public class ThemeController: FrapidController
+    public class ThemeController : FrapidController
     {
         [Route("dashboard/my/website/themes")]
         [RestrictAnonymous]
@@ -33,7 +32,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [HttpPost]
         public ActionResult Create(ThemeInfo model)
         {
-            if(!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.InvalidModelState(this.ModelState);
             }
@@ -43,7 +42,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
                 var creator = new ThemeCreator(model);
                 creator.Create(this.Tenant);
             }
-            catch(ThemeCreateException ex)
+            catch (ThemeCreateException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.InternalServerError);
             }
@@ -61,7 +60,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
                 var remover = new ThemeRemover(this.Tenant, themeName);
                 await remover.RemoveAsync().ConfigureAwait(false);
             }
-            catch(ThemeRemoveException ex)
+            catch (ThemeRemoveException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.InternalServerError);
             }
@@ -73,7 +72,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [RestrictAnonymous]
         public ActionResult GetResources(string themeName)
         {
-            if(string.IsNullOrWhiteSpace(themeName))
+            if (string.IsNullOrWhiteSpace(themeName))
             {
                 return this.Failed("Invalid theme name", HttpStatusCode.BadRequest);
             }
@@ -81,8 +80,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             string path = $"~/Tenants/{this.Tenant}/Areas/Frapid.WebsiteBuilder/Themes/{themeName}/";
             path = HostingEnvironment.MapPath(path);
 
-            if(path == null ||
-               !Directory.Exists(path))
+            if (path == null ||
+                !Directory.Exists(path))
             {
                 return this.Failed("Path not found", HttpStatusCode.NotFound);
             }
@@ -92,12 +91,12 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
 
             string json = JsonConvert.SerializeObject
                 (
-                 resource,
-                 Formatting.None,
-                 new JsonSerializerSettings
-                 {
-                     ContractResolver = new CamelCasePropertyNamesContractResolver()
-                 });
+                    resource,
+                    Formatting.None,
+                    new JsonSerializerSettings
+                    {
+                        ContractResolver = new CamelCasePropertyNamesContractResolver()
+                    });
 
             return this.Content(json, "application/json");
         }
@@ -106,8 +105,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [RestrictAnonymous]
         public ActionResult GetBinary(string themeName, string file)
         {
-            if(string.IsNullOrWhiteSpace(themeName) ||
-               string.IsNullOrWhiteSpace(file))
+            if (string.IsNullOrWhiteSpace(themeName) ||
+                string.IsNullOrWhiteSpace(file))
             {
                 return this.AccessDenied();
             }
@@ -152,18 +151,18 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             try
             {
                 var resource = new ResourceCreator
-                               {
-                                   ThemeName = themeName,
-                                   Container = container,
-                                   File = file,
-                                   IsDirectory = isDirectory,
-                                   Contents = contents,
-                                   Rewrite = rewriteFile
-                               };
+                {
+                    ThemeName = themeName,
+                    Container = container,
+                    File = file,
+                    IsDirectory = isDirectory,
+                    Contents = contents,
+                    Rewrite = rewriteFile
+                };
 
                 resource.Create(this.Tenant);
             }
-            catch(ResourceCreateException ex)
+            catch (ResourceCreateException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.InternalServerError);
             }
@@ -176,8 +175,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [HttpDelete]
         public ActionResult DeleteResource(string themeName, string resource)
         {
-            if(string.IsNullOrWhiteSpace(themeName) ||
-               string.IsNullOrWhiteSpace(resource))
+            if (string.IsNullOrWhiteSpace(themeName) ||
+                string.IsNullOrWhiteSpace(resource))
             {
                 return this.AccessDenied();
             }
@@ -187,7 +186,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
                 var remover = new ResourceRemover(themeName, resource);
                 remover.Delete(this.Tenant);
             }
-            catch(ResourceRemoveException ex)
+            catch (ResourceRemoveException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.InternalServerError);
             }
@@ -200,15 +199,15 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [HttpPost]
         public ActionResult UploadResource(string themeName, string container)
         {
-            if(this.Request.Files.Count > 1)
+            if (this.Request.Files.Count > 1)
             {
-                return this.Failed("Only single file may be uploaded", HttpStatusCode.BadRequest);
+                return this.Failed(Resources.OnlyASingleFileMayBeUploaded, HttpStatusCode.BadRequest);
             }
 
             var file = this.Request.Files[0];
-            if(file == null)
+            if (file == null)
             {
-                return this.Failed("No file was uploaded", HttpStatusCode.BadRequest);
+                return this.Failed(Resources.NoFileWasUploaded, HttpStatusCode.BadRequest);
             }
 
             try
@@ -216,7 +215,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
                 var uploader = new ResourceUploader(file, themeName, container);
                 uploader.Upload(this.Tenant);
             }
-            catch(ResourceUploadException ex)
+            catch (ResourceUploadException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.InternalServerError);
             }
@@ -229,23 +228,23 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [HttpPost]
         public ActionResult UploadTheme()
         {
-            if(this.Request.Files.Count > 1)
+            if (this.Request.Files.Count > 1)
             {
-                return this.Failed("Only single file may be uploaded", HttpStatusCode.BadRequest);
+                return this.Failed(Resources.OnlyASingleFileMayBeUploaded, HttpStatusCode.BadRequest);
             }
 
             var file = this.Request.Files[0];
-            if(file == null)
+            if (file == null)
             {
-                return this.Failed("No file was uploaded", HttpStatusCode.BadRequest);
+                return this.Failed(Resources.NoFileWasUploaded, HttpStatusCode.BadRequest);
             }
 
             try
             {
                 var uploader = new ThemeUploader(this.Tenant, file);
-                return Upload(uploader);
+                return this.Upload(uploader);
             }
-            catch(ThemeUploadException ex)
+            catch (ThemeUploadException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.InternalServerError);
             }
@@ -259,9 +258,9 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             Uri uri;
             bool result = Uri.TryCreate(url, UriKind.Absolute, out uri) && (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
 
-            if(result.Equals(false))
+            if (result.Equals(false))
             {
-                return this.Failed("Invalid URL", HttpStatusCode.BadRequest);
+                return this.Failed(Resources.InvalidUrl, HttpStatusCode.BadRequest);
             }
 
             try
@@ -269,7 +268,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
                 var uploader = new ThemeUploader(uri);
                 return this.Upload(uploader);
             }
-            catch(ThemeUploadException ex)
+            catch (ThemeUploadException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.InternalServerError);
             }
@@ -281,11 +280,11 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             {
                 uploader.Install(this.Tenant);
             }
-            catch(ThemeUploadException ex)
+            catch (ThemeUploadException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.BadRequest);
             }
-            catch(ThemeInstallException ex)
+            catch (ThemeInstallException ex)
             {
                 return this.Failed(ex.Message, HttpStatusCode.BadRequest);
             }

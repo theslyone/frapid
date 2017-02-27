@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "Offices";
+    ViewBag.Title = I18N.Offices;
     Layout = ViewBag.Layout;
 }
 
@@ -35,8 +35,7 @@
     ];
 
 
-
-    scrudFactory.keys = [        
+    scrudFactory.keys = [
         {
             property: "ParentOfficeId",
             url: '/api/forms/core/offices/display-fields',
@@ -46,8 +45,8 @@
         }
     ];
 
-    $.get('/ScrudFactory/View.html', function (view) {
-        $.get('/ScrudFactory/Form.html', function (form) {
+    $.get('/ScrudFactory/View.html', function(view) {
+        $.get('/ScrudFactory/Form.html', function(form) {
             $("#ScrudFactoryView").html(view);
             $("#ScrudFactoryForm").html(form);
             $.cachedScript("/assets/js/scrudfactory-view.js");

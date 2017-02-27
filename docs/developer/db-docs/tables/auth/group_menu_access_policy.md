@@ -4,12 +4,13 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | group_menu_access_policy_id | NOT NULL | bigint | 0 |  |
-| 2 | office_id | NOT NULL | integer | 0 |  |
-| 3 | menu_id | NOT NULL | integer | 0 |  |
-| 4 | role_id |  | integer | 0 |  |
-| 5 | audit_user_id |  | integer | 0 |  |
-| 6 | audit_ts |  | timestamp with time zone | 0 |  |
+| 1 | group_menu_access_policy_id | [ ] | bigint | 0 |  |
+| 2 | office_id | [ ] | integer | 0 |  |
+| 3 | menu_id | [ ] | integer | 0 |  |
+| 4 | role_id | [x] | integer | 0 |  |
+| 5 | audit_user_id | [x] | integer | 0 |  |
+| 6 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 7 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -46,6 +47,7 @@
 | --- | --- | --- |
 | 1 | group_menu_access_policy_id | nextval('auth.group_menu_access_policy_group_menu_access_policy_id_seq'::regclass) |
 | 6 | audit_ts | now() |
+| 7 | deleted | false |
 
 
 **Triggers**

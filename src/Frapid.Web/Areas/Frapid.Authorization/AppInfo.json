@@ -5,7 +5,7 @@
 	"Publisher": "MixERP Inc.",
 	"Url": "http://frapid.com",
 	"DocumentationUrl": "http://frapid.com",
-	"AssemblyName": null,
+	"AssemblyName": "Frapid.Authorization",
 	"Version": "1.0",
 	"RealeasedOn": null,
 	"Description": "Frapid authorization module.",

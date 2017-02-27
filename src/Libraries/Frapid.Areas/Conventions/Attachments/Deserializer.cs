@@ -6,12 +6,6 @@ namespace Frapid.Areas.Conventions.Attachments
 {
     public sealed class Deserializer
     {
-        public string Tenant { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public string Path { get; set; }
-        private string ImagePath { get; }
-
         public Deserializer(string tenant, AreaRegistration area, int width, int height, string path)
         {
             this.Tenant = tenant;
@@ -21,6 +15,12 @@ namespace Frapid.Areas.Conventions.Attachments
 
             this.ImagePath = PathMapper.MapPath($"/Tenants/{tenant}/Areas/{area.AreaName}/attachments/" + path);
         }
+
+        public string Tenant { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public string Path { get; set; }
+        private string ImagePath { get; }
 
         public byte[] Get()
         {

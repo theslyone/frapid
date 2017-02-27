@@ -6,11 +6,10 @@ using System.Web.Http;
 using Frapid.DataAccess;
 using Frapid.DataAccess.Models;
 using Frapid.WebApi.DataAccess;
-using Newtonsoft.Json.Linq;
 
 namespace Frapid.WebApi.Service
 {
-    public class ViewApiController: FrapidApiController
+    public class ViewApiController : FrapidApiController
     {
         [AcceptVerbs("GET", "HEAD")]
         [Route("~/api/views/{schemaName}/{tableName}/count")]
@@ -22,11 +21,11 @@ namespace Frapid.WebApi.Service
                 var repository = new ViewRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.CountAsync().ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -55,11 +54,11 @@ namespace Frapid.WebApi.Service
                 var repository = new ViewRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.GetAsync().ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -87,11 +86,11 @@ namespace Frapid.WebApi.Service
                 var repository = new ViewRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.GetPaginatedResultAsync().ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -119,11 +118,11 @@ namespace Frapid.WebApi.Service
                 var repository = new ViewRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.GetPaginatedResultAsync(pageNumber).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -151,11 +150,11 @@ namespace Frapid.WebApi.Service
                 var repository = new ViewRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.CountWhereAsync(filters).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -183,11 +182,11 @@ namespace Frapid.WebApi.Service
                 var repository = new ViewRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.GetWhereAsync(pageNumber, filters).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -215,11 +214,11 @@ namespace Frapid.WebApi.Service
                 var repository = new ViewRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.CountFilteredAsync(filterName).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -247,11 +246,11 @@ namespace Frapid.WebApi.Service
                 var repository = new ViewRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.GetFilteredAsync(pageNumber, filterName).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -301,7 +300,7 @@ namespace Frapid.WebApi.Service
 #endif
         }
 
-        [AcceptVerbs("GET", "HEAD")]
+        [AcceptVerbs("POST")]
         [Route("~/api/views/{schemaName}/{tableName}/display-fields/get-where")]
         [HttpPost]
         [RestAuthorize]
@@ -366,7 +365,7 @@ namespace Frapid.WebApi.Service
 #endif
         }
 
-        [AcceptVerbs("GET", "HEAD")]
+        [AcceptVerbs("POST")]
         [Route("~/api/views/{schemaName}/{tableName}/lookup-fields/get-where")]
         [HttpPost]
         [RestAuthorize]
@@ -398,6 +397,5 @@ namespace Frapid.WebApi.Service
             }
 #endif
         }
-
     }
 }

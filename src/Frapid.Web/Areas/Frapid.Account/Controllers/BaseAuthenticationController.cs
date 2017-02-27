@@ -8,6 +8,7 @@ using Frapid.Account.DTO;
 using Frapid.Account.InputModels;
 using Frapid.ApplicationState.Cache;
 using Frapid.Configuration;
+using Frapid.Framework.Extensions;
 using Frapid.TokenManager;
 using Frapid.WebsiteBuilder.Controllers;
 using Newtonsoft.Json;
@@ -31,6 +32,7 @@ namespace Frapid.Account.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden, JsonConvert.SerializeObject(result));
             }
 
+
             Guid? applicationId = null;
 
             if (model != null)
@@ -42,12 +44,37 @@ namespace Frapid.Account.Controllers
 
             var manager = new Provider(this.Tenant, applicationId, result.LoginId, loginView.UserId, loginView.OfficeId);
             var token = manager.GetToken();
+
+            await AccessTokens.SaveAsync(this.Tenant, token, this.RemoteUser.IpAddress, this.RemoteUser.UserAgent).ConfigureAwait(true);
+
             string domain = TenantConvention.GetDomain();
 
-            await
-                AccessTokens.SaveAsync(this.Tenant, token, this.RemoteUser.IpAddress, this.RemoteUser.UserAgent)
-                    .ConfigureAwait(true);
+            this.AddAuthenticationCookie(domain, token);
+            this.AddCultureCookie(domain, model?.Culture.Or("en-US"));
 
+            return this.Ok(token.ClientToken);
+        }
+
+        private void AddCultureCookie(string domain, string culture)
+        {
+            var cookie = new HttpCookie("culture")
+            {
+                Value = culture,
+                HttpOnly = false,
+                Expires = DateTime.Now.AddDays(1)
+            };
+
+            //localhost cookie is not supported by most browsers.
+            if (domain.ToLower() != "localhost")
+            {
+                cookie.Domain = domain;
+            }
+
+            this.Response.Cookies.Add(cookie);
+        }
+
+        private void AddAuthenticationCookie(string domain, Token token)
+        {
             var cookie = new HttpCookie("access_token")
             {
                 Value = token.ClientToken,
@@ -62,7 +89,6 @@ namespace Frapid.Account.Controllers
             }
 
             this.Response.Cookies.Add(cookie);
-            return this.Ok(token.ClientToken);
         }
     }
 }

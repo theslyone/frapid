@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using System.IO;
 using Frapid.Mapper.Database;
 using Frapid.Mapper.Types;
+using MySql.Data.MySqlClient;
 using Npgsql;
 using Serilog;
 
@@ -106,7 +107,7 @@ namespace Frapid.Configuration.Db
             switch (providerName)
             {
                 case "MySql.Data":
-                    return MySql.Data.MySqlClient.MySqlClientFactory.Instance;
+                    return MySqlClientFactory.Instance;
                 case "Npgsql":
                     return NpgsqlFactory.Instance;
                 case "System.Data.SqlClient":

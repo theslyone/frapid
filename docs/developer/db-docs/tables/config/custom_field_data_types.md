@@ -4,11 +4,11 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | data_type | NOT NULL | character varying | 50 |  |
-| 2 | is_number |  | boolean | 0 |  |
-| 3 | is_date |  | boolean | 0 |  |
-| 4 | is_boolean |  | boolean | 0 |  |
-| 5 | is_long_text |  | boolean | 0 |  |
+| 1 | data_type | [ ] | character varying | 50 |  |
+| 2 | underlying_type | [ ] | character varying | 500 |  |
+| 3 | audit_user_id | [x] | integer | 0 |  |
+| 4 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 5 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -16,6 +16,7 @@
 
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
+| 3 | [audit_user_id](../account/users.md) | custom_field_data_types_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -38,10 +39,8 @@
 
 | # | Column Name | Default |
 | --- | --- | --- |
-| 2 | is_number | false |
-| 3 | is_date | false |
-| 4 | is_boolean | false |
-| 5 | is_long_text | false |
+| 4 | audit_ts | now() |
+| 5 | deleted | false |
 
 
 **Triggers**

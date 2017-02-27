@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
+using System.Web;
 using Frapid.Account.DAL;
 using Frapid.Account.Emails;
 using Frapid.Account.Exceptions;
 using Frapid.Account.ViewModels;
 using Frapid.Areas;
 using Mapster;
-using System.Web;
 
 namespace Frapid.Account.Models
 {
@@ -15,12 +15,12 @@ namespace Frapid.Account.Models
         {
             if (model.Password != model.ConfirmPassword)
             {
-                throw new PasswordConfirmException("Passwords do not match.");
+                throw new PasswordConfirmException(I18N.PasswordsDoNotMatch);
             }
 
             if (model.Email != model.ConfirmEmail)
             {
-                throw new PasswordConfirmException("Emails do not match.");
+                throw new PasswordConfirmException(I18N.EmailsDoNotMatch);
             }
 
             model.Browser = user.Browser;

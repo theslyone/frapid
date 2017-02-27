@@ -25,7 +25,8 @@ namespace Frapid.Configuration.TenantServices
             {
                 string scheme = isHttps ? "https://" : "http://";
                 domainName = scheme + tenant.DomainName;
-            }else if(tenant != null)
+            }
+            else if (tenant != null)
             {
                 return tenant.DomainName;
             }

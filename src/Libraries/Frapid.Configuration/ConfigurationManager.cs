@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using Serilog;
 
 namespace Frapid.Configuration
@@ -16,7 +15,7 @@ namespace Frapid.Configuration
         {
             Log.Verbose($"Getting configuration key \"{key}\" on config file \"{configFileName}\".");
 
-            if(configFileName == null)
+            if (configFileName == null)
             {
                 Log.Verbose($"Empty string returned for the key \"{key}\" because no config file name was provided.");
                 return string.Empty;
@@ -39,9 +38,9 @@ namespace Frapid.Configuration
         public static string ReadConfigurationValue(string path, string key)
         {
             var configFileMap = new ExeConfigurationFileMap
-                                {
-                                    ExeConfigFilename = path
-                                };
+            {
+                ExeConfigFilename = path
+            };
 
             var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
 
@@ -59,13 +58,13 @@ namespace Frapid.Configuration
         public static void SetConfigurationValue(string path, string key, string value)
         {
             var configFileMap = new ExeConfigurationFileMap
-                                {
-                                    ExeConfigFilename = path
-                                };
+            {
+                ExeConfigFilename = path
+            };
             var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
             var section = config.GetSection("appSettings") as AppSettingsSection;
 
-            if(section?.Settings[key] != null)
+            if (section?.Settings[key] != null)
             {
                 section.Settings[key].Value = value;
             }

@@ -77,6 +77,5 @@ namespace Frapid.WebsiteBuilder.Extensions
             string text = HtmlEntity.DeEntitize(builder.ToString());
             return Regex.Replace(text, @"\s+", " ").Trim();
         }
-
     }
 }

@@ -52,7 +52,7 @@ namespace Frapid.Account.Controllers.Backend
             string path = Configuration.GetOverridePath(this.Tenant) + "/EmailTemplates/" + file;
             if (System.IO.File.Exists(path))
             {
-                System.IO.File.WriteAllText(path, contents, Encoding.UTF8);
+                System.IO.File.WriteAllText(path, contents, new UTF8Encoding(false));
             }
         }
     }

@@ -36,7 +36,7 @@ namespace Frapid.Installer
                 if (IsDevelopment())
                 {
                     InstallerLog.Verbose("Cleaning up the database.");
-                    await this.CleanUpDbAsync();
+                    await this.CleanUpDbAsync().ConfigureAwait(true);
                 }
                 else
                 {

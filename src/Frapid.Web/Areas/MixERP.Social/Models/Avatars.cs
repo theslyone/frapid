@@ -31,14 +31,14 @@ namespace MixERP.Social.Models
                 return string.Empty;
             }
 
-            var extensions = new[] { ".png", ".jpg", ".jpeg", ".gif" };
+            var extensions = new[] {".png", ".jpg", ".jpeg", ".gif"};
             var directory = new DirectoryInfo(path);
 
             var files = directory.GetFiles();
 
             var candidate = files.FirstOrDefault(
                 f => Path.GetFileNameWithoutExtension(f.Name) == userId
-                     && extensions.Contains(f.Extension.ToLower())
+                     && extensions.Select(x=>x.ToLower()).Contains(f.Extension.ToLower())
                 );
 
             return candidate?.FullName ?? string.Empty;
@@ -52,20 +52,24 @@ namespace MixERP.Social.Models
 
         public static void Upload(string tenant, int userId, HttpPostedFileBase file)
         {
-
             if (file == null)
             {
-                throw new AttachmentException("No file was uploaded.");
+                throw new AttachmentException(Resources.NoFileWasUploaded);
             }
 
 
             string path = $"/Tenants/{tenant}/Areas/MixERP.Social/avatars";
             path = PathMapper.MapPath(path);
 
-            if (path == null || !Directory.Exists(path))
+            if (path == null)
             {
                 Log.Warning("Could not upload resource because the avatar directory {directory} does not exist.", path);
-                throw new AttachmentException("Could not find avatar directory.");
+                throw new AttachmentException(Resources.CouldNotFindAvatarDirectory);
+            }
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
             }
 
             string fileName = Path.GetFileName(file.FileName);
@@ -73,16 +77,15 @@ namespace MixERP.Social.Models
             if (fileName == null)
             {
                 Log.Warning("Could not upload resource because the posted avatar file name is null or invalid.");
-                throw new AttachmentException("Invalid file name.");
+                throw new AttachmentException(Resources.InvalidFileName);
             }
 
             var allowed = FrapidConfig.GetAllowedUploadExtensions(tenant);
             string extension = Path.GetExtension(fileName);
             if (!allowed.Contains(extension))
             {
-                Log.Warning("Could not upload avatar resource because the uploaded file {file} has invalid extension.",
-                    fileName);
-                throw new AttachmentException("Access is denied.");
+                Log.Warning("Could not upload avatar resource because the uploaded file {file} has invalid extension.", fileName);
+                throw new AttachmentException(Resources.AccessIsDenied);
             }
 
             var dir = new DirectoryInfo(path);
@@ -95,7 +98,7 @@ namespace MixERP.Social.Models
             var stream = file.InputStream;
             path = Path.Combine(path, userId + extension);
 
-            using (var fileStream = System.IO.File.Create(path))
+            using (var fileStream = File.Create(path))
             {
                 stream.CopyTo(fileStream);
             }
@@ -104,7 +107,7 @@ namespace MixERP.Social.Models
         public static byte[] FromName(string name)
         {
             string text = GetInitials(name);
-            int colorIndex = name.Select(i => (int)i).Sum() % 20;
+            int colorIndex = name.Select(i => (int) i).Sum()%20;
 
             using (var bitmap = new Bitmap(500, 500))
             {

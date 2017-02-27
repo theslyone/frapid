@@ -8,7 +8,7 @@ using Npgsql;
 namespace Frapid.Account.Controllers
 {
     [AntiForgery]
-    public class GoogleSignInController: BaseAuthenticationController
+    public class GoogleSignInController : BaseAuthenticationController
     {
         [Route("account/google/sign-in")]
         [HttpPost]
@@ -21,7 +21,7 @@ namespace Frapid.Account.Controllers
                 var result = await oauth.AuthenticateAsync(account, this.RemoteUser).ConfigureAwait(false);
                 return await this.OnAuthenticatedAsync(result).ConfigureAwait(true);
             }
-            catch(NpgsqlException)
+            catch (NpgsqlException)
             {
                 return this.AccessDenied();
             }

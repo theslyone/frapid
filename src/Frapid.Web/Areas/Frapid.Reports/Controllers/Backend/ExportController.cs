@@ -8,6 +8,7 @@ namespace Frapid.Reports.Controllers.Backend
     [AntiForgery]
     public sealed class ExportController : FrapidController
     {
+
         [Route("dashboard/reports/export/pdf")]
         [HttpPost]
         public ActionResult ExportToPdf(HtmlConverterViewModel model)
@@ -17,11 +18,13 @@ namespace Frapid.Reports.Controllers.Backend
                 return this.InvalidModelState(this.ModelState);
             }
 
-            string result = ExportHelper.Export(this.Tenant, "pdf", model.Html);
+
+            string result = ExportHelper.Export(this.Tenant, this.GetBaseUri(), "pdf", model.Html);
             return this.Ok(result);
         }
 
-        [Route("dashboard/reports/export/doc")]
+
+        [Route("dashboard/reports/export/docx")]
         [HttpPost]
         public ActionResult ExportToDoc(HtmlConverterViewModel model)
         {
@@ -30,7 +33,7 @@ namespace Frapid.Reports.Controllers.Backend
                 return this.InvalidModelState(this.ModelState);
             }
 
-            string result = ExportHelper.Export(this.Tenant, "doc", model.Html);
+            string result = ExportHelper.Export(this.Tenant, this.GetBaseUri(), "docx", model.Html);
             return this.Ok(result);
         }
 
@@ -43,7 +46,7 @@ namespace Frapid.Reports.Controllers.Backend
                 return this.InvalidModelState(this.ModelState);
             }
 
-            string result = ExportHelper.Export(this.Tenant, "xls", model.Html);
+            string result = ExportHelper.Export(this.Tenant, this.GetBaseUri(), "xls", model.Html);
             return this.Ok(result);
         }
     }

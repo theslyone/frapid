@@ -4,9 +4,12 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | user_id | NOT NULL | integer | 0 |  |
-| 2 | fb_user_id |  | text | 0 |  |
-| 3 | token |  | text | 0 |  |
+| 1 | user_id | [ ] | integer | 0 |  |
+| 2 | fb_user_id | [x] | text | 0 |  |
+| 3 | token | [x] | text | 0 |  |
+| 4 | audit_user_id | [x] | integer | 0 |  |
+| 5 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 6 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -15,6 +18,7 @@
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
 | 1 | [user_id](../account/users.md) | fb_access_tokens_user_id_fkey | account.users.user_id |
+| 4 | [audit_user_id](../account/users.md) | fb_access_tokens_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -37,6 +41,8 @@
 
 | # | Column Name | Default |
 | --- | --- | --- |
+| 5 | audit_ts | now() |
+| 6 | deleted | false |
 
 
 **Triggers**

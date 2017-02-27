@@ -151,15 +151,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\Account\ResetConfirmation\index.js" />
-    <Content Include="Scripts\Account\Reset\index.js" />
-    <Content Include="Scripts\Account\SignIn\google.js" />
-    <Content Include="Scripts\Account\SignIn\facebook.js" />
-    <Content Include="Scripts\Account\SignIn\default.js" />
-    <Content Include="Scripts\Account\ChangePassword\index.js" />
-    <Content Include="Scripts\Account\SignUp\signup.js" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Controllers\Backend\AddUserController.cs" />
     <Compile Include="Controllers\Backend\ChangePasswordController.cs" />
@@ -184,6 +175,7 @@
     <Compile Include="DTO\User.cs" />
     <Compile Include="Exceptions\EmailConfirmException.cs" />
     <Compile Include="Emails\ResetEmail.cs" />
+    <Compile Include="I18N.cs" />
     <Compile Include="Models\ChangePasswordModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="ViewModels\ChangePasswordInfo.cs" />
@@ -202,7 +194,6 @@
     <Compile Include="PasswordManager.cs" />
     <Compile Include="StartupTask.cs" />
     <Compile Include="InputModels\ChangePassword.cs" />
-    <Compile Include="ViewModels\Language.cs" />
     <Compile Include="RemoteAuthentication\FacebookAuthentication.cs" />
     <Compile Include="ViewModels\FacebookUserInfo.cs" />
     <Compile Include="RemoteAuthentication\GoogleAuthentication.cs" />
@@ -221,7 +212,14 @@
     <Compile Include="ViewModels\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\EmailTemplate\Editor.js" />
+    <Content Include="scripts\account\change-password\index.js" />
+    <Content Include="scripts\account\reset-confirmation\index.js" />
+    <Content Include="scripts\account\reset\index.js" />
+    <Content Include="scripts\account\sign-in\default.js" />
+    <Content Include="scripts\account\sign-in\facebook.js" />
+    <Content Include="scripts\account\sign-in\google.js" />
+    <Content Include="scripts\account\sign-up\signup.js" />
+    <Content Include="scripts\email-template\editor.js" />
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\SignIn\Index.cshtml" />
@@ -290,6 +288,10 @@
     <Error Condition="!Exists('packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

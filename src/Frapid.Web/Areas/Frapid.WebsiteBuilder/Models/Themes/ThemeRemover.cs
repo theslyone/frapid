@@ -27,7 +27,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             if (this.ThemeName.ToLower().Equals(defaultTheme.ToLower()))
             {
-                throw new ThemeRemoveException("Access is denied. You cannot remove this theme because it is in use.");
+                throw new ThemeRemoveException(Resources.CannotRemoveThemeInUse);
             }
 
             string path = $"~/Tenants/{this.Tenant}/Areas/Frapid.WebsiteBuilder/Themes/{this.ThemeName}";
@@ -36,7 +36,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             if (path == null ||
                 !Directory.Exists(path))
             {
-                throw new ThemeRemoveException("Invalid theme.");
+                throw new ThemeRemoveException(Resources.InvalidTheme);
             }
 
             Directory.Delete(path, true);

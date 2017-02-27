@@ -159,14 +159,15 @@
     <Compile Include="Models\HtmlToText.cs" />
     <Compile Include="Models\ResourceUploadException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.cs" />
     <Compile Include="ViewModels\Attachment.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\social.js" />
-    <Content Include="Styles\social.css" />
+    <Content Include="scripts\social.js" />
+    <Content Include="styles\social.css" />
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,11 @@
 ﻿using System.Threading.Tasks;
 using Frapid.DataAccess;
 using Frapid.DataAccess.Models;
+using Frapid.i18n;
 
 namespace Frapid.DbPolicy
 {
-    public abstract class DbAccess: IDbAccess
+    public abstract class DbAccess : IDbAccess
     {
         // ReSharper disable once InconsistentNaming
         public abstract string _ObjectNamespace { get; }
@@ -27,13 +28,13 @@ namespace Frapid.DbPolicy
         public async Task ValidateAsync(AccessTypeEnum type, long loginId, string database, bool noException)
         {
             var policy = new PolicyValidator
-                         {
-                             ObjectNamespace = this._ObjectNamespace,
-                             ObjectName = this._ObjectName,
-                             LoginId = loginId,
-                             Database = database,
-                             AccessType = type
-                         };
+            {
+                ObjectNamespace = this._ObjectNamespace,
+                ObjectName = this._ObjectName,
+                LoginId = loginId,
+                Database = database,
+                AccessType = type
+            };
 
             await policy.ValidateAsync().ConfigureAwait(false);
             this.HasAccess = policy.HasAccess;
@@ -41,14 +42,14 @@ namespace Frapid.DbPolicy
             this.Validated = true;
 
 
-            if(this.HasAccess)
+            if (this.HasAccess)
             {
                 return;
             }
 
-            if(!noException)
+            if (!noException)
             {
-                throw new UnauthorizedException("Access is denied.");
+                throw new UnauthorizedException(Resources.AccessIsDenied);
             }
         }
     }

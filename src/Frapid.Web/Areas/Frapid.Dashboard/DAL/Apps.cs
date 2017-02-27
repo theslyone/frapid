@@ -7,10 +7,10 @@ namespace Frapid.Dashboard.DAL
 {
     public static class Apps
     {
-        public static async Task<IEnumerable<App>> GetAsync(string tenant, int userId, int officeId, string cultureCode)
+        public static async Task<IEnumerable<App>> GetAsync(string tenant, int userId, int officeId)
         {
-            const string sql = "SELECT * FROM auth.get_apps(@0, @1, @2);";
-            return await Factory.GetAsync<App>(tenant, sql, userId, officeId, cultureCode).ConfigureAwait(false);
+            const string sql = "SELECT * FROM auth.get_apps(@0, @1);";
+            return await Factory.GetAsync<App>(tenant, sql, userId, officeId).ConfigureAwait(false);
         }
     }
 }

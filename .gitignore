@@ -16,6 +16,7 @@ src/Frapid.Web/Areas/MixERP.Helpdesk/
 src/Frapid.Web/Areas/MixERP.CRM/
 src/Frapid.Web/Areas/MixERP.Payments/
 src/Frapid.Web/Areas/Frapid.Forms/
+src/Frapid.Web/Areas/MixERP.Calendar/
 src/Frapid.Web/logo.png
 src/Frapid.Web/logo-inverted.png
 src/Frapid.Web/images/
@@ -37,3 +38,7 @@ src/Frapid.Web/Areas/MixERP.Purchases/
 src/Frapid.Web/Areas/MixERP.Sales/
 src/Frapid.Web/Areas/Frapid.Paylink/
 src/Frapid.Web/Reports/
+src/Frapid.Web/Areas/Frapid.CafeSys/
+src/Frapid.Web/Areas/MixERP.CountryPacks.Nepal/
+/src/Frapid.Web/Areas/Frapid.CafeSys
+/src/Frapid.Web/Areas/MixERP.CountryPacks.Nepal

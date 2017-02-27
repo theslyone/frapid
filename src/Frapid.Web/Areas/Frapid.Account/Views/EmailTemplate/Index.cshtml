@@ -15,7 +15,7 @@
     }
 </style>
 
-<script src="/Scripts/ace-1.2.2/src-min-noconflict/ace.js"></script>
+<script src="/scripts/ace-1.2.2/src-min-noconflict/ace.js"></script>
 
 <script>
     var saveUrl = "/dashboard/website/subscription/removed/save";
@@ -27,8 +27,8 @@
             @ViewBag.Title
         </div>
         <div class="ui basic buttons">
-            <div class="ui basic button" id="SaveButton">Save</div>
-            <a class="ui basic button" href="javascript:history.go(-1)">Back</a>
+            <div class="ui basic button" id="SaveButton">@I18N.Save</div>
+            <a class="ui basic button" href="javascript:history.go(-1)">@I18N.Back</a>
         </div>
     </div>
 
@@ -42,4 +42,4 @@
     var title = "@Model.Title";
     var html = "@Html.Encode(HttpUtility.JavaScriptStringEncode(Model.Contents))";
 </script>
-<script src="~/Areas/Frapid.Account/Scripts/EmailTemplate/Editor.js"></script>
+<script src="~/Areas/Frapid.Account/scripts/email-template/editor.js"></script>

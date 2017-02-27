@@ -54,6 +54,10 @@
       <Project>{9bea3809-b6d5-4025-ae7e-868e5e7e9c76}</Project>
       <Name>Frapid.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Frapid.i18n\Frapid.i18n.csproj">
+      <Project>{88dfdf57-a52b-4d71-a0c4-bef1a3839506}</Project>
+      <Name>Frapid.i18n</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

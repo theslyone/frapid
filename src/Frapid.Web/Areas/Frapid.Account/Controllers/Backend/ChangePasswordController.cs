@@ -48,7 +48,7 @@ namespace Frapid.Account.Controllers.Backend
 
             if (model.Password != model.ConfirmPassword)
             {
-                return this.Failed("Confirm password does not match with the supplied password", HttpStatusCode.BadRequest);
+                return this.Failed(I18N.ConfirmPasswordDoesNotMatch, HttpStatusCode.BadRequest);
             }
 
             try

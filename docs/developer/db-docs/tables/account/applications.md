@@ -4,23 +4,24 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | application_id | NOT NULL | uuid | 0 |  |
-| 2 | application_name | NOT NULL | character varying | 100 |  |
-| 3 | display_name |  | character varying | 100 |  |
-| 4 | version_number |  | character varying | 100 |  |
-| 5 | publisher | NOT NULL | character varying | 100 |  |
-| 6 | published_on |  | date | 0 |  |
-| 7 | application_url |  | character varying | 500 |  |
-| 8 | description |  | text | 0 |  |
-| 9 | browser_based_app | NOT NULL | boolean | 0 |  |
-| 10 | privacy_policy_url |  | character varying | 500 |  |
-| 11 | terms_of_service_url |  | character varying | 500 |  |
-| 12 | support_email |  | character varying | 100 |  |
-| 13 | culture |  | character varying | 12 |  |
-| 14 | redirect_url |  | character varying | 500 |  |
-| 15 | app_secret |  | text | 0 |  |
-| 16 | audit_user_id |  | integer | 0 |  |
-| 17 | audit_ts |  | timestamp with time zone | 0 |  |
+| 1 | application_id | [ ] | uuid | 0 |  |
+| 2 | application_name | [ ] | character varying | 100 |  |
+| 3 | display_name | [x] | character varying | 100 |  |
+| 4 | version_number | [x] | character varying | 100 |  |
+| 5 | publisher | [ ] | character varying | 100 |  |
+| 6 | published_on | [x] | date | 0 |  |
+| 7 | application_url | [x] | character varying | 500 |  |
+| 8 | description | [x] | text | 0 |  |
+| 9 | browser_based_app | [ ] | boolean | 0 |  |
+| 10 | privacy_policy_url | [x] | character varying | 500 |  |
+| 11 | terms_of_service_url | [x] | character varying | 500 |  |
+| 12 | support_email | [x] | character varying | 100 |  |
+| 13 | culture | [x] | character varying | 12 |  |
+| 14 | redirect_url | [x] | character varying | 500 |  |
+| 15 | app_secret | [x] | text | 0 |  |
+| 16 | audit_user_id | [x] | integer | 0 |  |
+| 17 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 18 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -55,6 +56,7 @@
 | --- | --- | --- |
 | 1 | application_id | gen_random_uuid() |
 | 17 | audit_ts | now() |
+| 18 | deleted | false |
 
 
 **Triggers**

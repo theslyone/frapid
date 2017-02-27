@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "Currencies";
+    ViewBag.Title = I18N.Currencies;
     Layout = ViewBag.Layout;
 }
 
@@ -32,8 +32,8 @@
         }
     ];
 
-    $.get('/ScrudFactory/View.html', function (view) {
-        $.get('/ScrudFactory/Form.html', function (form) {
+    $.get('/ScrudFactory/View.html', function(view) {
+        $.get('/ScrudFactory/Form.html', function(form) {
             $("#ScrudFactoryView").html(view);
             $("#ScrudFactoryForm").html(form);
             $.cachedScript("/assets/js/scrudfactory-view.js");

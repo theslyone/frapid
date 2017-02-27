@@ -23,7 +23,7 @@ namespace Frapid.Areas
         {
             var staticResources = GetConfig(tenant, "StaticResources").Or("").Split(',').Select(x => x.Trim()).ToList();
 
-            if(!staticResources.Any())
+            if (!staticResources.Any())
             {
                 return string.Empty;
             }
@@ -34,11 +34,11 @@ namespace Frapid.Areas
             string query = context.Request.Url.Query;
             string extension = Path.GetExtension(requestedFile);
 
-            if(staticResources.Contains(extension))
+            if (staticResources.Contains(extension))
             {
                 //This is a well-known file type
                 string path = rootDirectory + requestedFile;
-                if(File.Exists(HostingEnvironment.MapPath(path)))
+                if (File.Exists(HostingEnvironment.MapPath(path)))
                 {
                     return path + query;
                 }

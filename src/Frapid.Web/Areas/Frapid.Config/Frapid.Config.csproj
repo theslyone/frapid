@@ -57,6 +57,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Frapid.i18n, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Frapid.i18n.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -109,6 +113,7 @@
     <Compile Include="Controllers\Services\AttachmentController.cs" />
     <Compile Include="Controllers\SmtpController.cs" />
     <Compile Include="FrapidConfig.cs" />
+    <Compile Include="I18N.cs" />
     <Compile Include="Models\FileManagerResource.cs" />
     <Compile Include="Models\ResourceCreateException.cs" />
     <Compile Include="Models\ResourceCreator.cs" />
@@ -134,8 +139,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\FileManager\Index.css" />
-    <Content Include="Scripts\FileManager\Index.js" />
+    <Content Include="styles\file-manager\index.css" />
+    <Content Include="scripts\file-manager\Index.js" />
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -147,8 +152,6 @@
   <ItemGroup>
     <Content Include="Views\Office\Index.cshtml" />
     <Content Include="Views\Smtp\Index.cshtml" />
-    <Content Include="Views\ApiAccess\Index.cshtml" />
-    <Content Include="Views\MenuAccess\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />

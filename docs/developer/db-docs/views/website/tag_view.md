@@ -1,7 +1,7 @@
 # website.tag_view view
 
 | Schema | [website](../../schemas/website.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Materialized View Name | tag_view |
 | Owner | frapid_db_user |
 | Tablespace | DEFAULT |
@@ -12,8 +12,14 @@
 ```plpgsql
  CREATE OR REPLACE VIEW website.tag_view
  AS
- SELECT DISTINCT unnest(regexp_split_to_array(contents.tags, ','::text)) AS tag
-   FROM website.contents;
+ WITH tags AS (
+         SELECT DISTINCT unnest(regexp_split_to_array(contents.tags, ','::text)) AS tag
+           FROM website.contents
+          WHERE NOT contents.deleted
+        )
+ SELECT row_number() OVER (ORDER BY tags.tag) AS tag_id,
+    tags.tag
+   FROM tags;
 ```
 
 

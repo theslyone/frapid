@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Web.Hosting;
-using Frapid.Configuration;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
@@ -22,7 +21,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             if (path == null)
             {
-                throw new ResourceRemoveException("Path to the file or directory is invalid.");
+                throw new ResourceRemoveException(Resources.PathToFileOrDirectoryInvalid);
             }
 
             path = Path.Combine(path, this.Resource);
@@ -39,7 +38,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
                 return;
             }
 
-            throw new ResourceRemoveException("File or directory could not be found.");
+            throw new ResourceRemoveException(Resources.FileOrDirectoryNotFound);
         }
     }
 }

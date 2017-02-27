@@ -4,16 +4,21 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | user_id | NOT NULL | integer | 0 |  |
-| 2 | email | NOT NULL | character varying | 100 |  |
-| 3 | password |  | text | 0 |  |
-| 4 | office_id | NOT NULL | integer | 0 |  |
-| 5 | role_id | NOT NULL | integer | 0 |  |
-| 6 | name |  | character varying | 100 |  |
-| 7 | phone |  | character varying | 100 |  |
-| 8 | status |  | boolean | 0 |  |
-| 9 | audit_user_id |  | integer | 0 |  |
-| 10 | audit_ts |  | timestamp with time zone | 0 |  |
+| 1 | user_id | [ ] | integer | 0 |  |
+| 2 | email | [ ] | character varying | 100 |  |
+| 3 | password | [x] | text | 0 |  |
+| 4 | office_id | [ ] | integer | 0 |  |
+| 5 | role_id | [ ] | integer | 0 |  |
+| 6 | name | [x] | character varying | 100 |  |
+| 7 | phone | [x] | character varying | 100 |  |
+| 8 | status | [x] | boolean | 0 |  |
+| 9 | created_on | [ ] | timestamp with time zone | 0 |  |
+| 10 | last_seen_on | [x] | timestamp with time zone | 0 |  |
+| 11 | last_ip | [x] | text | 0 |  |
+| 12 | last_browser | [x] | text | 0 |  |
+| 13 | audit_user_id | [x] | integer | 0 |  |
+| 14 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 15 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -23,7 +28,7 @@
 | --- | --- | --- | --- |
 | 4 | [office_id](../core/offices.md) | users_office_id_fkey | core.offices.office_id |
 | 5 | [role_id](../account/roles.md) | users_role_id_fkey | account.roles.role_id |
-| 9 | [audit_user_id](../account/users.md) | users_audit_user_id_fkey | account.users.user_id |
+| 13 | [audit_user_id](../account/users.md) | users_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -49,7 +54,9 @@
 | --- | --- | --- |
 | 1 | user_id | nextval('account.users_user_id_seq'::regclass) |
 | 8 | status | true |
-| 10 | audit_ts | now() |
+| 9 | created_on | now() |
+| 14 | audit_ts | now() |
+| 15 | deleted | false |
 
 
 **Triggers**

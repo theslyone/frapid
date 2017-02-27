@@ -1,4 +1,4 @@
-    var invalidFileExtensionLocalized = window.Resources.Warnings.InvalidFileExtension() || "Invalid file extension.";
+var invalidFileExtensionLocalized = translate("InvalidFileExtension");
     var uploaderInitialized = false;
     var allowedExtensions = [".jpg", ".jpeg", ".bmp", ".gif", ".png", ".zip"];
     var uploaderTemplate = '<div class="ui uploader field">\
@@ -124,7 +124,7 @@
                 var image = imageEl;
 				image.removeAttr('src');
                 image.attr('src', e.target.result).fadeIn(1000);
-                $(input).trigger("readComplete");
+                $(input).trigger("readComplete", [{ e: e }]);
             };
 
             reader.readAsDataURL(input.files[0]);

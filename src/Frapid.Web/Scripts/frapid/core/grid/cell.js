@@ -1,4 +1,4 @@
-var areYouSure = window.Resources.Questions.AreYouSure() || "Are you sure?";
+var areYouSure = translate("AreYouSure");
 
 var sumOfColumn = function (tableSelector, columnIndex) {
     var total = 0;

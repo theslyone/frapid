@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AngleSharp, Version=0.9.9.0, Culture=neutral, PublicKeyToken=e83494dcdc6d31ea, processorArchitecture=MSIL">
+      <HintPath>packages\AngleSharp.0.9.9\lib\net45\AngleSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\OpenXMLSDK-MOT.2.6.1.0\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Frapid.ApplicationState, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.ApplicationState.dll</HintPath>
@@ -85,6 +93,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.WebsiteBuilder.dll</HintPath>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.2\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -92,6 +104,10 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Npgsql, Version=3.1.9.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>packages\Npgsql.3.1.9\lib\net451\Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PreMailer.Net, Version=1.5.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\PreMailer.Net.1.5.5\lib\net45\PreMailer.Net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
@@ -114,6 +130,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase">
+      <HintPath>packages\WindowsBase.4.6.1055.0\lib\WindowsBase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -140,15 +160,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaRegistration.cs" />
+    <Compile Include="Controllers\Backend\EmailController.cs" />
+    <Compile Include="Helpers\LocalizationHelper.cs" />
+    <Compile Include="I18N.cs" />
+    <Compile Include="Models\EmailException.cs" />
+    <Compile Include="Models\Emails.cs" />
     <Compile Include="Controllers\Backend\ExportController.cs" />
     <Compile Include="ExportHelper.cs" />
-    <Compile Include="HtmlConverters\FakeWordConverter.cs" />
-    <Compile Include="HtmlConverters\FakeExcelConverter.cs" />
+    <Compile Include="HtmlConverters\ToOpenOfficeWord.cs" />
+    <Compile Include="HtmlConverters\ToOpenOfficeSpreadSheet.cs" />
     <Compile Include="HtmlConverters\WkHtmlToPdf.cs" />
     <Compile Include="HtmlConverters\HtmlWriter.cs" />
     <Compile Include="IExportTo.cs" />
     <Compile Include="Models\ReportLocator.cs" />
     <Compile Include="PdfConvert.cs" />
+    <Compile Include="ViewModels\EmailViewModel.cs" />
     <Compile Include="ViewModels\HtmlConverterViewModel.cs" />
     <Compile Include="ViewModels\ParameterMeta.cs" />
     <Compile Include="Controllers\Backend\ReportController.cs" />
@@ -187,9 +213,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Styles\source.css" />
-    <Content Include="Scripts\reports.js" />
-    <Content Include="Styles\reports.css" />
+    <Content Include="styles\source.css" />
+    <Content Include="scripts\reports.js" />
+    <Content Include="styles\reports.css" />
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>

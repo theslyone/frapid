@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
+    [Serializable]
     public sealed class ResourceRemoveException : Exception
     {
         public ResourceRemoveException()
@@ -13,6 +15,10 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         }
 
         public ResourceRemoveException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        public ResourceRemoveException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

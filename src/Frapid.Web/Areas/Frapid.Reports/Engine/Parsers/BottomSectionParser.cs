@@ -2,12 +2,12 @@
 {
     public sealed class BottomSectionParser
     {
-        public string Path { get; set; }
-
         public BottomSectionParser(string path)
         {
             this.Path = path;
         }
+
+        public string Path { get; set; }
 
         public string Get()
         {

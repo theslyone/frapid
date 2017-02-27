@@ -688,11 +688,12 @@ CREATE TABLE core.apps
 (
 	app_id										int IDENTITY NOT NULL,
     app_name                                    national character varying(100) PRIMARY KEY,
+	i18n_key									national character varying(200) NOT NULL,
     name                                        national character varying(100),
     version_number                              national character varying(100),
     publisher                                   national character varying(500),
     published_on                                date,
-    icon                                        national character varying(100),
+    icon                                        national character varying(MAX),
     landing_url                                 national character varying(500),
     audit_user_id                           	integer,
     audit_ts                                	DATETIMEOFFSET NULL DEFAULT(GETUTCDATE()),
@@ -718,6 +719,7 @@ CREATE TABLE core.menus
 (
     menu_id                                     int IDENTITY PRIMARY KEY,
     sort                                        integer,
+	i18n_key									national character varying(200) NOT NULL,
     app_name                                    national character varying(100) NOT NULL REFERENCES core.apps,
     menu_name                                   national character varying(100) NOT NULL,
     url                                         national character varying(500),
@@ -731,17 +733,6 @@ CREATE TABLE core.menus
 CREATE UNIQUE INDEX menus_app_name_menu_name_uix
 ON core.menus(app_name, menu_name)
 WHERE deleted = 0;
-
-CREATE TABLE core.menu_locale
-(
-    menu_locale_id                              int IDENTITY PRIMARY KEY,
-    menu_id                                     integer NOT NULL REFERENCES core.menus,
-    culture                                     national character varying(12) NOT NULL,
-    menu_text                                   national character varying(250) NOT NULL,
-    audit_user_id                           	integer,
-    audit_ts                                	DATETIMEOFFSET NULL DEFAULT(GETUTCDATE()),
-	deleted										bit DEFAULT(0)	
-);
 
 CREATE TABLE core.currencies
 (
@@ -945,6 +936,7 @@ GO
 CREATE PROCEDURE core.create_app
 (
     @app_name                                   national character varying(100),
+	@i18n_key									national character varying(200),
     @name                                       national character varying(100),
     @version_number                             national character varying(100),
     @publisher                                  national character varying(100),
@@ -967,6 +959,7 @@ BEGIN
     BEGIN
         UPDATE core.apps
         SET
+			i18n_key = @i18n_key,
             name = @name,
             version_number = @version_number,
             publisher = @publisher,
@@ -978,8 +971,8 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO core.apps(app_name, name, version_number, publisher, published_on, icon, landing_url)
-        SELECT @app_name, @name, @version_number, @publisher, @published_on, @icon, @landing_url;
+        INSERT INTO core.apps(app_name, i18n_key, name, version_number, publisher, published_on, icon, landing_url)
+        SELECT @app_name, @i18n_key, @name, @version_number, @publisher, @published_on, @icon, @landing_url;
     END;
 
     DELETE FROM core.app_dependencies
@@ -1005,6 +998,7 @@ CREATE PROCEDURE core.create_menu2
 (
     @sort                                       integer,
     @app_name                                   national character varying(100),
+	@i18n_key									national character varying(200),
     @menu_name                                  national character varying(100),
     @url                                        national character varying(100),
     @icon                                       national character varying(100),
@@ -1027,6 +1021,7 @@ BEGIN
     BEGIN
         UPDATE core.menus
         SET
+			i18n_key = @i18n_key,
             sort = @sort,
             url = @url,
             icon = @icon,
@@ -1042,8 +1037,8 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO core.menus(sort, app_name, menu_name, url, icon, parent_menu_id)
-        SELECT @sort, @app_name, @menu_name, @url, @icon, @parent_menu_id;
+        INSERT INTO core.menus(sort, app_name, i18n_key, menu_name, url, icon, parent_menu_id)
+        SELECT @sort, @app_name, @i18n_key, @menu_name, @url, @icon, @parent_menu_id;
         
 		SET @menu_id = SCOPE_IDENTITY();
     END;
@@ -1061,6 +1056,7 @@ GO
 CREATE PROCEDURE core.create_menu
 (
     @app_name                                   national character varying(100),
+	@i18n_key									national character varying(200),
     @menu_name                                  national character varying(100),
     @url                                        national character varying(100),
     @icon                                       national character varying(100),
@@ -1079,7 +1075,7 @@ BEGIN
 	
 	PRINT @parent_menu_id;
 	
-    EXECUTE core.create_menu2 0, @app_name, @menu_name, @url, @icon, @parent_menu_id;
+    EXECUTE core.create_menu2 0, @app_name, @i18n_key, @menu_name, @url, @icon, @parent_menu_id;
 END;
 
 

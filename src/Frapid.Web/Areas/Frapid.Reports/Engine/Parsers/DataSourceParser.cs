@@ -51,11 +51,6 @@ namespace Frapid.Reports.Engine.Parsers
                 return null;
             }
 
-            if (report.DataSources == null)
-            {
-                return null;
-            }
-
             value = ExpressionHelper.ParseExpression(report.Tenant, value, report.DataSources, ParameterHelper.GetPraParameterInfo(report));
             return DataSourceParameterHelper.CastValue(value, type);
         }

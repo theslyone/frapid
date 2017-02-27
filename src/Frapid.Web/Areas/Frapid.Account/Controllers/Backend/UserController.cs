@@ -15,6 +15,4 @@ namespace Frapid.Account.Controllers.Backend
             return this.FrapidView(this.GetRazorView<AreaRegistration>("User/Index.cshtml", this.Tenant));
         }
     }
-
-
 }

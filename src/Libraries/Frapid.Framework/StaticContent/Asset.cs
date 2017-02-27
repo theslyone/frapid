@@ -5,7 +5,7 @@ namespace Frapid.Framework.StaticContent
 {
     public sealed class Asset
     {
-        [JsonConverter(typeof (StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public AssetType Type { get; set; }
 
         public string BundleName { get; set; }

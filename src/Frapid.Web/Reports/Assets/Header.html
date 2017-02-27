@@ -2,19 +2,20 @@
 <p>
     <img src="{LogoPath}" alt="Logo" style="max-width: 300px" />
 </p>
+<h1>{Meta.OfficeName}</h1>
 <p>
     {Meta.Street}, {Meta.City}, {Meta.State}, {Meta.Country}.
-    {Resources.Titles.Phone} : {Meta.Phone}. {Resources.Titles.Fax} : {Meta.Fax}.
+    {i18n.Phone} : {Meta.Phone}. {i18n.Fax} : {Meta.Fax}.
     <br />
-    {Resources.Titles.Email} : {Meta.Email}
-    {Resources.Titles.Url} :
+    {i18n.Email} : {Meta.Email}
+    {i18n.Url} :
     <a href="{Meta.Url}" target="_blank">{Meta.Url}</a>
 </p>
 
-{Resources.Titles.PreparedOn} : {PrintDate}.
-{Resources.Titles.User} : {Meta.UserName}
+{i18n.PreparedOn} : {PrintDate}.
+{i18n.User} : {Meta.UserName}
 <br />
-{Resources.Titles.OfficeCode} : {Meta.OfficeCode}
+{i18n.OfficeCode} : {Meta.OfficeCode}
 <br />
 <br/>
 </div>

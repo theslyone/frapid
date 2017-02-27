@@ -1,7 +1,7 @@
 # public.color type
 
 | Schema | [public](../../schemas/public.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Type Name | color |
 | Base Type | text |
 | Owner | frapid_db_user |

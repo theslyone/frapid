@@ -4,7 +4,7 @@ using Frapid.Configuration;
 
 namespace Frapid.ApplicationState.CacheFactory
 {
-    public sealed class FrapidOutputCacheProvider: OutputCacheProvider
+    public sealed class FrapidOutputCacheProvider : OutputCacheProvider
     {
         public FrapidOutputCacheProvider()
         {

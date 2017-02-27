@@ -11,7 +11,6 @@ using Frapid.Mapper.Query.Insert;
 using Frapid.Mapper.Query.NonQuery;
 using Frapid.Mapper.Query.Select;
 
-
 namespace Frapid.Account.DAL
 {
     public static class Users
@@ -81,6 +80,5 @@ namespace Frapid.Account.DAL
                 await db.InsertAsync("account.users", "user_id", true, user).ConfigureAwait(false);
             }
         }
-
     }
 }

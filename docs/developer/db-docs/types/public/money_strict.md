@@ -1,7 +1,7 @@
 # public.money_strict type
 
 | Schema | [public](../../schemas/public.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Type Name | money_strict |
 | Base Type | numeric |
 | Owner | frapid_db_user |

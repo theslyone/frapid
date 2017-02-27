@@ -3,11 +3,12 @@ using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
 using Frapid.Configuration;
+using Frapid.Configuration.Db;
+using Frapid.Configuration.Models;
 using Frapid.DataAccess;
 using Frapid.Framework;
 using Frapid.Installer.DAL;
 using Frapid.Installer.Helpers;
-using Frapid.Installer.Models;
 
 namespace Frapid.Installer
 {
@@ -125,6 +126,13 @@ namespace Frapid.Installer
         {
             if (string.IsNullOrWhiteSpace(this.Installable.OverrideTemplatePath) ||
                 string.IsNullOrWhiteSpace(this.Installable.OverrideDestination))
+            {
+                return;
+            }
+
+            string providerName = DbProvider.GetProviderName(this.Tenant);
+
+            if (!string.IsNullOrWhiteSpace(this.Installable.OverrideTenantProviderType) && !this.Installable.OverrideTenantProviderType.ToUpperInvariant().Trim().Equals(providerName.ToUpperInvariant().Trim()))
             {
                 return;
             }

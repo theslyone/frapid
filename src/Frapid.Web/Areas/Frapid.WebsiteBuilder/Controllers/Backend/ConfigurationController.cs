@@ -12,7 +12,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [MenuPolicy]
         public ActionResult Index()
         {
-            return this.FrapidView(this.GetRazorView<AreaRegistration>("Configuration/Index.cshtml", this.Tenant));
+            return this.FrapidView(this.GetRazorView<AreaRegistration>("Backend/Configuration/Index.cshtml", this.Tenant));
         }
     }
 }

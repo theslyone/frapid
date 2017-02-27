@@ -10,9 +10,9 @@ namespace Frapid.Areas
     {
         internal static string ToCdnResource(string path)
         {
-            if(!path.StartsWith("/") ||
-               path.StartsWith("//") ||
-               path.ToLowerInvariant().StartsWith("/signalr"))
+            if (!path.StartsWith("/") ||
+                path.StartsWith("//") ||
+                path.ToLowerInvariant().StartsWith("/signalr"))
             {
                 return path;
             }
@@ -20,12 +20,12 @@ namespace Frapid.Areas
             var approved = new ApprovedDomainSerializer();
             var tenant = approved.Get().FirstOrDefault(x => x.GetSubtenants().Contains(TenantConvention.GetDomain()));
 
-            if(tenant == null)
+            if (tenant == null)
             {
                 return path;
             }
 
-            if(!string.IsNullOrWhiteSpace(tenant.CdnDomain))
+            if (!string.IsNullOrWhiteSpace(tenant.CdnDomain))
             {
                 var uri = FrapidHttpContext.GetCurrent().Request.Url;
 
@@ -37,7 +37,7 @@ namespace Frapid.Areas
 
         internal static string UseCdn(string html)
         {
-            if(string.IsNullOrWhiteSpace(html))
+            if (string.IsNullOrWhiteSpace(html))
             {
                 return string.Empty;
             }
@@ -46,12 +46,12 @@ namespace Frapid.Areas
             doc.LoadHtml(html);
 
             var scripts = doc.DocumentNode.SelectNodes("//script[@src]");
-            if(scripts != null)
+            if (scripts != null)
             {
-                foreach(var node in scripts)
+                foreach (var node in scripts)
                 {
                     var src = node.Attributes["src"];
-                    if(src != null)
+                    if (src != null)
                     {
                         node.Attributes["src"].Value = ToCdnResource(node.Attributes["src"].Value);
                     }
@@ -59,31 +59,31 @@ namespace Frapid.Areas
             }
 
             var links = doc.DocumentNode.SelectNodes("//link[@href]");
-            if(links != null)
+            if (links != null)
             {
-                foreach(var node in links)
+                foreach (var node in links)
                 {
                     bool isStatic = true;
 
                     var rel = node.Attributes["rel"];
 
-                    if(rel != null)
+                    if (rel != null)
                     {
-                        if(new[]
-                           {
-                               "prev",
-                               "next",
-                               "canonical"
-                           }.Contains(rel.Value))
+                        if (new[]
+                        {
+                            "prev",
+                            "next",
+                            "canonical"
+                        }.Contains(rel.Value))
                         {
                             isStatic = false;
                         }
                     }
 
-                    if(isStatic)
+                    if (isStatic)
                     {
                         var src = node.Attributes["href"];
-                        if(src != null)
+                        if (src != null)
                         {
                             node.Attributes["href"].Value = ToCdnResource(node.Attributes["href"].Value);
                         }
@@ -92,12 +92,12 @@ namespace Frapid.Areas
             }
 
             var anchors = doc.DocumentNode.SelectNodes("//a[@data-download]");
-            if(anchors != null)
+            if (anchors != null)
             {
-                foreach(var node in anchors)
+                foreach (var node in anchors)
                 {
                     var src = node.Attributes["href"];
-                    if(src != null)
+                    if (src != null)
                     {
                         node.Attributes["href"].Value = ToCdnResource(node.Attributes["href"].Value);
                     }
@@ -105,12 +105,12 @@ namespace Frapid.Areas
             }
 
             var images = doc.DocumentNode.SelectNodes("//img[@src]");
-            if(images != null)
+            if (images != null)
             {
-                foreach(var node in images)
+                foreach (var node in images)
                 {
                     var src = node.Attributes["src"];
-                    if(src != null)
+                    if (src != null)
                     {
                         node.Attributes["src"].Value = ToCdnResource(node.Attributes["src"].Value);
                     }

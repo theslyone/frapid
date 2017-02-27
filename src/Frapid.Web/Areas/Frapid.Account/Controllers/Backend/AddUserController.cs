@@ -2,12 +2,13 @@
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Frapid.Account.DAL;
 using Frapid.Account.ViewModels;
 using Frapid.ApplicationState.Cache;
 using Frapid.Areas.Authorization;
+using Frapid.Areas.CSRF;
 using Frapid.Dashboard;
 using Frapid.Dashboard.Controllers;
-using Frapid.Areas.CSRF;
 
 namespace Frapid.Account.Controllers.Backend
 {
@@ -47,12 +48,12 @@ namespace Frapid.Account.Controllers.Backend
 
             if (model.Password != model.ConfirmPassword)
             {
-                return this.Failed("Confirm password does not match with the supplied password", HttpStatusCode.BadRequest);
+                return this.Failed(I18N.ConfirmPasswordDoesNotMatch, HttpStatusCode.BadRequest);
             }
 
             try
             {
-                await DAL.Users.CreateUserAsync(this.Tenant, user.UserId, model).ConfigureAwait(true);
+                await Users.CreateUserAsync(this.Tenant, user.UserId, model).ConfigureAwait(true);
                 return this.Ok("OK");
             }
             catch (Exception ex)

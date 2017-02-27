@@ -12,19 +12,19 @@ using Frapid.Areas.Caching;
 
 namespace Frapid.Web.Controllers
 {
-    public class BundleController: FrapidController
+    public class BundleController : FrapidController
     {
         [Route("bundler/get.{extension}")]
-        [FrapidOutputCache(Duration = 31536000, VaryByParam = "*", Location = OutputCacheLocation.Any)]
+        [FrapidOutputCache(Duration = 31536000, VaryByParam = "*", Location = OutputCacheLocation.Client)]
         public ActionResult Index(string extension, string files, string directory = "")
         {
-            if(extension.ToLowerInvariant().Equals("css"))
+            if (extension.ToLowerInvariant().Equals("css"))
             {
                 string content = this.Bundle(files, directory);
                 return this.Content(content, "text/css");
             }
 
-            if(extension.ToLowerInvariant().Equals("js"))
+            if (extension.ToLowerInvariant().Equals("js"))
             {
                 string content = this.Bundle(files, directory, ";");
                 return this.Content(content, "text/javascript");
@@ -37,7 +37,7 @@ namespace Frapid.Web.Controllers
         private string Bundle(string files, string directory, string terminator = "")
         {
             string root = Path.GetPathRoot(directory);
-            if(root != "\\")
+            if (root != "\\")
             {
                 return string.Empty;
             }
@@ -45,17 +45,17 @@ namespace Frapid.Web.Controllers
             var content = new StringBuilder();
             var paths = files.Split(',');
 
-            if(paths.Any())
+            if (paths.Any())
             {
-                foreach(string path in paths)
+                foreach (string path in paths)
                 {
                     string location = HostingEnvironment.MapPath(directory + path);
 
-                    if(location != null &&
-                       System.IO.File.Exists(location))
+                    if (location != null &&
+                        System.IO.File.Exists(location))
                     {
                         content.Append(System.IO.File.ReadAllText(location, Encoding.UTF8));
-                        if(!string.IsNullOrWhiteSpace(terminator))
+                        if (!string.IsNullOrWhiteSpace(terminator))
                         {
                             content.Append(terminator);
                         }

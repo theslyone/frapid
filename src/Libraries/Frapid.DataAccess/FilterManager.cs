@@ -70,7 +70,7 @@ namespace Frapid.DataAccess
                             "%" + filter.FilterValue.Or("").ToLower(CultureManager.GetCurrent()) + "%");
                         break;
                     case FilterCondition.IsNotLike:
-                        sql.Append(statement + " LOWER(COALESCE(" + Sanitizer.SanitizeIdentifierName(column) + ", '') NOT LIKE @0",
+                        sql.Append(statement + " LOWER(COALESCE(" + Sanitizer.SanitizeIdentifierName(column) + ", '')) NOT LIKE @0",
                             "%" + filter.FilterValue.Or("").ToLower(CultureManager.GetCurrent()) + "%");
                         break;
                 }

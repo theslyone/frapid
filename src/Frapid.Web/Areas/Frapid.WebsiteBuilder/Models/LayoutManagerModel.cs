@@ -26,7 +26,7 @@ namespace Frapid.WebsiteBuilder.Models
                     return false;
                 }
 
-                File.WriteAllText(path, contents, Encoding.UTF8);
+                File.WriteAllText(path, contents, new UTF8Encoding(false));
             }
 
             return true;

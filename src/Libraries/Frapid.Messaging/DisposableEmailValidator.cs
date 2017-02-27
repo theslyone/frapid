@@ -21,7 +21,7 @@ namespace Frapid.Messaging
             string rootConfigFile = HostingEnvironment.MapPath("/Resources/Configs/DisposableEmailDomains.config");
 
 
-            if(File.Exists(tenantConfigFile))
+            if (File.Exists(tenantConfigFile))
             {
                 configPath = tenantConfigFile;
             }
@@ -30,7 +30,7 @@ namespace Frapid.Messaging
                 configPath = File.Exists(rootConfigFile) ? rootConfigFile : string.Empty;
             }
 
-            if(string.IsNullOrWhiteSpace(configPath))
+            if (string.IsNullOrWhiteSpace(configPath))
             {
                 //Cannot determine if the email address is disposable because no configuration file was found.
                 return false;
@@ -39,12 +39,12 @@ namespace Frapid.Messaging
             string contents = File.ReadAllText(configPath, Encoding.UTF8);
             var domains = contents.Split
                 (
-                 new[]
-                 {
-                     "\r\n",
-                     "\n"
-                 },
-                 StringSplitOptions.None).Select(x => x.ToUpperInvariant().Trim());
+                    new[]
+                    {
+                        "\r\n",
+                        "\n"
+                    },
+                    StringSplitOptions.None).Select(x => x.ToUpperInvariant().Trim());
             return domains.Any(domain => email.Trim().ToUpperInvariant().EndsWith(domain.ToUpperInvariant()));
         }
     }

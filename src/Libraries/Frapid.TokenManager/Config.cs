@@ -13,8 +13,8 @@ namespace Frapid.TokenManager
             string path = "~/Resources/Configs/JwtConfig.json";
             path = HostingEnvironment.MapPath(path);
 
-            if(string.IsNullOrWhiteSpace(path) ||
-               !File.Exists(path))
+            if (string.IsNullOrWhiteSpace(path) ||
+                !File.Exists(path))
             {
                 return new JObject();
             }

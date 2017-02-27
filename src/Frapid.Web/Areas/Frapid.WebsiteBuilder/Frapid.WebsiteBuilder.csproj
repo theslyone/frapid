@@ -181,6 +181,7 @@
     <Compile Include="Contracts\IContentExtension.cs" />
     <Compile Include="Contracts\IFormExtension.cs" />
     <Compile Include="Contracts\IContentSearch.cs" />
+    <Compile Include="Controllers\Backend\BlogController.cs" />
     <Compile Include="Controllers\Backend\CategoryController.cs" />
     <Compile Include="Controllers\Backend\ConfigurationController.cs" />
     <Compile Include="Controllers\Backend\ContactController.cs" />
@@ -190,6 +191,7 @@
     <Compile Include="Controllers\FrontEnd\ErrorController.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\MenuService.cs" />
+    <Compile Include="Resources.cs" />
     <Compile Include="Syndication\Rss\RssChannel.cs" />
     <Compile Include="Controllers\FrontEnd\RssController.cs" />
     <Compile Include="Syndication\Rss\RssItem.cs" />
@@ -263,95 +265,98 @@
     <Compile Include="ViewModels\SearchResultContent.cs" />
     <Compile Include="ViewModels\Subscribe.cs" />
     <Compile Include="ViewModels\Template.cs" />
-    <Compile Include="Views\Layout\Shared\DeleteThemeModal.generated.cs">
+    <Compile Include="Views\Backend\Layout\Shared\DeleteThemeModal.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DeleteThemeModal.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Layout\Shared\FileModal.generated.cs">
+    <Compile Include="Views\Backend\Layout\Shared\FileModal.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FileModal.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Layout\Shared\FolderModal.generated.cs">
+    <Compile Include="Views\Backend\Layout\Shared\FolderModal.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FolderModal.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Layout\Shared\NewThemeModal.generated.cs">
+    <Compile Include="Views\Backend\Layout\Shared\NewThemeModal.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>NewThemeModal.cshtml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Layout\Shared\UploadModal.generated.cs">
+    <Compile Include="Views\Backend\Layout\Shared\UploadModal.generated.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>UploadModal.cshtml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Layout\Index.css" />
+    <Content Include="scripts\blogs\manage.js" />
+    <Content Include="styles\layout\index.css" />
     <Content Include="DevTrends.MvcDonutCaching.README.txt" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\Subscription\Remove.js" />
-    <Content Include="Scripts\Contents\EntityParser.js" />
-    <Content Include="Scripts\Contents\Manage.js" />
-    <Content Include="Scripts\ContactUs\ContactForm.js" />
-    <Content Include="Scripts\SubscriptionEmailTemplate\Shared\Editor.js" />
-    <Content Include="Scripts\Layout\Index.js" />
+    <Content Include="scripts\modernizr-2.8.3.js" />
+    <Content Include="scripts\subscription\remove.js" />
+    <Content Include="scripts\contents\entity-parser.js" />
+    <Content Include="scripts\contents\manage.js" />
+    <Content Include="scripts\contact-us\contact-form.js" />
+    <Content Include="scripts\subscription-email-template\shared\editor.js" />
+    <Content Include="scripts\layout\index.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Frontend\Index\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Content\Index.cshtml" />
+    <Content Include="Views\Backend\Content\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Views\ContactUs\Index.cshtml" />
-    <Content Include="Views\ContactUs\ContactForm.cshtml" />
-    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Frontend\ContactUs\Index.cshtml" />
+    <Content Include="Views\Frontend\ContactUs\ContactForm.cshtml" />
+    <Content Include="Views\Backend\Menu\Index.cshtml" />
     <Content Include="AppInfo.json" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
-    <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Content\Manage.cshtml" />
-    <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\MenuItem\Index.cshtml" />
-    <Content Include="Views\Layout\Shared\UploadModal.cshtml">
+    <Content Include="Views\Backend\Category\Index.cshtml" />
+    <Content Include="Views\Backend\Content\Manage.cshtml" />
+    <Content Include="Views\Backend\Contact\Index.cshtml" />
+    <Content Include="Views\Backend\MenuItem\Index.cshtml" />
+    <Content Include="Views\Backend\Layout\Shared\UploadModal.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>UploadModal.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Layout\Index.cshtml" />
-    <Content Include="Views\Subscription\Remove.cshtml" />
-    <Content Include="Views\SubscriptionEmailTemplate\SubscriptionRemoved.cshtml" />
-    <Content Include="Views\SubscriptionEmailTemplate\Shared\Editor.cshtml" />
-    <Content Include="Views\DashboardSubscription\Index.cshtml" />
-    <Content Include="Views\Layout\Shared\FileModal.cshtml">
+    <Content Include="Views\Backend\Layout\Index.cshtml" />
+    <Content Include="Views\Frontend\Subscription\Remove.cshtml" />
+    <Content Include="Views\Backend\SubscriptionEmailTemplate\SubscriptionRemoved.cshtml" />
+    <Content Include="Views\Backend\SubscriptionEmailTemplate\Shared\Editor.cshtml" />
+    <Content Include="Views\Backend\Subscription\Index.cshtml" />
+    <Content Include="Views\Backend\Layout\Shared\FileModal.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>FileModal.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Layout\Shared\FolderModal.cshtml">
+    <Content Include="Views\Backend\Layout\Shared\FolderModal.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>FolderModal.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Layout\Shared\NewThemeModal.cshtml">
+    <Content Include="Views\Backend\Layout\Shared\NewThemeModal.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>NewThemeModal.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\Layout\Shared\DeleteThemeModal.cshtml">
+    <Content Include="Views\Backend\Layout\Shared\DeleteThemeModal.cshtml">
       <Generator>RazorGenerator</Generator>
       <LastGenOutput>DeleteThemeModal.generated.cs</LastGenOutput>
     </Content>
-    <Content Include="Views\SubscriptionEmailTemplate\Welcome.cshtml" />
+    <Content Include="Views\Backend\SubscriptionEmailTemplate\Welcome.cshtml" />
     <Content Include="web.config" />
-    <Content Include="Views\Blog\Home.cshtml" />
-    <Content Include="Views\Configuration\Index.cshtml" />
-    <Content Include="Views\Blog\Post.cshtml" />
-    <Content Include="Views\ErrorHandlers\404.cshtml" />
+    <Content Include="Views\Frontend\Blog\Home.cshtml" />
+    <Content Include="Views\Backend\Configuration\Index.cshtml" />
+    <Content Include="Views\Frontend\Blog\Post.cshtml" />
+    <Content Include="Views\Frontend\ErrorHandlers\404.cshtml" />
+    <Content Include="Views\Backend\Blog\Index.cshtml" />
+    <Content Include="Views\Backend\Blog\Manage.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

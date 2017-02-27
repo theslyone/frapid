@@ -1,7 +1,7 @@
 # website.menu_item_view view
 
 | Schema | [website](../../schemas/website.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Materialized View Name | menu_item_view |
 | Owner | frapid_db_user |
 | Tablespace | DEFAULT |
@@ -19,11 +19,13 @@
     menu_items.sort,
     menu_items.title,
     menu_items.url,
+    menu_items.target,
     menu_items.content_id,
     contents.alias AS content_alias
    FROM website.menu_items
      JOIN website.menus ON menus.menu_id = menu_items.menu_id
-     LEFT JOIN website.contents ON contents.content_id = menu_items.content_id;
+     LEFT JOIN website.contents ON contents.content_id = menu_items.content_id
+  WHERE NOT menu_items.deleted;
 ```
 
 

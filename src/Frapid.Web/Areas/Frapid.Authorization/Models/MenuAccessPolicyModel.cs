@@ -30,9 +30,7 @@ namespace Frapid.Authorization.Models
 
         public static async Task SaveAsync(string tenant, UserMenuPolicyInfo model)
         {
-            await
-                Menus.SavePolicyAsync(tenant, model.OfficeId, model.UserId, model.Allowed, model.Disallowed)
-                    .ConfigureAwait(false);
+            await Menus.SavePolicyAsync(tenant, model.OfficeId, model.UserId, model.Allowed, model.Disallowed).ConfigureAwait(false);
         }
 
         internal static async Task<IEnumerable<MenuAccessPolicy>> GetAsync(AppUser appUser, int officeId, int userId)

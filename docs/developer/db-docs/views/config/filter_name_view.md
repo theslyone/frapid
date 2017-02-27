@@ -1,7 +1,7 @@
 # config.filter_name_view view
 
 | Schema | [config](../../schemas/config.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Materialized View Name | filter_name_view |
 | Owner | frapid_db_user |
 | Tablespace | DEFAULT |
@@ -15,7 +15,8 @@
  SELECT DISTINCT filters.object_name,
     filters.filter_name,
     filters.is_default
-   FROM config.filters;
+   FROM config.filters
+  WHERE NOT filters.deleted;
 ```
 
 

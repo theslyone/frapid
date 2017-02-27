@@ -5,7 +5,7 @@ using Frapid.DataAccess;
 
 namespace Frapid.Backups.SqlServer
 {
-    public sealed class Agent: IDbAgent
+    public sealed class Agent : IDbAgent
     {
         public string Tenant { get; set; }
         public event Progressing Progress;
@@ -25,9 +25,9 @@ namespace Frapid.Backups.SqlServer
             {
                 await Factory.NonQueryAsync(this.Tenant, sql, destination).ConfigureAwait(false);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                string message = "Could not create backup." + ex.Message;
+                string message = i18n.Resources.CouldNotCreateBackup + Environment.NewLine + ex.Message;
                 this.OnOnBackupFail(new ProgressInfo(message));
                 failCallback(message);
 

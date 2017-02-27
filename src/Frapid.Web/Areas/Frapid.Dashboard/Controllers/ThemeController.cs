@@ -54,8 +54,7 @@ namespace Frapid.Dashboard.Controllers
             path = $"~/Tenants/{this.Tenant}/Areas/Frapid.Dashboard/Dashboard.config";
             path = HostingEnvironment.MapPath(path);
 
-            if(path == null ||
-               !System.IO.File.Exists(path))
+            if(path == null || !System.IO.File.Exists(path))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }

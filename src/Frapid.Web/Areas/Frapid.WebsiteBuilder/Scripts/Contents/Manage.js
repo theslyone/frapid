@@ -1,63 +1,43 @@
 window.overridePath = "/dashboard/website/contents";
-$(".dropdown").dropdown();
 
-function appendTag(select, text, value, selected) {
-    if (select.find("option[value='" + value + "']").length) {
-        return;
-    };
-
-    var option = $("<option />");
-    if (selected) {
-        option.attr("selected", "selected");
-    };
-
-    option.attr("value", value);
-
-
-    option.html(text);
-    select.append(option);
-};
-
-$(".tag.dropdown input.search").keyup(function (e) {
-    if (e.keyCode === 188) {
-        var val = $(this).val();
-
-        appendTag($("#TagsSelect"), val, val, true);
-    };
-});
-
-
-$('[data-entity="title"]').keyup(function () {
+$('#TitleInputText').keyup(function () {
     function getAlias(title) {
-        return title.toLowerCase().replace(/ +(?= )/g, '').replace(/ /g, '-').replace(/[^\w-]+/g, '');
+        return title.toLowerCase().replace(/ +(?= )/g, "").replace(/ /g, "-").replace(/[^\w-]+/g, "");
     };
 
-    $('[data-entity="alias"]').val(getAlias($(this).val()));
+    $('#AliasInputText').val(getAlias($(this).val()));
 });
-
 
 function save() {
     function request(model) {
-        var url = "/api/forms/website/contents/add-or-edit";
-        var form = [];
-        form.push(model);
-        form.push(null);
-        
-        var data = JSON.stringify(form);
-
+        const url = "/dashboard/website/contents/add-or-edit";
+        const data = JSON.stringify(model);
         return window.getAjaxRequest(url, "POST", data);
     };
 
-    var attribute = "data-entity";
-    var validationEl = ".error";
-    var validationSummary = ".error .bulleted.list";
+    function getModel() {
+        function getEditorContents() {
+            const editor = window.ace.edit("editor");
+            const contents = editor.getSession().getValue();
+            return contents;
+        };
 
-    var model = window.entityParser.getModel(attribute, validationEl, validationSummary);
+        const isMarkdown = $("#IsMarkdownInputCheckbox").is(":checked");
+        const model = window.serializeForm($(".content.segment"));
+
+        if (!isMarkdown) {
+            model.Contents = getEditorContents();
+        };
+
+        return model;
+    };
+
+    const model = getModel();
     if (!model) {
         return;
     };
 
-    var ajax = request(model);
+    const ajax = request(model);
 
 
     ajax.success(function (response) {
@@ -69,10 +49,14 @@ function save() {
             document.location.href = target;
         };
     });
+
+    ajax.fail(function (xhr) {
+        window.logAjaxErrorMessage(xhr);
+    });
 };
 
 $("#CancelButton").click(function () {
-    var target = decodeURIComponent(window.getQueryStringByName("ReturnUrl")) || "../contents";
+    const target = decodeURIComponent(window.getQueryStringByName("ReturnUrl")) || "../contents";
 
     location.href = target;
 });
@@ -89,9 +73,9 @@ $(window).keypress(function (event) {
 });
 
 function displayContent() {
-    var editor = window.ace.edit("editor");
-    var isMarkdown = $("#IsMarkdownInputCheckbox").is(":checked");
-    var contents = editor.getSession().getValue();
+    const editor = window.ace.edit("editor");
+    const isMarkdown = $("#IsMarkdownCheckbox").is(":checked");
+    const contents = editor.getSession().getValue();
 
     if (isMarkdown) {
         $("input[data-entity='markdown']").val(contents);
@@ -115,7 +99,7 @@ function displayContent() {
 };
 
 var stringUnEncode = function (str) {
-    return str.replace(/&amp;/g, '&').replace(/&quot;/g, "\"");
+    return str.replace(/&amp;/g, "&").replace(/&quot;/g, "\"");
 };
 
 function initializeAceEditor() {
@@ -131,11 +115,11 @@ function initializeAceEditor() {
         content = html;
     };
 
-    var editor = window.ace.edit("editor");
-    var contents = editor.getSession().getValue();
+    const editor = window.ace.edit("editor");
+    const contents = editor.getSession().getValue();
 
     if (contents) {
-        return;//Do not load editor more than once.
+        return; //Do not load editor more than once.
     };
 
     editor.$blockScrolling = Infinity;
@@ -143,8 +127,9 @@ function initializeAceEditor() {
     editor.setTheme("ace/theme/sqlserver");
     editor.getSession().setMode("ace/mode/html");
     editor.setValue(content, -1);
+    editor.setOptions({ fontFamily: "Monaco,Menlo,'Ubuntu Mono',Consolas,Courier,source-code-pro,monospace" });
 
-    editor.on('input', function () {
+    editor.on("input", function () {
         displayContent();
     });
 };
@@ -152,10 +137,13 @@ function initializeAceEditor() {
 
 $(document).ready(function () {
     window.initalizeSelectApis();
-    var target = window.localStorage.getItem("autoOpenTarget");
+    const target = window.localStorage.getItem("autoOpenTarget");
     if (target) {
         maximize(target);
     };
+
+    window.initializeUITags();
+    $(".ui.checkbox").checkbox();
 
     setTimeout(function () {
         initializeAceEditor();
@@ -165,20 +153,27 @@ $(document).ready(function () {
 function maximize(target, width) {
     window.localStorage.setItem("autoOpenTarget", target);
 
-    var items = $("[data-target]");
-    var el = $("[data-target=" + target + "]");
+    const items = $("[data-target]");
+    const el = $(`[data-target=${target}]`);
     items.hide();
 
-    if (!el.hasClass('sixteen wide')) {
-        el.removeClass(width).addClass('sixteen wide');
+    if (!el.hasClass("sixteen wide")) {
+        el.removeClass(width).addClass("sixteen wide");
         el.fadeIn();
         return;
     };
 
-    el.removeClass('sixteen wide').addClass(width);
+    el.removeClass("sixteen wide").addClass(width);
     items.fadeIn();
 };
 
 setTimeout(function () {
     initializeAceEditor();
+    window.loadDatepicker();
+
+    $("input[type='checkbox'][data-value]").each(function () {
+        const el = $(this);
+        el.prop("checked", el.attr("data-value").toLowerCase() === "true");
+    });
+
 }, 2000);

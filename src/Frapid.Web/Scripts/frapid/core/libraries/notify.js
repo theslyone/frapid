@@ -1,4 +1,4 @@
-var taskCompletedSuccessfully = window.Resources.Labels.TaskCompletedSuccessfully() || "Task completed successfully.";
+var taskCompletedSuccessfully = translate("TaskCompletedSuccessfully");
 
 function displayMessage(a, b) {
     if (window.notify) {

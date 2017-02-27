@@ -23,7 +23,7 @@ namespace Frapid.WebsiteBuilder.Emails
 
         private string GetMessage(string tenant, ContactForm model)
         {
-            string fallback = model.Email + " wrote : <br/><br/>" + this.ConvertLines(model.Message);
+            string fallback = string.Format(Resources.EmailWroteMessage, model.Email, this.ConvertLines(model.Message));
 
             string file = PathMapper.MapPath(string.Format(CultureInfo.InvariantCulture, TemplatePath, tenant));
 
@@ -54,7 +54,7 @@ namespace Frapid.WebsiteBuilder.Emails
             {
                 var config = EmailProcessor.GetDefaultConfig(tenant);
 
-                if(config != null)
+                if (config != null)
                 {
                     return config.FromEmail;
                 }
@@ -84,14 +84,14 @@ namespace Frapid.WebsiteBuilder.Emails
 
             var processor = EmailProcessor.GetDefault(tenant);
 
-            if(processor != null)
+            if (processor != null)
             {
                 if (string.IsNullOrWhiteSpace(email.ReplyTo))
                 {
                     email.ReplyTo = processor.Config.FromEmail;
                 }
 
-                await manager.ProcessMailQueueAsync(processor).ConfigureAwait(false);                
+                await manager.ProcessQueueAsync(processor).ConfigureAwait(false);
             }
         }
     }

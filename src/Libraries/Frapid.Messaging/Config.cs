@@ -14,8 +14,8 @@ namespace Frapid.Messaging
             string path = $"/Tenants/{tenant}/Configs/Smtp.json";
             path = HostingEnvironment.MapPath(path);
 
-            if(path != null &&
-               File.Exists(path))
+            if (path != null &&
+                File.Exists(path))
             {
                 string contents = File.ReadAllText(path, Encoding.UTF8);
                 return JsonConvert.DeserializeObject<MessagingConfig>(contents);

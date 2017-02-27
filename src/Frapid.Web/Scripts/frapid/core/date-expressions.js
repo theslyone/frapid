@@ -85,29 +85,29 @@ function getDate() {
 
 function convertNetDateFormat(format) {
     //Convert the date
-    format = format.replace("dddd", "DD");
+    format = (format || "M/d/yyyy").replace("dddd", "DD");
     format = format.replace("ddd", "D");
 
     //Convert month
     if (format.indexOf("MMMM") !== -1) {
         format = format.replace("MMMM", "MM");
     }
-
-    if (format.indexOf("MMM") !== -1) {
+    else if (format.indexOf("MMM") !== -1) {
         format = format.replace("MMM", "M");
     }
-
-    if (format.indexOf("MM") !== -1) {
+    else if (format.indexOf("MM") !== -1) {
         format = format.replace("MM", "mm");
     }
+    else{
+        format = format.replace("M", "m");        
+    }
 
-    format = format.replace("M", "m");
 
     //Convert year
     format = format.indexOf("yyyy") >= 0 ? format.replace("yyyy", "yy") : format.replace("yy", "y");
 
     return format;
-}
+};
 
 function loadDatepicker() {
     loadPersister();
@@ -265,6 +265,37 @@ function loadDatepicker() {
     $('[data-type="time"], .time').timepicker({ timeFormat: "H:i" });
     $('[data-type="time"], .time').attr("placeholder", "hh:mm");
     candidates.trigger("blur");
+};
+
+function initializeCalendar() {	
+    function getDatePickerOptions(dateOnly) {
+        //Todo: localization: localize week names.
+        const options = {
+            parser: {
+                date: function (text) {
+                    return new Date(text);
+                }
+            },
+            formatter: {
+                date: function (date) {
+                    if (!date) return '';
+                    return $.datepicker.formatDate(window.convertNetDateFormat(window.longDateFormat), date);
+                }
+            },
+            initialDate: window.today ? new Date(window.today) : new Date()
+        };
+
+        if (dateOnly) {
+            options.type = 'date';
+        };
+
+        return options;
+    };
+
+
+    $('.ui.date.only.picker').calendar(getDatePickerOptions(true));
+    $('.ui.date.time.picker').calendar(getDatePickerOptions(false));
+    $('.ui.date.only.picker').calendar("set date", new Date(window.today), false, false);
 };
 
 $(document).ready(function () {

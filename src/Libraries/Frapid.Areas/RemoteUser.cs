@@ -23,7 +23,7 @@ namespace Frapid.Areas
             var user = Get();
             string ip = user.IpAddress;
 
-            if(string.IsNullOrWhiteSpace(ip))
+            if (string.IsNullOrWhiteSpace(ip))
             {
                 return false;
             }
@@ -34,19 +34,19 @@ namespace Frapid.Areas
 
         public static RemoteUser Get(HttpContextBase context = null)
         {
-            if(context == null)
+            if (context == null)
             {
                 context = new HttpContextWrapper(FrapidHttpContext.GetCurrent());
             }
 
             return new RemoteUser
-                   {
-                       Browser = context.Request.Browser.Browser,
-                       IpAddress = context.GetClientIpAddress(),
-                       Culture = CultureManager.GetCurrent().Name,
-                       UserAgent = context.Request.UserAgent,
-                       Country = context.Request.ServerVariables["HTTP_CF_IPCOUNTRY"]
-                   };
+            {
+                Browser = context.Request.Browser.Browser,
+                IpAddress = context.GetClientIpAddress(),
+                Culture = CultureManager.GetCurrent().Name,
+                UserAgent = context.Request.UserAgent,
+                Country = context.Request.ServerVariables["HTTP_CF_IPCOUNTRY"]
+            };
         }
     }
 }

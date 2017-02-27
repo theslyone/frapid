@@ -1,7 +1,7 @@
 # public.integer_strict2 type
 
 | Schema | [public](../../schemas/public.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Type Name | integer_strict2 |
 | Base Type | integer |
 | Owner | frapid_db_user |

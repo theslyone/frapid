@@ -50,6 +50,7 @@ CREATE TABLE config.smtp_configs
 CREATE TABLE config.email_queue
 (
     queue_id                                    BIGSERIAL NOT NULL PRIMARY KEY,
+    application_name                            national character varying(256),
     from_name                                   national character varying(256) NOT NULL,
     from_email                                  national character varying(256) NOT NULL,
     reply_to                                    national character varying(256) NOT NULL,
@@ -57,6 +58,28 @@ CREATE TABLE config.email_queue
     subject                                     national character varying(256) NOT NULL,
     send_to                                     national character varying(256) NOT NULL,
     attachments                                 text,
+    message                                     text NOT NULL,
+    added_on                                    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
+	send_on										TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
+    delivered                                   boolean NOT NULL DEFAULT(false),
+    delivered_on                                TIMESTAMP WITH TIME ZONE,
+    canceled                                    boolean NOT NULL DEFAULT(false),
+    canceled_on                                 TIMESTAMP WITH TIME ZONE,
+	is_test										boolean NOT NULL DEFAULT(false),
+    audit_user_id                           	integer REFERENCES account.users,
+    audit_ts                                	TIMESTAMP WITH TIME ZONE DEFAULT(NOW()),
+	deleted										boolean DEFAULT(false)
+);
+
+
+CREATE TABLE config.sms_queue
+(
+    queue_id                                    BIGSERIAL NOT NULL PRIMARY KEY,
+    application_name                            national character varying(256),
+    from_name                                   national character varying(256) NOT NULL,
+    from_number                                 national character varying(256) NOT NULL,
+    subject                                     national character varying(256) NOT NULL,
+    send_to                                     national character varying(256) NOT NULL,
     message                                     text NOT NULL,
     added_on                                    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
 	send_on										TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),

@@ -16,18 +16,13 @@ namespace Frapid.TokenManager.DAL
 
             var token = tokens.FirstOrDefault
                 (
-                x => x.ClientToken.Equals(clientToken)
-                && !x.Revoked
-                && x.CreatedOn <= DateTimeOffset.UtcNow
-                && (x.ExpiresOn == null || x.ExpiresOn.Value >= DateTimeOffset.UtcNow)
-               );
+                    x => x.ClientToken.Equals(clientToken)
+                         && !x.Revoked
+                         && x.CreatedOn <= DateTimeOffset.UtcNow
+                         && (x.ExpiresOn == null || x.ExpiresOn.Value >= DateTimeOffset.UtcNow)
+                );
 
-            if (token == null)
-            {
-                return false;
-            }
-
-            return true;
+            return token != null;
         }
 
         private static async Task<IEnumerable<AccessToken>> GetActiveTokensAsync(string tenant)

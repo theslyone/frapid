@@ -16,7 +16,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         [MenuPolicy]
         public ActionResult Master()
         {
-            return this.FrapidView(this.GetRazorView<AreaRegistration>("Layout/Index.cshtml", this.Tenant));
+            return this.FrapidView(this.GetRazorView<AreaRegistration>("Backend/Layout/Index.cshtml", this.Tenant));
         }
 
         [Route("dashboard/website/layouts/save")]

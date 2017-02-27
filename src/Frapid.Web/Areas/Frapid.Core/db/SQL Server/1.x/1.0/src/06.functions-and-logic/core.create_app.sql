@@ -6,6 +6,7 @@ GO
 CREATE PROCEDURE core.create_app
 (
     @app_name                                   national character varying(100),
+	@i18n_key									national character varying(200),
     @name                                       national character varying(100),
     @version_number                             national character varying(100),
     @publisher                                  national character varying(100),
@@ -28,6 +29,7 @@ BEGIN
     BEGIN
         UPDATE core.apps
         SET
+			i18n_key = @i18n_key,
             name = @name,
             version_number = @version_number,
             publisher = @publisher,
@@ -39,8 +41,8 @@ BEGIN
     END
     ELSE
     BEGIN
-        INSERT INTO core.apps(app_name, name, version_number, publisher, published_on, icon, landing_url)
-        SELECT @app_name, @name, @version_number, @publisher, @published_on, @icon, @landing_url;
+        INSERT INTO core.apps(app_name, i18n_key, name, version_number, publisher, published_on, icon, landing_url)
+        SELECT @app_name, @i18n_key, @name, @version_number, @publisher, @published_on, @icon, @landing_url;
     END;
 
     DELETE FROM core.app_dependencies

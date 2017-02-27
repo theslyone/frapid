@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace frapid.Commands.Create
 {
-    public class CreateApp: CreateCommand
+    public class CreateApp : CreateCommand
     {
         public override string Syntax { get; } = "create app <AppName>";
         public override string Name { get; } = "app";
@@ -20,7 +20,7 @@ namespace frapid.Commands.Create
         {
             this.IsValid = false;
 
-            if(string.IsNullOrWhiteSpace(this.AppName))
+            if (string.IsNullOrWhiteSpace(this.AppName))
             {
                 CommandProcessor.DisplayError(this.Syntax, "App name was not given.");
                 return;
@@ -31,7 +31,7 @@ namespace frapid.Commands.Create
 
             path = string.Format(path, directory, this.AppName);
 
-            if(Directory.Exists(path))
+            if (Directory.Exists(path))
             {
                 CommandProcessor.DisplayError(string.Empty, "The application {0} already exists.", this.AppName);
                 return;
@@ -44,7 +44,7 @@ namespace frapid.Commands.Create
         {
             await Task.Delay(1).ConfigureAwait(false);
 
-            if(!this.IsValid)
+            if (!this.IsValid)
             {
                 return;
             }

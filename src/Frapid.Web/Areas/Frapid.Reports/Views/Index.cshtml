@@ -1,51 +1,53 @@
 ﻿@model Frapid.Reports.ViewModels.ParameterMeta
 
 @{
-    ViewBag.Title = "Frapid Dashboard";
+    ViewBag.Title = Model.ReportTitle;
     Layout = ViewBag.Layout;
 }
 
-<link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/Styles/reports.css"/>
+<script src="/scripts/trumbowyg/dist/trumbowyg.min.js"></script>
+<link rel="stylesheet" href="/scripts/trumbowyg/dist/ui/trumbowyg.min.css">
+<link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/styles/reports.css"/>
 
 <div class="report-panel">
     <div class="ui stackable report grid" style="height: 100%;">
         <div class="three wide collapsed column">
             <div class="toolbar">
-                <div onclick="$('iframe').get(0).contentWindow.print();" class="print button" title="Print This Report">
+                <div onclick="$('iframe').get(0).contentWindow.print();" class="print button" title="@I18N.PrintThisReport">
                     <i class="print icon"></i>
                 </div>
-                <div class="mail button" title="Email This Report">
+                <div class="mail button" title="@I18N.EmailThisReport">
                     <i class="mail icon"></i>
                 </div>
-                <div class="pdf button" title="Download PDF">
+                <div class="pdf button" title="@I18N.DownloadPdf">
                     <i class="file pdf outline icon"></i>
                 </div>
-                <div class="excel button" title="Download Excel">
+                <div class="excel button" title="@I18N.DownloadExcel">
                     <i class="file excel outline icon"></i>
                 </div>
-                <div class="word button" title="Download Word">
+                <div class="word button" title="@I18N.DownloadWord">
                     <i class="file word outline icon"></i>
                 </div>
-                <div class="xml button" title="Download XML">
+                <div class="xml button" title="@I18N.DownloadXml">
                     <i class="code icon"></i>
                 </div>
-                <div class="text button" title="Download Text">
+                <div class="text button" title="@I18N.DownloadText">
                     <i class="file text outline icon"></i>
                 </div>
-                <div class="zoom in button" title="Zoom In">
+                <div class="zoom in button" title="@I18N.ZoomIn">
                     <i class="zoom icon"></i>
                 </div>
-                <div class="zoom out button" title="Zoom Out">
+                <div class="zoom out button" title="@I18N.ZoomOut">
                     <i class="zoom icon"></i>
                 </div>
-                <div onclick="document.location = document.location" class="refresh button" title="Refresh">
+                <div onclick="document.location = document.location" class="refresh button" title="@I18N.Reload">
                     <i class="refresh icon"></i>
                 </div>
             </div>
             <div class="filter padded container" style="background-color: #efefef; height: 100%;">
                 <div class="report title">@Model.ReportTitle</div>
 
-                <div class="ui small parameter form">
+                <div class="ui small parameter flat form">
                     @foreach (var parameter in Model.Parameters)
                     {
                         string name = parameter.Name.Replace("@", "");
@@ -60,7 +62,8 @@
                                         data-key-field="@parameter.KeyField"
                                         data-value-field="@parameter.ValueField"
                                         data-default-value="@parameter.DefaultValue"
-                                        data-url="@parameter.PopulateFrom" data-optional="@parameter.Optional.ToString().ToLowerInvariant()"></select>
+                                        data-url="@parameter.PopulateFrom" data-optional="@parameter.Optional.ToString().ToLowerInvariant()">
+                                </select>
                             }
                             else
                             {
@@ -91,7 +94,7 @@
                             }
                         </div>
                     }
-                    <button id="ShowButton" class="ui positive button">Show</button>
+                    <button id="ShowButton" class="ui positive button">@I18N.Show</button>
                 </div>
             </div>
         </div>
@@ -101,16 +104,44 @@
     </div>
 </div>
 
+<div id="EmailModal" class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">
+        @I18N.SendEmail
+    </div>
+    <div class="content">
+        <div class="ui flat form">
+            <div class="field">
+                <label>@I18N.SendTo</label>
+                <input id="SendToInputEmail" type="email" required data-persist placeholder="Enter Email Address"/>
+            </div>
+            <div class="field">
+                <label>@I18N.Subject</label>
+                <input id="SubjectInputText" type="text" required data-persist placeholder="Enter Subject" value="@Model.ReportTitle"/>
+            </div>
+            <div class="field">
+                <label>@I18N.Message</label>
+                <textarea id="MessageTextArea" placeholder="Enter Your Message" rows="10">@I18N.PleaseFindAttachedDocument</textarea>
+            </div>
+            <div class="attachment vpad8 field">
+                <label>@I18N.Attachments</label>
+                <a href="javascript:void(0);">
+                    <i class="file pdf red outline icon"></i><span class="title">@(Model.ReportTitle).pdf</span></a>
+            </div>
+            <button id="SendEmailButton" class="ui positive button">@I18N.Send</button>
+            <button class="ui negative button" onclick="$('#EmailModal').modal('hide');">@I18N.Close</button>
+        </div>
+    </div>
+</div>
 <a id="DownloadAnchor" style="display: none;"></a>
 <script>
-    $(".dropdown").dropdown();
     loadDatepicker();
 
-    (function () {
+    (function() {
         const persist = JSON.parse(localStorage.getItem(document.location.pathname));
 
         if (persist) {
-            $.each(persist, function () {
+            $.each(persist, function() {
                 const el = $(`#${this.id}`);
                 const value = this.value;
                 var defaultValue;
@@ -140,7 +171,7 @@
 
         const candidates = $("select[data-url]");
 
-        $.each(candidates, function () {
+        $.each(candidates, function() {
             var el = $(this);
             const url = el.attr("data-url");
             const keyField = el.attr("data-key-field");
@@ -149,34 +180,34 @@
             const optional = el.attr("data-optional").toLowerCase().indexOf("t") > -1;
 
 
-            window.ajaxDataBind(url, el, null, defaultValue, null, function () {
-                setTimeout(function () {
+            window.ajaxDataBind(url, el, null, keyField, valueField, defaultValue, function() {
+                setTimeout(function() {
 
                     if (defaultValue) {
-                        el.dropdown("set selected", defaultValue);
+                        el.val(defaultValue);
                     };
 
                     if (optional) {
                         el.prepend("<option value='null'>Select</option>");
 
                         if (defaultValue === "0") {
-                            el.dropdown("set text", "Select");
+                            el.find(":selected").removeAttr("selected");
+                            el.find("option:first-child").prop("selected", true);
                         };
                     };
                 }, 100);
-
-            }, keyField, valueField, false);
+            }, false, true);
         });
     })();
 
-    $("#ShowButton").off("click").on("click", function () {
+    $("#ShowButton").off("click").on("click", function() {
         var persist = [];
 
         var query = [];
 
         const dateEls = $(".parameter.form .field input.date");
 
-        $.each(dateEls, function () {
+        $.each(dateEls, function() {
             const el = $(this);
             const parameter = el.attr("data-paramter");
             const value = el.datepicker("getDate").valueOf();
@@ -194,7 +225,7 @@
 
         const otherEls = $(".parameter.form .field input:not(.date), .parameter.form .field select");
 
-        $.each(otherEls, function () {
+        $.each(otherEls, function() {
             const el = $(this);
             const parameter = el.attr("data-paramter");
             const value = el.val();
@@ -225,16 +256,21 @@
         anchor[0].click();
     };
 
+    function getReportHtml() {
+        const html = `<!DOCTYPE html>${$("#ReportIframe").contents().find("html")[0].outerHTML}`;
+        return html;
+    };
+
     function downloadFile(extension) {
         function request(model) {
-            const url = "/dashboard/reports/export/" + extension;
+            const url = `/dashboard/reports/export/${extension}`;
 
             const data = JSON.stringify(model);
             return window.getAjaxRequest(url, "POST", data);
         };
 
         function getModel() {
-            const html = "<!DOCTYPE html>" + $("#ReportIframe").contents().find("html")[0].outerHTML;
+            const html = getReportHtml();
             const documentName = $(".report.title").html();
 
             return {
@@ -246,25 +282,25 @@
         var model = getModel();
         const ajax = request(model);
 
-        ajax.success(function (response) {
+        ajax.success(function(response) {
             startDownload(response, model.DocumentName);
         });
 
-        ajax.fail(function (xhr) {
+        ajax.fail(function(xhr) {
             window.logAjaxErrorMessage(xhr);
         });
     };
 
-    $(".pdf.button").off("click").on("click", function () {
+    $(".pdf.button").off("click").on("click", function() {
         downloadFile("pdf");
     });
 
-    $(".excel.button").off("click").on("click", function () {
+    $(".excel.button").off("click").on("click", function() {
         downloadFile("xls");
     });
 
-    $(".word.button").off("click").on("click", function () {
-        downloadFile("doc");
+    $(".word.button").off("click").on("click", function() {
+        downloadFile("docx");
     });
 
     function getXml(reportTitle) {
@@ -279,7 +315,7 @@
 
             var members = [];
 
-            $.each(headerCells, function () {
+            $.each(headerCells, function() {
                 const cell = $(this).html();
                 members.push(normalize(cell));
             });
@@ -290,16 +326,13 @@
 
         var contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
         contents += "\n";
-        contents += "<Report title=\"" + reportTitle + "\" " +
-                    " exportedOn=\"" + (new Date()).toLocaleFormat() + "\"" +
-                    " exportedBy=\"" + window.metaView.Name + "\"" +
-                    " userId=\"" + window.metaView.UserId + "\"" +
-                    " loginId=\"" + window.metaView.LoginId + "\"" +
-                    " officeId=\"" + window.metaView.OfficeId + "\">";
+        contents += `<Report title="${reportTitle}"  exportedOn="${(new Date()).toLocaleFormat()}" exportedBy="${window
+            .metaView.Name}" userId="${window.metaView.UserId}" loginId="${window.metaView.LoginId}" officeId="${window
+            .metaView.OfficeId}">`;
 
         const tables = $("#ReportIframe").contents().find(".gridviews table");
 
-        $.each(tables, function () {
+        $.each(tables, function() {
             const table = $(this);
             const rows = table.find("tbody tr");
 
@@ -320,7 +353,7 @@
 
                     const header = headers[i];
 
-                    contents += "\t\t\t<Element id=\"" + header + "\">";
+                    contents += `\t\t\t<Element id="${header}">`;
                     contents += "\n";
                     contents += "\t\t\t\t";
                     contents += text;
@@ -350,7 +383,7 @@
 
         var members = [];
 
-        $.each(headerCells, function () {
+        $.each(headerCells, function() {
             const cell = $(this);
             members.push(cell.html());
         });
@@ -359,11 +392,11 @@
         members = [];
         contents += "\n";
 
-        $.each(rows, function () {
+        $.each(rows, function() {
             const row = $(this);
             const cells = row.find("td");
 
-            $.each(cells, function () {
+            $.each(cells, function() {
                 const cell = $(this);
 
                 members.push(cell.html());
@@ -378,25 +411,25 @@
     };
 
 
-    $(".xml.button").off("click").on("click", function () {
+    $(".xml.button").off("click").on("click", function() {
         const documentName = $(".report.title").html();
         const xml = getXml(documentName);
-        const href = "data:text/plain;charset=utf-8," + encodeURIComponent(xml);
+        const href = `data:text/plain;charset=utf-8,${encodeURIComponent(xml)}`;
 
         startDownload(href, documentName + ".xml");
     });
 
-    $(".text.button").off("click").on("click", function () {
+    $(".text.button").off("click").on("click", function() {
         const documentName = $(".report.title").html();
         const text = getTableInText(documentName);
-        const href = "data:text/plain;charset=utf-8," + encodeURIComponent(text);
+        const href = `data:text/plain;charset=utf-8,${encodeURIComponent(text)}`;
 
         startDownload(href, documentName + ".txt");
     });
 
     var fontSize = 1;
 
-    $(".zoom.in.button").off("click").on("click", function () {
+    $(".zoom.in.button").off("click").on("click", function() {
         fontSize += 0.25;
 
         if (fontSize > 2) {
@@ -406,7 +439,50 @@
         $("#ReportIframe").contents().find("body").css("font-size", fontSize + "em");
     });
 
-    $(".zoom.out.button").off("click").on("click", function () {
+
+    $(".mail.button").off("click").on("click", function() {
+        $('#MessageTextArea').trumbowyg({ svgPath: "/scripts/trumbowyg/dist/ui/icons.svg" });
+        $("#EmailModal").modal("show");
+    });
+
+
+    $("#SendEmailButton").off("click").on("click", function() {
+        function request(model) {
+            const url = "/dashboard/reports/email";
+            const data = JSON.stringify(model);
+            return window.getAjaxRequest(url, "POST", data);
+        };
+
+        function getModel() {
+            const model = window.serializeForm($("#EmailModal"));
+            model.Html = getReportHtml();
+
+            return model;
+        };
+
+        const valid = window.validator.validate($("#EmailModal"));
+
+        if (!valid) {
+            return;
+        };
+
+        const model = getModel();
+        const ajax = request(model);
+
+        ajax.success(function() {
+            window.displaySuccess();
+
+            $("#EmailModal").modal("hide");
+        });
+
+        ajax.fail(function(xhr) {
+            window.logAjaxErrorMessage(xhr);
+        });
+
+
+    });
+
+    $(".zoom.out.button").off("click").on("click", function() {
         fontSize -= 0.25;
 
         if (fontSize < 0.75) {
@@ -416,4 +492,5 @@
         $("#ReportIframe").contents().find("body").css("font-size", fontSize + "em");
     });
 
+    window.validator.initialize($("#EmailModal"));
 </script>

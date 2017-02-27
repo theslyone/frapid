@@ -1,21 +1,20 @@
 DROP FUNCTION IF EXISTS auth.get_group_menu_policy
 (
     _role_id        integer,
-    _office_id      integer,
-    _culture        text
+    _office_id      integer
 );
 
 CREATE FUNCTION auth.get_group_menu_policy
 (
     _role_id        integer,
-    _office_id      integer,
-    _culture        text
+    _office_id      integer
 )
 RETURNS TABLE
 (
     row_number                      integer,
     menu_id                         integer,
     app_name                        text,
+    i18n_key                        text,
     menu_name                       text,
     allowed                         boolean,
     url                             text,
@@ -32,6 +31,7 @@ BEGIN
         row_number                      SERIAL,
         menu_id                         integer,
         app_name                        text,
+		i18n_key						text,
         menu_name                       text,
         allowed                         boolean,
         url                             text,
@@ -57,21 +57,14 @@ BEGIN
     UPDATE _temp_menu
     SET
         app_name        = core.menus.app_name,
+		i18n_key		= core.menus.i18n_key,
         menu_name       = core.menus.menu_name,
         url             = core.menus.url,
         sort            = core.menus.sort,
         icon            = core.menus.icon,
         parent_menu_id  = core.menus.parent_menu_id
     FROM core.menus
-    WHERE core.menus.menu_id = _temp_menu.menu_id;
-
-    UPDATE _temp_menu
-    SET
-        menu_name       = core.menu_locale.menu_text
-    FROM core.menu_locale
-    WHERE core.menu_locale.menu_id = _temp_menu.menu_id
-    AND core.menu_locale.culture = _culture;
-    
+    WHERE core.menus.menu_id = _temp_menu.menu_id;    
 
     RETURN QUERY
     SELECT * FROM _temp_menu

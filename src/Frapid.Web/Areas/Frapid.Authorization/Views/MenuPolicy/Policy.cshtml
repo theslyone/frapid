@@ -1,7 +1,7 @@
 ﻿@model Frapid.Authorization.ViewModels.UserMenuPolicy
 
 @{
-    ViewBag.Title = "Menu Policy";
+    ViewBag.Title = I18N.MenuPolicy;
     Layout = ViewBag.Layout;
 }
 <style>
@@ -9,14 +9,14 @@
 </style>
 <div class="ui container">
     <div class="ui attached padded segment">
-        <div class="ui huge header">Menu Access Policy</div>
+        <div class="ui huge header">@I18N.MenuAccessPolicy</div>
         <div class="ui divider"></div>
         <div class="ui vpad8 form">
             <div class="three fields">
                 <div class="field">
-                    <label>Select a User</label>
+                    <label>@I18N.SelectAUser</label>
                     <select id="UserSelect" class="ui search dropdown">
-                        <option>Select</option>
+                        <option>@I18N.Select</option>
                         @foreach (var item in Model.Users)
                         {
                             <option value="@item.UserId">@item.Name</option>
@@ -24,9 +24,9 @@
                     </select>
                 </div>
                 <div class="field">
-                    <label>Select an Office</label>
+                    <label>@I18N.SelectAnOffice</label>
                     <select id="OfficeSelect" class="ui search dropdown">
-                        <option>Select</option>
+                        <option>@I18N.Select</option>
                         @foreach (var item in Model.Offices)
                         {
                             <option value="@item.OfficeId">@item.OfficeCode (@item.OfficeName)</option>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="field">
                     <label>&nbsp;</label>
-                    <button data-get-menu-policy-button class="ui positive button">Load</button>
+                    <button data-get-menu-policy-button class="ui positive button">@I18N.Load</button>
                 </div>
             </div>
         </div>
@@ -44,24 +44,24 @@
             <thead>
             <tr>
                 <th>
-                    App
+                    @I18N.App
                 </th>
                 <th>
-                    Menu Id
+                    @I18N.MenuId
                 </th>
                 <th>
-                    Menu Text
+                    @I18N.MenuText
                 </th>
                 <th>
                     <input id="AllowInputCheckbox" type="checkbox" data-menu-allow data-toggle-allow/>
-                    <label for="AllowInputCheckbox">Allow</label>
+                    <label for="AllowInputCheckbox">@I18N.Allow</label>
                 </th>
                 <th>
                     <input id="DenyInputCheckbox" type="checkbox" data-menu-deny data-toggle-deny/>
-                    <label for="DenyInputCheckbox">Deny</label>
+                    <label for="DenyInputCheckbox">@I18N.Deny</label>
                 </th>
                 <th>
-                    Url
+                    @I18N.Url
                 </th>
             </tr>
             </thead>
@@ -92,7 +92,7 @@
             </tbody>
         </table>
         <div class="vpad8"></div>
-        <button data-save-button class="ui positive button">Save</button>
+        <button data-save-button class="ui positive button">@I18N.Save</button>
     </div>
 </div>
-<script src="/Areas/Frapid.Authorization/Scripts/MenuPolicy/policy.js"></script>
+<script src="/Areas/Frapid.Authorization/scripts/menu-policy/policy.js"></script>

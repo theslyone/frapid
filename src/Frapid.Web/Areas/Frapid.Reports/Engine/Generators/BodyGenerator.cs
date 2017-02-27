@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Text;
-using Frapid.i18n;
 using Frapid.Reports.Engine.Model;
 using Frapid.Reports.Helpers;
 
@@ -89,6 +88,7 @@ namespace Frapid.Reports.Engine.Generators
             return cell;
         }
 
+
         private string DataTableToHtml(DataSource dataSource, GridView grid, Report report)
         {
             var html = new StringBuilder();
@@ -113,8 +113,8 @@ namespace Frapid.Reports.Engine.Generators
             for (int i = 0; i < dataSource.Data.Columns.Count; i++)
             {
                 string columnName = dataSource.Data.Columns[i].ColumnName;
-                columnName = ResourceManager.GetString(report.Tenant, "ScrudResource", columnName);
 
+                columnName = LocalizationHelper.Localize(columnName, true);
                 html.Append("<th>" + columnName + "</th>");
             }
 

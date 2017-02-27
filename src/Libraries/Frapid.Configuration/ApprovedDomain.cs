@@ -19,12 +19,12 @@ namespace Frapid.Configuration
         public List<string> GetSubtenants()
         {
             var subtenants = new List<string>
-                             {
-                                 this.DomainName,
-                                 this.CdnDomain
-                             };
+            {
+                this.DomainName,
+                this.CdnDomain
+            };
 
-            if(this.Synonyms != null)
+            if (this.Synonyms != null)
             {
                 subtenants.AddRange(this.Synonyms);
             }

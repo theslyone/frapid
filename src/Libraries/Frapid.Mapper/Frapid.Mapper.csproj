@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Humanizer, Version=2.1.0.0, Culture=neutral, PublicKeyToken=979442b78dfc278e, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Humanizer.Core.2.1.0\lib\netstandard1.0\Humanizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
@@ -61,6 +65,7 @@
     <Compile Include="Helpers\PocoHelper.cs" />
     <Compile Include="Helpers\ResultsetCache.cs" />
     <Compile Include="Helpers\SqlHelper.cs" />
+    <Compile Include="Helpers\StringExtensions.cs" />
     <Compile Include="Helpers\TitleCaseConverter.cs" />
     <Compile Include="Helpers\TypeConverter.cs" />
     <Compile Include="Helpers\UnderscoreCaseConverter.cs" />
@@ -92,6 +97,15 @@
     <Compile Include="Query\Update\UpdateOperation.cs" />
     <Compile Include="Sql.cs" />
     <Compile Include="Types\MapperException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Frapid.Framework\Frapid.Framework.csproj">
+      <Project>{A4DEE358-3203-425C-80E9-8EBA0A01B73F}</Project>
+      <Name>Frapid.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

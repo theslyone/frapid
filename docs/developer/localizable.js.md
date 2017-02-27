@@ -7,7 +7,7 @@ The localizable.js utility automatically translates localization literals depend
 Include the localizable.js utility on your View.
 
 ```html
-<script src="/Scripts/frapid/utilities/localizable.js"></script>
+<script src="/scripts/frapid/utilities/localizable.js"></script>
 ```
 
 ## Example
@@ -23,7 +23,7 @@ The localizable.js investigates html controls having the following attributes:
 
 ```html
 <div class="ui message">
-    <span data-localize="Titles.CompanyName"></span>
+    <span data-localize="CompanyName"></span>
 </div>
 ```
 
@@ -48,7 +48,7 @@ The localizable.js investigates html controls having the following attributes:
 **This**
 
 ```html
-<input data-localized-placeholder="Titles.Customer" />
+<input data-localized-placeholder="Customer" />
 ```
 
 **will be converted to (English)**
@@ -69,7 +69,7 @@ The localizable.js investigates html controls having the following attributes:
 **This**
 
 ```html
-<input data-localized-title="Titles.Customer" />
+<input data-localized-title="Customer" />
 ```
 
 **will be converted to (English)**
@@ -84,6 +84,17 @@ The localizable.js investigates html controls having the following attributes:
 ```html
 <input title="Kunde" />
 ```
+
+
+
+## Translate a Localization Key Using Javascript
+
+To translate a given key to the current language, you can use a window function called `translate`. Example:
+
+```js
+window.translate('Customer')//Kunde in German
+```
+
 
 
 [Back to Internationalization](i18n.md)

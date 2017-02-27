@@ -55,11 +55,13 @@
   <ItemGroup>
     <Compile Include="Bundler.cs" />
     <Compile Include="AssetDiscovery.cs" />
+    <Compile Include="DevelopmentScriptBundler.cs" />
+    <Compile Include="ProductionStyleBundler.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="Configs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ScriptBundler.cs" />
-    <Compile Include="StyleBundler.cs" />
+    <Compile Include="ProductionScriptBundler.cs" />
+    <Compile Include="DevelopmentStyleBundler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Frapid.Configuration\Frapid.Configuration.csproj">

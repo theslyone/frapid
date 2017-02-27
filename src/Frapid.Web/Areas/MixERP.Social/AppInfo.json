@@ -11,6 +11,7 @@
 	"Description": "MixERP Social Networking App",
 	"Category": "ERP",
 	"Bundle": "MixERP 2.0",
+	"I18NClassName": "Resources",
     "IsMeta": false,
 	"DbSchema": "social",
 	"BlankDbPath": "~/Areas/MixERP.Social/db/{DbServer}/social-blank.sql",
@@ -18,7 +19,7 @@
     "PatchFilePath" : null,
 	"InstallSample": true,
 	"My": null,
-	"OverrideTemplatePath": "~/Areas/MixERP.Social/Override",
+	"OverrideTemplatePath": "~/Areas/MixERP.Social/Overrides",
     "OverrideDestination":"~/Tenants/{0}/Areas",
 	"DependsOn": ["Frapid", "Frapid.Frapid.Account", "Frapid.Authorization", "Frapid.Config", "Frapid.Core", "Frapid.Dashboard", "Frapid.WebsiteBuilder"]
 }

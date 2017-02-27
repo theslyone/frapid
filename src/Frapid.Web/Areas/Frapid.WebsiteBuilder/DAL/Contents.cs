@@ -4,8 +4,11 @@ using System.Threading.Tasks;
 using Frapid.Configuration;
 using Frapid.Configuration.Db;
 using Frapid.DataAccess;
+using Frapid.Framework.Extensions;
 using Frapid.Mapper;
+using Frapid.Mapper.Query.Insert;
 using Frapid.Mapper.Query.Select;
+using Frapid.Mapper.Query.Update;
 using Frapid.WebsiteBuilder.DTO;
 
 namespace Frapid.WebsiteBuilder.DAL
@@ -20,6 +23,21 @@ namespace Frapid.WebsiteBuilder.DAL
                 sql.Where("is_homepage=@0", true);
 
                 return await db.SelectAsync<Content>(sql).ConfigureAwait(false);
+            }
+        }
+
+        public static async Task<int> AddOrEditAsync(string tenant, Content content)
+        {
+            using (var db = DbProvider.Get(FrapidDbServer.GetConnectionString(tenant), tenant).GetDatabase())
+            {
+                if (content.ContentId > 0)
+                {
+                    await db.UpdateAsync(content, content.ContentId).ConfigureAwait(false);
+                    return content.ContentId;
+                }
+
+                var id = await db.InsertAsync(content).ConfigureAwait(false);
+                return id.To<int>();
             }
         }
 
@@ -108,7 +126,8 @@ namespace Frapid.WebsiteBuilder.DAL
             using (var db = DbProvider.Get(FrapidDbServer.GetConnectionString(tenant), tenant).GetDatabase())
             {
                 var sql = new Sql("SELECT * FROM website.published_content_view");
-                sql.And("is_blog=@0", true);
+                sql.Where("is_blog=@0", true);
+
                 sql.Limit(db.DatabaseType, limit, offset, "publish_on");
 
                 return await db.SelectAsync<PublishedContentView>(sql).ConfigureAwait(false);

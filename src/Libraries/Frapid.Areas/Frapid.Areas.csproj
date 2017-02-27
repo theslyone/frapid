@@ -136,6 +136,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AntiforgeryHelper.cs" />
+    <Compile Include="BaseController.cs" />
     <Compile Include="Conventions\Attachments\Uploader.cs" />
     <Compile Include="Conventions\Attachments\UploadException.cs" />
     <Compile Include="CustomJavascriptInjector.cs" />

@@ -3,7 +3,7 @@ using Frapid.Configuration.TenantServices.Contracts;
 
 namespace Frapid.Areas.Caching
 {
-    public sealed class CacheKeyGenerator: ICacheKeyGenerator
+    public sealed class CacheKeyGenerator : ICacheKeyGenerator
     {
         public CacheKeyGenerator(Uri url, ITenantLocator locator, string defaultTenant)
         {
@@ -21,14 +21,14 @@ namespace Frapid.Areas.Caching
             string tenant = string.Empty;
             string key = string.Empty;
 
-            if(this.Url != null)
+            if (this.Url != null)
             {
                 string url = this.Url.Authority;
                 tenant = this.LocateTenant(url);
                 key = this.Url.PathAndQuery.Replace("/", ".");
             }
 
-            if(!string.IsNullOrWhiteSpace(tenant))
+            if (!string.IsNullOrWhiteSpace(tenant))
             {
                 key = tenant + key;
             }

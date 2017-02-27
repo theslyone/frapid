@@ -12,7 +12,7 @@ using Microsoft.AspNet.SignalR.Owin;
 
 namespace Frapid.Areas.Authorization
 {
-    public class HubAuthorizeAttribute: AuthorizeAttribute
+    public class HubAuthorizeAttribute : AuthorizeAttribute
     {
         public override bool AuthorizeHubConnection(HubDescriptor descriptor, IRequest request)
         {
@@ -22,25 +22,25 @@ namespace Frapid.Areas.Authorization
             var provider = new Provider();
             var token = provider.GetToken(clientToken);
 
-            if(token != null)
+            if (token != null)
             {
-                bool isValid = AccessTokens.IsValidAsync(tenant, token.ClientToken, request.GetClientIpAddress(), request.Headers["user-agent"]).Result;
+                bool isValid = AccessTokens.IsValidAsync(tenant, token.ClientToken, request.GetClientIpAddress(), request.Headers["user-agent"]).GetAwaiter().GetResult();
 
-                if(isValid)
+                if (isValid)
                 {
-                    AppUsers.SetCurrentLoginAsync(tenant, token.LoginId).Wait();
-                    var loginView = AppUsers.GetCurrentAsync(tenant, token.LoginId).Result;
+                    AppUsers.SetCurrentLoginAsync(tenant, token.LoginId).GetAwaiter().GetResult();
+                    var loginView = AppUsers.GetCurrentAsync(tenant, token.LoginId).GetAwaiter().GetResult();
 
                     var identity = new ClaimsIdentity(token.GetClaims(), DefaultAuthenticationTypes.ApplicationCookie, ClaimTypes.NameIdentifier, ClaimTypes.Role);
 
                     identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, token.LoginId.ToString(CultureInfo.InvariantCulture)));
 
-                    if(loginView.RoleName != null)
+                    if (loginView.RoleName != null)
                     {
                         identity.AddClaim(new Claim(ClaimTypes.Role, loginView.RoleName));
                     }
 
-                    if(loginView.Email != null)
+                    if (loginView.Email != null)
                     {
                         identity.AddClaim(new Claim(ClaimTypes.Email, loginView.Email));
                     }
@@ -59,8 +59,8 @@ namespace Frapid.Areas.Authorization
             var environment = invoker.Hub.Context.Request.Environment;
             var principal = environment["server.User"] as ClaimsPrincipal;
 
-            if(principal?.Identity != null &&
-               principal.Identity.IsAuthenticated)
+            if (principal?.Identity != null &&
+                principal.Identity.IsAuthenticated)
             {
                 // create a new HubCallerContext instance with the principal generated from token
                 // and replace the current context so that in hubs we can retrieve current user identity

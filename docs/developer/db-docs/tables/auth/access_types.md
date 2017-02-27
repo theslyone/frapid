@@ -4,8 +4,11 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | access_type_id | NOT NULL | integer | 0 |  |
-| 2 | access_type_name | NOT NULL | character varying | 48 |  |
+| 1 | access_type_id | [ ] | integer | 0 |  |
+| 2 | access_type_name | [ ] | character varying | 48 |  |
+| 3 | audit_user_id | [x] | integer | 0 |  |
+| 4 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 5 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -13,6 +16,7 @@
 
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
+| 3 | [audit_user_id](../account/users.md) | access_types_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -36,6 +40,8 @@
 
 | # | Column Name | Default |
 | --- | --- | --- |
+| 4 | audit_ts | now() |
+| 5 | deleted | false |
 
 
 **Triggers**

@@ -144,6 +144,7 @@
     <Compile Include="DTO\NotificationStatus.cs" />
     <Compile Include="Helpers\FrapidViewHelper.cs" />
     <Compile Include="Extensions\PartialView.cs" />
+    <Compile Include="Helpers\LocalizationHelper.cs" />
     <Compile Include="Helpers\NotificationHelper.cs" />
     <Compile Include="Hubs\Hub.cs" />
     <Compile Include="Hubs\NotificationHub.cs" />

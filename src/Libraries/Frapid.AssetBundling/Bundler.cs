@@ -12,13 +12,13 @@ namespace Frapid.AssetBundling
     {
         protected Bundler(ILogger logger, Asset asset)
         {
-            this.Minifier = new Minifier();
+            this.Compressor = new Minifier();
 
             this.Logger = logger;
             this.Asset = asset;
         }
 
-        public Minifier Minifier { get; set; }
+        public Minifier Compressor { get; set; }
         public ILogger Logger { get; set; }
         public Asset Asset { get; set; }
 

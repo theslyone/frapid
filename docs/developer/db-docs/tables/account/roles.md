@@ -4,11 +4,18 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | role_id | NOT NULL | integer | 0 |  |
-| 2 | role_name | NOT NULL | character varying | 100 |  |
-| 3 | is_administrator | NOT NULL | boolean | 0 |  |
-| 4 | audit_user_id |  | integer | 0 |  |
-| 5 | audit_ts |  | timestamp with time zone | 0 |  |
+| 1 | role_id | [ ] | integer | 0 |  |
+| 1 | role_id | [ ] | integer | 0 |  |
+| 2 | role_code | [ ] | character varying | 12 |  |
+| 2 | role_name | [ ] | character varying | 100 |  |
+| 3 | is_administrator | [ ] | boolean | 0 |  |
+| 3 | role_name | [ ] | character varying | 50 |  |
+| 4 | audit_user_id | [x] | integer | 0 |  |
+| 4 | audit_user_id | [x] | integer | 0 |  |
+| 5 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 5 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 6 | deleted | [x] | boolean | 0 |  |
+| 6 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -16,6 +23,7 @@
 
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
+| 4 | [audit_user_id](../account/users.md) | roles_audit_user_id_fkey | account.users.user_id |
 | 4 | [audit_user_id](../account/users.md) | roles_audit_user_id_fkey | account.users.user_id |
 
 
@@ -40,8 +48,12 @@
 
 | # | Column Name | Default |
 | --- | --- | --- |
+| 1 | role_id | nextval('hrm.roles_role_id_seq'::regclass) |
 | 3 | is_administrator | false |
 | 5 | audit_ts | now() |
+| 5 | audit_ts | now() |
+| 6 | deleted | false |
+| 6 | deleted | false |
 
 
 **Triggers**

@@ -8,12 +8,15 @@ namespace Frapid.Messaging
         public static IEmailProcessor GetDefault(string database)
         {
             var iType = typeof(IEmailProcessor);
-            var members = AppDomain.CurrentDomain.GetAssemblies().SelectMany(x => x.GetTypes()).Where(x => iType.IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract).Select(Activator.CreateInstance);
+            var members = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .Where(x => iType.IsAssignableFrom(x) && !x.IsInterface && !x.IsAbstract)
+                .Select(Activator.CreateInstance);
 
-            foreach(IEmailProcessor member in members)
+            foreach (IEmailProcessor member in members)
             {
                 member.InitializeConfig(database);
-                if(member.IsEnabled)
+                if (member.IsEnabled)
                 {
                     return member;
                 }

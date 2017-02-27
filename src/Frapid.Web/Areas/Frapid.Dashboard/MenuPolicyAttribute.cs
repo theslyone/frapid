@@ -1,9 +1,10 @@
 using System.Linq;
 using System.Web.Mvc;
 using Frapid.ApplicationState.Cache;
+using Frapid.Configuration;
 using Frapid.Dashboard.DAL;
 using Frapid.Framework.Extensions;
-using Frapid.Configuration;
+using Frapid.i18n;
 
 namespace Frapid.Dashboard
 {
@@ -16,20 +17,19 @@ namespace Frapid.Dashboard
         {
             string path = this.OverridePath.Or(filterContext.HttpContext.Request.FilePath);
 
-            var my = AppUsers.GetCurrentAsync().Result;
+            var my = AppUsers.GetCurrentAsync().GetAwaiter().GetResult();
             int userId = my.UserId;
             int officeId = my.OfficeId;
-            string culture = my.Culture;
 
             string tenant = TenantConvention.GetTenant();
 
-            var policy = Menus.GetAsync(tenant, userId, officeId, culture).Result;
+            var policy = Menus.GetAsync(tenant, userId, officeId).GetAwaiter().GetResult();
 
             if (!policy.Any(x => x.Url.Equals(path)))
             {
                 if (this.StatusResponse)
                 {
-                    filterContext.Result = new HttpUnauthorizedResult("Access is denied.");
+                    filterContext.Result = new HttpUnauthorizedResult(Resources.AccessIsDenied);
                 }
                 else
                 {

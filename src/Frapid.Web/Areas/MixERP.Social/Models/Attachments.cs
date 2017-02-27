@@ -29,7 +29,7 @@ namespace MixERP.Social.Models
         {
             if (file == null)
             {
-                throw new UploadException("No file was uploaded.");
+                throw new UploadException(Resources.NoFileWasUploaded);
             }
 
             string fileName = Path.GetFileName(file.FileName);
@@ -39,7 +39,7 @@ namespace MixERP.Social.Models
             if (string.IsNullOrEmpty(fileName))
             {
                 Log.Information("Could not upload resource because the posted attachment file name is null or invalid.");
-                throw new UploadException(string.Empty);
+                throw new UploadException(Resources.InvalidFile);
             }
 
             var allowed = FrapidConfig.GetAllowedUploadExtensions(tenant);
@@ -47,7 +47,7 @@ namespace MixERP.Social.Models
             if (!allowed.Contains(extension))
             {
                 Log.Warning("Could not upload attachment resource because the uploaded file {file} has invalid extension.", fileName);
-                throw new UploadException("Invalid extension.");
+                throw new UploadException(Resources.InvalidFileExtension);
             }
 
             var stream = file.InputStream;

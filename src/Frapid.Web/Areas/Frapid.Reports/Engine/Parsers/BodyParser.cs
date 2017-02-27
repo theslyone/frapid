@@ -7,16 +7,16 @@ namespace Frapid.Reports.Engine.Parsers
 {
     public sealed class BodyParser
     {
-        public string Path { get; set; }
-        public ReportBody Body { get; set; }
-        public List<GridView> GridViews { get; set; }
-
         public BodyParser(string path)
         {
             this.Path = path;
             this.Body = new ReportBody();
             this.GridViews = new List<GridView>();
         }
+
+        public string Path { get; set; }
+        public ReportBody Body { get; set; }
+        public List<GridView> GridViews { get; set; }
 
         private string GetContent()
         {
@@ -34,6 +34,7 @@ namespace Frapid.Reports.Engine.Parsers
             var attribute = node.Attributes?["Class"];
             return attribute != null ? attribute.Value : string.Empty;
         }
+
         private string GetGridViewCssStyle(XmlNode node)
         {
             var attribute = node.Attributes?["Style"];
@@ -57,7 +58,6 @@ namespace Frapid.Reports.Engine.Parsers
                         CssClass = this.GetGridViewCssClass(node),
                         CssStyle = this.GetGridViewCssStyle(node)
                     });
-
                 }
             }
 

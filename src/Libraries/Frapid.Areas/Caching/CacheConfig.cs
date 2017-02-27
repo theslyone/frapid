@@ -29,12 +29,12 @@ namespace Frapid.Areas.Caching
         public static CacheConfig Get(string tenant, string profile)
         {
             string path = HostingEnvironment.MapPath($"~/Tenants/{tenant}/Configs/OutputCache.json");
-            if(path == null)
+            if (path == null)
             {
                 return null;
             }
 
-            if(!File.Exists(path))
+            if (!File.Exists(path))
             {
                 return null;
             }

@@ -54,6 +54,7 @@ CREATE TABLE config.smtp_configs
 CREATE TABLE config.email_queue
 (
     queue_id                                    bigint IDENTITY NOT NULL PRIMARY KEY,
+    application_name                            national character varying(256),
     from_name                                   national character varying(256) NOT NULL,
     from_email                                  national character varying(256) NOT NULL,
     reply_to                                    national character varying(256) NOT NULL,
@@ -61,6 +62,27 @@ CREATE TABLE config.email_queue
     subject                                     national character varying(256) NOT NULL,
     send_to                                     national character varying(256) NOT NULL,
     attachments                                 national character varying(2000),
+    message                                     national character varying(MAX) NOT NULL,
+    added_on                                    datetimeoffset NOT NULL DEFAULT(getutcdate()),
+	send_on										datetimeoffset NOT NULL DEFAULT(getutcdate()),
+    delivered                                   bit NOT NULL DEFAULT(0),
+    delivered_on                                datetimeoffset,
+    canceled                                    bit NOT NULL DEFAULT(0),
+    canceled_on                                 datetimeoffset,
+	is_test										bit NOT NULL DEFAULT(0),
+    audit_user_id                           	integer REFERENCES account.users,
+    audit_ts                                	DATETIMEOFFSET NULL DEFAULT(GETUTCDATE()),
+	deleted										bit DEFAULT(0)
+);
+
+CREATE TABLE config.sms_queue
+(
+    queue_id                                    bigint IDENTITY NOT NULL PRIMARY KEY,
+    application_name                            national character varying(256),
+    from_name                                   national character varying(256) NOT NULL,
+    from_number                                 national character varying(256) NOT NULL,
+    subject                                     national character varying(256) NOT NULL,
+    send_to                                     national character varying(256) NOT NULL,
     message                                     national character varying(MAX) NOT NULL,
     added_on                                    datetimeoffset NOT NULL DEFAULT(getutcdate()),
 	send_on										datetimeoffset NOT NULL DEFAULT(getutcdate()),
@@ -442,10 +464,10 @@ GO
 
 
 -->-->-- src/Frapid.Web/Areas/Frapid.Config/db/SQL Server/1.x/1.0/src/09.menus/0.menu.sql --<--<--
-EXECUTE core.create_app 'Frapid.Config', 'Config', '1.0', 'MixERP Inc.', 'December 1, 2015', 'orange configure', '/dashboard/config/offices', null;
-EXECUTE core.create_menu 'Frapid.Config', 'Offices', '/dashboard/config/offices', 'building outline', '';
-EXECUTE core.create_menu 'Frapid.Config', 'SMTP', '/dashboard/config/smtp', 'at', '';
-EXECUTE core.create_menu 'Frapid.Config', 'File Manager', '/dashboard/config/file-manager', 'file national character varying(500) outline', '';
+EXECUTE core.create_app 'Frapid.Config', 'Config', 'Config', '1.0', 'MixERP Inc.', 'December 1, 2015', 'orange configure', '/dashboard/config/offices', null;
+EXECUTE core.create_menu 'Frapid.Config', 'Offices', 'Offices', '/dashboard/config/offices', 'building outline', '';
+EXECUTE core.create_menu 'Frapid.Config', 'SMTP', 'SMTP', '/dashboard/config/smtp', 'at', '';
+EXECUTE core.create_menu 'Frapid.Config', 'FileManager', 'File Manager', '/dashboard/config/file-manager', 'file national character varying(500) outline', '';
 
 GO
 

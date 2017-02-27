@@ -4,13 +4,18 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | custom_field_setup_id | NOT NULL | integer | 0 |  |
-| 2 | form_name | NOT NULL | character varying | 100 |  |
-| 3 | field_order | NOT NULL | integer | 0 |  |
-| 4 | field_name | NOT NULL | character varying | 100 |  |
-| 5 | field_label | NOT NULL | character varying | 100 |  |
-| 6 | data_type |  | character varying | 50 |  |
-| 7 | description | NOT NULL | text | 0 |  |
+| 1 | custom_field_setup_id | [ ] | integer | 0 |  |
+| 2 | form_name | [ ] | character varying | 100 |  |
+| 3 | before_field | [x] | character varying | 500 |  |
+| 4 | field_order | [ ] | integer | 0 |  |
+| 5 | after_field | [x] | character varying | 500 |  |
+| 6 | field_name | [ ] | character varying | 100 |  |
+| 7 | field_label | [ ] | character varying | 200 |  |
+| 8 | data_type | [x] | character varying | 50 |  |
+| 9 | description | [ ] | text | 0 |  |
+| 10 | audit_user_id | [x] | integer | 0 |  |
+| 11 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 12 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -19,7 +24,8 @@
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
 | 2 | [form_name](../config/custom_field_forms.md) | custom_field_setup_form_name_fkey | config.custom_field_forms.form_name |
-| 6 | [data_type](../config/custom_field_data_types.md) | custom_field_setup_data_type_fkey | config.custom_field_data_types.data_type |
+| 8 | [data_type](../config/custom_field_data_types.md) | custom_field_setup_data_type_fkey | config.custom_field_data_types.data_type |
+| 10 | [audit_user_id](../account/users.md) | custom_field_setup_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -43,7 +49,9 @@
 | # | Column Name | Default |
 | --- | --- | --- |
 | 1 | custom_field_setup_id | nextval('config.custom_field_setup_custom_field_setup_id_seq'::regclass) |
-| 3 | field_order | 0 |
+| 4 | field_order | 0 |
+| 11 | audit_ts | now() |
+| 12 | deleted | false |
 
 
 **Triggers**

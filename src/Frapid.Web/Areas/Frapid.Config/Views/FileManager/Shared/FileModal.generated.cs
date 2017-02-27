@@ -51,7 +51,18 @@ WriteLiteral("></i>\r\n    <div");
 
 WriteLiteral(" class=\"header\"");
 
-WriteLiteral(">\r\n        Create a New File\r\n    </div>\r\n    <div");
+WriteLiteral(">\r\n");
+
+WriteLiteral("        ");
+
+            
+            #line 4 "..\..\Views\FileManager\Shared\FileModal.cshtml"
+   Write(I18N.CreateANewFile);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n    </div>\r\n    <div");
 
 WriteLiteral(" class=\"content\"");
 
@@ -63,7 +74,16 @@ WriteLiteral(">\r\n            <div");
 
 WriteLiteral(" class=\"field\"");
 
-WriteLiteral(">\r\n                <label>Location</label>\r\n                <div");
+WriteLiteral(">\r\n                <label>");
+
+            
+            #line 9 "..\..\Views\FileManager\Shared\FileModal.cshtml"
+                  Write(I18N.Location);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n                <div");
 
 WriteLiteral(" class=\"ui container label\"");
 
@@ -73,7 +93,16 @@ WriteLiteral("></div>\r\n            </div>\r\n            <div");
 
 WriteLiteral(" class=\"field\"");
 
-WriteLiteral(">\r\n                <label>File Name</label>\r\n                <input");
+WriteLiteral(">\r\n                <label>");
+
+            
+            #line 13 "..\..\Views\FileManager\Shared\FileModal.cshtml"
+                  Write(I18N.FileName);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n                <input");
 
 WriteLiteral(" type=\"text\"");
 
@@ -83,7 +112,16 @@ WriteLiteral(" class=\"ui button\"");
 
 WriteLiteral(" onclick=\"createFile(this);\"");
 
-WriteLiteral(">Create</button>\r\n        </div>\r\n    </div>\r\n</div>");
+WriteLiteral(">");
+
+            
+            #line 16 "..\..\Views\FileManager\Shared\FileModal.cshtml"
+                                                             Write(I18N.Create);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</button>\r\n        </div>\r\n    </div>\r\n</div>");
 
         }
     }

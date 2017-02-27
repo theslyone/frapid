@@ -22,7 +22,7 @@ namespace Frapid.Configuration.TenantServices
 
         public string GetTenantName(string domain, string or)
         {
-            if(string.IsNullOrWhiteSpace(domain))
+            if (string.IsNullOrWhiteSpace(domain))
             {
                 domain = or;
             }
@@ -31,7 +31,7 @@ namespace Frapid.Configuration.TenantServices
 
             var tenant = this.ApprovedDomains.Get().FirstOrDefault(x => x.GetSubtenants().Contains(domain.ToLowerInvariant()));
 
-            if(tenant != null)
+            if (tenant != null)
             {
                 Log.Verbose($"Tenant found for domain \"{domain}\". Tenant domain: \"{tenant.DomainName}\".");
                 return this.ConvertToTenantName(tenant.DomainName);
@@ -45,11 +45,11 @@ namespace Frapid.Configuration.TenantServices
             this.Logger.Verbose($"Getting domain name for tenant \"{tenant}\"");
 
             var domains = this.ApprovedDomains.Get();
-            foreach(var domain in domains)
+            foreach (var domain in domains)
             {
-                foreach(string subtenant in domain.GetSubtenants())
+                foreach (string subtenant in domain.GetSubtenants())
                 {
-                    if(subtenant.ToLower().Equals(tenant))
+                    if (subtenant.ToLower().Equals(tenant))
                     {
                         return domain.DomainName;
                     }

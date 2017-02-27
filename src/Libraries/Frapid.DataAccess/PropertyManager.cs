@@ -8,8 +8,7 @@ namespace Frapid.DataAccess
     {
         public static object GetPropertyValue(object target, string name)
         {
-            var site =
-                CallSite<Func<CallSite, object, object>>.Create(Binder.GetMember(0, name, target.GetType(),
+            var site = CallSite<Func<CallSite, object, object>>.Create(Binder.GetMember(0, name, target.GetType(),
                     new[] {CSharpArgumentInfo.Create(0, null)}));
             return site.Target(site, target);
         }

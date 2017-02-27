@@ -11,11 +11,12 @@ CREATE TABLE core.apps
 (
 	app_id										int IDENTITY NOT NULL,
     app_name                                    national character varying(100) PRIMARY KEY,
+	i18n_key									national character varying(200) NOT NULL,
     name                                        national character varying(100),
     version_number                              national character varying(100),
     publisher                                   national character varying(500),
     published_on                                date,
-    icon                                        national character varying(100),
+    icon                                        national character varying(MAX),
     landing_url                                 national character varying(500),
     audit_user_id                           	integer,
     audit_ts                                	DATETIMEOFFSET NULL DEFAULT(GETUTCDATE()),
@@ -41,6 +42,7 @@ CREATE TABLE core.menus
 (
     menu_id                                     int IDENTITY PRIMARY KEY,
     sort                                        integer,
+	i18n_key									national character varying(200) NOT NULL,
     app_name                                    national character varying(100) NOT NULL REFERENCES core.apps,
     menu_name                                   national character varying(100) NOT NULL,
     url                                         national character varying(500),
@@ -54,17 +56,6 @@ CREATE TABLE core.menus
 CREATE UNIQUE INDEX menus_app_name_menu_name_uix
 ON core.menus(app_name, menu_name)
 WHERE deleted = 0;
-
-CREATE TABLE core.menu_locale
-(
-    menu_locale_id                              int IDENTITY PRIMARY KEY,
-    menu_id                                     integer NOT NULL REFERENCES core.menus,
-    culture                                     national character varying(12) NOT NULL,
-    menu_text                                   national character varying(250) NOT NULL,
-    audit_user_id                           	integer,
-    audit_ts                                	DATETIMEOFFSET NULL DEFAULT(GETUTCDATE()),
-	deleted										bit DEFAULT(0)	
-);
 
 CREATE TABLE core.currencies
 (

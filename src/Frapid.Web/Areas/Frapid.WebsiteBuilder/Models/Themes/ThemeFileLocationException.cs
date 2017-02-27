@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
+    [Serializable]
     public sealed class ThemeFileLocationException : Exception
     {
         public ThemeFileLocationException()
@@ -13,6 +15,10 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         }
 
         public ThemeFileLocationException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        public ThemeFileLocationException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

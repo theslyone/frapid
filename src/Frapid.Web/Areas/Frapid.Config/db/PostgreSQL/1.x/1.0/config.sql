@@ -51,6 +51,7 @@ CREATE TABLE config.smtp_configs
 CREATE TABLE config.email_queue
 (
     queue_id                                    BIGSERIAL NOT NULL PRIMARY KEY,
+    application_name                            national character varying(256),
     from_name                                   national character varying(256) NOT NULL,
     from_email                                  national character varying(256) NOT NULL,
     reply_to                                    national character varying(256) NOT NULL,
@@ -58,6 +59,28 @@ CREATE TABLE config.email_queue
     subject                                     national character varying(256) NOT NULL,
     send_to                                     national character varying(256) NOT NULL,
     attachments                                 text,
+    message                                     text NOT NULL,
+    added_on                                    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
+	send_on										TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
+    delivered                                   boolean NOT NULL DEFAULT(false),
+    delivered_on                                TIMESTAMP WITH TIME ZONE,
+    canceled                                    boolean NOT NULL DEFAULT(false),
+    canceled_on                                 TIMESTAMP WITH TIME ZONE,
+	is_test										boolean NOT NULL DEFAULT(false),
+    audit_user_id                           	integer REFERENCES account.users,
+    audit_ts                                	TIMESTAMP WITH TIME ZONE DEFAULT(NOW()),
+	deleted										boolean DEFAULT(false)
+);
+
+
+CREATE TABLE config.sms_queue
+(
+    queue_id                                    BIGSERIAL NOT NULL PRIMARY KEY,
+    application_name                            national character varying(256),
+    from_name                                   national character varying(256) NOT NULL,
+    from_number                                 national character varying(256) NOT NULL,
+    subject                                     national character varying(256) NOT NULL,
+    send_to                                     national character varying(256) NOT NULL,
     message                                     text NOT NULL,
     added_on                                    TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
 	send_on										TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
@@ -477,10 +500,10 @@ LANGUAGE plpgsql;
 
 
 -->-->-- src/Frapid.Web/Areas/Frapid.Config/db/PostgreSQL/1.x/1.0/src/09.menus/0.menu.sql --<--<--
-SELECT * FROM core.create_app('Frapid.Config', 'Config', '1.0', 'MixERP Inc.', 'December 1, 2015', 'orange configure', '/dashboard/config/offices', null);
-SELECT * FROM core.create_menu('Frapid.Config', 'Offices', '/dashboard/config/offices', 'building outline', '');
-SELECT * FROM core.create_menu('Frapid.Config', 'SMTP', '/dashboard/config/smtp', 'at', '');
-SELECT * FROM core.create_menu('Frapid.Config', 'File Manager', '/dashboard/config/file-manager', 'file text outline', '');
+SELECT * FROM core.create_app('Frapid.Config', 'Config', 'Config', '1.0', 'MixERP Inc.', 'December 1, 2015', 'orange configure', '/dashboard/config/offices', null);
+SELECT * FROM core.create_menu('Frapid.Config', 'Offices', 'Offices', '/dashboard/config/offices', 'building outline', '');
+SELECT * FROM core.create_menu('Frapid.Config', 'SMTP', 'SMTP', '/dashboard/config/smtp', 'at', '');
+SELECT * FROM core.create_menu('Frapid.Config', 'FileManager', 'File Manager', '/dashboard/config/file-manager', 'file text outline', '');
 
 SELECT * FROM auth.create_app_menu_policy
 (

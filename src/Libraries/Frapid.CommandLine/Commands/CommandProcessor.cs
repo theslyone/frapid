@@ -42,12 +42,14 @@ namespace frapid.Commands
 
             Console.ForegroundColor = ConsoleColor.White;
 
-            if (!string.IsNullOrWhiteSpace(syntax))
+            if (string.IsNullOrWhiteSpace(syntax))
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("\r\nSyntax(es) : \r\n" + syntax);
-                Console.ForegroundColor = ConsoleColor.White;
+                return;
             }
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("\r\nSyntax(es) : \r\n" + syntax);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

@@ -1,19 +1,19 @@
 ﻿<div class="ui very relaxed padded page grid">
     <div class="sixteen wide column">
-        <div class="ui form factory attached segment" style="display: none;padding:36px;">
+        <div class="ui flat form factory attached segment" style="display: none;padding:36px;">
             <div id="ScrudFormErrorModal" class="ui small negative modal">
                 <i class="close icon"></i>
                 <div class="orange header">
                     <i class="warning sign icon"></i>
-                    Cannot Save
+                     <span data-localize="CannotSave"></span>
                 </div>
                 <div class="content">
-                    <div class="ui grey header">Form Invalid</div>
+                    <div class="ui grey header" data-localize="FormInvalid"></div>
                     <ul class="error-list error-message"></ul>
                 </div>
                 <div class="actions">
                     <div class="ui positive close button">
-                        <span data-localize="Titles.Close"></span>
+                        <span data-localize="Close"></span>
                     </div>
                 </div>
             </div>
@@ -28,24 +28,24 @@
                 </div>
                 <div class="eight wide right aligned column">
                     <div class="ui small basic icon buttons">
-                        <a class="ui basic button" id="ReturnToViewButton" data-localized-title="Titles.ReturnToView">
+                        <a class="ui basic button" id="ReturnToViewButton" data-localized-title="ReturnToView">
                             <i class="list layout icon"></i>
                         </a>
-                        <a class="ui basic button" id="CreateDuplicateButton" data-localized-title="Titles.CreateDuplicate">
+                        <a class="ui basic button" id="CreateDuplicateButton" data-localized-title="CreateDuplicate">
                             <i class="copy icon"></i>
                         </a>
                     </div>
                     <div class="ui small basic icon buttons">
-                        <a class="ui basic button" id="FirstButton" data-localized-title="Titles.First">
+                        <a class="ui basic button" id="FirstButton" data-localized-title="First">
                             <i class="arrow left icon"></i>
                         </a>
-                        <div class="ui basic button" id="PreviousButton" data-localized-title="Titles.Previous">
+                        <div class="ui basic button" id="PreviousButton" data-localized-title="Previous">
                             <i class="angle left icon"></i>
                         </div>
-                        <div class="ui basic button" id="NextButton" data-localized-title="Titles.Next">
+                        <div class="ui basic button" id="NextButton" data-localized-title="Next">
                             <i class="angle right icon"></i>
                         </div>
-                        <div class="ui basic button" id="LastButton" data-localized-title="Titles.Last">
+                        <div class="ui basic button" id="LastButton" data-localized-title="Last">
                             <i class="arrow right icon"></i>
                         </div>
                     </div>
@@ -70,8 +70,8 @@
 
             <div class="big error"></div>
             <div class="ui buttons tpad8">
-                <input type="button" class="ui teal button" id="SaveButton" data-localize="Titles.Save" />
-                <input type="button" class="ui basic teal button" id="CancelButton" data-localize="Titles.Cancel" />
+                <input type="button" class="ui teal button" id="SaveButton" data-localize="Save" />
+                <input type="button" class="ui basic teal button" id="CancelButton" data-localize="Cancel" />
             </div>
         </div>
     </div>

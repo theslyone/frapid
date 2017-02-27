@@ -11,7 +11,7 @@
         public string Convert(string name)
         {
             name = name.Replace("_", " ");
-            name =  this.TitleCaseConverter.Convert(name);
+            name = this.TitleCaseConverter.Convert(name);
 
             return name.Replace(" ", "");
         }

@@ -2,7 +2,7 @@
 
 namespace Frapid.Areas
 {
-    public abstract class FrapidAreaRegistration: AreaRegistration
+    public abstract class FrapidAreaRegistration : AreaRegistration
     {
     }
 }

@@ -57,17 +57,26 @@
   <ItemGroup>
     <Compile Include="Config.cs" />
     <Compile Include="DAL\MailQueue.cs" />
+    <Compile Include="DAL\TextMessageQueue.cs" />
     <Compile Include="DAL\Smtp.cs" />
     <Compile Include="DisposableEmailValidator.cs" />
     <Compile Include="DTO\EmailQueue.cs" />
+    <Compile Include="DTO\SmsMessage.cs" />
+    <Compile Include="DTO\SmsQueue.cs" />
     <Compile Include="DTO\SmtpConfig.cs" />
     <Compile Include="DTO\EmailMessage.cs" />
+    <Compile Include="ISmsConfig.cs" />
+    <Compile Include="ISmsProcessor.cs" />
+    <Compile Include="SmsProcessor.cs" />
+    <Compile Include="SmsQueueManager.cs" />
     <Compile Include="Smtp\EmailHelper.cs" />
     <Compile Include="EmailProcessor.cs" />
     <Compile Include="IEmailConfig.cs" />
+    <Compile Include="Smtp\SmsConfig.cs" />
+    <Compile Include="Smtp\SmsHelper.cs" />
     <Compile Include="Templating\MessageTemplateProcessor.cs" />
     <Compile Include="Helpers\AttachmentFactory.cs" />
-    <Compile Include="Smtp\Config.cs" />
+    <Compile Include="Smtp\EmailConfig.cs" />
     <Compile Include="Smtp\ICredentials.cs" />
     <Compile Include="IEmailProcessor.cs" />
     <Compile Include="IMessage.cs" />

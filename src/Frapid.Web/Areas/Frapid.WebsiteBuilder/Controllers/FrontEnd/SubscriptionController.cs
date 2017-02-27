@@ -39,7 +39,7 @@ namespace Frapid.WebsiteBuilder.Controllers.FrontEnd
         [FrapidOutputCache(ProfileName = "RemoveSubscription")]
         public ActionResult Remove()
         {
-            return this.View(this.GetRazorView<AreaRegistration>("Subscription/Remove.cshtml", this.Tenant));
+            return this.View(this.GetRazorView<AreaRegistration>("Frontend/Subscription/Remove.cshtml", this.Tenant));
         }
 
         [Route("subscription/remove")]

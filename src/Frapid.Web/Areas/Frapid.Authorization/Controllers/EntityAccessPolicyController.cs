@@ -11,7 +11,7 @@ using Frapid.Dashboard.Controllers;
 namespace Frapid.Authorization.Controllers
 {
     [AntiForgery]
-    public class EntityAccessPolicyController: DashboardController
+    public class EntityAccessPolicyController : DashboardController
     {
         [RestrictAnonymous]
         [Route("dashboard/authorization/entity-access/user-policy")]
@@ -37,7 +37,7 @@ namespace Frapid.Authorization.Controllers
         [HttpPost]
         public async Task<ActionResult> SavePolicyAsync(int officeId, int userId, List<AccessPolicyInfo> model)
         {
-            if(!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.InvalidModelState(this.ModelState);
             }

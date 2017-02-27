@@ -29,7 +29,7 @@ namespace Frapid.Account.Controllers.Frontend
         [HttpPost]
         public async Task<ActionResult> PostAsync(ChangePassword model)
         {
-            if (!ModelState.IsValid)
+            if (!this.ModelState.IsValid)
             {
                 return this.InvalidModelState(this.ModelState);
             }

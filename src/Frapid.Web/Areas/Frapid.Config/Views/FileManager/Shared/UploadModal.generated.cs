@@ -51,7 +51,18 @@ WriteLiteral("></i>\r\n    <div");
 
 WriteLiteral(" class=\"header\"");
 
-WriteLiteral(">\r\n        Upload a File\r\n    </div>\r\n    <div");
+WriteLiteral(">\r\n");
+
+WriteLiteral("        ");
+
+            
+            #line 4 "..\..\Views\FileManager\Shared\UploadModal.cshtml"
+   Write(I18N.UploadAFile);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("\r\n    </div>\r\n    <div");
 
 WriteLiteral(" class=\"content\"");
 
@@ -71,7 +82,16 @@ WriteLiteral(">\r\n                <div");
 
 WriteLiteral(" class=\"ui small header\"");
 
-WriteLiteral(">Awesome! Upload another file.</div>\r\n            </div>\r\n            <img");
+WriteLiteral(">");
+
+            
+            #line 9 "..\..\Views\FileManager\Shared\UploadModal.cshtml"
+                                        Write(I18N.UploadAnotherFile);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</div>\r\n            </div>\r\n            <img");
 
 WriteLiteral(" class=\"ui preview image vpad8\"");
 
@@ -85,13 +105,31 @@ WriteLiteral(" for=\"FileInputFile\"");
 
 WriteLiteral(" class=\"ui positive button\"");
 
-WriteLiteral(">Upload</label>\r\n                <button");
+WriteLiteral(">");
+
+            
+            #line 13 "..\..\Views\FileManager\Shared\UploadModal.cshtml"
+                                                                 Write(I18N.Upload);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</label>\r\n                <button");
 
 WriteLiteral(" class=\"ui negative close button\"");
 
 WriteLiteral(" onclick=\"$(\'#UploadModal\').modal(\'hide\');\"");
 
-WriteLiteral(">Close</button>\r\n                <input");
+WriteLiteral(">");
+
+            
+            #line 14 "..\..\Views\FileManager\Shared\UploadModal.cshtml"
+                                                                                               Write(I18N.Close);
+
+            
+            #line default
+            #line hidden
+WriteLiteral("</button>\r\n                <input");
 
 WriteLiteral(" id=\"FileInputFile\"");
 

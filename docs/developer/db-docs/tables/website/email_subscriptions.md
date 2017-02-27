@@ -4,13 +4,20 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | email_subscription_id | NOT NULL | uuid | 0 |  |
-| 2 | email | NOT NULL | character varying | 100 |  |
-| 3 | browser |  | text | 0 |  |
-| 4 | ip_address |  | character varying | 50 |  |
-| 5 | unsubscribed |  | boolean | 0 |  |
-| 6 | subscribed_on |  | timestamp with time zone | 0 |  |
-| 7 | unsubscribed_on |  | timestamp with time zone | 0 |  |
+| 1 | email_subscription_id | [ ] | uuid | 0 |  |
+| 2 | first_name | [x] | character varying | 100 |  |
+| 3 | last_name | [x] | character varying | 100 |  |
+| 4 | email | [ ] | character varying | 100 |  |
+| 5 | browser | [x] | text | 0 |  |
+| 6 | ip_address | [x] | character varying | 50 |  |
+| 7 | confirmed | [x] | boolean | 0 |  |
+| 8 | confirmed_on | [x] | timestamp with time zone | 0 |  |
+| 9 | unsubscribed | [x] | boolean | 0 |  |
+| 10 | subscribed_on | [x] | timestamp with time zone | 0 |  |
+| 11 | unsubscribed_on | [x] | timestamp with time zone | 0 |  |
+| 12 | audit_user_id | [x] | integer | 0 |  |
+| 13 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 14 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -18,6 +25,7 @@
 
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
+| 12 | [audit_user_id](../account/users.md) | email_subscriptions_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -42,14 +50,18 @@
 | # | Column Name | Default |
 | --- | --- | --- |
 | 1 | email_subscription_id | gen_random_uuid() |
-| 5 | unsubscribed | false |
-| 6 | subscribed_on | now() |
+| 7 | confirmed | false |
+| 9 | unsubscribed | false |
+| 10 | subscribed_on | now() |
+| 13 | audit_ts | now() |
+| 14 | deleted | false |
 
 
 **Triggers**
 
 | Trigger Name | Targets | On Event | Timing | Condition | Order | Orientation | Description |
 | --- | --- | --- | --- | --- | --- | --- | --- |
+| website.email_subscription_confirmation_trigger | [website.email_subscription_confirmation_trigger](../../functions/website/email_subscription_confirmation_trigger-4455603.md) | UPDATE | BEFORE |  | 0 | ROW |  |
 
 
 ### Related Contents

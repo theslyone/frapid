@@ -5,16 +5,16 @@ namespace Frapid.Areas.CSRF
 {
     public sealed class AntiforgeryTokenGenerator : IAntiforgeryTokenGenerator
     {
-        public IStaticDomainCheck StaticDomainCheck { get; }
-        public IAntiforgeryTokenizer Tokenizer { get; }
-        public string CurrentDomain { get; }
-
         public AntiforgeryTokenGenerator(IStaticDomainCheck staticDomainCheck, IAntiforgeryTokenizer tokenizer, string currentDomain)
         {
             this.StaticDomainCheck = staticDomainCheck;
             this.Tokenizer = tokenizer;
             this.CurrentDomain = currentDomain;
         }
+
+        public IStaticDomainCheck StaticDomainCheck { get; }
+        public IAntiforgeryTokenizer Tokenizer { get; }
+        public string CurrentDomain { get; }
 
         public MvcHtmlString GetAntiForgeryToken()
         {
@@ -27,6 +27,5 @@ namespace Frapid.Areas.CSRF
 
             return this.Tokenizer.Get();
         }
-
     }
 }

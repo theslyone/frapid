@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Frapid.Messaging;
 using Frapid.Messaging.DTO;
@@ -8,7 +9,7 @@ using Serilog;
 
 namespace Frapid.SendGridMail
 {
-    public class Processor : IEmailProcessor
+    public sealed class Processor : IEmailProcessor
     {
         public IEmailConfig Config { get; set; }
         public bool IsEnabled { get; set; }
@@ -26,7 +27,7 @@ namespace Frapid.SendGridMail
             }
 
             if (string.IsNullOrWhiteSpace(config.ApiKey) ||
-               string.IsNullOrWhiteSpace(config.ApiUser))
+                string.IsNullOrWhiteSpace(config.ApiUser))
             {
                 this.IsEnabled = false;
             }
@@ -59,7 +60,7 @@ namespace Frapid.SendGridMail
 
                 var message = new Mail
                 {
-                    From = new Email(email.FromEmail, email.FromName),
+                    From = new Email(email.FromIdentifier, email.FromName),
                     Subject = email.Subject
                 };
 
@@ -69,7 +70,7 @@ namespace Frapid.SendGridMail
                 }
 
 
-                foreach (var address in email.SentTo.Split(','))
+                foreach (string address in email.SendTo.Split(','))
                 {
                     personalization.AddTo(new Email(address.Trim()));
                 }
@@ -77,17 +78,12 @@ namespace Frapid.SendGridMail
 
                 message.AddPersonalization(personalization);
 
-                var content = new Content();
-                content.Value = email.Message;
+                var content = new Content
+                {
+                    Value = email.Message,
+                    Type = email.IsBodyHtml ? "text/html" : "text/plain"
+                };
 
-                if (email.IsBodyHtml)
-                {
-                    content.Type = "text/html";
-                }
-                else
-                {
-                    content.Type = "text/plain";
-                }
 
                 message.AddContent(content);
 
@@ -96,14 +92,14 @@ namespace Frapid.SendGridMail
                 var sg = new SendGridAPIClient(config.ApiKey, "https://api.sendgrid.com");
                 dynamic response = await sg.client.mail.send.post(requestBody: message.Get());
 
-                System.Net.HttpStatusCode status = response.StatusCode;
+                HttpStatusCode status = response.StatusCode;
 
                 switch (status)
                 {
-                    case System.Net.HttpStatusCode.OK:
-                    case System.Net.HttpStatusCode.Created:
-                    case System.Net.HttpStatusCode.Accepted:
-                    case System.Net.HttpStatusCode.NoContent:
+                    case HttpStatusCode.OK:
+                    case HttpStatusCode.Created:
+                    case HttpStatusCode.Accepted:
+                    case HttpStatusCode.NoContent:
                         email.Status = Status.Completed;
                         break;
                     default:
@@ -113,11 +109,11 @@ namespace Frapid.SendGridMail
 
                 return true;
             }
-            // ReSharper disable once CatchAllClause
+                // ReSharper disable once CatchAllClause
             catch (Exception ex)
             {
                 email.Status = Status.Failed;
-                Log.Warning(@"Could not send email to {To} using SendGrid API. {Ex}. ", email.SentTo, ex);
+                Log.Warning(@"Could not send email to {To} using SendGrid API. {Ex}. ", email.SendTo, ex);
             }
             finally
             {

@@ -3,11 +3,12 @@ DROP FUNCTION auth.get_apps;
 
 GO
 
-CREATE FUNCTION auth.get_apps(@user_id integer, @office_id integer, @culture national character varying(500))
+CREATE FUNCTION auth.get_apps(@user_id integer, @office_id integer)
 RETURNS @result TABLE
 (
 	app_id								integer,
     app_name                            national character varying(500),
+	i18n_key							national character varying(500),
     name                                national character varying(500),
     version_number                      national character varying(500),
     publisher                           national character varying(500),
@@ -21,6 +22,7 @@ BEGIN
     SELECT
 		core.apps.app_id,
         core.apps.app_name,
+		core.apps.i18n_key,
         core.apps.name,
         core.apps.version_number,
         core.apps.publisher,
@@ -31,7 +33,7 @@ BEGIN
     WHERE core.apps.app_name IN
     (
         SELECT DISTINCT menus.app_name
-        FROM auth.get_menu(@user_id, @office_id, @culture)
+        FROM auth.get_menu(@user_id, @office_id)
         AS menus
     );
     

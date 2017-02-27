@@ -18,7 +18,7 @@
 	"PatchFilePath": null,
 	"InstallSample": true,
 	"My": "~/Areas/Frapid.Account/.my/db.sql",
-    "OverrideTemplatePath":"~/Areas/Frapid.Account/Override",
+    "OverrideTemplatePath":"~/Areas/Frapid.Account/Overrides",
     "OverrideDestination":"~/Tenants/{0}/Areas",
 	"DependsOn": ["Frapid", "Frapid.Core"]
 }

@@ -72,7 +72,6 @@
     <Compile Include="AppInstaller.cs" />
     <Compile Include="AppResolver.cs" />
     <Compile Include="Tenant\Uninstaller.cs" />
-    <Compile Include="Helpers\ConsolePathMapper.cs" />
     <Compile Include="Commands\CreateSite.cs" />
     <Compile Include="DAL\SqlServer.cs" />
     <Compile Include="DbInspector.cs" />
@@ -85,7 +84,6 @@
     <Compile Include="Helpers\InstallerLog.cs" />
     <Compile Include="InstallationFactory.cs" />
     <Compile Include="InstallJob.cs" />
-    <Compile Include="Models\Installable.cs" />
     <Compile Include="DAL\PostgreSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tenant\UninstallException.cs" />
@@ -106,6 +104,10 @@
     <ProjectReference Include="..\Frapid.Framework\Frapid.Framework.csproj">
       <Project>{A4DEE358-3203-425C-80E9-8EBA0A01B73F}</Project>
       <Name>Frapid.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frapid.i18n\Frapid.i18n.csproj">
+      <Project>{88dfdf57-a52b-4d71-a0c4-bef1a3839506}</Project>
+      <Name>Frapid.i18n</Name>
     </ProjectReference>
     <ProjectReference Include="..\Frapid.Mapper\Frapid.Mapper.csproj">
       <Project>{86545C4A-5202-4368-B013-EA37615CBD8E}</Project>

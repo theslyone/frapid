@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Dynamic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ using Frapid.WebApi.DataAccess;
 
 namespace Frapid.WebApi.Service
 {
-    public class FilterApiController: FrapidApiController
+    public class FilterApiController : FrapidApiController
     {
         [AcceptVerbs("PUT")]
         [Route("~/api/filters/make-default/{objectName}/{filterName}")]
@@ -21,11 +20,11 @@ namespace Frapid.WebApi.Service
                 var repository = new FilterRepository(this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 await repository.MakeDefaultAsync(objectName, filterName).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -52,11 +51,11 @@ namespace Frapid.WebApi.Service
                 var repository = new FilterRepository(this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 await repository.RemoveDefaultAsync(objectName).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -83,11 +82,11 @@ namespace Frapid.WebApi.Service
                 var repository = new FilterRepository(this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 await repository.DeleteAsync(filterName).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (
@@ -114,11 +113,11 @@ namespace Frapid.WebApi.Service
                 var repository = new FilterRepository(this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 await repository.RecreateFiltersAsync(objectName, filterName, collection).ConfigureAwait(false);
             }
-            catch(UnauthorizedException)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }
-            catch(DataAccessException ex)
+            catch (DataAccessException ex)
             {
                 throw new HttpResponseException
                     (

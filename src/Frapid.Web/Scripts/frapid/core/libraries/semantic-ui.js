@@ -25,13 +25,16 @@ $(document).ready(function () {
     };
 
 
-    initalizeDropdowns();
+    //initalizeDropdowns();
 });
 
 function initalizeDropdowns() {
-    $('.ui.dropdown').each(function () {
-        var el = $(this);
-        var placeholder = (el.attr("data-placeholder") || false);
-        el.dropdown({ placeholder: placeholder });
-    });
+    //We could not work with Semantic UI dropdown properly, too many breaking changes, 
+    //too many UI bugs have been introduced.
+
+    //$('.ui.dropdown').each(function () {
+    //    var el = $(this);
+    //    var placeholder = (el.attr("data-placeholder") || false);
+    //    el.dropdown({ placeholder: placeholder, forceSelection: false });
+    //});    
 };

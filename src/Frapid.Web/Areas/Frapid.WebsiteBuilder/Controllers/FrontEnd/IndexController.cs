@@ -47,7 +47,7 @@ namespace Frapid.WebsiteBuilder.Controllers.FrontEnd
 
                 model.Contents = HitHelper.Add(model.Contents);
 
-                return this.View(this.GetRazorView<AreaRegistration>("Index/Index.cshtml", this.Tenant), model);
+                return this.View(this.GetRazorView<AreaRegistration>("Frontend/Index/Index.cshtml", this.Tenant), model);
             }
             catch (Exception ex)
             {

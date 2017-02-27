@@ -1,16 +1,16 @@
 ﻿@using Frapid.ApplicationState.Cache
 @using Frapid.i18n
 @{
-    ViewBag.Title = "Change Password";
+    ViewBag.Title = @I18N.ChangePassword;
     Layout = ViewBag.LayoutPath + ViewBag.Layout;
 }
 @if (CultureManager.IsRtl())
 {
-    <link rel="Stylesheet" href="@Href("~/assets/css/master-page-rtl.css")" />
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.rtl.css")" />
 }
 else
 {
-    <link rel="Stylesheet" href="@Href("~/assets/css/master-page.css")" />
+    <link rel="Stylesheet" href="@Href("~/assets/css/backend.css")" />
 }
 
 <div class="ui attached padded change password left aligned segment">
@@ -18,15 +18,15 @@ else
         <div class="ui stackable very relaxed padded grid">
             <div class="ten wide column">
                 <div class="ui stackable form">
-                    <div class="ui huge header">Change Password</div>
+                    <div class="ui huge header">@I18N.ChangePassword</div>
                     <div class="ui divider"></div>
                     <div class="field">
-                        <label for="UserNameInputText">Username</label>
+                        <label for="UserNameInputText">@I18N.Username</label>
                         <input type="text" id="UserNameInputText" maxlength="100" required="" disabled="disabled" readonly="readonly" value="@AppUsers.GetCurrent().Name" />
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <label for="OldPasswordInputPassword">Old Password</label>
+                            <label for="OldPasswordInputPassword">@I18N.OldPassword</label>
                             <input type="password"
                                    id="OldPasswordInputPassword"
                                    required=""
@@ -36,17 +36,17 @@ else
                     </div>
                     <div class="two fields">
                         <div class="field">
-                            <label for="PasswordInputPassword">New Password</label>
+                            <label for="PasswordInputPassword">@I18N.NewPassword</label>
                             <input type="password"
                                    id="PasswordInputPassword"
                                    required=""
                                    maxlength="32"
                                    data-validation-expression="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,32}$"
-                                   data-validation-message="Password should contain at least 6 characters with one uppercase, lowercase, and a number."
+                                   data-validation-message="@I18N.PasswordValidationMessage"
                                    data-validation-target=".big.error"/>
                         </div>
                         <div class="field">
-                            <label for="ConfirmPasswordInputPassword">Confirm Password</label>
+                            <label for="ConfirmPasswordInputPassword">@I18N.ConfirmPassword</label>
                             <input type="password" id="ConfirmPasswordInputPassword" 
                                    data-match-target="PasswordInputPassword" required=""/>
                         </div>
@@ -54,23 +54,21 @@ else
 
 
                     <div class="email address field">
-                        <label for="EmailAddressInput">Email</label>
+                        <label for="EmailAddressInput">@I18N.Email</label>
                         <input type="email" id="EmailAddressInput" required=""/>
-                        <div class="ui pointing label">Please leave this field empty</div>
+                        <div class="ui pointing label">@I18N.LeaveThisFieldEmpty</div>
                     </div>
 
                     <div class="big error vpad8"></div>
-                    <div class="ui blue button" id="ChangePasswordButton">Change My Password</div>
+                    <div class="ui blue button" id="ChangePasswordButton">@I18N.ChangeMyPassword</div>
                     <a class="ui negative button" href="/">Cancel</a>
                 </div>
             </div>
             <div class="six wide column">
                 <div class="ui positive message">
-                    <div class="ui header">Please Note</div>
+                    <div class="ui header">@I18N.PleaseNote</div>
                     <div class="ui divider"></div>
-                    We use cookies in our website.
-                    Please read the <a href="/site/legal/terms-of-service">terms of service</a>
-                    before you create an account.
+                    @Html.Raw(I18N.CookieMessage)
                 </div>
             </div>
         </div>
@@ -78,10 +76,10 @@ else
     </div>
 </div>
 
-<script src="/i18n/resources.js"></script>
+<script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
 <script src="/assets/js/backend.js"></script>
-<script src="/Scripts/jssha1.5/src/sha.js"></script>
-<script src="/Areas/Frapid.Account/Scripts/Account/ChangePassword/index.js"></script>
+<script src="/scripts/jssha1.5/src/sha.js"></script>
+<script src="/Areas/Frapid.Account/scripts/account/change-password/index.js"></script>
 <script>
     var bigError = $(".big.error");
     $(".email.address.field").hide();
@@ -92,18 +90,18 @@ else
 
     $("#ChangePasswordButton").click(function () {
         function request(model) {
-            var url = "/account/change-password";
-            var data = JSON.stringify(model);
+            const url = "/account/change-password";
+            const data = JSON.stringify(model);
             return window.getAjaxRequest(url, "POST", data);
         };
 
         function validate() {
             bigError.html("");
-            var formEl = $(".change.password.segment");
+            const formEl = $(".change.password.segment");
 
             var isValid = window.validator.validate(formEl);
 
-            var hp = $("#EmailAddressInput").val();
+            const hp = $("#EmailAddressInput").val();
 
             if (hp) {
                 isValid = false;
@@ -114,7 +112,7 @@ else
 
         bigError.html("");
 
-        var isValid = validate();
+        const isValid = validate();
         if (!isValid) {
             return;
         };
@@ -122,15 +120,15 @@ else
 
         var formEl = $(".change.password.segment");
         formEl.addClass("loading");
-        var model = window.serializeForm(formEl);
+        const model = window.serializeForm(formEl);
 
 
-        var ajax = request(model);
+        const ajax = request(model);
         ajax.success(function (response) {
             if (response) {
                 window.location = "/account/change-password/success";
-            }else{
-                alert("Sorry, we could not change your password. Could you please  check your existing password and try again?")
+            }else {
+                alert(window.translate("PasswordNotChangedRecheckExistingPassword"));
                 formEl.removeClass("loading");
             };
         });

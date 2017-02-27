@@ -14,11 +14,12 @@ CREATE TABLE core.apps
 (
 	app_id										SERIAL,
     app_name                                    national character varying(100) PRIMARY KEY,
+	i18n_key									national character varying(200) NOT NULL,
     name                                        national character varying(100),
     version_number                              national character varying(100),
     publisher                                   national character varying(100),
     published_on                                date,
-    icon                                        national character varying(100),
+    icon                                        text,
     landing_url                                 text,
     audit_user_id                           	integer,
     audit_ts                                	TIMESTAMP WITH TIME ZONE DEFAULT(NOW()),
@@ -44,6 +45,7 @@ CREATE TABLE core.menus
 (
     menu_id                                     SERIAL PRIMARY KEY,
     sort                                        integer,
+	i18n_key									national character varying(200) NOT NULL,
     app_name                                    national character varying(100) NOT NULL REFERENCES core.apps,
     menu_name                                   national character varying(100) NOT NULL,
     url                                         text,
@@ -57,17 +59,6 @@ CREATE TABLE core.menus
 CREATE UNIQUE INDEX menus_app_name_menu_name_uix
 ON core.menus(UPPER(app_name), UPPER(menu_name))
 WHERE NOT deleted;
-
-CREATE TABLE core.menu_locale
-(
-    menu_locale_id                              SERIAL PRIMARY KEY,
-    menu_id                                     integer NOT NULL REFERENCES core.menus,
-    culture                                     national character varying(12) NOT NULL,
-    menu_text                                   national character varying(250) NOT NULL,
-    audit_user_id                           	integer,
-    audit_ts                                	TIMESTAMP WITH TIME ZONE DEFAULT(NOW()),
-	deleted										boolean DEFAULT(false)
-);
 
 CREATE TABLE core.currencies
 (

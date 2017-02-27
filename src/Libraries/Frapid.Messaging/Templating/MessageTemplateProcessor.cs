@@ -20,13 +20,13 @@ namespace Frapid.Messaging.Templating
             var parameters = this.GetParameters(this.Template);
             string template = this.Template;
 
-            foreach(var item in this.Dictionary)
+            foreach (var item in this.Dictionary)
             {
-                foreach(string parameter in parameters)
+                foreach (string parameter in parameters)
                 {
                     string value = GetPropertyValue(item, parameter);
 
-                    if(!string.IsNullOrWhiteSpace(value))
+                    if (!string.IsNullOrWhiteSpace(value))
                     {
                         template = template.Replace("{" + parameter + "}", value);
                     }

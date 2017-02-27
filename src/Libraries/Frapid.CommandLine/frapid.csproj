@@ -64,8 +64,10 @@
     <Compile Include="AssemblyLoader.cs" />
     <Compile Include="Commands\CommandProcessor.cs" />
     <Compile Include="Commands\Create\CreateCommand.cs" />
-    <Compile Include="Commands\Create\CreateTemplate.cs" />
+    <Compile Include="Commands\Create\CreateTheme.cs" />
     <Compile Include="Commands\Create\MvcProjectCreator.cs" />
+    <Compile Include="Commands\EchoCommand.cs" />
+    <Compile Include="Commands\PackCommand.cs" />
     <Compile Include="TokenExtension.cs" />
     <Compile Include="FrapidConsole.cs" />
     <Compile Include="Commands\ICommand.cs" />

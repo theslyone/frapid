@@ -8,20 +8,20 @@ using Serilog;
 namespace Frapid.Areas.CSRF
 {
     [AttributeUsage(AttributeTargets.Class)]
-    public class AntiForgeryAttribute: AuthorizeAttribute
+    public class AntiForgeryAttribute : AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
             var request = filterContext.HttpContext.Request;
 
-            if(request.HttpMethod != WebRequestMethods.Http.Post)
+            if (request.HttpMethod != WebRequestMethods.Http.Post)
             {
                 return;
             }
 
             try
             {
-                if(request.IsAjaxRequest())
+                if (request.IsAjaxRequest())
                 {
                     var antiForgeryCookie = request.Cookies[AntiForgeryConfig.CookieName];
                     string cookieValue = antiForgeryCookie?.Value;
@@ -32,16 +32,16 @@ namespace Frapid.Areas.CSRF
                     new ValidateAntiForgeryTokenAttribute().OnAuthorization(filterContext);
                 }
             }
-            catch(HttpAntiForgeryException ex)
+            catch (HttpAntiForgeryException ex)
             {
                 //Log and swallow
                 Log.Error
                     (
-                     "Invalid antiforgery cookie data.\nIP: {IP}\nBrowser: {Browser}\nUser Agener: {UserAgent}. Stack: {Exception}",
-                     filterContext.HttpContext.GetClientIpAddress(),
-                     filterContext.HttpContext.Request.Browser.Browser,
-                     filterContext.HttpContext.Request.UserAgent,
-                     ex);
+                        "Invalid antiforgery cookie data.\nIP: {IP}\nBrowser: {Browser}\nUser Agener: {UserAgent}. Stack: {Exception}",
+                        filterContext.HttpContext.GetClientIpAddress(),
+                        filterContext.HttpContext.Request.Browser.Browser,
+                        filterContext.HttpContext.Request.UserAgent,
+                        ex);
             }
         }
     }

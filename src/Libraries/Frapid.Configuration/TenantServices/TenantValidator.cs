@@ -4,7 +4,7 @@ using Serilog;
 
 namespace Frapid.Configuration.TenantServices
 {
-    public sealed class TenantValidator: ITenantValidator
+    public sealed class TenantValidator : ITenantValidator
     {
         public TenantValidator(ILogger logger, IDomainSerializer serializer, IByConvention byConvention)
         {
@@ -19,7 +19,7 @@ namespace Frapid.Configuration.TenantServices
 
         public bool IsValid(string tenant)
         {
-            if(string.IsNullOrWhiteSpace(tenant))
+            if (string.IsNullOrWhiteSpace(tenant))
             {
                 tenant = this.ByConvention.GetTenantName(tenant);
                 this.Logger.Verbose($"The tenant for empty domain was automatically resolved to \"{tenant}\".");
@@ -27,7 +27,7 @@ namespace Frapid.Configuration.TenantServices
 
             bool result = this.Serializer.Get().Any(domain => this.ByConvention.GetTenantName(domain.DomainName) == tenant);
 
-            if(!result)
+            if (!result)
             {
                 this.Logger.Information($"The tenant \"{tenant}\" was not found on list of approved domains. Please check your configuration");
             }

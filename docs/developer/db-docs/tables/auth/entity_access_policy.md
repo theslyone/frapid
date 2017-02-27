@@ -4,14 +4,15 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | entity_access_policy_id | NOT NULL | integer | 0 |  |
-| 2 | entity_name |  | character varying | 128 |  |
-| 3 | office_id | NOT NULL | integer | 0 |  |
-| 4 | user_id | NOT NULL | integer | 0 |  |
-| 5 | access_type_id |  | integer | 0 |  |
-| 6 | allow_access | NOT NULL | boolean | 0 |  |
-| 7 | audit_user_id |  | integer | 0 |  |
-| 8 | audit_ts |  | timestamp with time zone | 0 |  |
+| 1 | entity_access_policy_id | [ ] | integer | 0 |  |
+| 2 | entity_name | [x] | character varying | 500 |  |
+| 3 | office_id | [ ] | integer | 0 |  |
+| 4 | user_id | [ ] | integer | 0 |  |
+| 5 | access_type_id | [x] | integer | 0 |  |
+| 6 | allow_access | [ ] | boolean | 0 |  |
+| 7 | audit_user_id | [x] | integer | 0 |  |
+| 8 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 9 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -47,6 +48,7 @@
 | --- | --- | --- |
 | 1 | entity_access_policy_id | nextval('auth.entity_access_policy_entity_access_policy_id_seq'::regclass) |
 | 8 | audit_ts | now() |
+| 9 | deleted | false |
 
 
 **Triggers**

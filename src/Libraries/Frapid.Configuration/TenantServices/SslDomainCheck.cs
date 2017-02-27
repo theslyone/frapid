@@ -4,7 +4,7 @@ using Serilog;
 
 namespace Frapid.Configuration.TenantServices
 {
-    public sealed class SslDomainCheck: ISslDomainCheck
+    public sealed class SslDomainCheck : ISslDomainCheck
     {
         public SslDomainCheck(ILogger logger, IDomainSerializer serializer)
         {
@@ -17,7 +17,7 @@ namespace Frapid.Configuration.TenantServices
 
         public bool EnforceSsl(string domain)
         {
-            if(string.IsNullOrWhiteSpace(domain))
+            if (string.IsNullOrWhiteSpace(domain))
             {
                 return false;
             }
@@ -27,7 +27,7 @@ namespace Frapid.Configuration.TenantServices
 
             var tenant = approvedDomains.FirstOrDefault(x => x.GetSubtenants().Contains(domain.ToLowerInvariant()));
 
-            if(tenant != null)
+            if (tenant != null)
             {
                 this.Logger.Verbose(tenant.EnforceSsl ? $"SSL is enforced on domain \"{domain}\"." : $"SSL is optional on domain \"{domain}\".");
                 return tenant.EnforceSsl;

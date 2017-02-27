@@ -50,9 +50,7 @@ namespace Frapid.Authorization.Models
                 return;
             }
 
-            await
-                Menus.SaveGroupPolicyAsync(appUser.Tenant, model.OfficeId, model.RoleId, model.MenuIds)
-                    .ConfigureAwait(false);
+            await Menus.SaveGroupPolicyAsync(appUser.Tenant, model.OfficeId, model.RoleId, model.MenuIds).ConfigureAwait(false);
         }
     }
 }

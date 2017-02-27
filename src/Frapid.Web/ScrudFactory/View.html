@@ -106,45 +106,44 @@
     }
 </style>
 
-
 <div class="ui view factory attached segment" style="display: none;">
     <div class="ui inverted active view dimmer">
         <div class="content">
             <div class="ui text loader">
-                <span data-localize="Titles.Loading"></span>
+                <span data-localize="Loading"></span>
             </div>
         </div>
     </div>
     <div id="VerificationPopUnder" class="ui initially hidden form popunder segment" style="width:400px;z-index:3; position: absolute;">
         <div class="ui grey header">
-            <span data-localize="Titles.Verification"></span>
+            <span data-localize="Verification"></span>
         </div>
         <div class="field">
             <label for="ReasonTextArea">
-                <span data-localize="Titles.Reason"></span>
+                <span data-localize="Reason"></span>
             </label>
             <textarea id="ReasonTextArea"></textarea>
         </div>
         <div class="ui buttons">
             <a id="ApproveButton" class="ui green button" href="javascript:void(0);">
-                <span data-localize="Titles.Approve"></span>
+                <span data-localize="Approve"></span>
             </a>
             <a id="RejectButton" class="ui orange button" href="javascript:void(0);">
-                <span data-localize="Titles.Reject"></span>
+                <span data-localize="Reject"></span>
             </a>
 
             <a href="javascript:void(0);" class="ui red button" onclick="$('#VerificationPopUnder').fadeOut(500);">
-                <span data-localize="Titles.Close"></span>
+                <span data-localize="Close"></span>
             </a>
         </div>
     </div>
 
     <div class="ui stackable divided grid">
         <div class="three wide filter column">
-            <div class="ui teal big header">Filters</div>
+            <div class="ui teal big header"><span data-localize="Filters"></span></div>
             <div class="ui divider"></div>
             <div data-filter-list class="ui relaxed filter list"></div>
-            <div class="ui small teal button" data-add-filter onclick="showView('filter', true)">Add New</div>
+            <button class="ui small teal button" data-add-filter onclick="showView('filter', true)"><span data-localize="AddNew"></span></button>
             <div class="vpad8"></div>
             <section class="filter section" style="display: none;">
                 <div class="ui teal header" data-filter-header></div>
@@ -163,25 +162,25 @@
             <div id="KanbanForm" class="ui small modal">
                 <i class="close icon"></i>
                 <div class="ui grey header">
-                    <span data-localize="Titles.AddAKanbanList"></span>
+                    <span data-localize="AddAKanbanList"></span>
                 </div>
                 <div class="content">
                     <div class="ui form">
                         <div class="field">
                             <label for="KanbanIdInputText">
-                                <span data-localize="Titles.KanbanId"></span>
+                                <span data-localize="KanbanId"></span>
                             </label>
                             <input type="text" readonly id="KanbanIdInputText" />
                         </div>
                         <div class="field">
                             <label for="KanbanNameInputText">
-                                <span data-localize="Titles.KanbanName"></span>
+                                <span data-localize="KanbanName"></span>
                             </label>
                             <input type="text" id="KanbanNameInputText" />
                         </div>
                         <div class="field">
                             <label for="KanbanDescriptionTextArea">
-                                <span data-localize="Titles.Description"></span>
+                                <span data-localize="Description"></span>
                             </label>
                             <textarea id="KanbanDescriptionTextArea"></textarea>
                         </div>
@@ -189,11 +188,11 @@
                 </div>
                 <div class="actions">
                     <div class="ui basic buttons">
-                        <div class="ui cancel button">
-                            <span data-localize="Titles.Cancel"></span>
-                        </div>
+                        <button class="ui cancel button">
+                            <span data-localize="Cancel"></span>
+                        </button>
                         <a href="javascript:void(0);" class="ui button" onclick="saveOrUpdateKanban();">
-                            <span data-localize="Titles.OK"></span>
+                            <span data-localize="OK"></span>
                         </a>
                     </div>
                 </div>
@@ -202,53 +201,56 @@
                 <div class="twelve wide column">
                     <div class="ui basic buttons">
                         <a id="AddNewButton" class="ui basic button">
-                            <span data-localize="Titles.AddNew"></span>
+                            <span data-localize="AddNew"></span>
+                        </a>
+                        <a id="VerifyButton" class="ui basic button" style="display: none;">
+                            <span data-localize="Verify"></span>
                         </a>
                         <div class="ui icon top left pointing dropdown basic button" id="ExportDropDown">
                             <span>
-                                <span data-localize="Titles.Export"></span>
+                                <span data-localize="Export"></span>
                             </span>
                             <div class="menu">
                                 <div class="header">
-                                    <span data-localize="Titles.ExportThisDocument"></span>
+                                    <span data-localize="ExportThisDocument"></span>
                                 </div>
                                 <a class="item" href="javascript:void(0);" onclick="createDoc();">
                                     <i class="file word outline blue icon"></i>
-                                    <span data-localize="Titles.ExportToDoc"></span>
+                                    <span data-localize="ExportToDoc"></span>
                                 </a>
                                 <a class="item" href="javascript:void(0);" onclick="createXls();">
                                     <i class="file excel outline green icon"></i>
-                                    <span data-localize="Titles.ExportToExcel"></span>
+                                    <span data-localize="ExportToExcel"></span>
                                 </a>
                                 <a class="item" href="javascript:void(0);" onclick="createPDF();">
                                     <i class="file pdf outline red icon"></i>
-                                    <span data-localize="Titles.ExportToPDF"></span>
+                                    <span data-localize="ExportToPDF"></span>
                                 </a>
                             </div>
                         </div>
                         <a id="PrintButton" href="javascript:void(0);" onclick="print()" class="ui basic button">
-                            <span data-localize="Titles.Print"></span>
+                            <span data-localize="Print"></span>
                         </a>
                     </div>
                 </div>
                 <div class="right aligned four wide column">
                     <div class="ui basic icon action mini buttons">
-                        <a class="ui basic icon button" data-target="grid" title="Grid View">
+                        <a class="ui basic icon button" data-target="grid" data-localized-title="GridView">
                             <i class="grid layout icon"></i>
                         </a>
-                        <a class="ui active green basic icon button" data-target="kanban" title="Kanban View">
+                        <a class="ui active green basic icon button" data-target="kanban" data-localized-title="KanbanView">
                             <i class="block layout icon"></i>
                         </a>
-                        <a class="ui basic icon button" data-target="filter" title="Manage Filters">
+                        <a class="ui basic icon button" data-target="filter" data-localized-title="FilterView">
                             <i class="icons">
                                 <i class="filter layout icon"></i>
                                 <i class="corner add icon"></i>
                             </i>
                         </a>
-                        <a class="ui basic icon button" data-target="import" title="Import">
+                        <a class="ui basic icon button" data-target="import" data-localized-title="Import">
                             <i class="upload layout icon"></i>
                         </a>
-                        <a class="ui basic icon button" onclick="clearQuery();" title="Clear Filters">
+                        <a class="ui basic icon button" onclick="clearQuery();" data-localized-title="ClearFilters">
                             <i class="delete icon"></i>
                         </a>
                     </div>
@@ -256,7 +258,7 @@
             </div>
             <div class="ui stackable form segment" ID="Annotation" style="display: none;">
                 <div class="field">
-                    <div class="ui green button" id="ShowButton">Show</div>
+                    <button class="ui green button" id="ShowButton"><span data-localize="Show"></span></button>
                 </div>
             </div>
             <div class="ui stackable grid">
@@ -283,33 +285,33 @@
                             <div class="five fields">
                                 <div class="field">
                                     <label for="ColumnSelect">
-                                        <span data-localize="Titles.SelectAColumn"></span>
+                                        <span data-localize="SelectAColumn"></span>
                                     </label>
                                     <select class="ui search dropdown" id="ColumnSelect" data-scope="column" required></select>
                                 </div>
                                 <div class="field">
                                     <label for="FilterConditionSelect">
-                                        <span data-localize="Titles.FilterCondition"></span>
+                                        <span data-localize="FilterCondition"></span>
                                     </label>
                                     <select class="ui search dropdown" id="FilterConditionSelect" data-scope="filter-condition" required></select>
                                 </div>
                                 <div class="field">
                                     <label for="ValueInputText">
-                                        <span data-localize="Titles.Value"></span>
+                                        <span data-localize="Value"></span>
                                     </label>
                                     <input id="ValueInputText" required />
                                 </div>
                                 <div class="field">
                                     <label for="AndInputText">
-                                        <span data-localize="Titles.And"></span>
+                                        <span data-localize="And"></span>
                                     </label>
                                     <input id="AndInputText" readonly="readonly" />
                                 </div>
                                 <div class="field">
                                     <label>&nbsp;</label>
-                                    <a href="javascript:void(0);" class="ui button" id="AddFilterButton">
-                                        <span data-localize="Titles.Add"></span>
-                                    </a>
+                                    <button class="ui button" id="AddFilterButton">
+                                        <span data-localize="Add"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -318,70 +320,70 @@
                             <thead>
                                 <tr>
                                     <th style="width: 100px;">
-                                        <span data-localize="Titles.Actions"></span>
+                                        <span data-localize="Actions"></span>
                                     </th>
                                     <th>
-                                        <span data-localize="Titles.ColumnName"></span>
+                                        <span data-localize="ColumnName"></span>
                                     </th>
                                     <th>
-                                        <span data-localize="Titles.Condition"></span>
+                                        <span data-localize="Condition"></span>
                                     </th>
                                     <th>
-                                        <span data-localize="Titles.Value"></span>
+                                        <span data-localize="Value"></span>
                                     </th>
                                     <th>
-                                        <span data-localize="Titles.And"></span>
+                                        <span data-localize="And"></span>
                                     </th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
                         </table>
                         <div class="ui large grey header">
-                            <span data-localize="Titles.SaveThisFilter"></span>
+                            <span data-localize="SaveThisFilter"></span>
                         </div>
                         <div class="ui divider"></div>
                         <div class="ui form">
                             <div class="fields">
                                 <div class="four wide field">
                                     <label>
-                                        <span data-localize="Titles.FilterName"></span>
+                                        <span data-localize="FilterName"></span>
                                     </label>
                                     <input id="FilterNameInputText" />
                                 </div>
                             </div>
                             <div class="ui basic buttons">
-                                <div class="ui basic button" id="SaveFilterButton">
-                                    <span data-localize="Titles.Save"></span>
-                                </div>
-                                <div class="ui basic button" id="ManageFiltersButton">
-                                    <span data-localize="Titles.ManageFilters"></span>
-                                </div>
-                                <div class="ui basic button">
-                                    <span data-localize="Titles.Cancel"></span>
-                                </div>
+                                <button class="ui basic button" id="SaveFilterButton">
+                                    <span data-localize="Save"></span>
+                                </button>
+                                <button class="ui basic button" id="ManageFiltersButton">
+                                    <span data-localize="ManageFilters"></span>
+                                </button>
+                                <button class="ui basic button">
+                                    <span data-localize="Cancel"></span>
+                                </button>
                             </div>
                         </div>
 
                         <div class="ui filter small modal">
                             <i class="close icon"></i>
                             <div class="ui huge grey header">
-                                <span data-localize="Titles.ManageFilters"></span>
+                                <span data-localize="ManageFilters"></span>
                             </div>
                             <div class="content">
                                 <div class="ui form" style="max-width: 400px;">
                                     <div class="field">
-                                        <label><span data-localize="Titles.SelectAFilter"></span></label>
+                                        <label><span data-localize="SelectAFilter"></span></label>
                                         <select class="ui search dropdown filter" id="FilterSelect"></select>
                                     </div>
                                     <div class="ui basic buttons">
                                         <a class="ui close button" onclick="loadFilterForEdit();">
-                                            <span data-localize="Titles.Edit"></span>
+                                            <span data-localize="Edit"></span>
                                         </a>
                                         <a class="ui close button" onclick="deleteSavedFilter();">
-                                            <span data-localize="Titles.Delete"></span>
+                                            <span data-localize="Delete"></span>
                                         </a>
                                         <a class="ui close button">
-                                            <span data-localize="Titles.Close"></span>
+                                            <span data-localize="Close"></span>
                                         </a>
                                     </div>
 
@@ -390,10 +392,10 @@
                             <div class="actions">
                                 <div class="ui basic buttons">
                                     <a class="ui basic close button" id="RemoveDefaultFilterButton">
-                                        <span data-localize="Titles.RemoveAsDefault"></span>
+                                        <span data-localize="RemoveAsDefault"></span>
                                     </a>
                                     <a class="ui basic button" id="MakeUserDefaultFilterButton">
-                                        <span data-localize="Titles.MakeAsDefault"></span>
+                                        <span data-localize="MakeAsDefault"></span>
                                     </a>
                                 </div>
                             </div>
@@ -402,16 +404,16 @@
 
                     <div class="vpad16" data-target="import">
                         <div class="ui huge grey header">
-                            <span data-localize="Titles.DataImport"></span>
+                            <span data-localize="DataImport"></span>
                         </div>
 
                         <div class="ui basic buttons">
                             <a class="ui basic button" id="DownloadTemplateButton">
-                                <span data-localize="Titles.ExportData"></span>
+                                <span data-localize="ExportData"></span>
                             </a>
                             <div class="ui basic button">
                                 <label for="file">
-                                    <span data-localize="Titles.ImportData"></span>
+                                    <span data-localize="ImportData"></span>
                                 </label>
                                 <input type="file" id="file" style="display:none;">
                             </div>
@@ -440,10 +442,10 @@
                         <div class="right aligned ten wide column">
                             <a class="ui left attached labeled icon button" onclick="showPreviousPage();">
                                 <i class="left arrow icon"></i>
-                                <span data-localize="Titles.Previous"></span>
+                                <span data-localize="Previous"></span>
                             </a>
                             <a class="ui right attached right labeled icon button" onclick="showNextPage();">
-                                <span data-localize="Titles.Next"></span>
+                                <span data-localize="Next"></span>
                                 <i class="right arrow icon"></i>
                             </a>
                         </div>
@@ -458,4 +460,4 @@
 </div>
 
 <input type="hidden" id="MarkupHidden" />
-<a id="DownloadAnchor" download />
+<a id="DownloadAnchor" download></a>

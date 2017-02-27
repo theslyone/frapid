@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Frapid.Configuration;
-using Frapid.Installer.Models;
+using Frapid.Configuration.Models;
 using Newtonsoft.Json;
 
 namespace Frapid.Installer

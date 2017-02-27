@@ -37,13 +37,14 @@ namespace Frapid.Mapper.Helpers
         public static IDictionary<string, object> AsDictionary(this object source, BindingFlags bindingAttr = BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance)
         {
             var expandoObject = source as ExpandoObject;
+            var ignored = source.GetIgnoredColumns();
 
             if (expandoObject != null)
             {
                 return (IDictionary<string, object>) source;
             }
 
-            return source.GetType().GetProperties(bindingAttr).ToDictionary
+            return source.GetType().GetProperties(bindingAttr).Where(x => !ignored.Contains(x.Name)).ToDictionary
                 (
                     propInfo => propInfo.Name,
                     propInfo => propInfo.GetValue(source, null)

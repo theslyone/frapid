@@ -315,7 +315,7 @@ works properly when clicked or hovered */
 html .ui-button.ui-state-disabled:hover,
 html .ui-button.ui-state-disabled:active {
 	border: 1px solid #666;
-	background: #5a5a5a url("/Scripts/jquery-ui/css/custom-theme/images/ui-bg_dots-small_20_5a5a5a_2x2.png") 50% 50% repeat;
+	background: #5a5a5a url("/scripts/jquery-ui/css/custom-theme/images/ui-bg_dots-small_20_5a5a5a_2x2.png") 50% 50% repeat;
 	font-weight: normal;
 	color: #eee;
 }
@@ -338,7 +338,7 @@ a:visited.ui-button,
 .ui-button:hover,
 .ui-button:focus {
 	border: 1px solid #222222;
-	background: #333 url("/Scripts/jquery-ui/css/custom-theme/images/ui-bg_glass_40_333_1x400.png") 50% 50% repeat-x;
+	background: #333 url("/scripts/jquery-ui/css/custom-theme/images/ui-bg_glass_40_333_1x400.png") 50% 50% repeat-x;
 	font-weight: normal;
 	color: #eee;
 }
@@ -388,7 +388,7 @@ a.ui-button:active,
 .ui-widget-content .ui-state-highlight,
 .ui-widget-header .ui-state-highlight {
 	border: 1px solid #97023e;
-	background: #d40058 url("/Scripts/jquery-ui/css/custom-theme/images/ui-bg_glass_40_d40058_1x400.png") 50% 50% repeat-x;
+	background: #d40058 url("/scripts/jquery-ui/css/custom-theme/images/ui-bg_glass_40_d40058_1x400.png") 50% 50% repeat-x;
 	color: #ffffff;
 }
 .ui-state-checked {
@@ -404,7 +404,7 @@ a.ui-button:active,
 .ui-widget-content .ui-state-error,
 .ui-widget-header .ui-state-error {
 	border: 1px solid #cd0a0a;
-	background: #a32d00 url("/Scripts/jquery-ui/css/custom-theme/images/ui-bg_dots-small_30_a32d00_2x2.png") 50% 50% repeat;
+	background: #a32d00 url("/scripts/jquery-ui/css/custom-theme/images/ui-bg_dots-small_30_a32d00_2x2.png") 50% 50% repeat;
 	color: #ffffff;
 }
 .ui-state-error a,
@@ -450,31 +450,31 @@ a.ui-button:active,
 }
 .ui-icon,
 .ui-widget-content .ui-icon {
-	background-image: url("/Scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
+	background-image: url("/scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
 }
 .ui-widget-header .ui-icon {
-	background-image: url("/Scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
+	background-image: url("/scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
 }
 .ui-state-hover .ui-icon,
 .ui-state-focus .ui-icon,
 .ui-button:hover .ui-icon,
 .ui-button:focus .ui-icon {
-	background-image: url("/Scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
+	background-image: url("/scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
 }
 .ui-state-active .ui-icon,
 .ui-button:active .ui-icon {
-	background-image: url("/Scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
+	background-image: url("/scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
 }
 .ui-state-highlight .ui-icon,
 .ui-button .ui-state-highlight.ui-icon {
-	background-image: url("/Scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
+	background-image: url("/scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
 }
 .ui-state-error .ui-icon,
 .ui-state-error-text .ui-icon {
-	background-image: url("/Scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
+	background-image: url("/scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
 }
 .ui-button .ui-icon {
-	background-image: url("/Scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
+	background-image: url("/scripts/jquery-ui/css/custom-theme/images/ui-icons_aaa_256x240.png");
 }
 
 /* positioning */

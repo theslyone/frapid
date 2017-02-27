@@ -5,12 +5,12 @@ namespace Frapid.Areas.SpamTrap
 {
     public sealed class DnsQueryable : IDnsQueryable
     {
-        public IHostEntryResolver Resolver { get; set; }
-
         public DnsQueryable(IHostEntryResolver resolver)
         {
             this.Resolver = resolver;
         }
+
+        public IHostEntryResolver Resolver { get; set; }
 
         public bool Query(string address)
         {

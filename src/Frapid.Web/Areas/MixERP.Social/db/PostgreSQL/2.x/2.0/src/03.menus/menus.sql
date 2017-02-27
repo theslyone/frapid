@@ -16,10 +16,10 @@ DELETE FROM core.menus
 WHERE app_name = 'Social';
 
 
-SELECT * FROM core.create_app('Social', 'Social', '1.0', 'MixERP Inc.', 'December 1, 2015', 'orange users', '/dashboard/social', NULL);
+SELECT * FROM core.create_app('Social', 'Social', 'Social', '1.0', 'MixERP Inc.', 'December 1, 2015', 'orange users', '/dashboard/social', NULL);
 
-SELECT * FROM core.create_menu('Social', 'Tasks', '', 'lightning', '');
-SELECT * FROM core.create_menu( 'Social', 'Social', '/dashboard/social', 'users', 'Tasks');
+SELECT * FROM core.create_menu('Social', 'Tasks', 'Tasks', '', 'lightning', '');
+SELECT * FROM core.create_menu( 'Social', 'Social', 'Social', '/dashboard/social', 'users', 'Tasks');
 
 
 

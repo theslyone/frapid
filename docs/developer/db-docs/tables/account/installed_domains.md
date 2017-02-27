@@ -4,9 +4,12 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | domain_id | NOT NULL | integer | 0 |  |
-| 2 | domain_name |  | character varying | 500 |  |
-| 3 | admin_email |  | character varying | 500 |  |
+| 1 | domain_id | [ ] | integer | 0 |  |
+| 2 | domain_name | [x] | character varying | 500 |  |
+| 3 | admin_email | [x] | character varying | 500 |  |
+| 4 | audit_user_id | [x] | integer | 0 |  |
+| 5 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 6 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -14,6 +17,7 @@
 
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
+| 4 | [audit_user_id](../account/users.md) | installed_domains_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -38,6 +42,8 @@
 | # | Column Name | Default |
 | --- | --- | --- |
 | 1 | domain_id | nextval('account.installed_domains_domain_id_seq'::regclass) |
+| 5 | audit_ts | now() |
+| 6 | deleted | false |
 
 
 **Triggers**

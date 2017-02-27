@@ -1,85 +1,85 @@
 ﻿@model Frapid.Authorization.ViewModels.GroupEntityAccessPolicy
 
 @{
-    ViewBag.Title = "Group Entity Access Policy";
+    ViewBag.Title = I18N.GroupEntityAccessPolicy;
     Layout = ViewBag.Layout;
 }
 
-    <div class="ui attached padded segment">
-        <div class="ui huge header">Entity Access - Group Policy</div>
-        <div class="ui divider"></div>
-        <div class="ui vpad8 form">
-            <div class="three fields">
-                <div class="field">
-                    <label>Select a Role</label>
-                    <select id="RoleDropdown" class="ui search dropdown">
-                        <option>Select</option>
-                        @foreach (var item in Model.Roles)
-                        {
-                            <option value="@item.RoleId">@item.RoleName</option>
-                        }
-                    </select>
-                </div>
-                <div class="field">
-                    <label>Select an Office</label>
-                    <select id="OfficeDropdown" class="ui search dropdown">
-                        <option>Select</option>
-                        @foreach (var item in Model.Offices)
-                        {
-                            <option value="@item.OfficeId">@item.OfficeCode (@item.OfficeName)</option>
-                        }
-                    </select>
-                </div>
-                <div class="field">
-                    <label>&nbsp;</label>
-                    <button data-get-policy-button class="ui positive button">Load</button>
-                </div>
+<div class="ui attached padded segment">
+    <div class="ui huge header">@I18N.EntityAccessGroupPolicy</div>
+    <div class="ui divider"></div>
+    <div class="ui vpad8 form">
+        <div class="three fields">
+            <div class="field">
+                <label>@I18N.SelectARole</label>
+                <select id="RoleDropdown" class="ui search dropdown">
+                    <option>@I18N.Select</option>
+                    @foreach (var item in Model.Roles)
+                    {
+                        <option value="@item.RoleId">@item.RoleName</option>
+                    }
+                </select>
+            </div>
+            <div class="field">
+                <label>@I18N.SelectAnOffice</label>
+                <select id="OfficeDropdown" class="ui search dropdown">
+                    <option>@I18N.Select</option>
+                    @foreach (var item in Model.Offices)
+                    {
+                        <option value="@item.OfficeId">@item.OfficeCode (@item.OfficeName)</option>
+                    }
+                </select>
+            </div>
+            <div class="field">
+                <label>&nbsp;</label>
+                <button data-get-policy-button class="ui positive button">@I18N.Load</button>
             </div>
         </div>
+    </div>
 
-        <table class="ui attached selector table">
-            <thead>
-            <tr>
+    <table class="ui attached selector table">
+        <thead>
+        <tr>
+            <th>
+                @I18N.Entity
+            </th>
+            @foreach (var type in Model.AccessTypes)
+            {
                 <th>
-                    Entity
+                    <input type="checkbox" id="AccessInputCheckbox@(type.AccessTypeId)" data-toggle-target="@type.AccessTypeId"/>
+                    <label for="AccessInputCheckbox@(type.AccessTypeId)">@type.AccessTypeName</label>
                 </th>
+            }
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Entities)
+        {
+            <tr data-object-id="@item.ObjectId">
+                <td>
+                    @item.Name
+                </td>
                 @foreach (var type in Model.AccessTypes)
                 {
-                    <th>
-                        <input type="checkbox" id="AccessInputCheckbox@(type.AccessTypeId)" data-toggle-target="@type.AccessTypeId"/>
-                        <label for="AccessInputCheckbox@(type.AccessTypeId)">@type.AccessTypeName</label>                       
-                    </th>
+                    <td>
+                        <input type="checkbox" data-type="@type.AccessTypeId"/>
+                    </td>
                 }
             </tr>
-            </thead>
-            <tbody>
-            @foreach (var item in Model.Entities)
-            {
-                <tr data-object-id="@item.ObjectId">
-                    <td>
-                        @item.Name
-                    </td>
-                    @foreach (var type in Model.AccessTypes)
-                    {
-                        <td>
-                            <input type="checkbox" data-type="@type.AccessTypeId"/>
-                        </td>
-                    }
-                </tr>
-            }
-            </tbody>
-        </table>
-        <div class="vpad8"></div>
-        <button data-save-button class="ui positive button">Save</button>
-    </div>
+        }
+        </tbody>
+    </table>
+    <div class="vpad8"></div>
+    <button data-save-button class="ui positive button">@I18N.Save</button>
+</div>
 <script>
-    $("[data-toggle-target]").change(function () {
-        var el = $(this);
-        var target = el.attr("data-toggle-target");
+    $("[data-toggle-target]").change(function() {
+        const el = $(this);
+        const target = el.attr("data-toggle-target");
 
-        var state = el.prop("checked");
-        var table = el.closest("table");
-        var selector = "[data-type=" + target + "]";
+        const state = el.prop("checked");
+        const table = el.closest("table");
+        const selector = `[data-type=${target}]`;
 
         if (!state) {
             $(selector).removeAttr("checked");
@@ -89,7 +89,7 @@
         table.find(selector).prop("checked", true);
     });
 
-    $(window).keypress(function (event) {
+    $(window).keypress(function(event) {
         if (!(event.which === 115 && event.ctrlKey) && !(event.which === 19)) return true;
         save();
         event.preventDefault();
@@ -103,18 +103,18 @@
             url = url.replace("{officeId}", officeId);
             url = url.replace("{roleId}", roleId);
 
-            var data = JSON.stringify(model);
+            const data = JSON.stringify(model);
 
             return window.getAjaxRequest(url, "POST", data);
         };
 
-        var confirmed = window.confirmAction();
+        const confirmed = window.confirmAction();
         if (!confirmed) {
             return;
         };
 
-        var roleId = parseInt($("#RoleDropdown").val() || 0);
-        var officeId = parseInt($("#OfficeDropdown").val() || 0);
+        const roleId = parseInt($("#RoleDropdown").val() || 0);
+        const officeId = parseInt($("#OfficeDropdown").val() || 0);
 
         if (!roleId || !officeId) {
             return;
@@ -123,17 +123,17 @@
         var model = [];
 
         $("table tbody tr").each(function() {
-            var row = $(this);
+            const row = $(this);
             var objectId = row.attr("data-object-id");
 
-            var members = row.find("input[type=checkbox]");
+            const members = row.find("input[type=checkbox]");
             $.each(members, function() {
-                var el = $(this);
+                const el = $(this);
 
-                var allowed = el.is(":checked");
+                const allowed = el.is(":checked");
 
                 if (allowed) {
-                    var accessTypeId = el.attr("data-type");
+                    const accessTypeId = el.attr("data-type");
 
                     model.push({
                         EntityName: objectId,
@@ -146,23 +146,23 @@
         });
 
 
-        var ajax = request(officeId, roleId, model);
+        const ajax = request(officeId, roleId, model);
 
-        ajax.success(function () {
+        ajax.success(function() {
             window.displaySuccess();
         });
 
-        ajax.fail(function (xhr) {
+        ajax.fail(function(xhr) {
             window.logAjaxErrorMessage(xhr);
         });
     };
 
-    $("[data-save-button]").off("click").on("click", function () {
+    $("[data-save-button]").off("click").on("click", function() {
         save();
     });
 
 
-    $("[data-get-policy-button]").off("click").on("click", function () {
+    $("[data-get-policy-button]").off("click").on("click", function() {
         function request(officeId, roleId) {
             var url = "/dashboard/authorization/entity-access/group-policy/{officeId}/{roleId}";
             url = url.replace("{officeId}", officeId);
@@ -171,27 +171,27 @@
             return window.getAjaxRequest(url);
         };
 
-        var roleId = parseInt($("#RoleDropdown").val() || 0);
-        var officeId = parseInt($("#OfficeDropdown").val() || 0);
+        const roleId = parseInt($("#RoleDropdown").val() || 0);
+        const officeId = parseInt($("#OfficeDropdown").val() || 0);
 
         if (!roleId || !officeId) {
             return;
         };
 
-        var ajax = request(officeId, roleId);
+        const ajax = request(officeId, roleId);
 
-        ajax.success(function (response) {
+        ajax.success(function(response) {
             $("table input[type=checkbox]").removeAttr("checked");
 
-            $.each(response, function () {
+            $.each(response, function() {
                 var selector = "tr[data-object-id=\"{entityName}\"]";
                 selector = selector.replace("{entityName}", this.EntityName);
 
-                var row = $(selector);
+                const row = $(selector);
                 selector = "[data-type=\"{accessTypeId}\"]";
                 selector = selector.replace("{accessTypeId}", this.AccessTypeId);
 
-                var target = row.find(selector);
+                const target = row.find(selector);
 
                 if (this.AllowAccess) {
                     target.prop("checked", true);

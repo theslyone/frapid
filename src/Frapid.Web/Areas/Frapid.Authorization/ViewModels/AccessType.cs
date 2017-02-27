@@ -15,7 +15,7 @@ namespace Frapid.Authorization.ViewModels
             var accessTypes = Enum.GetNames(typeof(AccessTypeEnum)).Where(x => !x.Equals("None")).Select(item => new AccessType
             {
                 AccessTypeName = item,
-                AccessTypeId = (int)Enum.Parse(typeof(AccessTypeEnum), item)
+                AccessTypeId = (int) Enum.Parse(typeof(AccessTypeEnum), item)
             }).ToList();
 
             return accessTypes;

@@ -42,14 +42,12 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             if (!File.Exists(Path.Combine(directory, theme.HomepageLayout)))
             {
-                throw new ThemeInfoException(
-                    "The homepage layout path of this theme as per the configuration file does not exist or is invalid.");
+                throw new ThemeInfoException(Resources.InvalidThemeInvalidHomepageLayoutPath);
             }
 
             if (!File.Exists(Path.Combine(directory, theme.DefaultLayout)))
             {
-                throw new ThemeInfoException(
-                    "The default layout path of this theme as per the configuration file does not exist or is invalid.");
+                throw new ThemeInfoException(Resources.InvalidThemeInvalidDefaultLayoutPath);
             }
 
             theme.IsValid = true;

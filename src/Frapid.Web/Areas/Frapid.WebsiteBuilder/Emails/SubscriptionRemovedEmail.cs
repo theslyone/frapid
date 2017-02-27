@@ -13,8 +13,7 @@ namespace Frapid.WebsiteBuilder.Emails
 {
     public class SubscriptionRemovedEmail
     {
-        private const string TemplatePath =
-            "~/Tenants/{0}/Areas/Frapid.WebsiteBuilder/EmailTemplates/email-subscription-removed.html";
+        private const string TemplatePath = "~/Tenants/{0}/Areas/Frapid.WebsiteBuilder/EmailTemplates/email-subscription-removed.html";
 
         private string GetMessage(string tenant, Subscribe model)
         {
@@ -41,7 +40,7 @@ namespace Frapid.WebsiteBuilder.Emails
         {
             var config = EmailProcessor.GetDefaultConfig(tenant);
             string domain = HttpContext.Current.Request.Url.Host;
-            string subject = string.Format(CultureInfo.InvariantCulture, "You are now unsubscribed on {0}", domain);
+            string subject = string.Format(CultureInfo.InvariantCulture, Resources.YouAreNowUnsubscribedOnSite, domain);
 
             return new EmailQueue
             {
@@ -63,14 +62,14 @@ namespace Frapid.WebsiteBuilder.Emails
                 await manager.AddAsync().ConfigureAwait(false);
 
                 var processor = EmailProcessor.GetDefault(tenant);
-                if(processor != null)
+                if (processor != null)
                 {
                     if (string.IsNullOrWhiteSpace(email.ReplyTo))
                     {
                         email.ReplyTo = processor.Config.FromEmail;
                     }
 
-                    await manager.ProcessMailQueueAsync(processor).ConfigureAwait(false);                    
+                    await manager.ProcessQueueAsync(processor).ConfigureAwait(false);
                 }
             }
             catch

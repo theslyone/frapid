@@ -32,14 +32,14 @@ namespace Frapid.Areas.Drawing
 
         public static Image ResizeProportional(this Image img, int width, int height, bool enlarge = false)
         {
-            double ratio = Math.Max(img.Width / (double)width, img.Height / (double)height);
+            double ratio = Math.Max(img.Width/(double) width, img.Height/(double) height);
 
             if (ratio < 1 && !enlarge)
             {
                 return img;
             }
 
-            return img.Resize(0, 0, img.Width, img.Height, (int)Math.Round(img.Width / ratio), (int)Math.Round(img.Height / ratio));
+            return img.Resize(0, 0, img.Width, img.Height, (int) Math.Round(img.Width/ratio), (int) Math.Round(img.Height/ratio));
         }
 
         public static byte[] ResizeCropExcess(string path, int destinationWidth = 0, int destinationHeight = 0)
@@ -60,21 +60,21 @@ namespace Frapid.Areas.Drawing
                     destinationHeight = img.Height;
                 }
 
-                double sourceRatio = img.Width / (double)img.Height;
-                double destinationRatio = destinationWidth / (double)destinationHeight;
+                double sourceRatio = img.Width/(double) img.Height;
+                double destinationRatio = destinationWidth/(double) destinationHeight;
                 int x, y, croppedWidth, croppedHeight;
 
                 if (sourceRatio < destinationRatio) // trim top and bottom
                 {
-                    croppedHeight = destinationHeight * img.Width / destinationWidth;
-                    y = (img.Height - croppedHeight) / 2;
+                    croppedHeight = destinationHeight*img.Width/destinationWidth;
+                    y = (img.Height - croppedHeight)/2;
                     croppedWidth = img.Width;
                     x = 0;
                 }
                 else // trim left and right
                 {
-                    croppedWidth = destinationWidth * img.Height / destinationHeight;
-                    x = (img.Width - croppedWidth) / 2;
+                    croppedWidth = destinationWidth*img.Height/destinationHeight;
+                    x = (img.Width - croppedWidth)/2;
                     croppedHeight = img.Height;
                     y = 0;
                 }

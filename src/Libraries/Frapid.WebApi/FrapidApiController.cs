@@ -30,8 +30,8 @@ namespace Frapid.WebApi
 
             if (token != null)
             {
-                AppUsers.SetCurrentLoginAsync(this.Tenant, token.LoginId).Wait();
-                var loginView = AppUsers.GetCurrentAsync(this.Tenant, token.LoginId).Result;
+                AppUsers.SetCurrentLoginAsync(this.Tenant, token.LoginId).GetAwaiter().GetResult();
+                var loginView = AppUsers.GetCurrentAsync(this.Tenant, token.LoginId).GetAwaiter().GetResult();
 
                 this.AppUser = new AppUser
                 {

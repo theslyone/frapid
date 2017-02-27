@@ -84,6 +84,10 @@
       <Project>{a4dee358-3203-425c-80e9-8eba0a01b73f}</Project>
       <Name>Frapid.Framework</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Frapid.i18n\Frapid.i18n.csproj">
+      <Project>{88dfdf57-a52b-4d71-a0c4-bef1a3839506}</Project>
+      <Name>Frapid.i18n</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

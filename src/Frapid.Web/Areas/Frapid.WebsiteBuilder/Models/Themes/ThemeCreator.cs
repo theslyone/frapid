@@ -2,7 +2,6 @@ using System.IO;
 using System.Text;
 using System.Web.Hosting;
 using System.Xml;
-using Frapid.Configuration;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
@@ -26,14 +25,12 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             if (directory == null)
             {
-                throw new ThemeCreateException(
-                    "Could not create the theme because the destination directory could not be located.");
+                throw new ThemeCreateException(Resources.CouldNotCreateThemeInvalidDestinationDirectory);
             }
 
             if (Directory.Exists(directory))
             {
-                throw new ThemeCreateException(
-                    "Could not create the theme because the destination directory already exists.");
+                throw new ThemeCreateException(Resources.CouldNotCreateThemeDestinationDirectoryAlreadyExists);
             }
 
             Directory.CreateDirectory(directory);

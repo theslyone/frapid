@@ -15,14 +15,14 @@ namespace Frapid.TokenManager
 
         private static T Get<T>(string key, T defaultValue)
         {
-            if(Config == null)
+            if (Config == null)
             {
                 Config = TokenManager.Config.Get();
             }
 
             var val = Config[key].Value<T>();
 
-            if(val == null)
+            if (val == null)
             {
                 return defaultValue;
             }

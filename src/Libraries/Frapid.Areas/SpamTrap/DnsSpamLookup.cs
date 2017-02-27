@@ -2,16 +2,16 @@ namespace Frapid.Areas.SpamTrap
 {
     public sealed class DnsSpamLookup : IDnsSpamLookup
     {
-        public IIpAddressReverser Reverser { get; set; }
-        public IDnsQueryable Queryable { get; set; }
-        public string[] RblServers { get; set; }
-
         public DnsSpamLookup(IIpAddressReverser reverser, IDnsQueryable queryable, string[] rblServers)
         {
             this.Reverser = reverser;
             this.Queryable = queryable;
             this.RblServers = rblServers;
         }
+
+        public IIpAddressReverser Reverser { get; set; }
+        public IDnsQueryable Queryable { get; set; }
+        public string[] RblServers { get; set; }
 
         public DnsSpamLookupResult IsListedInSpamDatabase(string ipAddress)
         {
@@ -25,16 +25,15 @@ namespace Frapid.Areas.SpamTrap
                 if (result)
                 {
                     return new DnsSpamLookupResult
-                           {
-                               IpAddress = ipAddress,
-                               RblServer = server,
-                               IsListed = true
-                           };
+                    {
+                        IpAddress = ipAddress,
+                        RblServer = server,
+                        IsListed = true
+                    };
                 }
             }
 
             return new DnsSpamLookupResult();
         }
-
     }
 }

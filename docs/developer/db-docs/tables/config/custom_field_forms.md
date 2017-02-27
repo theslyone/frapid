@@ -4,9 +4,12 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | form_name | NOT NULL | character varying | 100 |  |
-| 2 | table_name | NOT NULL | character varying | 100 |  |
-| 3 | key_name | NOT NULL | character varying | 100 |  |
+| 1 | form_name | [ ] | character varying | 100 |  |
+| 2 | table_name | [ ] | character varying | 500 |  |
+| 3 | key_name | [ ] | character varying | 500 |  |
+| 4 | audit_user_id | [x] | integer | 0 |  |
+| 5 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 6 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -14,6 +17,7 @@
 
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
+| 4 | [audit_user_id](../account/users.md) | custom_field_forms_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -37,6 +41,8 @@
 
 | # | Column Name | Default |
 | --- | --- | --- |
+| 5 | audit_ts | now() |
+| 6 | deleted | false |
 
 
 **Triggers**

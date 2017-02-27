@@ -7,7 +7,7 @@ using Frapid.Configuration.Db;
 using Frapid.DataAccess;
 using Frapid.DataAccess.Models;
 using Frapid.DbPolicy;
-using Frapid.Framework.Extensions;
+using Frapid.i18n;
 using Frapid.Mapper;
 using Frapid.Mapper.Database;
 using Serilog;
@@ -20,7 +20,7 @@ namespace Frapid.WebApi.DataAccess
 
         public ViewRepository(string schemaName, string tableName, string database, long loginId, int userId)
         {
-            var appUser = AppUsers.GetCurrentAsync().Result;
+            var appUser = AppUsers.GetCurrentAsync().GetAwaiter().GetResult();
 
             this._ObjectNamespace = Sanitizer.SanitizeIdentifierName(schemaName);
             this._ObjectName = Sanitizer.SanitizeIdentifierName(tableName.Replace("-", "_"));
@@ -70,7 +70,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -94,7 +94,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to the export entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -118,7 +118,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}", this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -142,7 +142,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}", this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -166,7 +166,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to the first page of the entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -197,11 +197,11 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to Page #{pageNumber} of the entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
-            long offset = (pageNumber - 1) * PageSize;
+            long offset = (pageNumber - 1)*PageSize;
 
             //"SELECT * FROM {this.FullyQualifiedObjectName} 
             //ORDER BY {this.PrimaryKey} LIMIT PageSize OFFSET @0;";
@@ -236,7 +236,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filters: {filters}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -262,11 +262,11 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to Page #{pageNumber} of the filtered entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filters: {filters}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
-            long offset = (pageNumber - 1) * PageSize;
+            long offset = (pageNumber - 1)*PageSize;
             var sql = new Sql($"SELECT * FROM {this.FullyQualifiedObjectName} WHERE 1 = 1");
 
             FilterManager.AddFilters(ref sql, filters);
@@ -298,7 +298,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to count entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filter: {filterName}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -326,13 +326,13 @@ namespace Frapid.WebApi.DataAccess
                 {
                     Log.Information(
                         $"Access to Page #{pageNumber} of the filtered entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}. Filter: {filterName}.");
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
             var filters = await this.GetFiltersAsync(this.Database, filterName).ConfigureAwait(false);
 
-            long offset = (pageNumber - 1) * PageSize;
+            long offset = (pageNumber - 1)*PageSize;
             var sql = new Sql($"SELECT * FROM {this.FullyQualifiedObjectName} WHERE 1 = 1");
 
             FilterManager.AddFilters(ref sql, filters.ToList());
@@ -364,7 +364,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}", this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 
@@ -392,7 +392,7 @@ namespace Frapid.WebApi.DataAccess
                 if (!this.HasAccess)
                 {
                     Log.Information($"Access to get display field for entity \"{this.FullyQualifiedObjectName}\" was denied to the user with Login ID {this.LoginId}", this.LoginId);
-                    throw new UnauthorizedException("Access is denied.");
+                    throw new UnauthorizedException(Resources.AccessIsDenied);
                 }
             }
 

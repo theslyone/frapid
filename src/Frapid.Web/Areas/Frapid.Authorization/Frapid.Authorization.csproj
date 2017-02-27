@@ -138,6 +138,7 @@
     <Compile Include="DTO\Office.cs" />
     <Compile Include="DTO\Role.cs" />
     <Compile Include="DTO\User.cs" />
+    <Compile Include="I18N.cs" />
     <Compile Include="Models\EntityAccessPolicyModel.cs" />
     <Compile Include="Models\GroupEntityAccessPolicyModel.cs" />
     <Compile Include="Models\GroupMenuPolicyModel.cs" />
@@ -157,8 +158,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\MenuPolicy\policy.js" />
-    <Content Include="Scripts\MenuPolicy\group-policy.js" />
+    <Content Include="scripts\menu-policy\policy.js" />
+    <Content Include="scripts\menu-policy\group-policy.js" />
     <Content Include="Views\web.config" />
   </ItemGroup>
   <ItemGroup>

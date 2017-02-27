@@ -1,7 +1,7 @@
 # public.password type
 
 | Schema | [public](../../schemas/public.md) |
-| --- | --- |
+| ------ | ----------------------------------------------- |
 | Type Name | password |
 | Base Type | text |
 | Owner | frapid_db_user |

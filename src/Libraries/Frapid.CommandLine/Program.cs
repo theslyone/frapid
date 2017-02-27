@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using frapid.Commands;
+using Frapid.Configuration;
+using Frapid.Framework.Extensions;
 
 namespace frapid
 {
@@ -8,6 +11,9 @@ namespace frapid
     {
         private static void Main(string[] args)
         {
+            ConsolePathMapper.SetPathToRoot();
+            Console.OutputEncoding = Encoding.UTF8;
+
             var loader = new AssemblyLoader();
             loader.PreLoad();
 
@@ -57,7 +63,7 @@ namespace frapid
 
         private static bool GotQuitSignalFrom(string command)
         {
-            return command.ToLower().Equals("exit");
+            return command.Or("").ToLower().Equals("exit");
         }
     }
 }

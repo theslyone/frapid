@@ -1,7 +1,7 @@
 ﻿@model Frapid.Authorization.ViewModels.GroupMenuPolicy
 
 @{
-    ViewBag.Title = "Group Menu Policy";
+    ViewBag.Title = I18N.GroupMenuPolicy;
     Layout = ViewBag.Layout;
 }
 <style>
@@ -11,14 +11,14 @@
 </style>
 <div class="ui container">
     <div class="ui attached padded segment">
-        <div class="ui huge header">Menu Access - Group Policy</div>
+        <div class="ui huge header">@I18N.MenuAccessGroupPolicy</div>
         <div class="ui divider"></div>
         <div class="ui vpad8 form">
             <div class="three fields">
                 <div class="field">
-                    <label>Select a Role</label>
+                    <label>@I18N.SelectARole</label>
                     <select id="RoleDropdown" class="ui search dropdown">
-                        <option>Select</option>
+                        <option>@I18N.Select</option>
                         @foreach (var item in Model.Roles)
                         {
                             <option value="@item.RoleId">@item.RoleName</option>
@@ -26,9 +26,9 @@
                     </select>
                 </div>
                 <div class="field">
-                    <label>Select an Office</label>
+                    <label>@I18N.SelectAnOffice</label>
                     <select id="OfficeDropdown" class="ui search dropdown">
-                        <option>Select</option>
+                        <option>@I18N.Select</option>
                         @foreach (var item in Model.Offices)
                         {
                             <option value="@item.OfficeId">@item.OfficeCode (@item.OfficeName)</option>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="field">
                     <label>&nbsp;</label>
-                    <button data-get-menu-policy-button class="ui positive button">Load</button>
+                    <button data-get-menu-policy-button class="ui positive button">@I18N.Load</button>
                 </div>
             </div>
         </div>
@@ -49,16 +49,16 @@
                     <input type="checkbox" data-toggle-all/>
                 </th>
                 <th>
-                    App
+                    @I18N.App
                 </th>
                 <th>
-                    Menu Id
+                    @I18N.MenuId
                 </th>
                 <th>
-                    Menu Text
+                    @I18N.MenuText
                 </th>
                 <th>
-                    Url
+                    @I18N.Url
                 </th>
             </tr>
             </thead>
@@ -86,7 +86,7 @@
             </tbody>
         </table>
         <div class="vpad8"></div>
-        <button data-save-button class="ui positive button">Save</button>
+        <button data-save-button class="ui positive button">@I18N.Save</button>
     </div>
 </div>
-<script src="/Areas/Frapid.Authorization/Scripts/MenuPolicy/group-policy.js"></script>
+<script src="/Areas/Frapid.Authorization/scripts/menu-policy/group-policy.js"></script>

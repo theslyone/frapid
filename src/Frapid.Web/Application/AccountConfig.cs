@@ -29,18 +29,18 @@ namespace Frapid.Web
 
             app.UseJwtBearerAuthentication
                 (
-                 new JwtBearerAuthenticationOptions
-                 {
-                     AuthenticationMode = AuthenticationMode.Active,
-                     AllowedAudiences = new[]
-                                        {
-                                            audience
-                                        },
-                     IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
-                                                    {
-                                                        new SymmetricKeyIssuerSecurityTokenProvider(issuer, secret)
-                                                    }
-                 });
+                    new JwtBearerAuthenticationOptions
+                    {
+                        AuthenticationMode = AuthenticationMode.Active,
+                        AllowedAudiences = new[]
+                        {
+                            audience
+                        },
+                        IssuerSecurityTokenProviders = new IIssuerSecurityTokenProvider[]
+                        {
+                            new SymmetricKeyIssuerSecurityTokenProvider(issuer, secret)
+                        }
+                    });
         }
     }
 }

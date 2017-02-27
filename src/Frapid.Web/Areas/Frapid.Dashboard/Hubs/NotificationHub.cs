@@ -19,9 +19,9 @@ namespace Frapid.Dashboard.Hubs
         {
             string connectionId = this.Context.ConnectionId;
             string tenant = TenantConvention.GetTenant(this.Context.Request.Url.DnsSafeHost);
-            long loginId = HubAuthorizationManger.GetLoginIdAsync(tenant, this.Context).Result;
+            long loginId = HubAuthorizationManger.GetLoginIdAsync(tenant, this.Context).GetAwaiter().GetResult();
 
-            var model = AppUsers.GetCurrentAsync(tenant, loginId).Result.Adapt<UserInfo>();
+            var model = AppUsers.GetCurrentAsync(tenant, loginId).GetAwaiter().GetResult().Adapt<UserInfo>();
 
             if (model == null)
             {

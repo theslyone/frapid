@@ -109,11 +109,11 @@ namespace Frapid.Configuration.DbServer
             {
                 Host = host,
                 Database = database,
-                Username= username,
+                Username = username,
                 Password = password,
                 Port = port,
                 Pooling = enablePooling,
-                UseSslStream= true,
+                UseSslStream = true,
                 SslMode = SslMode.Prefer,
                 MinPoolSize = minPoolSize,
                 MaxPoolSize = maxPoolSize,

@@ -4,20 +4,21 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | profile_id | NOT NULL | integer | 0 |  |
-| 2 | profile_name | NOT NULL | character varying | 100 |  |
-| 3 | is_active | NOT NULL | boolean | 0 |  |
-| 4 | allow_registration | NOT NULL | boolean | 0 |  |
-| 5 | registration_office_id | NOT NULL | integer | 0 |  |
-| 6 | registration_role_id | NOT NULL | integer | 0 |  |
-| 7 | allow_facebook_registration | NOT NULL | boolean | 0 |  |
-| 8 | allow_google_registration | NOT NULL | boolean | 0 |  |
-| 9 | google_signin_client_id |  | text | 0 |  |
-| 10 | google_signin_scope |  | text | 0 |  |
-| 11 | facebook_app_id |  | text | 0 |  |
-| 12 | facebook_scope |  | text | 0 |  |
-| 13 | audit_user_id |  | integer | 0 |  |
-| 14 | audit_ts |  | timestamp with time zone | 0 |  |
+| 1 | configuration_profile_id | [ ] | integer | 0 |  |
+| 2 | profile_name | [ ] | character varying | 100 |  |
+| 3 | is_active | [ ] | boolean | 0 |  |
+| 4 | allow_registration | [ ] | boolean | 0 |  |
+| 5 | registration_office_id | [ ] | integer | 0 |  |
+| 6 | registration_role_id | [ ] | integer | 0 |  |
+| 7 | allow_facebook_registration | [ ] | boolean | 0 |  |
+| 8 | allow_google_registration | [ ] | boolean | 0 |  |
+| 9 | google_signin_client_id | [x] | text | 0 |  |
+| 10 | google_signin_scope | [x] | text | 0 |  |
+| 11 | facebook_app_id | [x] | text | 0 |  |
+| 12 | facebook_scope | [x] | text | 0 |  |
+| 13 | audit_user_id | [x] | integer | 0 |  |
+| 14 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 15 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -35,7 +36,7 @@
 
 | Index Name | Owner | Access Method | Definition | Description |
 | --- | --- | --- | --- | --- |
-| configuration_profiles_pkey | frapid_db_user | btree | profile_id |  |
+| configuration_profiles_pkey | frapid_db_user | btree | configuration_profile_id |  |
 | configuration_profiles_profile_name_key | frapid_db_user | btree | profile_name |  |
 | configuration_profile_uix | frapid_db_user | btree | is_active |  |
 
@@ -52,12 +53,13 @@
 
 | # | Column Name | Default |
 | --- | --- | --- |
-| 1 | profile_id | nextval('account.configuration_profiles_profile_id_seq'::regclass) |
+| 1 | configuration_profile_id | nextval('account.configuration_profiles_configuration_profile_id_seq'::regclass) |
 | 3 | is_active | true |
 | 4 | allow_registration | true |
 | 7 | allow_facebook_registration | true |
 | 8 | allow_google_registration | true |
 | 14 | audit_ts | now() |
+| 15 | deleted | false |
 
 
 **Triggers**

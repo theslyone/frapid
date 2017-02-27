@@ -18,12 +18,12 @@ namespace Frapid.Configuration
                 var iType = typeof(IDbServer);
                 var members = iType.GetTypeMembersNotAbstract<IDbServer>();
 
-                foreach(var member in members.Where(member => member.ProviderName.Equals(providerName)))
+                foreach (var member in members.Where(member => member.ProviderName.Equals(providerName)))
                 {
                     return member;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Log.Error("{Exception}", ex);
                 throw;
@@ -56,7 +56,7 @@ namespace Frapid.Configuration
 
         public static string GetSuperUserConnectionString(string tenant, string database = "")
         {
-            if(string.IsNullOrWhiteSpace(database))
+            if (string.IsNullOrWhiteSpace(database))
             {
                 database = tenant;
             }
@@ -71,7 +71,7 @@ namespace Frapid.Configuration
 
         public static string GetConnectionString(string tenant, string host, string database, string username, string password, int port)
         {
-            if(string.IsNullOrWhiteSpace(database))
+            if (string.IsNullOrWhiteSpace(database))
             {
                 database = tenant;
             }

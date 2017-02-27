@@ -4,18 +4,20 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | filter_id | NOT NULL | bigint | 0 |  |
-| 2 | object_name | NOT NULL | text | 0 |  |
-| 3 | filter_name | NOT NULL | text | 0 |  |
-| 4 | is_default | NOT NULL | boolean | 0 |  |
-| 5 | is_default_admin | NOT NULL | boolean | 0 |  |
-| 6 | filter_statement | NOT NULL | character varying | 12 |  |
-| 7 | column_name | NOT NULL | text | 0 |  |
-| 8 | filter_condition | NOT NULL | integer | 0 |  |
-| 9 | filter_value |  | text | 0 |  |
-| 10 | filter_and_value |  | text | 0 |  |
-| 11 | audit_user_id |  | integer | 0 |  |
-| 12 | audit_ts |  | timestamp with time zone | 0 |  |
+| 1 | filter_id | [ ] | bigint | 0 |  |
+| 2 | object_name | [ ] | text | 0 |  |
+| 3 | filter_name | [ ] | text | 0 |  |
+| 4 | is_default | [ ] | boolean | 0 |  |
+| 5 | is_default_admin | [ ] | boolean | 0 |  |
+| 6 | filter_statement | [ ] | character varying | 12 |  |
+| 7 | column_name | [ ] | text | 0 |  |
+| 8 | data_type | [ ] | text | 0 |  |
+| 9 | filter_condition | [ ] | integer | 0 |  |
+| 10 | filter_value | [x] | text | 0 |  |
+| 11 | filter_and_value | [x] | text | 0 |  |
+| 12 | audit_user_id | [x] | integer | 0 |  |
+| 13 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 14 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -23,7 +25,7 @@
 
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
-| 11 | [audit_user_id](../account/users.md) | filters_audit_user_id_fkey | account.users.user_id |
+| 12 | [audit_user_id](../account/users.md) | filters_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -51,7 +53,9 @@
 | 4 | is_default | false |
 | 5 | is_default_admin | false |
 | 6 | filter_statement | 'WHERE'::character varying |
-| 12 | audit_ts | now() |
+| 8 | data_type | ''::text |
+| 13 | audit_ts | now() |
+| 14 | deleted | false |
 
 
 **Triggers**

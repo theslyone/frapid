@@ -1,10 +1,11 @@
-﻿DROP FUNCTION IF EXISTS auth.get_apps(_user_id integer, _office_id integer, _culture text);
+﻿DROP FUNCTION IF EXISTS auth.get_apps(_user_id integer, _office_id integer);
 
-CREATE FUNCTION auth.get_apps(_user_id integer, _office_id integer, _culture text)
+CREATE FUNCTION auth.get_apps(_user_id integer, _office_id integer)
 RETURNS TABLE
 (
     app_id                              integer,
     app_name                            text,
+	i18n_key							text,
     name                                text,
     version_number                      text,
     publisher                           text,
@@ -19,6 +20,7 @@ BEGIN
     SELECT
         core.apps.app_id,
         core.apps.app_name::text,
+		core.apps.i18n_key::text,
         core.apps.name::text,
         core.apps.version_number::text,
         core.apps.publisher::text,
@@ -29,7 +31,7 @@ BEGIN
     WHERE core.apps.app_name IN
     (
         SELECT DISTINCT menus.app_name
-        FROM auth.get_menu(_user_id, _office_id, _culture)
+        FROM auth.get_menu(_user_id, _office_id)
         AS menus
     )
 	AND NOT core.apps.deleted;

@@ -34,7 +34,7 @@ namespace Frapid.Configuration
 
         public static string GetDomain()
         {
-            if(FrapidHttpContext.GetCurrent() == null)
+            if (FrapidHttpContext.GetCurrent() == null)
             {
                 return string.Empty;
             }
@@ -46,7 +46,7 @@ namespace Frapid.Configuration
 
         public static bool IsStaticDomain(string domain = "")
         {
-            if(string.IsNullOrWhiteSpace(domain))
+            if (string.IsNullOrWhiteSpace(domain))
             {
                 domain = GetDomain();
             }
@@ -61,7 +61,7 @@ namespace Frapid.Configuration
 
         public static bool EnforceSsl(string domain = "")
         {
-            if(string.IsNullOrWhiteSpace(domain))
+            if (string.IsNullOrWhiteSpace(domain))
             {
                 domain = GetDomain();
             }
@@ -92,7 +92,7 @@ namespace Frapid.Configuration
 
         public static bool IsValidDomain(string domain = "")
         {
-            if(string.IsNullOrWhiteSpace(domain))
+            if (string.IsNullOrWhiteSpace(domain))
             {
                 domain = GetDomain();
                 Log.Verbose($"The empty domain was automatically resolved to \"{domain}\".");
@@ -129,7 +129,7 @@ namespace Frapid.Configuration
 
         public static string GetTenant(string url = "")
         {
-            if(string.IsNullOrWhiteSpace(url))
+            if (string.IsNullOrWhiteSpace(url))
             {
                 url = FrapidHttpContext.GetCurrent().Request.Url.Authority;
             }

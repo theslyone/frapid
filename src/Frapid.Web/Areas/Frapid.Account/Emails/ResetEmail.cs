@@ -65,7 +65,7 @@ namespace Frapid.Account.Emails
         {
             string template = this.GetTemplate(tenant);
             string parsed = this.ParseTemplate(template);
-            string subject = "Your Password Reset Link for " + HttpContext.Current.Request.Url.Authority;
+            string subject = string.Format(I18N.YourPasswordResetLinkForSite, HttpContext.Current.Request.Url.Authority);
 
             var processor = EmailProcessor.GetDefault(tenant);
 
@@ -76,7 +76,7 @@ namespace Frapid.Account.Emails
                 var queue = new MailQueueManager(tenant, email);
                 await queue.AddAsync().ConfigureAwait(false);
 
-                await queue.ProcessMailQueueAsync(processor).ConfigureAwait(false);
+                await queue.ProcessQueueAsync(processor).ConfigureAwait(false);
             }
         }
     }

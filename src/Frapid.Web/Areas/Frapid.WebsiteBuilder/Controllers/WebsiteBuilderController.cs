@@ -14,13 +14,13 @@ namespace Frapid.WebsiteBuilder.Controllers
         {
             string theme = this.GetTheme();
 
-            ViewBag.LayoutPath = GetLayoutPath(this.Tenant);
-            ViewBag.Layout = this.GetLayout(theme);
-            ViewBag.HomepageLayout = this.GetHomepageLayout(theme);
+            this.ViewBag.LayoutPath = GetLayoutPath(this.Tenant);
+            this.ViewBag.Layout = this.GetLayout(theme);
+            this.ViewBag.HomepageLayout = this.GetHomepageLayout(theme);
 
-            Log.Verbose($"The layout path for \"{this.CurrentPageUrl}\" is \"{ViewBag.LayoutPath}\".");
-            Log.Verbose($"The layout for \"{this.CurrentPageUrl}\" is \"{ViewBag.Layout}\".");
-            Log.Verbose($"The homepage layout for \"{this.CurrentPageUrl}\" is \"{ViewBag.HomepageLayout}\".");
+            Log.Verbose($"The layout path for \"{this.CurrentPageUrl}\" is \"{this.ViewBag.LayoutPath}\".");
+            Log.Verbose($"The layout for \"{this.CurrentPageUrl}\" is \"{this.ViewBag.Layout}\".");
+            Log.Verbose($"The homepage layout for \"{this.CurrentPageUrl}\" is \"{this.ViewBag.HomepageLayout}\".");
         }
 
         protected override void OnActionExecuting(ActionExecutingContext context)
@@ -35,7 +35,7 @@ namespace Frapid.WebsiteBuilder.Controllers
             if (isStatic)
             {
                 //Static domains are strictly used for content caching only.
-                context.Result = new HttpNotFoundResult("The requested page does not exist.");
+                context.Result = new HttpNotFoundResult(Resources.TheRequestedPageDoesNotExist);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Frapid.WebsiteBuilder.Controllers
         {
             if (string.IsNullOrWhiteSpace(theme))
             {
-                theme = GetTheme();
+                theme = this.GetTheme();
             }
 
             return ThemeConfiguration.GetLayout(this.Tenant, theme);
@@ -72,7 +72,7 @@ namespace Frapid.WebsiteBuilder.Controllers
         {
             if (string.IsNullOrWhiteSpace(theme))
             {
-                theme = GetTheme();
+                theme = this.GetTheme();
             }
 
             return ThemeConfiguration.GetHomepageLayout(this.Tenant, theme);

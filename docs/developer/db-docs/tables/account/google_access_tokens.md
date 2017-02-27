@@ -4,8 +4,11 @@
 
 | # | Column Name | Nullable | Data Type | Max Length | Description |
 | --- | --- | --- | --- | --- | --- |
-| 1 | user_id | NOT NULL | integer | 0 |  |
-| 2 | token |  | text | 0 |  |
+| 1 | user_id | [ ] | integer | 0 |  |
+| 2 | token | [x] | text | 0 |  |
+| 3 | audit_user_id | [x] | integer | 0 |  |
+| 4 | audit_ts | [x] | timestamp with time zone | 0 |  |
+| 5 | deleted | [x] | boolean | 0 |  |
 
 
 
@@ -14,6 +17,7 @@
 | # | Column Name | Key Name | References |
 | --- | --- | --- | --- |
 | 1 | [user_id](../account/users.md) | google_access_tokens_user_id_fkey | account.users.user_id |
+| 3 | [audit_user_id](../account/users.md) | google_access_tokens_audit_user_id_fkey | account.users.user_id |
 
 
 
@@ -36,6 +40,8 @@
 
 | # | Column Name | Default |
 | --- | --- | --- |
+| 4 | audit_ts | now() |
+| 5 | deleted | false |
 
 
 **Triggers**

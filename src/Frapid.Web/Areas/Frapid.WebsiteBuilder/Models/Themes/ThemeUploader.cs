@@ -4,7 +4,6 @@ using System.IO.Compression;
 using System.Net;
 using System.Web;
 using System.Web.Hosting;
-using Frapid.Configuration;
 using Frapid.Framework;
 using Serilog;
 
@@ -45,7 +44,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         {
             if (this.DownloadUrl == null)
             {
-                throw new ThemeInstallException("Could not download theme because supplied URL is invalid or missing.");
+                throw new ThemeInstallException(Resources.CouldNotDownloadThemeUrlInvalid);
             }
 
             using (var client = new WebClient())
@@ -67,10 +66,8 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             if (uploadDirectory == null || !Directory.Exists(uploadDirectory))
             {
-                Log.Warning("Could not upload theme because the temporary directory {uploadDirectory} does not exist.",
-                    uploadDirectory);
-                throw new ThemeUploadException(
-                    "Could not upload your theme. Check application logs for more information.");
+                Log.Warning("Could not upload theme because the temporary directory {uploadDirectory} does not exist.", uploadDirectory);
+                throw new ThemeUploadException(Resources.CouldNotUploadThemeCheckLogs);
             }
 
             return uploadDirectory;
@@ -85,7 +82,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             {
                 Log.Warning("Could not upload theme because the uploaded file {file} has invalid extension.",
                     this.PostedFile.FileName);
-                throw new ThemeUploadException("Could not upload theme because the uploaded file has invalid extension.");
+                throw new ThemeUploadException(Resources.CouldNotUploadThemeInvalidExtension);
             }
 
             var stream = this.PostedFile.InputStream;
@@ -106,7 +103,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             }
             catch (InvalidDataException ex)
             {
-                throw new ThemeInstallException("Could not install theme because the supplied file was not a valid ZIP archive.", ex);
+                throw new ThemeInstallException(Resources.CouldNotUploadThemeCorruptedZip, ex);
             }
         }
 
@@ -140,12 +137,12 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             if (destination == null)
             {
                 Log.Warning("Could not copy theme because the destination directory could not be located.");
-                throw new ThemeInstallException("Could not install theme. Check application logs for more information.");
+                throw new ThemeInstallException(Resources.CouldNotInstallThemeCheckLogs);
             }
 
             if (Directory.Exists(destination))
             {
-                throw new ThemeInstallException("Could not install theme because it already exists.");
+                throw new ThemeInstallException(Resources.CouldNotInstallThemeBecauseItExists);
             }
 
             FileHelper.CopyDirectory(source, destination);
@@ -170,7 +167,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
                 if (!isValid)
                 {
-                    throw new ThemeInstallException("The uploaded archive is not a valid frapid theme!");
+                    throw new ThemeInstallException(Resources.CouldNotInstallThemeNotFrapidTheme);
                 }
 
                 this.CopyTheme(tenant);
