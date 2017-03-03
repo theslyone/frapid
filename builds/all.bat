@@ -3,6 +3,7 @@ SET builddir=%~dp0
 rmdir "%~dp0..\src\Frapid.Web\bin" /Q /S
 xcopy "%~dp0..\src\Frapid.Web\Resources\_Configs\Assets" "%~dp0..\src\Frapid.Web\Resources\Configs\Assets\" /s/y
 
+
 if exist "../src/Frapid.Web.sln" (
 	@echo Building Frapid.Web
 	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web.sln /p:VisualStudioVersion=14.0
@@ -13,29 +14,15 @@ if exist "../src/Frapid.Web/Areas/Frapid.Dashboard/Frapid.Dashboard.sln" (
 	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.Dashboard/Frapid.Dashboard.sln /p:VisualStudioVersion=14.0
 )
 
+
 if exist "../src/Frapid.Web/Areas/Frapid.WebsiteBuilder/Frapid.WebsiteBuilder.sln" (
 	@echo Building WebsiteBuilder Module
 	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.WebsiteBuilder/Frapid.WebsiteBuilder.sln /p:VisualStudioVersion=14.0
 )
 
-if exist "../src/Frapid.Web/Areas/Frapid.AddressBook/Frapid.AddressBook.sln" (
-	@echo Building AddressBook
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.AddressBook/Frapid.AddressBook.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/Frapid.Calendar/Frapid.Calendar.sln" (
-	@echo Building Calendar
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.Calendar/Frapid.Calendar.sln /p:VisualStudioVersion=14.0
-)
-
 if exist "../src/Frapid.Web/Areas/Frapid.Reports/Frapid.Reports.sln" (
 	@echo Building Frapid Reporting Module
 	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.Reports/Frapid.Reports.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/MixERP.Social/MixERP.Social.sln" (
-	@echo Building MixERP.Social Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixERP.Social/MixERP.Social.sln /p:VisualStudioVersion=14.0
 )
 
 
@@ -85,64 +72,6 @@ if exist "../src/Frapid.Web/Areas/MixERP.HRM/MixERP.HRM.sln" (
 	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixERP.HRM/MixERP.HRM.sln /p:VisualStudioVersion=14.0
 )
 
-if exist "../src/Frapid.Web/Areas/MixERP.Inventory/MixERP.Inventory.sln" (
-	@echo Building Inventory Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixERP.Inventory/MixERP.Inventory.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/MixERP.Purchases/MixERP.Purchases.sln" (
-	@echo Building Purchase Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixERP.Purchases/MixERP.Purchases.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/MixERP.Sales/MixERP.Sales.sln" (
-	@echo Building Sales Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixERP.Sales/MixERP.Sales.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/MixERP.Production/MixERP.Production.sln" (
-	@echo Building Production Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixERP.Production/MixERP.Production.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/CineSys/CineSys.sln" (
-	@echo Building CineSys Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/CineSys/CineSys.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/CineSys.FoodCourt/CineSys.FoodCourt.sln" (
-	@echo Building CineSys.FoodCourt Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/CineSys.FoodCourt/CineSys.FoodCourt.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/CineSys.GateKeeper/CineSys.GateKeeper.sln" (
-	@echo Building CineSys.GateKeeper Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/CineSys.GateKeeper/CineSys.GateKeeper.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/Frapid.CafeSys/Frapid.CafeSys.sln" (
-	@echo Building Frapid.CafeSys Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.CafeSys/Frapid.CafeSys.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/Frapid.RecoveryManager/Frapid.RecoveryManager.sln" (
-	@echo Building Frapid.RecoveryManager Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.RecoveryManager/Frapid.RecoveryManager.sln /p:VisualStudioVersion=14.0
-)
-
-if exist "../src/Frapid.Web/Areas/MixERP.CountryPacks.Nepal/MixERP.CountryPacks.Nepal.sln" (
-	@echo Building MixERP.CountryPacks.Nepal Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixERP.CountryPacks.Nepal/MixERP.CountryPacks.Nepal.sln /p:VisualStudioVersion=14.0
-)
-
-
-if exist "../src/Frapid.Web/Areas/TheSmsCentral/TheSmsCentral.sln" (
-	@echo Building TheSmsCentral Module
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/TheSmsCentral/TheSmsCentral.sln /p:VisualStudioVersion=14.0
-)
-
-
-
 if exist "C:\Program Files\Redis\redis-cli.exe" (
 	@echo Flusing Redis Cache
 	"C:\Program Files\Redis\redis-cli.exe" "flushall"
@@ -151,21 +80,10 @@ if exist "C:\Program Files\Redis\redis-cli.exe" (
 @echo Bundling SQL
 cd ..\builds-sql\
 call all.bat
-
-cd %builddir%..\src\Frapid.Web\bin\
-
-@echo Packing Resources
-call frapid.exe pack resource
-
 @echo Creating PostgreSQL Tenant
-call frapid.exe create site postgresql.test provider Npgsql cleanup when done
-
+cd %builddir%..\src\Frapid.Web\bin\
+call frapid.exe create site postgresql.localhost provider Npgsql
 @echo Creating SQL Server Tenant
-call frapid.exe create site sqlserver.test provider System.Data.SqlClient cleanup when done
-
+call frapid.exe create site sqlserver.localhost provider System.Data.SqlClient
 @echo Creating a Test App
 call frapid.exe create app TestApp
-
-rmdir %builddir%..\src\Frapid.Web\Areas\TestApp /Q /S
-
-@echo OK
