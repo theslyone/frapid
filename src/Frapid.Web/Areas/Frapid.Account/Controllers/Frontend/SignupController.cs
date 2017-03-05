@@ -90,13 +90,16 @@ namespace Frapid.Account.Controllers.Frontend
         [AllowAnonymous]
         public async Task<ActionResult> PostAsync(Registration model)
         {
-            bool result = await SignUpModel.SignUpAsync(this.HttpContext, this.Tenant, model, this.RemoteUser).ConfigureAwait(true);
+            bool result = await SignUpModel.SignUpAsync(this.HttpContext, 
+                    this.Tenant, model, this.RemoteUser).ConfigureAwait(true);
+
             UserEvent userEvent = new UserEvent();
             userEvent.User.Email = model.Email;
             userEvent.User.Name = model.Name;
             userEvent.CreationDate = DateTime.Now;
             userEvent.Tenant = this.Tenant;
             DefaultEventPublisher.GetInstance().EntityInserted(userEvent);
+
             return this.Ok(result);
         }
     }

@@ -926,8 +926,7 @@ namespace Frapid.WebApi.DataAccess
                 var candidate = item.ElementAt(index);
 
                 if (candidate.Key.ToUpperInvariant().Contains("PASSWORD") ||
-                    candidate.Key.ToUpperInvariant().Contains("SECRET") ||
-                    candidate.Key.ToUpperInvariant().Contains("ACCOUNTNUMBER"))
+                    candidate.Key.ToUpperInvariant().Contains("SECRET"))
                 {
                     var bytes = Encoding.UTF8.GetBytes(candidate.Value.ToString());
                     item[candidate.Key] = Encoding.UTF8.GetString(MachineKey.Protect(bytes, "ScrudFactory"));
