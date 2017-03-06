@@ -19,7 +19,7 @@ namespace Moneywave.Net.Responses
         public string Token { get; set; }
 
         [JsonProperty("code")]
-        public dynamic Code { get; set; }
+        public string Code { get; set; }
 
         [JsonProperty("Message")]
         public string Message { get; set; }

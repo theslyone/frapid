@@ -1,4 +1,5 @@
 ﻿using Moneywave.Net.Responses;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -35,16 +36,20 @@ namespace Moneywave.Net
 
             request.AddHeader("Authorization", Token);
             request.AddHeader("content-type", "application/json");
-
-            var response = client.Execute<MoneywaveResponse<T>>(request);
-
+            var response = client.Execute<MoneywaveResponse<dynamic>>(request);
+            
             if (response.ErrorException != null || response.Data.Status != Status.Success)
             {
-                string message = response.Data != null ? response.Data.Code || response.Data.Message : "Unknown exception";
+                string message = response.Data != null 
+                    ? !string.IsNullOrEmpty(response.Data.Code) ? response.Data.Code
+                    : !string.IsNullOrEmpty(response.Data.Data) ? response.Data.Data
+                    : !string.IsNullOrEmpty(response.Data.Message) ? response.Data.Message 
+                    : "Unknown exception": "Unknown exception";
                 var moneywaveException = new MoneywaveException(message, response.ErrorException);
                 throw moneywaveException;
             }
-            return response.Data;
+            MoneywaveResponse<T> moneywaveResponse = JsonConvert.DeserializeObject<MoneywaveResponse<T>>(response.Content);         
+            return moneywaveResponse;
         }
     }
 }

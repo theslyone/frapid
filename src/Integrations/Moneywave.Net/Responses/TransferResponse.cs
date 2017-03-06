@@ -75,10 +75,7 @@ namespace Moneywave.Net.Responses
 
         [JsonProperty("beneficiary")]
         public Account Beneficiary { get; set; }
-
-        [JsonProperty("chargedFee")]
-        public int ChargedFee { get; set; }
-
+        
         [JsonProperty("merchantCommission")]
         public int MerchantCommission { get; set; }
 

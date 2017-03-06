@@ -75,7 +75,7 @@ namespace Moneywave.Net.Test
             request.PhoneNumber = "+2348030469664";
             request.Email = "theslyguy@icloud.com";
             request.Recipient = RecipientType.Account;
-            request.RecipientBank = "058";
+            request.RecipientBank = "58";
             request.RecipientAccountNumber = "0921318712";
             /*
             request.CardNumber = "4960092279520867";
@@ -93,7 +93,7 @@ namespace Moneywave.Net.Test
             request.Medium = "mobile";
 
             request.SenderAccountNumber = "0690000004";
-            request.SenderBank = "044";
+            request.SenderBank = "44";
             request.Passcode = "";
             
             request.ChargeWith = ChargeType.Account;
@@ -103,6 +103,10 @@ namespace Moneywave.Net.Test
             Assert.Equal(request.SenderAccountNumber, response.Transfer.Account.AccountNumber);
             Assert.IsType<string>(response.Transfer.FlutterChargeReference);
             Assert.Matches("^.{1,}$", response.Transfer.FlutterChargeReference);
+
+            request.SenderAccountNumber = "0921318712";
+            request.SenderBank = "58";
+            Assert.Throws<MoneywaveException>(() => Api.Transactions.Transfer(request));
         }
 
         [Fact]

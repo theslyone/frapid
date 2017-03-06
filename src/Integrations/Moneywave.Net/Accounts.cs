@@ -13,6 +13,8 @@ namespace Moneywave.Net
         public string Validate(string accountNumber, string bankCode)
         {
             //[POST] /v1/resolve/account
+            bankCode = bankCode.PadLeft(3, '0');
+
             var restRequest = new RestRequest();
             restRequest.Resource = "v1/resolve/account";
             restRequest.AddParameter("account_number", accountNumber);

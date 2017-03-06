@@ -67,6 +67,7 @@
     <Compile Include="Responses\DisburseResponse.cs" />
     <Compile Include="Responses\MoneywaveResponse.cs" />
     <Compile Include="Responses\TransferResponse.cs" />
+    <Compile Include="RestSharpJsonNetDeserializer.cs" />
     <Compile Include="RestSharpJsonNetSerializer.cs" />
     <Compile Include="Transactions.cs" />
   </ItemGroup>

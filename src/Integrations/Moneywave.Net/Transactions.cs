@@ -44,6 +44,8 @@ namespace Moneywave.Net
         {
             //[POST] /v1/transfer
             transferRequest.ApiKey = ApiKey;
+            transferRequest.SenderBank = transferRequest.SenderBank.PadLeft(3, '0');
+            transferRequest.RecipientBank = transferRequest.RecipientBank.PadLeft(3, '0');
             var request = new RestRequest();
             request.JsonSerializer = new RestSharpJsonNetSerializer();
 

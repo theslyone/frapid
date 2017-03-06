@@ -33,7 +33,7 @@ namespace Moneywave.Net.Models
         [JsonProperty("updatedAt")]
         public DateTime UpdatedAt { get; set; }
 
-        [JsonProperty("deletedAt")]
-        public DateTime DeletedAt { get; set; }
+        //[JsonProperty("deletedAt")]
+        //public DateTime DeletedAt { get; set; }
     }
 }
