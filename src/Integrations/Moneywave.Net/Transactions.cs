@@ -22,13 +22,13 @@ namespace Moneywave.Net
 
         }
 
-        public dynamic Get(string id)
+        public Transfer Get(string id)
         {
             //[POST] /v1/transfer/:id
             var restRequest = new RestRequest();
             restRequest.Resource = "v1/transfer/{id}";
             restRequest.AddParameter("id", id, ParameterType.UrlSegment);
-            return Execute<dynamic>(restRequest).Data;
+            return Execute<Transfer>(restRequest).Data;
         }
 
         public dynamic Status(string id)

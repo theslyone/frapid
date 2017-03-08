@@ -9,9 +9,22 @@ using System.Threading.Tasks;
 
 namespace Moneywave.Net
 {
+    public enum ClientMode { Test, Production}
     public class MoneywaveClient
     {
-        private string BaseUrl => "https://moneywave.herokuapp.com/";
+        private string TestUrl => "https://moneywave.herokuapp.com/";
+        private string ProductionUrl => "https://live.moneywaveapi.co";
+
+        public string BaseUrl = "";
+
+        public MoneywaveClient(ClientMode mode = ClientMode.Test)
+        {
+            if (mode == ClientMode.Production)
+                BaseUrl = ProductionUrl;
+            else if (mode == ClientMode.Test)
+                BaseUrl = TestUrl;
+        }
+        
         protected static string ApiKey { get; set; }
         protected static string Secret { get; set; }
         protected static string Token { get; set; }

@@ -36,17 +36,25 @@ namespace Moneywave.Net.Responses
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        [JsonProperty("flutterChargeReferenceCode")]
-        public string FlutterChargeReferenceCode { get; set; }
-
         [JsonProperty("flutterChargeReference")]
         public string FlutterChargeReference { get; set; }
 
-        [JsonProperty("flutterDisburseReferenceCode")]
-        public string FlutterDisburseReferenceCode { get; set; }
+        [JsonProperty("flutterChargeResponseCode")]
+        public string FlutterChargeResponseCode { get; set; }
 
+        [JsonProperty("flutterChargeResponseMessage")]
+        public string FlutterChargeResponseMessage { get; set; }
+
+        
+        
         [JsonProperty("flutterDisburseReference")]
         public string FlutterDisburseReference { get; set; }
+
+        [JsonProperty("flutterDisburseResponseCode")]
+        public string FlutterDisburseResponseCode { get; set; }
+
+        [JsonProperty("flutterDisburseResponseMessage")]
+        public string FlutterDisburseResponseMessage { get; set; }
 
 
         [JsonProperty("isCardValidationSuccessful")]

@@ -14,8 +14,12 @@ namespace Moneywave.Net
 {
     public class MoneywaveApi : MoneywaveClient
     {
-        
-        public MoneywaveApi(string apiKey, string secret)
+        public MoneywaveApi(string apiKey, string secret) : this(apiKey, secret, ClientMode.Test)
+        {
+            
+        }
+
+        public MoneywaveApi(string apiKey, string secret, ClientMode mode) : base(mode)
         {
             ApiKey = apiKey;
             Secret = secret;
@@ -24,7 +28,7 @@ namespace Moneywave.Net
             Transactions = new Transactions();
             Cards = new Cards();
             Accounts = new Accounts();
-        }        
+        }
 
         public List<Bank> GetBanks()
         {

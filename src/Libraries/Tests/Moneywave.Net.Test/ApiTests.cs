@@ -11,7 +11,7 @@ namespace Moneywave.Net.Test
     {
         public MoneywaveFixture()
         {
-            Api = new MoneywaveApi("ts_LI2BPJTYK6TIV3GI2K21", "ts_44CGM6X9DIYEEEJEL7FRS9K02HMO1Z");
+            Api = new MoneywaveApi("ts_LI2BPJTYK6TIV3GI2K21", "ts_44CGM6X9DIYEEEJEL7FRS9K02HMO1Z", ClientMode.Test);
         }
 
         public void Dispose()
@@ -75,7 +75,7 @@ namespace Moneywave.Net.Test
             request.PhoneNumber = "+2348030469664";
             request.Email = "theslyguy@icloud.com";
             request.Recipient = RecipientType.Account;
-            request.RecipientBank = "58";
+            request.RecipientBank = "058";
             request.RecipientAccountNumber = "0921318712";
             /*
             request.CardNumber = "4960092279520867";
@@ -87,13 +87,13 @@ namespace Moneywave.Net.Test
             var token = Api.Cards.Tokenize(card);
             request.CardToken = token;
             */
-            request.Amount = 130;
-            request.Fee = 20;
+            request.Amount = 1000;
+            request.Fee = 50;
             request.RedirectUrl = "https://freebe.ngrok";
             request.Medium = "mobile";
 
-            request.SenderAccountNumber = "0690000004";
-            request.SenderBank = "44";
+            request.SenderAccountNumber = "0690000005";
+            request.SenderBank = "044";
             request.Passcode = "";
             
             request.ChargeWith = ChargeType.Account;
@@ -104,10 +104,19 @@ namespace Moneywave.Net.Test
             Assert.IsType<string>(response.Transfer.FlutterChargeReference);
             Assert.Matches("^.{1,}$", response.Transfer.FlutterChargeReference);
 
+
+            var reference = response.Transfer.FlutterChargeReference;
+            var transfer = Api.Transactions.ValidateTransfer(reference, "12345", Transactions.AuthType.OTP);
+
+            transfer = Api.Transactions.Get(transfer.Id);
+
+
+
             request.SenderAccountNumber = "0921318712";
             request.SenderBank = "58";
             Assert.Throws<MoneywaveException>(() => Api.Transactions.Transfer(request));
         }
+
 
         [Fact]
         public void Disburse()
