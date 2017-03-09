@@ -22,8 +22,8 @@ namespace Moneywave.Net
             _serializer = new Newtonsoft.Json.JsonSerializer
             {
                 MissingMemberHandling = MissingMemberHandling.Ignore,
-                NullValueHandling = NullValueHandling.Include,
-                DefaultValueHandling = DefaultValueHandling.Include
+                NullValueHandling = NullValueHandling.Ignore,//.Include,
+                DefaultValueHandling = DefaultValueHandling.Ignore//.Include
             };
         }
 

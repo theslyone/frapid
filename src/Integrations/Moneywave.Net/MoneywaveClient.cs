@@ -57,7 +57,8 @@ namespace Moneywave.Net
                     ? !string.IsNullOrEmpty(response.Data.Code) ? response.Data.Code
                     : !string.IsNullOrEmpty(response.Data.Data) ? response.Data.Data
                     : !string.IsNullOrEmpty(response.Data.Message) ? response.Data.Message 
-                    : "Unknown exception": "Unknown exception";
+                    : "Freebe encountered an error while processing your request. It is very likely that your account has been charged, please do not try again"
+                    : "Freebe encountered an error while processing your request. It is very likely that your account has been charged, please do not try again";
                 var moneywaveException = new MoneywaveException(message, response.ErrorException);
                 throw moneywaveException;
             }

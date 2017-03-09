@@ -31,7 +31,7 @@ namespace Moneywave.Net
             return Execute<Transfer>(restRequest).Data;
         }
 
-        public dynamic Status(string id)
+        public dynamic DisburseStatus(string id)
         {
             //[POST] /v1/disburse/status
             var restRequest = new RestRequest();

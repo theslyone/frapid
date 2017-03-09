@@ -51,6 +51,7 @@ namespace Moneywave.Net.Requests
         [JsonProperty("medium")]
         public string Medium { get; set; }
 
+        [JsonIgnore]
         [JsonProperty("passcode")]
         public string Passcode { get; set; }
 
