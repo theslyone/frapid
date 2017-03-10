@@ -141,13 +141,14 @@ namespace Frapid.Framework.Extensions
 
         public static string GetClientToken(this IRequest request)
         {
-            if (!request.Cookies.ContainsKey("access_token"))
+            if (!request.Cookies.ContainsKey("access_token") && string.IsNullOrEmpty(request.QueryString["access_token"]))
             {
                 return string.Empty;
             }
 
-            var cookie = request.Cookies["access_token"];
-            return cookie == null ? string.Empty : cookie.Value;
+            var accessToken = request.Cookies.ContainsKey("access_token") && request.Cookies["access_token"] != null 
+                ? request.Cookies["access_token"].Value : request.QueryString["access_token"];
+            return accessToken == null ? string.Empty : accessToken;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Frapid.Events
     {
         public static IBus SubscriberBus { get; set; }
         //public static AutoSubscriber AutoSubscriber { get; private set; }
+        
 
         public string Description
         {
@@ -33,13 +34,14 @@ namespace Frapid.Events
         {
             try
             {
+                string host = "localhost";
                 string binPath = MapPath("bin");
                 var assemblies = LoadModuleAssemblies((binPath));
 
-                SubscriberBus = RabbitHutch.CreateBus("host=localhost");
+                SubscriberBus = RabbitHutch.CreateBus($"host={host}");
                 AutoSubscriber AutoSubscriber = new AutoSubscriber(SubscriberBus, "frapid");
-                //AutoSubscriber.Subscribe(assemblies.ToArray());
                 AutoSubscriber.SubscribeAsync(assemblies.ToArray());
+
                 return Task.CompletedTask;
             }
             catch (Exception exc)
@@ -49,12 +51,12 @@ namespace Frapid.Events
             }
         }
 
-        public static string MapPath(string virtualPath)
+        private static string MapPath(string virtualPath)
         {
             return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, virtualPath);
         }
 
-        public static IEnumerable<Assembly> LoadModuleAssemblies(string path)
+        private static IEnumerable<Assembly> LoadModuleAssemblies(string path)
         {
             DirectoryInfo directory = new DirectoryInfo(path);
             FileInfo[] files = directory.GetFiles("Frapid.*.dll", SearchOption.AllDirectories);
