@@ -70,6 +70,14 @@ namespace Frapid.Account.Controllers.Frontend
             var email = new WelcomeEmail(registration);
             await email.SendAsync(this.Tenant).ConfigureAwait(true);
 
+
+            UserEvent userEvent = new UserEvent();
+            userEvent.User.Email = registration.Email;
+            userEvent.User.Name = registration.Name;
+            userEvent.CreationDate = DateTime.Now;
+            userEvent.Tenant = this.Tenant;
+            DefaultEventPublisher.GetInstance().EntityInserted(userEvent);
+
             return this.View(this.GetRazorView<AreaRegistration>("SignUp/Welcome.cshtml", this.Tenant));
         }
 
@@ -91,15 +99,7 @@ namespace Frapid.Account.Controllers.Frontend
         public async Task<ActionResult> PostAsync(Registration model)
         {
             bool result = await SignUpModel.SignUpAsync(this.HttpContext, 
-                    this.Tenant, model, this.RemoteUser).ConfigureAwait(true);
-
-            UserEvent userEvent = new UserEvent();
-            userEvent.User.Email = model.Email;
-            userEvent.User.Name = model.Name;
-            userEvent.CreationDate = DateTime.Now;
-            userEvent.Tenant = this.Tenant;
-            DefaultEventPublisher.GetInstance().EntityInserted(userEvent);
-
+                    this.Tenant, model, this.RemoteUser).ConfigureAwait(true);           
             return this.Ok(result);
         }
     }

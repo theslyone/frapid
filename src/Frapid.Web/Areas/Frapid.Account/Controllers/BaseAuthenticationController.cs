@@ -12,6 +12,8 @@ using Frapid.Framework.Extensions;
 using Frapid.TokenManager;
 using Frapid.WebsiteBuilder.Controllers;
 using Newtonsoft.Json;
+using Frapid.Events;
+using Frapid.Events.EventPublishers;
 
 namespace Frapid.Account.Controllers
 {
@@ -31,7 +33,7 @@ namespace Frapid.Account.Controllers
                 await Task.Delay(new Random().Next(1, 5)*1000).ConfigureAwait(false);
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden, JsonConvert.SerializeObject(result));
             }
-
+        
 
             Guid? applicationId = null;
 
@@ -51,6 +53,13 @@ namespace Frapid.Account.Controllers
 
             this.AddAuthenticationCookie(domain, token);
             this.AddCultureCookie(domain, model?.Culture.Or("en-US"));
+
+            LoginEvent loginEvent = new LoginEvent();
+            loginEvent.User.Email = loginView.Email;
+            loginEvent.User.Name = loginView.Name;
+            loginEvent.Tenant = this.Tenant;
+            loginEvent.CreationDate = DateTime.Now;
+            DefaultEventPublisher.GetInstance().Publish(loginEvent);
 
             return this.Ok(token.ClientToken);
         }

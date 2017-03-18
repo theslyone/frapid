@@ -19,7 +19,6 @@ namespace Frapid.Events.EventSubscribers
             {
                 string tenant = transactionInsertedEvent.Entity.Tenant;
                 Log.Information($"{tenant}: Received {transactionInsertedEvent}");
-
                 return Task.CompletedTask;
             }
             catch (Exception ex)
