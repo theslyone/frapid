@@ -18,6 +18,12 @@ namespace Moneywave.Net.Responses
         [JsonProperty("pendingValidation")]
         public bool PendingValidation { get; set; }
 
+        [JsonProperty("responsehtml")]
+        public string ResponseHtml { get; set; }
+
+        [JsonProperty("authurl")]
+        public string AuthUrl { get; set; }
+
         [JsonProperty("authparams")]
         public List<AuthParameter> AuthParams { get; set; }
     }

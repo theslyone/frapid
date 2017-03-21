@@ -15,8 +15,61 @@ namespace Frapid.Framework.Extensions
         {
             "CF-Connecting-IP",
             "HTTP_X_FORWARDED_FOR",
-            "REMOTE_ADDR"
+            "REMOTE_ADDR",
+            "X-Forwarded-For"
         };
+     
+        private static string GetClientIpAddress(this HttpContextBase context, bool getLan = false)
+        {
+            string visitorIPAddress = context.Request.Headers["HTTP_X_FORWARDED_FOR"];
+
+            if (string.IsNullOrEmpty(visitorIPAddress))
+                visitorIPAddress = context.Request.Headers["REMOTE_ADDR"];
+
+            if (string.IsNullOrEmpty(visitorIPAddress))
+                visitorIPAddress = context.Request.UserHostAddress;
+
+            if (string.IsNullOrEmpty(visitorIPAddress) || visitorIPAddress.Trim() == "::1")
+            {
+                getLan = true;
+                visitorIPAddress = string.Empty;
+            }
+
+            if (getLan && string.IsNullOrEmpty(visitorIPAddress))
+            {
+                //This is for Local(LAN) Connected ID Address
+                string stringHostName = Dns.GetHostName();
+                //Get Ip Host Entry
+                IPHostEntry ipHostEntries = Dns.GetHostEntry(stringHostName);
+                //Get Ip Address From The Ip Host Entry Address List
+                IPAddress[] arrIpAddress = ipHostEntries.AddressList;
+
+                try
+                {
+                    visitorIPAddress = arrIpAddress[arrIpAddress.Length - 2].ToString();
+                }
+                catch
+                {
+                    try
+                    {
+                        visitorIPAddress = arrIpAddress[0].ToString();
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            arrIpAddress = Dns.GetHostAddresses(stringHostName);
+                            visitorIPAddress = arrIpAddress[0].ToString();
+                        }
+                        catch
+                        {
+                            visitorIPAddress = "127.0.0.1";
+                        }
+                    }
+                }
+            }
+            return visitorIPAddress;
+        }
 
         public static string GetClientIpAddress(this HttpContextBase context)
         {

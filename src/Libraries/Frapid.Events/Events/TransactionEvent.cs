@@ -25,6 +25,12 @@ namespace Frapid.Events
         [JsonProperty("fromSubaccountId")]
         public int FromSubaccountId { get; set; }
 
+        [JsonProperty("fromAccount")]
+        public Account FromSubaccount { get; set; }
+
+        [JsonProperty("toAccount")]
+        public Account ToSubaccount { get; set; }
+
         [JsonProperty("toSubaccountId")]
         public int? ToSubaccountId { get; set; }
 
@@ -34,11 +40,21 @@ namespace Frapid.Events
         [JsonProperty("amount")]
         public decimal Amount { get; set; }
 
+        [JsonProperty("fees")]
+        public decimal Fees { get; set; }
+
+        [JsonProperty("currency")]
+        public string Currency { get; set; }
+
         [JsonProperty("date")]
         public DateTime TransactionDate { get; set; }
 
         [JsonProperty("tenant")]
         public string Tenant { get; set; }
+
+        [JsonProperty("message")]
+        public string Message { get; set; }
+
 
         [JsonProperty("type")]
         public string Type

@@ -58,7 +58,7 @@
     <Compile Include="MoneywaveClient.cs" />
     <Compile Include="MoneywaveException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\BankResponse.cs" />
+    <Compile Include="Responses\BankResponse.cs" />
     <Compile Include="Requests\ChargeRequest.cs" />
     <Compile Include="Requests\DisburseRequest.cs" />
     <Compile Include="Requests\TransferRequest.cs" />

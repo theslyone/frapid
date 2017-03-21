@@ -4,6 +4,8 @@ using Frapid.Account.DTO;
 using Frapid.DataAccess;
 using Frapid.TokenManager;
 using Newtonsoft.Json;
+using System.Web;
+using System.Net;
 
 namespace Frapid.Account.DAL
 {
@@ -41,5 +43,6 @@ namespace Frapid.Account.DAL
                 UserAgent = userAgent
             }).ConfigureAwait(false);
         }
+
     }
 }

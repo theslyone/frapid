@@ -65,14 +65,18 @@ namespace Moneywave.Net
             return Execute<DisburseResponse>(request).Data;
         }
 
-        public Transfer ValidateTransfer(string transRef, string authValue, AuthType authType = AuthType.OTP)
+        public Transfer ValidateTransfer(ChargeType type, string transRef, string authValue, AuthType authType = AuthType.OTP)
         {
             //[GET]/v1/transfer/charge/auth/account
+            //[GET]/v1/transfer/charge/auth/card
             var request = new RestRequest();
-            request.Resource = "v1/transfer/charge/auth/account";
+            request.Resource = $"v1/transfer/charge/auth/{type.ToString().ToLowerInvariant()}";
             request.AddParameter("transactionRef", transRef);
+            //used for account validation
             request.AddParameter("authType", Enum.GetName(typeof(AuthType), authType));
             request.AddParameter("authValue", authValue);
+            //used for card validation
+            request.AddParameter("otp", authValue);
             return Execute<Transfer>(request).Data;
 
         }

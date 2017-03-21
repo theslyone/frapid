@@ -58,6 +58,7 @@
     <Compile Include="EventPublishers\DefaultEventPublisher.cs" />
     <Compile Include="EventSubscribers\TransactionSubscriber.cs" />
     <Compile Include="Events\LoginEvent.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Events\UserEvent.cs" />
     <Compile Include="Events\TransactionEvent.cs" />
