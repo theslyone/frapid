@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Frapid.Areas;
 using Frapid.Areas.Authorization;
 using Frapid.Dashboard.DAL;
+using Frapid.DataAccess.Models;
 
 namespace Frapid.Dashboard.Controllers
 {
@@ -10,6 +11,7 @@ namespace Frapid.Dashboard.Controllers
     {
         [Route("dashboard/my/menus")]
         [RestrictAnonymous]
+        [AccessPolicy("core", "menus", AccessTypeEnum.Read)]
         public async Task<ActionResult> GetMenusAsync()
         {
             int userId = this.AppUser.UserId;

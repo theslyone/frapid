@@ -5,6 +5,7 @@
 	"EnforceSsl": true,
 	"CdnDomain": "",
 	"AdminEmail": "",
+	"BcryptedAdminPassword": "",
 	"Synonyms": [],
 	"BackupDirectory": "/backups/localhost",
 	"BackupDirectoryIsFixedPath": false

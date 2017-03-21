@@ -10,7 +10,7 @@
 
 
     if (isCard) {
-        var card = sender.closest(".card");
+        var card = sender.closest(".kanban-card");
         return card.attr("data-key");
     };
 

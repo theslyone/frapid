@@ -5,14 +5,15 @@ using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
 using System.Web.UI;
+using Frapid.Areas;
 using Frapid.Areas.Caching;
 using Frapid.Configuration;
 
 namespace Frapid.Dashboard.Controllers
 {
-    public class MyTemplateController : DashboardController
+    public class MyTemplateController : FrapidController
     {
-        private readonly List<string> _exceptions = new List<string>() {".cshtml", ".vbhtml", ".aspx", ".ascx", ".cs", ".vb" };
+        private readonly List<string> _exceptions = new List<string> {".cshtml", ".vbhtml", ".aspx", ".ascx", ".cs", ".vb"};
 
         /// <summary>
         ///     Warning: Do not set the configuration "MyAllowedResources" to serve anything except static files.
@@ -64,11 +65,11 @@ namespace Frapid.Dashboard.Controllers
                 return this.HttpNotFound();
             }
 
-            string mimeType = this.GetMimeType(path);
+            string mimeType = GetMimeType(path);
             return this.File(path, mimeType);
         }
 
-        private string GetMimeType(string fileName)
+        private static string GetMimeType(string fileName)
         {
             return MimeMapping.GetMimeMapping(fileName);
         }

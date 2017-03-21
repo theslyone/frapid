@@ -28,7 +28,7 @@ namespace Frapid.Reports.Controllers.Backend
         [Route("dashboard/reports/source/{*path}")]
         public ActionResult Index(string path)
         {
-            return this.View("~/Areas/Frapid.Reports/Views/Source.cshtml", path);
+            return this.View(this.GetRazorView<AreaRegistration>("Source.cshtml", this.Tenant), path);
         }
 
         [ActionName("ReportMarkup")]

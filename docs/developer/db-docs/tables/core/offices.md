@@ -26,7 +26,6 @@
 | 20 | parent_office_id | [x] | integer | 0 |  |
 | 21 | registration_number | [x] | character varying | 100 |  |
 | 22 | pan_number | [x] | character varying | 50 |  |
-| 23 | has_vat | [ ] | boolean | 0 |  |
 | 24 | allow_transaction_posting | [ ] | boolean | 0 |  |
 | 25 | audit_user_id | [x] | integer | 0 |  |
 | 26 | audit_ts | [x] | timestamp with time zone | 0 |  |
@@ -63,7 +62,6 @@
 | # | Column Name | Default |
 | --- | --- | --- |
 | 1 | office_id | nextval('core.offices_office_id_seq'::regclass) |
-| 23 | has_vat | false |
 | 24 | allow_transaction_posting | false |
 | 26 | audit_ts | now() |
 | 27 | deleted | false |

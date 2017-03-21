@@ -21,15 +21,19 @@
 .trumbowyg-box{
 	padding:0!important;
 	margin:0!important;
-	height:100%;
+	min-height:1000px!important;
+}
+
+.trumbowyg-editor{
+	min-height:1000px!important;
 }
 
 .trumbowyg-fullscreen{
 	padding:3.7em 0 0 0!important;
 }    
 </style>
-<div class="ui attached content segment" style="height: 100%;">
-    <div class="ui stackable divided doubling grid" style="height: 100%;">
+<div class="ui attached content segment">
+    <div class="ui stackable doubling grid">
         <div class="three wide column">
             <div class="column">
                 <div class="ui violet header">@Resources.CreateNewBlogPost</div>
@@ -95,7 +99,7 @@
             </div>
 
         </div>
-        <div class="thirteen wide compact column" style="height: 100%;">
+        <div class="thirteen wide compact column">
             <textarea id="ContentsTextArea" style="width: 100%; display: none;">@Html.Raw(Model.Contents)</textarea>
         </div>
         @Html.GetAntiForgeryToken(this.Request.Url)

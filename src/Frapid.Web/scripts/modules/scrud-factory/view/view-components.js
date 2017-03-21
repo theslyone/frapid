@@ -16,12 +16,11 @@ function initializeViews() {
     if (window.scrudFactory.removeFilter || checkIfProcedure()) {
         $('[data-target="filter"]').remove();
         $("#FilterButton").remove();
-        showTarget("grid");
+        showTarget("kanban");
     };
 
     if (window.scrudFactory.removeImport || checkIfProcedure()) {
         $('[data-target="import"]').remove();
-        showTarget("grid");
-        $('a[data-target="grid"]').remove();
+        showTarget("kanban");
     };
 };

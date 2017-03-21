@@ -45,15 +45,13 @@ namespace Frapid.Installer.Commands
         {
             this.IsValid = false;
 
-            if(this.Line.CountTokens() > 5 &&
-               !this.CleanupWhenDone)
+            if(this.Line.CountTokens() > 5 && !this.CleanupWhenDone)
             {
                 CommandProcessor.DisplayError(this.Syntax, "Invalid token {0}", this.Line.GetTokenOn(5));
                 return;
             }
 
-            if(this.Line.CountTokens() > 8 &&
-               this.CleanupWhenDone)
+            if(this.Line.CountTokens() > 8 && this.CleanupWhenDone)
             {
                 CommandProcessor.DisplayError(this.Syntax, "Invalid token {0}", this.Line.GetTokenOn(8));
                 return;

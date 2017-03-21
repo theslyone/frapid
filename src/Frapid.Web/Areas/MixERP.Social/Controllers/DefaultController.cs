@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Frapid.ApplicationState.Cache;
-using Frapid.Areas.Authorization;
 using Frapid.Areas.CSRF;
 using Frapid.Dashboard;
 using Frapid.Dashboard.Controllers;
+using Frapid.DataAccess.Models;
 using MixERP.Social.DTO;
 using MixERP.Social.Models;
 
@@ -15,17 +15,17 @@ namespace MixERP.Social.Controllers
     public sealed class DefaultController : DashboardController
     {
         [Route("dashboard/social")]
-        [RestrictAnonymous]
         [MenuPolicy]
+        [AccessPolicy("social", "feeds", AccessTypeEnum.Read)]
         public ActionResult Index()
         {
             return this.FrapidView(this.GetRazorView<AreaRegistration>("Tasks/Index.cshtml", this.Tenant));
         }
 
         [Route("dashboard/social")]
-        [RestrictAnonymous]
         [MenuPolicy]
         [HttpPost]
+        [AccessPolicy("social", "feeds", AccessTypeEnum.Create)]
         public async Task<ActionResult> PostAsync(Feed model)
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -34,9 +34,9 @@ namespace MixERP.Social.Controllers
         }
 
         [Route("dashboard/social/delete/{feedId}")]
-        [RestrictAnonymous]
         [MenuPolicy(OverridePath = "/dashboard/social")]
         [HttpDelete]
+        [AccessPolicy("social", "feeds", AccessTypeEnum.Delete)]
         public async Task<ActionResult> DeleteAsync(long feedId)
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -53,9 +53,9 @@ namespace MixERP.Social.Controllers
         }
 
         [Route("dashboard/social/like/{feedId}")]
-        [RestrictAnonymous]
         [MenuPolicy(OverridePath = "/dashboard/social")]
         [HttpPut]
+        [AccessPolicy("social", "feeds", AccessTypeEnum.Edit)]
         public async Task<ActionResult> LikeAsync(long feedId)
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -72,9 +72,9 @@ namespace MixERP.Social.Controllers
         }
 
         [Route("dashboard/social/unlike/{feedId}")]
-        [RestrictAnonymous]
         [MenuPolicy(OverridePath = "/dashboard/social")]
         [HttpPut]
+        [AccessPolicy("social", "feeds", AccessTypeEnum.Edit)]
         public async Task<ActionResult> UnlikeAsync(long feedId)
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -91,9 +91,9 @@ namespace MixERP.Social.Controllers
         }
 
         [Route("dashboard/social/delete/{feedId}/attachment/{attachment}")]
-        [RestrictAnonymous]
         [MenuPolicy(OverridePath = "/dashboard/social")]
         [HttpDelete]
+        [AccessPolicy("social", "feeds", AccessTypeEnum.Read)]
         public async Task<ActionResult> DeleteAttachmentAsync(long feedId, string attachment)
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -112,8 +112,8 @@ namespace MixERP.Social.Controllers
         [Route("dashboard/social/feeds")]
         [Route("dashboard/social/feeds/{lastFeedId}")]
         [Route("dashboard/social/feeds/{lastFeedId}/{parentFeedId}")]
-        [RestrictAnonymous]
         [MenuPolicy(OverridePath = "/dashboard/social")]
+        [AccessPolicy("social", "feeds", AccessTypeEnum.Read)]
         public async Task<ActionResult> GetNextTopFeedsAsync(long lastFeedId = 0, long parentFeedId = 0)
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);

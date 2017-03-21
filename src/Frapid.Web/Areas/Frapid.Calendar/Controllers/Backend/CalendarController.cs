@@ -9,6 +9,7 @@ using Frapid.Calendar.Models;
 using Frapid.Calendar.QueryModels;
 using Frapid.Calendar.ViewModels;
 using Frapid.Dashboard;
+using Frapid.DataAccess.Models;
 
 namespace Frapid.Calendar.Controllers.Backend
 {
@@ -17,6 +18,7 @@ namespace Frapid.Calendar.Controllers.Backend
     {
         [Route("dashboard/calendar")]
         [MenuPolicy]
+        [AccessPolicy("calendar", "categories", AccessTypeEnum.Read)]
         public async Task<ActionResult> IndexAsync()
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -27,6 +29,7 @@ namespace Frapid.Calendar.Controllers.Backend
         [Route("dashboard/calendar/my")]
         [MenuPolicy(OverridePath = "/dashboard/calendar")]
         [HttpPost]
+        [AccessPolicy("calendar", "event_view", AccessTypeEnum.Read)]
         public async Task<ActionResult> MyAsync(EventQuery query)
         {
             if (!this.ModelState.IsValid)
@@ -50,6 +53,7 @@ namespace Frapid.Calendar.Controllers.Backend
         [Route("dashboard/calendar/{eventId:guid}")]
         [HttpDelete]
         [MenuPolicy(OverridePath = "/dashboard/calendar")]
+        [AccessPolicy("calendar", "events", AccessTypeEnum.Delete)]
         public async Task<ActionResult> DeleteAsync(Guid eventId)
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -68,6 +72,7 @@ namespace Frapid.Calendar.Controllers.Backend
         [Route("dashboard/calendar")]
         [HttpPost]
         [MenuPolicy]
+        [AccessPolicy("calendar", "events", AccessTypeEnum.Create)]
         public async Task<ActionResult> PostAsync(CalendarEvent calendarEvent)
         {
             if (!this.ModelState.IsValid)

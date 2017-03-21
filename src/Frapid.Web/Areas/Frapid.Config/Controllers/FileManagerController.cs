@@ -18,7 +18,6 @@ namespace Frapid.Config.Controllers
     public class FileManagerController : DashboardController
     {
         [Route("dashboard/config/file-manager")]
-        [RestrictAnonymous]
         [MenuPolicy]
         public ActionResult Index()
         {
@@ -26,7 +25,6 @@ namespace Frapid.Config.Controllers
         }
 
         [Route("dashboard/config/file-manager/resources")]
-        [RestrictAnonymous]
         public ActionResult GetResources()
         {
             string path = $"~/Tenants/{this.Tenant}/";
@@ -47,7 +45,6 @@ namespace Frapid.Config.Controllers
         }
 
         [Route("dashboard/config/file-manager/resources/edit/file")]
-        [RestrictAnonymous]
         [HttpPut]
         public ActionResult EditFile(string themeName, string container, string file, string contents)
         {
@@ -55,7 +52,6 @@ namespace Frapid.Config.Controllers
         }
 
         [Route("dashboard/config/file-manager/create/file")]
-        [RestrictAnonymous]
         [HttpPut]
         public ActionResult CreateFile(string container, string file, string contents)
         {
@@ -63,7 +59,6 @@ namespace Frapid.Config.Controllers
         }
 
         [Route("dashboard/config/file-manager/create/folder")]
-        [RestrictAnonymous]
         [HttpPut]
         public ActionResult CreateFolder(string container, string folder)
         {
@@ -71,7 +66,6 @@ namespace Frapid.Config.Controllers
         }
 
         [Route("dashboard/config/file-manager/delete")]
-        [RestrictAnonymous]
         [HttpDelete]
         public ActionResult DeleteResource(string resource)
         {
@@ -118,7 +112,6 @@ namespace Frapid.Config.Controllers
         }
 
         [Route("dashboard/config/file-manager/resources/upload")]
-        [RestrictAnonymous]
         [HttpPost]
         public ActionResult UploadResource(string container)
         {
@@ -147,7 +140,6 @@ namespace Frapid.Config.Controllers
         }
 
         [Route("dashboard/config/file-manager/blob")]
-        [RestrictAnonymous]
         public ActionResult GetBinary(string file)
         {
             if (string.IsNullOrWhiteSpace(file))
@@ -168,7 +160,6 @@ namespace Frapid.Config.Controllers
 
 
         [Route("dashboard/config/file-manager/{*resource}")]
-        [RestrictAnonymous]
         public ActionResult Get(string resource = "")
         {
             if (string.IsNullOrWhiteSpace(resource))

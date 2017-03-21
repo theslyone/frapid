@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/styles/reports.css"/>
 
 <div class="report-panel">
-    <div class="ui stackable report grid" style="height: 100%;">
+    <div class="ui stackable report grid">
         <div class="three wide collapsed column">
             <div class="toolbar">
                 <div onclick="$('iframe').get(0).contentWindow.print();" class="print button" title="@I18N.PrintThisReport">
@@ -44,7 +44,7 @@
                     <i class="refresh icon"></i>
                 </div>
             </div>
-            <div class="filter padded container" style="background-color: #efefef; height: 100%;">
+            <div class="filter padded query container" style="background-color: #efefef; min-height: 1200px;">
                 <div class="report title">@Model.ReportTitle</div>
 
                 <div class="ui small parameter flat form">
@@ -99,7 +99,7 @@
             </div>
         </div>
         <div class="thirteen wide column">
-            <iframe id="ReportIframe" src="@Model.ReportSourcePath"></iframe>
+            <iframe id="ReportIframe" src="@Model.ReportSourcePath" onload="setHeight(this);" style="min-height: 1200px;"></iframe>
         </div>
     </div>
 </div>
@@ -137,6 +137,12 @@
 <script>
     loadDatepicker();
 
+    function setHeight(el) {
+        const candidates = $(".query.container, .report-panel iframe");
+        const height = (el.contentDocument.body.scrollHeight + 100) + 'px';
+        candidates.css("height", height);
+    };
+
     (function() {
         const persist = JSON.parse(localStorage.getItem(document.location.pathname));
 
@@ -153,21 +159,16 @@
                         el.attr("data-default-value", value);
                     };
                 } else {
-                    defaultValue = el.val();
-                    if (!defaultValue) {
-
-                        if (el.is(".date")) {
-                            const date = new Date(value);
-
-                            el.datepicker("setDate", date);
-                        } else {
-                            el.val(value);
-                        };
+                    if (el.is(".date")) {
+                        const date = new Date(value);
+                        el.datepicker("setDate", date);
+                    } else {
+                        el.val(value);
                     };
                 };
-
             });
         };
+
 
         const candidates = $("select[data-url]");
 

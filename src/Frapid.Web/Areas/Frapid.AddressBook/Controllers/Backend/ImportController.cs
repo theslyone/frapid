@@ -6,6 +6,7 @@ using Frapid.AddressBook.Models;
 using Frapid.ApplicationState.Cache;
 using Frapid.Areas.CSRF;
 using Frapid.Dashboard;
+using Frapid.DataAccess.Models;
 
 namespace Frapid.AddressBook.Controllers.Backend
 {
@@ -15,6 +16,7 @@ namespace Frapid.AddressBook.Controllers.Backend
         [Route("dashboard/address-book/import/vcard")]
         [MenuPolicy(OverridePath = "/dashboard/address-book")]
         [HttpPost]
+        [AccessPolicy("addressbook", "contacts", AccessTypeEnum.ImportData)]
         public async Task<ActionResult> ImportAsync()
         {
             var files = this.Request.Files;

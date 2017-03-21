@@ -1,7 +1,7 @@
 ﻿function popUnder(div, button) {
     $(".popunder").hide();
     div.removeClass("initially hidden");
-    div.show().position({
+    div.fadeIn().position({
         my: "left top",
         at: "left bottom",
         of: button

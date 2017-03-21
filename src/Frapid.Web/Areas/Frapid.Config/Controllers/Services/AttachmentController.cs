@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Web.Mvc;
 using Frapid.Areas;
+using Frapid.Areas.Authorization;
 using Frapid.Areas.Conventions.Attachments;
 using Frapid.Framework.Extensions;
 using Serilog;
@@ -11,6 +12,7 @@ namespace Frapid.Config.Controllers.Services
     [AntiForgery]
     public class AttachmentController : FrapidController
     {
+        [RestrictAnonymous]
         [Route("dashboard/config/services/attachments")]
         [HttpPost]
         public ActionResult Post()

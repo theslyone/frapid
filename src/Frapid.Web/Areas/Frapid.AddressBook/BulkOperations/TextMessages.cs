@@ -50,11 +50,15 @@ namespace Frapid.AddressBook.BulkOperations
                     Message = message
                 };
 
-                var manager = new SmsQueueManager(tenant, sms);
-                await manager.AddAsync().ConfigureAwait(false);
-
-                await manager.ProcessQueueAsync(processor).ConfigureAwait(false);
+                await new SmsQueueManager(tenant, sms).AddAsync().ConfigureAwait(false);
             }
+
+            var queue = new SmsQueueManager
+            {
+                Database = tenant
+            };
+            
+            await queue.ProcessQueueAsync(processor).ConfigureAwait(false);
 
             return true;
         }

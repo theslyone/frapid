@@ -1,6 +1,8 @@
 using System;
 using System.Web.Mvc;
+using System.Web.UI;
 using Frapid.Areas;
+using Frapid.Areas.Caching;
 using Frapid.AssetBundling;
 using Frapid.Configuration;
 using Frapid.Framework.Extensions;
@@ -40,6 +42,7 @@ namespace Frapid.Web.Controllers
         }
 
         [Route("assets/js/{*name}")]
+        [FileOutputCache(ProfileName = "StaticFile.xml", Duration = 60 * 60, Location = OutputCacheLocation.Client)]
         public ActionResult Js(string name)
         {
             var asset = AssetDiscovery.FindByName(name);
@@ -58,6 +61,7 @@ namespace Frapid.Web.Controllers
         }
 
         [Route("assets/css/{*name}")]
+        [FileOutputCache(ProfileName = "StaticFile.xml", Duration = 60 * 60, Location = OutputCacheLocation.Client)]
         public ActionResult Css(string name)
         {
             var asset = AssetDiscovery.FindByName(name);

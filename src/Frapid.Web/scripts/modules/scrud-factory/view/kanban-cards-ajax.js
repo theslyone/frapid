@@ -10,6 +10,8 @@
         return getAjaxRequest(url);
     };
 
+    $(".kanban.holder").html("");
+
     if (!window.scrudjson) {
         return;
     };
@@ -26,11 +28,10 @@
         return;
     };
 
+
     var ajax = request(kanbanIds, resourceIds);
 
     ajax.success(function (response) {
-        $(".kanban.holder").html("");
-
         $.each(window.scrudjson, function (i, v) {
             var key = getCardKey(v);
             var kanbanDetail = (Enumerable.From(response).Where(function(detail) {

@@ -10,6 +10,7 @@ using Frapid.AddressBook.ViewModels;
 using Frapid.ApplicationState.Cache;
 using Frapid.Areas.CSRF;
 using Frapid.Dashboard;
+using Frapid.DataAccess.Models;
 using Frapid.Framework.Extensions;
 
 namespace Frapid.AddressBook.Controllers.Backend
@@ -19,6 +20,7 @@ namespace Frapid.AddressBook.Controllers.Backend
     {
         [Route("dashboard/address-book")]
         [MenuPolicy]
+        [AccessPolicy("addressbook", "contacts", AccessTypeEnum.Read)]
         public async Task<ActionResult> IndexAsync()
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -37,6 +39,7 @@ namespace Frapid.AddressBook.Controllers.Backend
         [Route("dashboard/address-book/get")]
         [MenuPolicy(OverridePath = "/dashboard/address-book")]
         [HttpPost]
+        [AccessPolicy("addressbook", "contacts", AccessTypeEnum.Read)]
         public async Task<ActionResult> GetAsync(AddressBookQuery query)
         {
             if (!this.ModelState.IsValid)
@@ -61,6 +64,7 @@ namespace Frapid.AddressBook.Controllers.Backend
         [Route("dashboard/address-book")]
         [MenuPolicy]
         [HttpPost]
+        [AccessPolicy("addressbook", "contacts", AccessTypeEnum.Create)]
         public async Task<ActionResult> CreateContactAsync(Contact model)
         {
             if (!this.ModelState.IsValid)
@@ -82,6 +86,7 @@ namespace Frapid.AddressBook.Controllers.Backend
 
         [Route("dashboard/address-book/{contactId:guid}")]
         [MenuPolicy(OverridePath = "/dashboard/address-book")]
+        [AccessPolicy("addressbook", "contacts", AccessTypeEnum.Read)]
         public async Task<ActionResult> GetContactAsync(Guid contactId)
         {
             if (!this.ModelState.IsValid)
@@ -104,6 +109,7 @@ namespace Frapid.AddressBook.Controllers.Backend
         [Route("dashboard/address-book/edit")]
         [MenuPolicy(OverridePath = "/dashboard/address-book")]
         [HttpPut]
+        [AccessPolicy("addressbook", "contacts", AccessTypeEnum.Edit)]
         public async Task<ActionResult> EditContactAsync(Contact model)
         {
             if (!this.ModelState.IsValid)
@@ -127,6 +133,7 @@ namespace Frapid.AddressBook.Controllers.Backend
         [Route("dashboard/address-book/delete/{contactId:guid}")]
         [MenuPolicy(OverridePath = "/dashboard/address-book")]
         [HttpDelete]
+        [AccessPolicy("addressbook", "contacts", AccessTypeEnum.Delete)]
         public async Task<ActionResult> DeleteContactAsync(Guid contactId)
         {
             if (!this.ModelState.IsValid)

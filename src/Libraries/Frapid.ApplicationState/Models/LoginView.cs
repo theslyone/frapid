@@ -38,7 +38,6 @@ namespace Frapid.ApplicationState.Models
         public string CurrencySymbol { get; set; }
         public string HundredthName { get; set; }
         public string PanNumber { get; set; }
-        public bool HasVat { get; set; }
         public DateTimeOffset LastSeenOn { get; set; }
     }
 }

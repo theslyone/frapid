@@ -3,7 +3,7 @@ using Frapid.TokenManager;
 
 namespace Frapid.Dashboard.ViewModels
 {
-    public class Dashboard
+    public sealed class Dashboard
     {
         public string Culture { get; set; }
         public string Tenant { get; set; }

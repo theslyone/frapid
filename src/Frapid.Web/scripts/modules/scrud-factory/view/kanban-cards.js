@@ -199,7 +199,7 @@ function createCard(dynamic, key, kanbanDetail) {
     var metaField = (window.scrudFactory.card.meta || getMetaField(dynamic, headerField));
     var descriptionField = (window.scrudFactory.card.description || getDescriptionField(dynamic));
 
-    var card = $('<div class="ui card" />');
+    var card = $('<div class="kanban-card" />');
     card.attr("data-kanban-detail-id", kanbanDetail.KanbanDetailId);
     card.attr("data-key", key);
 

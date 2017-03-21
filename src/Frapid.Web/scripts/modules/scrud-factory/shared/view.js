@@ -1,9 +1,9 @@
 ﻿function showView(target, dontRefresh) {
     if (!target) {
-        target = $(".active[data-target]").attr("data-target") || "grid";
+        target = $(".active[data-target]").attr("data-target") || "kanban";
     };
 
-    if (target === "FormView") {
+    if (target === "form-view") {
         window.scrudView.hide();
         window.scrudForm.show();
     } else {

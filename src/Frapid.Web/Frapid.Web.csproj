@@ -259,6 +259,8 @@
     <Compile Include="Application\DefaultAssemblyResolver.cs" />
     <Compile Include="Controllers\BundleController.cs" />
     <Compile Include="Controllers\SiteMapController.cs" />
+    <Compile Include="Application\DefaultExceptionLogger.cs" />
+    <Compile Include="Application\ExceptionLogger.cs" />
     <Compile Include="FrapidApplication.cs" />
     <Compile Include="Jobs\EndOfDayJob.cs" />
     <Compile Include="Application\EodTaskRegistration.cs" />

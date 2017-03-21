@@ -10,6 +10,7 @@
 	"RealeasedOn": null,
 	"Description": "Frapid reporting engine app.",
 	"Category": "Core Modules",
+	"Hasi18N": true,
 	"Bundle": "Frapid Framework",
     "IsMeta": false,
 	"DbSchema": "website",

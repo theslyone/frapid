@@ -8,6 +8,7 @@ using Frapid.Reports.DAL;
 using Frapid.Reports.Engine.Model;
 using Frapid.Reports.Helpers;
 using Frapid.Reports.Models;
+using Newtonsoft.Json;
 
 namespace Frapid.Reports.Engine
 {
@@ -30,7 +31,7 @@ namespace Frapid.Reports.Engine
 
             foreach (var dataSource in this.Report.DataSources)
             {
-                dataSource.Data = this.GetDataSource(this.Report, dataSource);
+                dataSource.Data = GetDataSource(this.Report, dataSource);
             }
         }
 
@@ -80,7 +81,7 @@ namespace Frapid.Reports.Engine
             return this.ParseExpressions(source.ToString());
         }
 
-        private DataTable GetDataSource(Report report, DataSource dataSource)
+        private static DataTable GetDataSource(Report report, DataSource dataSource)
         {
             var parameters = new ParameterInfo
             {
@@ -88,7 +89,29 @@ namespace Frapid.Reports.Engine
                 DataSourceParameters = dataSource.Parameters
             };
 
-            return DataSourceHelper.GetDataTable(report.Tenant, dataSource.Query, parameters);
+            var result = DataSourceHelper.GetDataTable(report.Tenant, dataSource.Query, parameters);
+
+            if (!dataSource.ReturnsJson)
+            {
+                return result;
+            }
+
+            if (result.Rows == null || result.Rows.Count == 0)
+            {
+                return result;
+            }
+
+            var token = result.Rows[0][0];
+
+            if (token == null)
+            {
+                return result;
+            }
+
+            string json = token.ToString();
+
+            result = JsonConvert.DeserializeObject<DataTable>(json);
+            return result;
         }
     }
 }

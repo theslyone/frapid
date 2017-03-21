@@ -7,6 +7,7 @@ using Frapid.AddressBook.QueryModels;
 using Frapid.ApplicationState.Cache;
 using Frapid.Areas.CSRF;
 using Frapid.Dashboard;
+using Frapid.DataAccess.Models;
 
 namespace Frapid.AddressBook.Controllers.Backend
 {
@@ -16,6 +17,7 @@ namespace Frapid.AddressBook.Controllers.Backend
         [Route("dashboard/address-book/export/vcard")]
         [MenuPolicy(OverridePath = "/dashboard/address-book")]
         [HttpPost]
+        [AccessPolicy("addressbook", "contacts", AccessTypeEnum.ExportData)]
         public async Task<ActionResult> ExportAsync(AddressBookQuery query)
         {
             if (!this.ModelState.IsValid)

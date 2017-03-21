@@ -8,6 +8,7 @@ using frapid.Commands;
 using frapid.Commands.Create;
 using Frapid.Configuration;
 using Frapid.Configuration.Models;
+using Frapid.i18n.ResourceBuilder;
 
 namespace Frapid.i18n.Command
 {
@@ -73,7 +74,7 @@ namespace Frapid.i18n.Command
 
             if (this.Line.CountTokens() > 2)
             {
-                var app = Installables.GetInstallables(string.Empty).First(x => x.ApplicationName.ToUpperInvariant() == this.AppName.ToUpperInvariant());
+                var app = Installables.GetInstallables().First(x => x.ApplicationName.ToUpperInvariant() == this.AppName.ToUpperInvariant());
 
                 if (app == null)
                 {
@@ -94,15 +95,24 @@ namespace Frapid.i18n.Command
 
         private List<Installable> GetApps()
         {
-            var installables = Installables.GetInstallables(string.Empty);
+            var installables = Installables.GetInstallables();
             return installables.Where(x => x.Hasi18N).ToList();
         }
 
         private void CreateResource(Installable app)
         {
             Console.WriteLine("Creating resource on " + app.ApplicationName);
-            var writer = new ResourceWriter(app);
-            writer.Write();
+            var approved = new ApprovedDomainSerializer().Get().FirstOrDefault();
+
+            if (approved == null)
+            {
+                return;
+            }
+
+            string tenant = TenantConvention.GetTenant(approved.DomainName);
+
+            var writer = new ResourceWriter(tenant, app);
+            writer.WriteAsync().GetAwaiter().GetResult();
         }
     }
 }

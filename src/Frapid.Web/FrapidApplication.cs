@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Web;
+using Frapid.ApplicationState.Cache;
 using Frapid.Areas;
 using Frapid.Configuration;
 using Frapid.Framework;
+using Frapid.Web.Application;
 using Serilog;
 
 namespace Frapid.Web
@@ -83,15 +85,26 @@ namespace Frapid.Web
             }
         }
 
+
         private void App_Error(object sender, EventArgs e)
         {
             var context = FrapidHttpContext.GetCurrent();
             var exception = context.Server.GetLastError();
 
-            if (exception != null)
+            if (exception == null)
             {
-                Log.Error("Exception. {exception}", exception);
+                return;
             }
+
+            this.LogException(exception);
+        }
+
+        private void LogException(Exception ex)
+        {
+            string tenant = TenantConvention.GetTenant();
+            var meta = AppUsers.GetCurrent();
+
+            DefaultExceptionLogger.Log(tenant, meta.UserId, meta.Name, meta.OfficeName, ex.Message);
         }
 
         private void Handle404Error()

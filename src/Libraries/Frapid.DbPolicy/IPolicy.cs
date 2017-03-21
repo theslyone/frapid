@@ -10,7 +10,7 @@ namespace Frapid.DbPolicy
         AccessTypeEnum AccessType { get; set; }
         bool HasAccess { get; }
         long LoginId { get; set; }
-        string Database { get; set; }
+        string Tenant { get; set; }
         Task ValidateAsync();
     }
 }

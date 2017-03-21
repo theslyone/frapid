@@ -4,7 +4,7 @@
 
     var defaultView = window.getQueryStringByName("View");
 
-    if ((defaultView || "") === "FormView") {
+    if ((defaultView || "") === "form-view") {
         if (window.scrudView.length) {
             window.scrudView.hide();
         };

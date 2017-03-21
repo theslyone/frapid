@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.UI;
 using Frapid.ApplicationState.Cache;
 using Frapid.Areas;
+using Frapid.Areas.Authorization;
 using Frapid.Areas.Caching;
 using Frapid.Areas.CSRF;
 using Frapid.Areas.Drawing;
@@ -16,6 +17,7 @@ namespace MixERP.Social.Controllers.Service
     [AntiForgery]
     public class AvatarController : FrapidController
     {
+        [RestrictAnonymous]
         [Route("dashboard/social/avatar")]
         [HttpPost]
         public async Task<ActionResult> PostAsync()

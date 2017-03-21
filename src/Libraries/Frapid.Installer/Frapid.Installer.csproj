@@ -87,6 +87,7 @@
     <Compile Include="DAL\PostgreSQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tenant\UninstallException.cs" />
+    <Compile Include="Tenant\UserInstaller.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Frapid.CommandLine\frapid.csproj">

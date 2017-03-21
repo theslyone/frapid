@@ -40,9 +40,7 @@ namespace Frapid.Installer.DAL
         {
             const string sql = "SELECT COUNT(*) FROM pg_catalog.pg_namespace WHERE nspname=@0;";
 
-            using (
-                var db =
-                    DbProvider.Get(FrapidDbServer.GetSuperUserConnectionString(tenant, database), tenant).GetDatabase())
+            using (var db = DbProvider.Get(FrapidDbServer.GetSuperUserConnectionString(tenant, database), tenant).GetDatabase())
             {
                 int awaiter = await db.ScalarAsync<int>
                     (

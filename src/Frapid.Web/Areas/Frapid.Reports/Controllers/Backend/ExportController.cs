@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using Frapid.Areas;
+using Frapid.Areas.Authorization;
 using Frapid.Areas.CSRF;
 using Frapid.Reports.ViewModels;
 
@@ -9,6 +10,7 @@ namespace Frapid.Reports.Controllers.Backend
     public sealed class ExportController : FrapidController
     {
 
+        [RestrictAnonymous]
         [Route("dashboard/reports/export/pdf")]
         [HttpPost]
         public ActionResult ExportToPdf(HtmlConverterViewModel model)
@@ -24,6 +26,7 @@ namespace Frapid.Reports.Controllers.Backend
         }
 
 
+        [RestrictAnonymous]
         [Route("dashboard/reports/export/docx")]
         [HttpPost]
         public ActionResult ExportToDoc(HtmlConverterViewModel model)
@@ -37,6 +40,7 @@ namespace Frapid.Reports.Controllers.Backend
             return this.Ok(result);
         }
 
+        [RestrictAnonymous]
         [Route("dashboard/reports/export/xls")]
         [HttpPost]
         public ActionResult ExportToXls(HtmlConverterViewModel model)

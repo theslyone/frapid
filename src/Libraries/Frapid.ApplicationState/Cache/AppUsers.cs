@@ -136,7 +136,6 @@ namespace Frapid.ApplicationState.Cache
             dictionary.Add("CurrencyCode", metaLogin.CurrencyCode);
             dictionary.Add("Phone", metaLogin.Phone);
             dictionary.Add("Fax", metaLogin.Fax);
-            dictionary.Add("HasVat", metaLogin.HasVat);
             dictionary.Add("IsAdministrator", metaLogin.IsAdministrator);
             dictionary.Add("LastSeenOn", metaLogin.LastSeenOn);
             dictionary.Add("LoginTimestamp", metaLogin.LoginTimestamp);

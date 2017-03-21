@@ -48,21 +48,21 @@ namespace Frapid.Account.DAL
         {
             using (var db = DbProvider.Get(FrapidDbServer.GetSuperUserConnectionString(tenant), tenant).GetDatabase())
             {
-                string encryptedPassword = EncryptPassword(model.Password);
+                string encryptedPassword = EncryptPassword(model.Email, model.Password);
                 await db.NonQueryAsync("UPDATE account.users SET password = @0 WHERE user_id=@1;", encryptedPassword, model.UserId, encryptedPassword).ConfigureAwait(false);
             }
         }
 
-        private static string EncryptPassword(string password)
+        private static string EncryptPassword(string userName, string password)
         {
-            return PasswordManager.GetHashedPassword(password);
+            return PasswordManager.GetHashedPassword(userName, password);
         }
 
         public static async Task CreateUserAsync(string tenant, int userId, UserInfo model)
         {
             using (var db = DbProvider.Get(FrapidDbServer.GetSuperUserConnectionString(tenant), tenant).GetDatabase())
             {
-                string encryptedPassword = EncryptPassword(model.Password);
+                string encryptedPassword = EncryptPassword(model.Email, model.Password);
 
                 var user = new User
                 {

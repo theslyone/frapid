@@ -6,7 +6,7 @@
             var skip = scrudFactory.skipPrimaryKey;
 
             if(skip === undefined){
-                skip = $("[data-primarykey]").is("[readonly]");                
+                skip = $("[data-primarykey]").is("[disabled]");                
             };
 
             return skip;

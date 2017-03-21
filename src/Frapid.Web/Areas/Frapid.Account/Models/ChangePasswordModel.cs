@@ -8,8 +8,7 @@ namespace Frapid.Account.Models
 {
     public static class ChangePasswordModel
     {
-        public static async Task<bool> ChangePasswordAsync(AppUser current, ChangePassword model,
-            RemoteUser user)
+        public static async Task<bool> ChangePasswordAsync(AppUser current, ChangePassword model, RemoteUser user)
         {
             int userId = current.UserId;
 
@@ -25,16 +24,17 @@ namespace Frapid.Account.Models
             }
 
             string email = current.Email;
+            
             var frapidUser = await Users.GetAsync(current.Tenant, email).ConfigureAwait(false);
 
-            bool oldPasswordIsValid = PasswordManager.ValidateBcrypt(model.OldPassword, frapidUser.Password);
+            bool oldPasswordIsValid = PasswordManager.ValidateBcrypt(current.Email, model.OldPassword, frapidUser.Password);
             if (!oldPasswordIsValid)
             {
                 await Task.Delay(2000).ConfigureAwait(false);
                 return false;
             }
 
-            string newPassword = PasswordManager.GetHashedPassword(model.Password);
+            string newPassword = PasswordManager.GetHashedPassword(current.Email, model.Password);
             await Users.ChangePasswordAsync(current.Tenant, userId, newPassword, user).ConfigureAwait(false);
             return true;
         }

@@ -75,12 +75,15 @@ function refreshKanbans(dontRefresh) {
     ajax.success(function (response) {
         window.kanbans = response;
 
-        if (!window.kanbans.length) {
-            if (!isKanban()) {
-                var defaultView = window.getQueryStringByName("View") || "grid";
-                showView(defaultView, dontRefresh);
-            };
-        };
+        //if (!window.kanbans.length) {
+        //    if (!isKanban()) {
+        //        var defaultView = window.getQueryStringByName("View") || "kanban";
+        //        showView(defaultView, dontRefresh);
+        //    };
+        //};
+
+        var defaultView = window.getQueryStringByName("View") || "kanban";
+        showView(defaultView, dontRefresh);
 
         createKanbans(response);
     });

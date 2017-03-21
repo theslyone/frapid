@@ -1605,7 +1605,6 @@ SELECT
     core.currencies.currency_symbol,
     core.currencies.hundredth_name,
     core.offices.pan_number,
-    core.offices.has_vat,
     account.users.last_seen_on
 FROM account.logins
 INNER JOIN account.users

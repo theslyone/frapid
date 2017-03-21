@@ -10,6 +10,7 @@
 	"RealeasedOn": null,
 	"Description": "Frapid website builder module.",
 	"Category": "Core Modules",
+	"Hasi18N": true,
 	"I18NClassName": "Resources",
 	"Bundle": "Frapid Framework",
     "IsMeta": false,

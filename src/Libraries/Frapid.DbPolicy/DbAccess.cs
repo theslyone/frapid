@@ -32,7 +32,7 @@ namespace Frapid.DbPolicy
                 ObjectNamespace = this._ObjectNamespace,
                 ObjectName = this._ObjectName,
                 LoginId = loginId,
-                Database = database,
+                Tenant = database,
                 AccessType = type
             };
 

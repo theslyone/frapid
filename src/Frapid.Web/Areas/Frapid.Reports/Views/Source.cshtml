@@ -8,59 +8,75 @@
 <head>
     <meta charset="utf-8">
     <title>@I18N.FrapidReport</title>
-    <link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/styles/source.css"/>
+    <link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/styles/source.css" />
 </head>
 <body>
     @Html.Action("ReportMarkup", new { path = Model })
 
     <script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
     <script src="/assets/js/backend.js"></script>
+    <script src="/Areas/Frapid.Reports/scripts/jquery.tablesorter/jquery.tablesorter.min.js"></script>
+<script>
+    $(document).ready(function () {
+        (function () {
+            $(".unformatted.date").each(function () {
+                const el = $(this);
+                const value = el.text().trim();
+                if (!value) {
+                    return;
+                };
 
-    <script>
-        $(document).ready(function () {
-            const template = `<div style='background-color:{0};border:1px solid {1};margin:0.5em;text-align:center;'>
-                                <canvas id='Canvas{2}' width='{3}px' height='{4}px'></canvas>
+                const date = new Date(value);
+
+                el.text(window.getFormattedDate(date)).removeClass("unformatted");
+            });
+        })();
+
+        const template = `<div style='background-color:{0};border:1px solid {1};margin:0.5em;text-align:center;'>
+                                <div class ='canvas container' style='width:{3}px;height:{4}px;'>
+                                    <canvas id='Canvas{2}' width='{3}' height='{4}'></canvas>
+                                </div>
                                 <br />
                                 <div id='Canvas{2}-legend'></div></div>`;
 
-            function createCanvas(target, backgroundColor, borderColor, index, width, height) {
-                const html = window.stringFormat(template, backgroundColor, borderColor, index, width, height);
-                const el = $(html);
+        function createCanvas(target, backgroundColor, borderColor, index, width, height) {
+            const html = window.stringFormat(template, backgroundColor, borderColor, index, width, height);
+            const el = $(html);
+            target.append(el);
+        };
 
-                target.append(el);
-            };
+        function displayChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex) {
+            window.prepareReportChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex);
+        };
 
-            function displayChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex) {
-                window.prepareReportChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex);
-            };
+        const charts = $("chart");
+        $("charts").after("<div class='data visualization' />");
+        const container = $(".data.visualization");
 
-            const charts = $("chart");
-            $("charts").after("<div class='data visualization' />");
-            const container = $(".data.visualization");
+        $.each(charts, function () {
+            const el = $(this);
 
-            $.each(charts, function () {
-                const el = $(this);
+            const index = el.attr("gridviewindex");
 
-                const index = el.attr("gridviewindex");
+            const selector = window.stringFormat('GridView{0}', index);
+            const canvasId = window.stringFormat("Canvas{0}", index);
+            const legendId = canvasId + '-legend';
+            const chartType = el.attr("type").toLowerCase();
+            const backgroundColor = el.attr("backgroundcolor") || "transparent";
+            const borderColor = el.attr("bordercolor") || "transparent";
+            const width = el.attr("width");
+            const height = el.attr("height");
+            const hideGridView = el.attr("hidegridview").toLowerCase().substring(0, 1) === "t";
+            const titleColumnIndex = el.attr("titlecolumnindex");
+            const valueColumnIndex = el.attr("valuecolumnindex");
 
-                const selector = window.stringFormat('GridView{0}', index);
-                const canvasId = window.stringFormat("Canvas{0}", index);
-                const legendId = canvasId + '-legend';
-                const chartType = el.attr("type");
-                const backgroundColor = el.attr("backgroundcolor") || "transparent";
-                const borderColor = el.attr("bordercolor") || "transparent";
-                const width = el.attr("width");
-                const height = el.attr("height");
-                const hideGridView = el.attr("hidegridview").toLowerCase().substring(0, 1) === "t";
-                const titleColumnIndex = el.attr("titlecolumnindex");
-                const valueColumnIndex = el.attr("valuecolumnindex");
-
-                createCanvas(container, backgroundColor, borderColor, index, width, height);
-                displayChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex);
-            });
-
-            $("charts").remove();
+            createCanvas(container, backgroundColor, borderColor, index, width, height);
+            displayChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex);
         });
-    </script>
+
+        $("charts").remove();
+        $("table").tablesorter();
+    });
+</script>
 </body>
 </html>

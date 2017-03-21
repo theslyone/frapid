@@ -48,7 +48,7 @@
     };
 
     if (window.scrudFactory.readonlyColumns.indexOf(column.PropertyName) > -1) {
-        element.attr("readonly", "");
+        element.attr("disabled", "");
     };
 
     if (window.scrudFactory.hiddenColumns.indexOf(column.PropertyName) > -1) {
@@ -56,7 +56,7 @@
     };
 
     if (column.IsSerial) {
-        element.attr("readonly", "readonly");
+        element.attr("disabled", "disabled");
     };
 
     if (column.IsPrimaryKey) {

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Frapid.ApplicationState.Cache;
 using Frapid.Areas.CSRF;
 using Frapid.Dashboard.DAL;
+using Frapid.DataAccess.Models;
 
 namespace Frapid.Dashboard.Controllers
 {
@@ -11,6 +12,7 @@ namespace Frapid.Dashboard.Controllers
     public sealed class NotificationController : BackendController
     {
         [Route("dashboard/my/notifications")]
+        [AccessPolicy("core", "notifications", AccessTypeEnum.Read)]
         public async Task<ActionResult> GetMyNotificationAsync()
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);
@@ -21,6 +23,7 @@ namespace Frapid.Dashboard.Controllers
 
         [Route("dashboard/my/notifications/set-seen/{notificationId}")]
         [HttpPost]
+        [AccessPolicy("core", "notifications", AccessTypeEnum.Edit)]
         public async Task<ActionResult> GetMyNotificationAsync(Guid notificationId)
         {
             var meta = await AppUsers.GetCurrentAsync().ConfigureAwait(true);

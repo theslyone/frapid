@@ -277,7 +277,7 @@ RETURNS @result TABLE
     version_number                      national character varying(500),
     publisher                           national character varying(500),
     published_on                        date,
-    icon                                national character varying(500),
+    icon                                national character varying(MAX),
     landing_url                         national character varying(500)
 )
 AS

@@ -1,10 +1,11 @@
 ﻿function docready() {
+    $("#ExportDropDown").dropdown();
     window.scrudForm = $(".form.factory");
     window.scrudView = $(".view.factory");
 
     var defaultView = window.getQueryStringByName("View");
 
-    if ((defaultView || "") === "FormView") {
+    if ((defaultView || "") === "form-view") {
         scrudView.hide();
     };
 
@@ -46,6 +47,7 @@
     initializeCustomButtons();
 
     var view = getQueryStringByName("View");
+
     if (view) {
         showTarget(view);
     };

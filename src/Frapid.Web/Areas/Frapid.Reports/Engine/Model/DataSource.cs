@@ -11,5 +11,6 @@ namespace Frapid.Reports.Engine.Model
         public int? RunningTotalTextColumnIndex { get; set; }
         public List<int> RunningTotalFieldIndices { get; set; }
         public DataTable Data { get; set; }
+        public bool ReturnsJson { get; set; }
     }
 }

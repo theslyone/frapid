@@ -9,6 +9,7 @@ using Frapid.DataAccess;
 using Frapid.Framework;
 using Frapid.Installer.DAL;
 using Frapid.Installer.Helpers;
+using Frapid.Installer.Tenant;
 
 namespace Frapid.Installer
 {
@@ -39,14 +40,21 @@ namespace Frapid.Installer
 
             foreach (var dependency in this.Installable.Dependencies)
             {
-                //InstallerLog.Verbose($"Installing module {dependency.ApplicationName} because the module {this.Installable.ApplicationName} depends on it.");
                 await new AppInstaller(this.Tenant, this.Database, dependency).InstallAsync().ConfigureAwait(false);
             }
+
+            InstallerLog.Verbose($"Installing module {this.Installable.ApplicationName}.");
 
             await this.CreateSchemaAsync().ConfigureAwait(false);
             await this.CreateMyAsync().ConfigureAwait(false);
             this.CreateOverride();
             Installer.Tenant.Installer.InstalledApps.Add(this.Installable);
+
+            if (this.Installable.ApplicationName == "Frapid.Account")
+            {
+                var domain = TenantConvention.FindDomainByTenant(this.Tenant);
+                await UserInstaller.CreateUserAsync(this.Tenant, domain).ConfigureAwait(false);
+            }
         }
 
         protected async Task CreateMyAsync()

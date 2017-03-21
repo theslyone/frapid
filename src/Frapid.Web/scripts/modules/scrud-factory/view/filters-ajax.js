@@ -41,7 +41,7 @@ function loadFilterNames() {
     var ajax = request();
 
     ajax.success(function (response) {
-        var selected = "";
+        var selected = window.getQueryStringByName("Filter");
 
         var option = "<option value=''>";
         option += window.translate("SelectAFilter");

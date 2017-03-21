@@ -10,6 +10,7 @@
 	"RealeasedOn": null,
 	"Description": "MixERP Social Networking App",
 	"Category": "ERP",
+	"Hasi18N": true,
 	"Bundle": "MixERP 2.0",
 	"I18NClassName": "Resources",
     "IsMeta": false,

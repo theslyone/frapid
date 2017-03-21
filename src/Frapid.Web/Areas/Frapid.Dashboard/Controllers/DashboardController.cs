@@ -15,6 +15,22 @@ namespace Frapid.Dashboard.Controllers
             return ThemeConfiguration.GetLayout(this.Tenant, theme);
         }
 
+        private string GetCustomJavascriptPath()
+        {
+            string path = Configuration.GetCurrentThemePath(this.Tenant) + "/custom.js";
+            path = HostingEnvironment.MapPath(path);
+
+            return !System.IO.File.Exists(path) ? string.Empty : "/dashboard/my/template/custom.js";
+        }
+
+        private string GetCustomStylesheetPath()
+        {
+            string path = Configuration.GetCurrentThemePath(this.Tenant) + "/custom.css";
+            path = HostingEnvironment.MapPath(path);
+
+            return !System.IO.File.Exists(path) ? string.Empty : "/dashboard/my/template/custom.css";
+        }
+
         private string GetLayoutPath()
         {
             string layout = Configuration.GetCurrentThemePath(this.Tenant);
@@ -54,6 +70,8 @@ namespace Frapid.Dashboard.Controllers
 
             this.ViewBag.LayoutPath = this.GetLayoutPath();
             this.ViewBag.LayoutFile = this.GetLayoutFile();
+            this.ViewBag.CustomJavascriptPath = this.GetCustomJavascriptPath();
+            this.ViewBag.CustomStylesheetPath = this.GetCustomStylesheetPath();
 
             bool isAjax = this.IsAjax(filterContext.HttpContext);
 

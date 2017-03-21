@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Frapid.Areas;
+using Frapid.Areas.Authorization;
 using Frapid.Areas.CSRF;
 using Frapid.Reports.Models;
 using Frapid.Reports.ViewModels;
@@ -12,6 +13,7 @@ namespace Frapid.Reports.Controllers.Backend
     [AntiForgery]
     public sealed class EmailController : FrapidController
     {
+        [RestrictAnonymous]
         [Route("dashboard/reports/email")]
         [HttpPost]
         public async Task<ActionResult> EmailAsync(EmailViewModel model)

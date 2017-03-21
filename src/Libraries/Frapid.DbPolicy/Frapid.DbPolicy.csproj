@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Frapid.ApplicationState\Frapid.ApplicationState.csproj">
+      <Project>{ef3d84f8-3d64-45d7-9050-3ae204f5aa72}</Project>
+      <Name>Frapid.ApplicationState</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Frapid.Configuration\Frapid.Configuration.csproj">
       <Project>{CA3C3D39-6775-4234-B343-38F0724ADCF8}</Project>
       <Name>Frapid.Configuration</Name>
@@ -53,6 +57,10 @@
     <ProjectReference Include="..\Frapid.DataAccess\Frapid.DataAccess.csproj">
       <Project>{9bea3809-b6d5-4025-ae7e-868e5e7e9c76}</Project>
       <Name>Frapid.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frapid.Framework\Frapid.Framework.csproj">
+      <Project>{A4DEE358-3203-425C-80E9-8EBA0A01B73F}</Project>
+      <Name>Frapid.Framework</Name>
     </ProjectReference>
     <ProjectReference Include="..\Frapid.i18n\Frapid.i18n.csproj">
       <Project>{88dfdf57-a52b-4d71-a0c4-bef1a3839506}</Project>

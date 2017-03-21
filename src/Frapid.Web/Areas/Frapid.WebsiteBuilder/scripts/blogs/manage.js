@@ -70,7 +70,7 @@ function displayContent() {
 };
 
 $(document).ready(function () {
-    window.initalizeSelectApis();
+    window.initializeSelectApis();
     window.initializeUITags();
     $(".ui.checkbox").checkbox();
     window.loadDatepicker();
@@ -80,13 +80,13 @@ $(document).ready(function () {
         el.prop("checked", el.attr("data-value").toLowerCase() === "true");
     });
     setTimeout(function () {
-        $("#ContentsTextArea").trumbowyg({ svgPath: "/scripts/trumbowyg/dist/ui/icons.svg" });
+        $("#ContentsTextArea").trumbowyg({ svgPath: "/scripts/trumbowyg/dist/ui/icons.svg", autogrow: true });
         $("#ContentsTextArea").show();
     }, 1000);
 });
 
 
 setTimeout(function () {
-    $("#ContentsTextArea").trumbowyg({ svgPath: "/scripts/trumbowyg/dist/ui/icons.svg" });
+    $("#ContentsTextArea").trumbowyg({ svgPath: "/scripts/trumbowyg/dist/ui/icons.svg", autogrow: true });
     $("#ContentsTextArea").show();
 }, 1000);

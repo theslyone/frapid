@@ -23,14 +23,16 @@ namespace Frapid.Account.Controllers
         {
             var user = await Users.GetAsync(tenant, email).ConfigureAwait(false);
 
-            return user != null && PasswordManager.ValidateBcrypt(plainPassword, user.Password);
+            return user != null && PasswordManager.ValidateBcrypt(email, plainPassword, user.Password);
         }
 
         protected async Task<ActionResult> OnAuthenticatedAsync(LoginResult result, SignInInfo model = null)
         {
             if (!result.Status)
             {
-                await Task.Delay(new Random().Next(1, 5)*1000).ConfigureAwait(false);
+                int delay = new Random().Next(1, 5) * 1000;
+
+                await Task.Delay(delay).ConfigureAwait(false);
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden, JsonConvert.SerializeObject(result));
             }
         

@@ -7,7 +7,7 @@ using Frapid.Installer.Helpers;
 
 namespace Frapid.Installer.Tenant
 {
-    public class Installer
+    public sealed class Installer
     {
         public static List<Installable> InstalledApps;
 
@@ -23,6 +23,7 @@ namespace Frapid.Installer.Tenant
             InstalledApps = new List<Installable>();
 
             string tenant = TenantConvention.GetTenant(this.Url);
+
             InstallerLog.Verbose($"Creating database {tenant}.");
             var db = new DbInstaller(tenant);
             await db.InstallAsync().ConfigureAwait(false);
@@ -34,7 +35,6 @@ namespace Frapid.Installer.Tenant
             {
                 try
                 {
-                    InstallerLog.Verbose($"Installing module {installable.ApplicationName}.");
                     await new AppInstaller(tenant, tenant, installable).InstallAsync().ConfigureAwait(false);
                 }
                 catch (Exception ex)

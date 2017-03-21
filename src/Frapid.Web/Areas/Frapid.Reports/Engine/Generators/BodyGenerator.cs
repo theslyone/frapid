@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Text;
 using Frapid.Reports.Engine.Model;
@@ -77,7 +78,11 @@ namespace Frapid.Reports.Engine.Generators
 
             if (value is decimal || value is double || value is float)
             {
-                cell += " class='right aligned'>";
+                cell += " class='right aligned decimal number'>";
+            }
+            else if(value is DateTime || value is DateTimeOffset)
+            {
+                cell += " class='unformatted date'>";
             }
             else
             {
@@ -121,7 +126,7 @@ namespace Frapid.Reports.Engine.Generators
             html.Append("</tr>");
             html.Append("</thead>");
 
-            if (dataSource.RunningTotalTextColumnIndex != null && dataSource.RunningTotalTextColumnIndex > 0)
+            if (dataSource.RunningTotalTextColumnIndex != null)
             {
                 int index = dataSource.RunningTotalTextColumnIndex.Value;
                 var candidates = dataSource.RunningTotalFieldIndices;

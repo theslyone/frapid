@@ -14,10 +14,13 @@ namespace Frapid.Reports.Helpers
             if (value is DateTime)
             {
                 var date = value.To<DateTime>();
-                if (date.Date == date)
-                {
-                    cellValue = date.ToString("d");
-                }
+                cellValue = date.ToString("o");
+            }
+
+            if (value is DateTimeOffset)
+            {
+                var date = value.To<DateTimeOffset>();
+                cellValue = date.ToString("o");
             }
 
             if (value is decimal || value is double || value is float)

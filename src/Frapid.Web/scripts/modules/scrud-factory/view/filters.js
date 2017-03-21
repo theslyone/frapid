@@ -121,11 +121,11 @@ filterConditionSelect.change(function () {
     var val = parseFloat(filterConditionSelect.val() || 0);
 
     if (val >= 6 && val <= 7) {
-        andInputText.removeAttr("readonly");
+        andInputText.removeAttr("disabled");
         return;
     };
 
-    andInputText.attr("readonly", "readonly");
+    andInputText.attr("disabled", "disabled");
     andInputText.val("");
 });
 

@@ -1,8 +1,10 @@
 ﻿using Frapid.Areas;
+using Frapid.Areas.Authorization;
 using Frapid.Dashboard.Helpers;
 
 namespace Frapid.Dashboard.Controllers
 {
+    [RestrictAnonymous]
     public class BackendController : FrapidController
     {
         protected string GetRazorView(string areaName, string controllerName, string actionName, string tenant)

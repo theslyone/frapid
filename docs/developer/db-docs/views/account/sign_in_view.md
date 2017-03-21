@@ -46,7 +46,6 @@
     currencies.currency_symbol,
     currencies.hundredth_name,
     offices.pan_number,
-    offices.has_vat,
     users.last_seen_on
    FROM account.logins
      JOIN account.users ON users.user_id = logins.user_id

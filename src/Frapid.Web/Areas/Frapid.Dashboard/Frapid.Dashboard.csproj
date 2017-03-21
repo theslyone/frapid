@@ -59,6 +59,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.DataAccess.dll</HintPath>
     </Reference>
+    <Reference Include="Frapid.DbPolicy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Frapid.DbPolicy.dll</HintPath>
+    </Reference>
     <Reference Include="Frapid.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.Framework.dll</HintPath>
@@ -113,6 +117,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
@@ -129,6 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessPolicyAttribute.cs" />
     <Compile Include="AreaRegistration.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Controllers\AppController.cs" />
@@ -138,6 +144,8 @@
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
+    <Compile Include="Controllers\WidgetController.cs" />
+    <Compile Include="Models\WidigetDashboardModel.cs" />
     <Compile Include="DAL\Notifications.cs" />
     <Compile Include="DTO\MyNotifcation.cs" />
     <Compile Include="DTO\Notification.cs" />
@@ -159,31 +167,36 @@
     <Compile Include="DTO\App.cs" />
     <Compile Include="DTO\Menu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.cs" />
     <Compile Include="ThemeConfiguration.cs" />
     <Compile Include="ViewModels\Dashboard.cs" />
+    <Compile Include="ViewModels\MyWidgetInfo.cs" />
+    <Compile Include="ViewModels\Widget.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.1.1.js" />
-    <Content Include="Scripts\jquery-3.1.1.min.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.js" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.1.js" />
-    <Content Include="Scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="scripts\default\console.js" />
+    <Content Include="scripts\jquery-3.1.1.js" />
+    <Content Include="scripts\jquery-3.1.1.min.js" />
+    <Content Include="scripts\jquery-3.1.1.min.map" />
+    <Content Include="scripts\jquery-3.1.1.slim.js" />
+    <Content Include="scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="scripts\jquery-3.1.1.slim.min.map" />
+    <Content Include="scripts\jquery.signalR-2.2.1.js" />
+    <Content Include="scripts\jquery.signalR-2.2.1.min.js" />
+    <Content Include="styles\default\console.css" />
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Default\LandingPage.cshtml" />
+    <Content Include="widgets\frequently-accessed-menus.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="AppInfo.json" />
     <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
-    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Views\Default\Console.cshtml" />
+    <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

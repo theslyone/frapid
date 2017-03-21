@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using Frapid.Areas;
+using Frapid.Areas.Authorization;
 using Frapid.Areas.Caching;
 using Frapid.Areas.CSRF;
 using MixERP.Social.DTO;
@@ -16,6 +17,7 @@ namespace MixERP.Social.Controllers.Service
     [AntiForgery]
     public class AttachmentController : FrapidController
     {
+        [RestrictAnonymous]
         [Route("dashboard/social/attachment")]
         [HttpPost]
         public ActionResult Post()

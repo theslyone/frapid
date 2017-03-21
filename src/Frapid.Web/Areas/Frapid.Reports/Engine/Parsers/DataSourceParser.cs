@@ -108,10 +108,13 @@ namespace Frapid.Reports.Engine.Parsers
 
         private List<int> GetRunningTotalFieldIndices(XmlNode node)
         {
-            var candidate =
-                node.ChildNodes.Cast<XmlNode>().FirstOrDefault(x => x.Name.Equals("RunningTotalFieldIndices"));
+            var candidate = node.ChildNodes.Cast<XmlNode>().FirstOrDefault(x => x.Name.Equals("RunningTotalFieldIndices"));
 
-            if (string.IsNullOrWhiteSpace(candidate?.InnerText)) return new List<int>();
+            if (string.IsNullOrWhiteSpace(candidate?.InnerText))
+            {
+                return new List<int>();
+            }
+
             var value = candidate.InnerText.Split(',').Select(int.Parse).ToList();
             return value;
         }
@@ -137,9 +140,12 @@ namespace Frapid.Reports.Engine.Parsers
 
             foreach (XmlNode node in nodes)
             {
+                bool returnsJson = this.GetAttributeValue(node, "ReturnsJson")?.To<bool>() ?? false;
+
                 this.DataSources.Add(new DataSource
                 {
                     Index = index,
+                    ReturnsJson = returnsJson,
                     Query = this.GetQuery(node),
                     Parameters = this.GetParameters(report, node),
                     RunningTotalFieldIndices = this.GetRunningTotalFieldIndices(node),

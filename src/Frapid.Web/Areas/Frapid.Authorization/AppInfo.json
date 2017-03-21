@@ -10,6 +10,7 @@
 	"RealeasedOn": null,
 	"Description": "Frapid authorization module.",
 	"Category": "Core Modules",
+	"Hasi18N": true,
 	"Bundle": "Frapid Framework",
     "IsMeta": false,
 	"DbSchema": "auth",

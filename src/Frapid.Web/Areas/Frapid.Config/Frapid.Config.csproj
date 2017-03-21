@@ -53,6 +53,14 @@
     <Reference Include="Frapid.Dashboard">
       <HintPath>..\..\bin\Frapid.Dashboard.dll</HintPath>
     </Reference>
+    <Reference Include="Frapid.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Frapid.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Frapid.DbPolicy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\Frapid.DbPolicy.dll</HintPath>
+    </Reference>
     <Reference Include="Frapid.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.Framework.dll</HintPath>
@@ -105,10 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaRegistration.cs" />
-    <Compile Include="Controllers\ApiAccessController.cs" />
-    <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\FileManagerController.cs" />
-    <Compile Include="Controllers\MenuAccessController.cs" />
     <Compile Include="Controllers\OfficeController.cs" />
     <Compile Include="Controllers\Services\AttachmentController.cs" />
     <Compile Include="Controllers\SmtpController.cs" />
@@ -145,9 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Currency\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Office\Index.cshtml" />

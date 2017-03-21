@@ -13,8 +13,8 @@ namespace Frapid.Dashboard.Controllers
     [AntiForgery]
     public class ThemeController: FrapidController
     {
-        [Route("dashboard/my/themes")]
         [RestrictAnonymous]
+        [Route("dashboard/my/themes")]
         public ActionResult GetThemes()
         {
             string path = $"~/Tenants/{this.Tenant}/Areas/Frapid.Dashboard/Themes";
@@ -32,8 +32,8 @@ namespace Frapid.Dashboard.Controllers
             return this.Ok(templates);
         }
 
-        [Route("dashboard/my/themes/set-default/{themeName}")]
         [RestrictAnonymous]
+        [Route("dashboard/my/themes/set-default/{themeName}")]
         [HttpPost]
         public ActionResult SetAsDefault(string themeName)
         {

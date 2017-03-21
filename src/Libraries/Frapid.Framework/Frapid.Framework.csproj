@@ -105,6 +105,7 @@
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="FrapidRazorViewEngine.cs" />
     <Compile Include="HttpClientHelper.cs" />
+    <Compile Include="IExceptionLogger.cs" />
     <Compile Include="StaticContent\Asset.cs" />
     <Compile Include="StaticContent\AssetType.cs" />
     <Compile Include="AttributeValueInvestigator.cs" />

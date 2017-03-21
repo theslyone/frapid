@@ -27,7 +27,7 @@ namespace Frapid.Account.Models
             model.IpAddress = user.IpAddress;
 
             var registration = model.Adapt<DTO.Registration>();
-            registration.Password = PasswordManager.GetHashedPassword(model.Password);
+            registration.Password = PasswordManager.GetHashedPassword(model.Email, model.Password);
 
             string registrationId =
                 (await Registrations.RegisterAsync(tenant, registration).ConfigureAwait(false)).ToString();

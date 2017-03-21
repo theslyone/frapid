@@ -17,8 +17,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
     [AntiForgery]
     public class ThemeController : FrapidController
     {
-        [Route("dashboard/my/website/themes")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes")]
         public ActionResult GetThemes()
         {
             var discoverer = new ThemeDiscoverer();
@@ -27,8 +27,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             return this.Ok(templates);
         }
 
-        [Route("dashboard/my/website/themes/create")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/create")]
         [HttpPost]
         public ActionResult Create(ThemeInfo model)
         {
@@ -50,8 +50,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             return this.Ok();
         }
 
-        [Route("dashboard/my/website/themes/delete")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/delete")]
         [HttpDelete]
         public async Task<ActionResult> DeleteAsync(string themeName)
         {
@@ -68,8 +68,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             return this.Ok();
         }
 
-        [Route("dashboard/my/website/themes/resources")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/resources")]
         public ActionResult GetResources(string themeName)
         {
             if (string.IsNullOrWhiteSpace(themeName))
@@ -101,8 +101,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             return this.Content(json, "application/json");
         }
 
-        [Route("dashboard/my/website/themes/blob")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/blob")]
         public ActionResult GetBinary(string themeName, string file)
         {
             if (string.IsNullOrWhiteSpace(themeName) ||
@@ -122,24 +122,24 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             return MimeMapping.GetMimeMapping(fileName);
         }
 
-        [Route("dashboard/my/website/themes/resources/create/file")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/resources/create/file")]
         [HttpPut]
         public ActionResult CreateFile(string themeName, string container, string file, string contents)
         {
             return this.CreateResource(themeName, container, file, false, contents);
         }
 
-        [Route("dashboard/my/website/themes/resources/edit/file")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/resources/edit/file")]
         [HttpPut]
         public ActionResult EditFile(string themeName, string container, string file, string contents)
         {
             return this.CreateResource(themeName, container, file, false, contents, true);
         }
 
-        [Route("dashboard/my/website/themes/resources/create/folder")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/resources/create/folder")]
         [HttpPut]
         public ActionResult CreateFolder(string themeName, string container, string folder)
         {
@@ -170,8 +170,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             return this.Ok();
         }
 
-        [Route("dashboard/my/website/themes/resources/delete")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/resources/delete")]
         [HttpDelete]
         public ActionResult DeleteResource(string themeName, string resource)
         {
@@ -194,8 +194,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             return this.Ok();
         }
 
-        [Route("dashboard/my/website/themes/resources/upload")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/resources/upload")]
         [HttpPost]
         public ActionResult UploadResource(string themeName, string container)
         {
@@ -223,8 +223,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             return this.Ok();
         }
 
-        [Route("dashboard/my/website/themes/upload")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/upload")]
         [HttpPost]
         public ActionResult UploadTheme()
         {
@@ -250,8 +250,8 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             }
         }
 
-        [Route("dashboard/my/website/themes/upload/remote")]
         [RestrictAnonymous]
+        [Route("dashboard/my/website/themes/upload/remote")]
         [HttpPost]
         public ActionResult UploadTheme(string url)
         {

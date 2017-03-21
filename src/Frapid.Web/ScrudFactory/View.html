@@ -11,9 +11,13 @@
         padding: 8px;
     }
 
-    .kanban .card {
+    .kanban-card {
         cursor: pointer;
     }
+
+        .kanban-card .header {
+            height: 2.5em;
+        }
 
     .kanban.segments .ui.segment:nth-child(odd) {
         background-color: #FAFAFA !important;
@@ -30,17 +34,61 @@
 
 
 
-    .kanban .card {
-        filter: gray; /* IE6-9 */
-        filter: grayscale(0.8); /* Microsoft Edge and Firefox 35+ */
-        -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+
+    .kanban.holder {
     }
 
-        /* Disable grayscale on hover */
-        .kanban .card:hover {
+    .kanban-card {
+        display: inline-block;
+        width: 200px;
+        border: 1px solid #eaeaea;
+        margin: 2px 1px;
+        cursor: pointer;
+        background: #fff;
+        filter: gray; /* IE6-9 */
+        filter: grayscale(0.8); /* Microsoft Edge and Firefox 35+ */
+        -webkit-filter: grayscale(0.8); /* Google Chrome, Safari 6+ & Opera 15+ */
+        transition: 0.2s;
+        transition-timing-function: ease-in;
+    }
+
+        .kanban-card:hover {
+            transform: scale(1.12);
+            z-index: 10;
             filter: gray; /* IE6-9 */
-            filter: grayscale(0.4); /* Microsoft Edge and Firefox 35+ */
-            -webkit-filter: grayscale(0.2);
+            filter: grayscale(0.5); /* Microsoft Edge and Firefox 35+ */
+            -webkit-filter: grayscale(0.5);
+            border-color: #ddd;
+            box-shadow: 0 1em 1em #888;
+        }
+
+
+        .kanban-card .image {
+            display: block !important;
+        }
+
+        .kanban-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .kanban-card .header {
+            font-weight: 500;
+            color: red;
+            font-size: 1.32em;
+            padding-bottom: 0.25em;
+        }
+
+        .kanban-card .meta {
+            color: #888;
+            font-size: 0.8em;
+            line-height: 1.2;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .kanban-card .content, .kanban-card .extra {
+            padding: 0.72em;
         }
 
     .unstyled.segment {
@@ -235,11 +283,11 @@
                 </div>
                 <div class="right aligned four wide column">
                     <div class="ui basic icon action mini buttons">
-                        <a class="ui basic icon button" data-target="grid" data-localized-title="GridView">
-                            <i class="grid layout icon"></i>
-                        </a>
                         <a class="ui active green basic icon button" data-target="kanban" data-localized-title="KanbanView">
                             <i class="block layout icon"></i>
+                        </a>
+                        <a class="ui basic icon button" data-target="grid" data-localized-title="GridView">
+                            <i class="grid layout icon"></i>
                         </a>
                         <a class="ui basic icon button" data-target="filter" data-localized-title="FilterView">
                             <i class="icons">
@@ -287,13 +335,13 @@
                                     <label for="ColumnSelect">
                                         <span data-localize="SelectAColumn"></span>
                                     </label>
-                                    <select class="ui search dropdown" id="ColumnSelect" data-scope="column" required></select>
+                                    <select id="ColumnSelect" data-scope="column" required></select>
                                 </div>
                                 <div class="field">
                                     <label for="FilterConditionSelect">
                                         <span data-localize="FilterCondition"></span>
                                     </label>
-                                    <select class="ui search dropdown" id="FilterConditionSelect" data-scope="filter-condition" required></select>
+                                    <select id="FilterConditionSelect" data-scope="filter-condition" required></select>
                                 </div>
                                 <div class="field">
                                     <label for="ValueInputText">

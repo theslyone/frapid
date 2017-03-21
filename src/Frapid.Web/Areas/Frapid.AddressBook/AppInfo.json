@@ -22,5 +22,5 @@
 	"My": null,
 	"OverrideTemplatePath": "~/Areas/Frapid.AddressBook/Overrides",
     "OverrideDestination":"~/Tenants/{0}/Areas",
-	"DependsOn": ["Frapid", "Frapid.Account"]
+	"DependsOn": ["Frapid", "Frapid.Account", "Frapid.Authorization"]
 }

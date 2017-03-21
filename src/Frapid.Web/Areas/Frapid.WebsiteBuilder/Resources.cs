@@ -24,14 +24,34 @@ namespace Frapid.WebsiteBuilder
 		}
 
 		/// <summary>
-		///Add a New Theme
+		///Website
 		/// </summary>
-		public static string AddANewTheme => I18NResource.GetString(ResourceDirectory, "AddANewTheme");
+		public static string Website => I18NResource.GetString(ResourceDirectory, "Website");
 
 		/// <summary>
-		///Address
+		///Author Id
 		/// </summary>
-		public static string Address => I18NResource.GetString(ResourceDirectory, "Address");
+		public static string AuthorId => I18NResource.GetString(ResourceDirectory, "AuthorId");
+
+		/// <summary>
+		///Status
+		/// </summary>
+		public static string Status => I18NResource.GetString(ResourceDirectory, "Status");
+
+		/// <summary>
+		///Target
+		/// </summary>
+		public static string Target => I18NResource.GetString(ResourceDirectory, "Target");
+
+		/// <summary>
+		///Contents
+		/// </summary>
+		public static string Contents => I18NResource.GetString(ResourceDirectory, "Contents");
+
+		/// <summary>
+		///Description
+		/// </summary>
+		public static string Description => I18NResource.GetString(ResourceDirectory, "Description");
 
 		/// <summary>
 		///Alias
@@ -39,14 +59,404 @@ namespace Frapid.WebsiteBuilder
 		public static string Alias => I18NResource.GetString(ResourceDirectory, "Alias");
 
 		/// <summary>
-		///Audit Ts
+		///Category Alias
 		/// </summary>
-		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
+		public static string CategoryAlias => I18NResource.GetString(ResourceDirectory, "CategoryAlias");
+
+		/// <summary>
+		///Unsubscribed On
+		/// </summary>
+		public static string UnsubscribedOn => I18NResource.GetString(ResourceDirectory, "UnsubscribedOn");
+
+		/// <summary>
+		///Website Category Name
+		/// </summary>
+		public static string WebsiteCategoryName => I18NResource.GetString(ResourceDirectory, "WebsiteCategoryName");
+
+		/// <summary>
+		///Configuration Id
+		/// </summary>
+		public static string ConfigurationId => I18NResource.GetString(ResourceDirectory, "ConfigurationId");
+
+		/// <summary>
+		///Email
+		/// </summary>
+		public static string Email => I18NResource.GetString(ResourceDirectory, "Email");
+
+		/// <summary>
+		///Subscribed On
+		/// </summary>
+		public static string SubscribedOn => I18NResource.GetString(ResourceDirectory, "SubscribedOn");
+
+		/// <summary>
+		///Browser
+		/// </summary>
+		public static string Browser => I18NResource.GetString(ResourceDirectory, "Browser");
+
+		/// <summary>
+		///Title
+		/// </summary>
+		public static string Title => I18NResource.GetString(ResourceDirectory, "Title");
+
+		/// <summary>
+		///Blog Description
+		/// </summary>
+		public static string BlogDescription => I18NResource.GetString(ResourceDirectory, "BlogDescription");
+
+		/// <summary>
+		///Category Name
+		/// </summary>
+		public static string CategoryName => I18NResource.GetString(ResourceDirectory, "CategoryName");
+
+		/// <summary>
+		///Recipients
+		/// </summary>
+		public static string Recipients => I18NResource.GetString(ResourceDirectory, "Recipients");
+
+		/// <summary>
+		///Email Subscription Id
+		/// </summary>
+		public static string EmailSubscriptionId => I18NResource.GetString(ResourceDirectory, "EmailSubscriptionId");
+
+		/// <summary>
+		///Blog Category Name
+		/// </summary>
+		public static string BlogCategoryName => I18NResource.GetString(ResourceDirectory, "BlogCategoryName");
+
+		/// <summary>
+		///Menu Item Id
+		/// </summary>
+		public static string MenuItemId => I18NResource.GetString(ResourceDirectory, "MenuItemId");
+
+		/// <summary>
+		///Display Contact Form
+		/// </summary>
+		public static string DisplayContactForm => I18NResource.GetString(ResourceDirectory, "DisplayContactForm");
+
+		/// <summary>
+		///Seo Description
+		/// </summary>
+		public static string SeoDescription => I18NResource.GetString(ResourceDirectory, "SeoDescription");
+
+		/// <summary>
+		///Parent Menu Item Id
+		/// </summary>
+		public static string ParentMenuItemId => I18NResource.GetString(ResourceDirectory, "ParentMenuItemId");
+
+		/// <summary>
+		///Unsubscribed
+		/// </summary>
+		public static string Unsubscribed => I18NResource.GetString(ResourceDirectory, "Unsubscribed");
+
+		/// <summary>
+		///Menu Id
+		/// </summary>
+		public static string MenuId => I18NResource.GetString(ResourceDirectory, "MenuId");
+
+		/// <summary>
+		///Menu Name
+		/// </summary>
+		public static string MenuName => I18NResource.GetString(ResourceDirectory, "MenuName");
+
+		/// <summary>
+		///Telephone
+		/// </summary>
+		public static string Telephone => I18NResource.GetString(ResourceDirectory, "Telephone");
+
+		/// <summary>
+		///First Name
+		/// </summary>
+		public static string FirstName => I18NResource.GetString(ResourceDirectory, "FirstName");
+
+		/// <summary>
+		///Is Draft
+		/// </summary>
+		public static string IsDraft => I18NResource.GetString(ResourceDirectory, "IsDraft");
+
+		/// <summary>
+		///Tag
+		/// </summary>
+		public static string Tag => I18NResource.GetString(ResourceDirectory, "Tag");
+
+		/// <summary>
+		///Display Email
+		/// </summary>
+		public static string DisplayEmail => I18NResource.GetString(ResourceDirectory, "DisplayEmail");
+
+		/// <summary>
+		///Confirmed
+		/// </summary>
+		public static string Confirmed => I18NResource.GetString(ResourceDirectory, "Confirmed");
+
+		/// <summary>
+		///Name
+		/// </summary>
+		public static string Name => I18NResource.GetString(ResourceDirectory, "Name");
+
+		/// <summary>
+		///State
+		/// </summary>
+		public static string State => I18NResource.GetString(ResourceDirectory, "State");
+
+		/// <summary>
+		///Blog Category Id
+		/// </summary>
+		public static string BlogCategoryId => I18NResource.GetString(ResourceDirectory, "BlogCategoryId");
+
+		/// <summary>
+		///Content Id
+		/// </summary>
+		public static string ContentId => I18NResource.GetString(ResourceDirectory, "ContentId");
+
+		/// <summary>
+		///Website Name
+		/// </summary>
+		public static string WebsiteName => I18NResource.GetString(ResourceDirectory, "WebsiteName");
+
+		/// <summary>
+		///Blog Title
+		/// </summary>
+		public static string BlogTitle => I18NResource.GetString(ResourceDirectory, "BlogTitle");
+
+		/// <summary>
+		///Last Edited On
+		/// </summary>
+		public static string LastEditedOn => I18NResource.GetString(ResourceDirectory, "LastEditedOn");
+
+		/// <summary>
+		///Contact Id
+		/// </summary>
+		public static string ContactId => I18NResource.GetString(ResourceDirectory, "ContactId");
+
+		/// <summary>
+		///City
+		/// </summary>
+		public static string City => I18NResource.GetString(ResourceDirectory, "City");
+
+		/// <summary>
+		///Publish On
+		/// </summary>
+		public static string PublishOn => I18NResource.GetString(ResourceDirectory, "PublishOn");
 
 		/// <summary>
 		///Audit User Id
 		/// </summary>
 		public static string AuditUserId => I18NResource.GetString(ResourceDirectory, "AuditUserId");
+
+		/// <summary>
+		///Deleted
+		/// </summary>
+		public static string Deleted => I18NResource.GetString(ResourceDirectory, "Deleted");
+
+		/// <summary>
+		///Confirmed On
+		/// </summary>
+		public static string ConfirmedOn => I18NResource.GetString(ResourceDirectory, "ConfirmedOn");
+
+		/// <summary>
+		///Created On
+		/// </summary>
+		public static string CreatedOn => I18NResource.GetString(ResourceDirectory, "CreatedOn");
+
+		/// <summary>
+		///Is Blog
+		/// </summary>
+		public static string IsBlog => I18NResource.GetString(ResourceDirectory, "IsBlog");
+
+		/// <summary>
+		///Content Alias
+		/// </summary>
+		public static string ContentAlias => I18NResource.GetString(ResourceDirectory, "ContentAlias");
+
+		/// <summary>
+		///Domain Name
+		/// </summary>
+		public static string DomainName => I18NResource.GetString(ResourceDirectory, "DomainName");
+
+		/// <summary>
+		///Website Category Id
+		/// </summary>
+		public static string WebsiteCategoryId => I18NResource.GetString(ResourceDirectory, "WebsiteCategoryId");
+
+		/// <summary>
+		///Category Id
+		/// </summary>
+		public static string CategoryId => I18NResource.GetString(ResourceDirectory, "CategoryId");
+
+		/// <summary>
+		///Postal Code
+		/// </summary>
+		public static string PostalCode => I18NResource.GetString(ResourceDirectory, "PostalCode");
+
+		/// <summary>
+		///Author Name
+		/// </summary>
+		public static string AuthorName => I18NResource.GetString(ResourceDirectory, "AuthorName");
+
+		/// <summary>
+		///Tag Id
+		/// </summary>
+		public static string TagId => I18NResource.GetString(ResourceDirectory, "TagId");
+
+		/// <summary>
+		///Url
+		/// </summary>
+		public static string Url => I18NResource.GetString(ResourceDirectory, "Url");
+
+		/// <summary>
+		///Details
+		/// </summary>
+		public static string Details => I18NResource.GetString(ResourceDirectory, "Details");
+
+		/// <summary>
+		///Country
+		/// </summary>
+		public static string Country => I18NResource.GetString(ResourceDirectory, "Country");
+
+		/// <summary>
+		///Tags
+		/// </summary>
+		public static string Tags => I18NResource.GetString(ResourceDirectory, "Tags");
+
+		/// <summary>
+		///Hits
+		/// </summary>
+		public static string Hits => I18NResource.GetString(ResourceDirectory, "Hits");
+
+		/// <summary>
+		///Last Name
+		/// </summary>
+		public static string LastName => I18NResource.GetString(ResourceDirectory, "LastName");
+
+		/// <summary>
+		///Audit Ts
+		/// </summary>
+		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
+
+		/// <summary>
+		///Address
+		/// </summary>
+		public static string Address => I18NResource.GetString(ResourceDirectory, "Address");
+
+		/// <summary>
+		///Position
+		/// </summary>
+		public static string Position => I18NResource.GetString(ResourceDirectory, "Position");
+
+		/// <summary>
+		///Ip Address
+		/// </summary>
+		public static string IpAddress => I18NResource.GetString(ResourceDirectory, "IpAddress");
+
+		/// <summary>
+		///Last Editor Id
+		/// </summary>
+		public static string LastEditorId => I18NResource.GetString(ResourceDirectory, "LastEditorId");
+
+		/// <summary>
+		///Blog Id
+		/// </summary>
+		public static string BlogId => I18NResource.GetString(ResourceDirectory, "BlogId");
+
+		/// <summary>
+		///Is Default
+		/// </summary>
+		public static string IsDefault => I18NResource.GetString(ResourceDirectory, "IsDefault");
+
+		/// <summary>
+		///Is Homepage
+		/// </summary>
+		public static string IsHomepage => I18NResource.GetString(ResourceDirectory, "IsHomepage");
+
+		/// <summary>
+		///Subscription Type
+		/// </summary>
+		public static string SubscriptionType => I18NResource.GetString(ResourceDirectory, "SubscriptionType");
+
+		/// <summary>
+		///Markdown
+		/// </summary>
+		public static string Markdown => I18NResource.GetString(ResourceDirectory, "Markdown");
+
+		/// <summary>
+		///Sort
+		/// </summary>
+		public static string Sort => I18NResource.GetString(ResourceDirectory, "Sort");
+
+		/// <summary>
+		///Tasks
+		/// </summary>
+		public static string Tasks => I18NResource.GetString(ResourceDirectory, "Tasks");
+
+		/// <summary>
+		///Configuration
+		/// </summary>
+		public static string Configuration => I18NResource.GetString(ResourceDirectory, "Configuration");
+
+		/// <summary>
+		///Manage Categories
+		/// </summary>
+		public static string ManageCategories => I18NResource.GetString(ResourceDirectory, "ManageCategories");
+
+		/// <summary>
+		///Add a New Content
+		/// </summary>
+		public static string AddNewContent => I18NResource.GetString(ResourceDirectory, "AddNewContent");
+
+		/// <summary>
+		///View Contents
+		/// </summary>
+		public static string ViewContents => I18NResource.GetString(ResourceDirectory, "ViewContents");
+
+		/// <summary>
+		///Add a New Blog Post
+		/// </summary>
+		public static string AddNewBlogPost => I18NResource.GetString(ResourceDirectory, "AddNewBlogPost");
+
+		/// <summary>
+		///View Blog Posts
+		/// </summary>
+		public static string ViewBlogPosts => I18NResource.GetString(ResourceDirectory, "ViewBlogPosts");
+
+		/// <summary>
+		///Menus
+		/// </summary>
+		public static string Menus => I18NResource.GetString(ResourceDirectory, "Menus");
+
+		/// <summary>
+		///Contacts
+		/// </summary>
+		public static string Contacts => I18NResource.GetString(ResourceDirectory, "Contacts");
+
+		/// <summary>
+		///Subscriptions
+		/// </summary>
+		public static string Subscriptions => I18NResource.GetString(ResourceDirectory, "Subscriptions");
+
+		/// <summary>
+		///Layout Manager
+		/// </summary>
+		public static string LayoutManager => I18NResource.GetString(ResourceDirectory, "LayoutManager");
+
+		/// <summary>
+		///Email Templates
+		/// </summary>
+		public static string EmailTemplates => I18NResource.GetString(ResourceDirectory, "EmailTemplates");
+
+		/// <summary>
+		///Subscription Added
+		/// </summary>
+		public static string SubscriptionAdded => I18NResource.GetString(ResourceDirectory, "SubscriptionAdded");
+
+		/// <summary>
+		///Subscription Removed
+		/// </summary>
+		public static string SubscriptionRemoved => I18NResource.GetString(ResourceDirectory, "SubscriptionRemoved");
+
+		/// <summary>
+		///Add a New Theme
+		/// </summary>
+		public static string AddANewTheme => I18NResource.GetString(ResourceDirectory, "AddANewTheme");
 
 		/// <summary>
 		///Author
@@ -59,16 +469,6 @@ namespace Frapid.WebsiteBuilder
 		public static string AuthorEmail => I18NResource.GetString(ResourceDirectory, "AuthorEmail");
 
 		/// <summary>
-		///Author Id
-		/// </summary>
-		public static string AuthorId => I18NResource.GetString(ResourceDirectory, "AuthorId");
-
-		/// <summary>
-		///Author Name
-		/// </summary>
-		public static string AuthorName => I18NResource.GetString(ResourceDirectory, "AuthorName");
-
-		/// <summary>
 		///Author Url
 		/// </summary>
 		public static string AuthorUrl => I18NResource.GetString(ResourceDirectory, "AuthorUrl");
@@ -79,19 +479,14 @@ namespace Frapid.WebsiteBuilder
 		public static string Back => I18NResource.GetString(ResourceDirectory, "Back");
 
 		/// <summary>
-		///Blog Description
+		///Blog
 		/// </summary>
-		public static string BlogDescription => I18NResource.GetString(ResourceDirectory, "BlogDescription");
+		public static string Blog => I18NResource.GetString(ResourceDirectory, "Blog");
 
 		/// <summary>
-		///Blog Title
+		///Blogs
 		/// </summary>
-		public static string BlogTitle => I18NResource.GetString(ResourceDirectory, "BlogTitle");
-
-		/// <summary>
-		///Browser
-		/// </summary>
-		public static string Browser => I18NResource.GetString(ResourceDirectory, "Browser");
+		public static string Blogs => I18NResource.GetString(ResourceDirectory, "Blogs");
 
 		/// <summary>
 		///Cancel
@@ -119,29 +514,9 @@ namespace Frapid.WebsiteBuilder
 		public static string Category => I18NResource.GetString(ResourceDirectory, "Category");
 
 		/// <summary>
-		///Category Alias
-		/// </summary>
-		public static string CategoryAlias => I18NResource.GetString(ResourceDirectory, "CategoryAlias");
-
-		/// <summary>
-		///Category Id
-		/// </summary>
-		public static string CategoryId => I18NResource.GetString(ResourceDirectory, "CategoryId");
-
-		/// <summary>
-		///Category Name
-		/// </summary>
-		public static string CategoryName => I18NResource.GetString(ResourceDirectory, "CategoryName");
-
-		/// <summary>
 		///Change Contrast
 		/// </summary>
 		public static string ChangeContrast => I18NResource.GetString(ResourceDirectory, "ChangeContrast");
-
-		/// <summary>
-		///City
-		/// </summary>
-		public static string City => I18NResource.GetString(ResourceDirectory, "City");
 
 		/// <summary>
 		///Close
@@ -149,24 +524,9 @@ namespace Frapid.WebsiteBuilder
 		public static string Close => I18NResource.GetString(ResourceDirectory, "Close");
 
 		/// <summary>
-		///Configuration Id
-		/// </summary>
-		public static string ConfigurationId => I18NResource.GetString(ResourceDirectory, "ConfigurationId");
-
-		/// <summary>
 		///Configure Website
 		/// </summary>
 		public static string ConfigureWebsite => I18NResource.GetString(ResourceDirectory, "ConfigureWebsite");
-
-		/// <summary>
-		///Confirmed
-		/// </summary>
-		public static string Confirmed => I18NResource.GetString(ResourceDirectory, "Confirmed");
-
-		/// <summary>
-		///Confirmed On
-		/// </summary>
-		public static string ConfirmedOn => I18NResource.GetString(ResourceDirectory, "ConfirmedOn");
 
 		/// <summary>
 		///Are you sure you want to delete the "<span class="theme name text"></span>" theme?
@@ -179,34 +539,14 @@ namespace Frapid.WebsiteBuilder
 		public static string ContactFormSubject => I18NResource.GetString(ResourceDirectory, "ContactFormSubject");
 
 		/// <summary>
-		///Contact Id
-		/// </summary>
-		public static string ContactId => I18NResource.GetString(ResourceDirectory, "ContactId");
-
-		/// <summary>
-		///Contacts
-		/// </summary>
-		public static string Contacts => I18NResource.GetString(ResourceDirectory, "Contacts");
-
-		/// <summary>
 		///Contact Us
 		/// </summary>
 		public static string ContactUs => I18NResource.GetString(ResourceDirectory, "ContactUs");
 
 		/// <summary>
-		///Content Alias
-		/// </summary>
-		public static string ContentAlias => I18NResource.GetString(ResourceDirectory, "ContentAlias");
-
-		/// <summary>
 		///Content Categories
 		/// </summary>
 		public static string ContentCategories => I18NResource.GetString(ResourceDirectory, "ContentCategories");
-
-		/// <summary>
-		///Content Id
-		/// </summary>
-		public static string ContentId => I18NResource.GetString(ResourceDirectory, "ContentId");
 
 		/// <summary>
 		///Content List
@@ -222,11 +562,6 @@ namespace Frapid.WebsiteBuilder
 		///The page or resource you are looking for does not exist or has been deleted.
 		/// </summary>
 		public static string ContentNotFoundMessage => I18NResource.GetString(ResourceDirectory, "ContentNotFoundMessage");
-
-		/// <summary>
-		///Contents
-		/// </summary>
-		public static string Contents => I18NResource.GetString(ResourceDirectory, "Contents");
 
 		/// <summary>
 		///Could not create the file or directory on an invalid destination.
@@ -299,11 +634,6 @@ namespace Frapid.WebsiteBuilder
 		public static string CouldNotUploadThemeInvalidExtension => I18NResource.GetString(ResourceDirectory, "CouldNotUploadThemeInvalidExtension");
 
 		/// <summary>
-		///Country
-		/// </summary>
-		public static string Country => I18NResource.GetString(ResourceDirectory, "Country");
-
-		/// <summary>
 		///Create
 		/// </summary>
 		public static string Create => I18NResource.GetString(ResourceDirectory, "Create");
@@ -324,11 +654,6 @@ namespace Frapid.WebsiteBuilder
 		public static string CreateANewFolder => I18NResource.GetString(ResourceDirectory, "CreateANewFolder");
 
 		/// <summary>
-		///Created On
-		/// </summary>
-		public static string CreatedOn => I18NResource.GetString(ResourceDirectory, "CreatedOn");
-
-		/// <summary>
 		///Create File
 		/// </summary>
 		public static string CreateFile => I18NResource.GetString(ResourceDirectory, "CreateFile");
@@ -337,6 +662,16 @@ namespace Frapid.WebsiteBuilder
 		///Create Folder
 		/// </summary>
 		public static string CreateFolder => I18NResource.GetString(ResourceDirectory, "CreateFolder");
+
+		/// <summary>
+		///Create a New Blog Post
+		/// </summary>
+		public static string CreateNewBlogPost => I18NResource.GetString(ResourceDirectory, "CreateNewBlogPost");
+
+		/// <summary>
+		///Create a New Page
+		/// </summary>
+		public static string CreateNewPage => I18NResource.GetString(ResourceDirectory, "CreateNewPage");
 
 		/// <summary>
 		///Create Theme
@@ -354,44 +689,14 @@ namespace Frapid.WebsiteBuilder
 		public static string Delete => I18NResource.GetString(ResourceDirectory, "Delete");
 
 		/// <summary>
-		///Deleted
-		/// </summary>
-		public static string Deleted => I18NResource.GetString(ResourceDirectory, "Deleted");
-
-		/// <summary>
 		///Delete Theme
 		/// </summary>
 		public static string DeleteTheme => I18NResource.GetString(ResourceDirectory, "DeleteTheme");
 
 		/// <summary>
-		///Description
-		/// </summary>
-		public static string Description => I18NResource.GetString(ResourceDirectory, "Description");
-
-		/// <summary>
-		///Details
-		/// </summary>
-		public static string Details => I18NResource.GetString(ResourceDirectory, "Details");
-
-		/// <summary>
 		///Sorry, discussion closed older posts.
 		/// </summary>
 		public static string DiscussionClosedForOlderPosts => I18NResource.GetString(ResourceDirectory, "DiscussionClosedForOlderPosts");
-
-		/// <summary>
-		///Display Contact Form
-		/// </summary>
-		public static string DisplayContactForm => I18NResource.GetString(ResourceDirectory, "DisplayContactForm");
-
-		/// <summary>
-		///Display Email
-		/// </summary>
-		public static string DisplayEmail => I18NResource.GetString(ResourceDirectory, "DisplayEmail");
-
-		/// <summary>
-		///Domain Name
-		/// </summary>
-		public static string DomainName => I18NResource.GetString(ResourceDirectory, "DomainName");
 
 		/// <summary>
 		///Download and Install
@@ -417,16 +722,6 @@ namespace Frapid.WebsiteBuilder
 		///Edit Layout Files
 		/// </summary>
 		public static string EditLayoutFiles => I18NResource.GetString(ResourceDirectory, "EditLayoutFiles");
-
-		/// <summary>
-		///Email
-		/// </summary>
-		public static string Email => I18NResource.GetString(ResourceDirectory, "Email");
-
-		/// <summary>
-		///Email Subscription Id
-		/// </summary>
-		public static string EmailSubscriptionId => I18NResource.GetString(ResourceDirectory, "EmailSubscriptionId");
 
 		/// <summary>
 		///{0} wrote : <br/><br/> {1}
@@ -464,11 +759,6 @@ namespace Frapid.WebsiteBuilder
 		public static string FileOrDirectoryNotFound => I18NResource.GetString(ResourceDirectory, "FileOrDirectoryNotFound");
 
 		/// <summary>
-		///First Name
-		/// </summary>
-		public static string FirstName => I18NResource.GetString(ResourceDirectory, "FirstName");
-
-		/// <summary>
 		///Folder Name
 		/// </summary>
 		public static string FolderName => I18NResource.GetString(ResourceDirectory, "FolderName");
@@ -482,11 +772,6 @@ namespace Frapid.WebsiteBuilder
 		///Here is a link I think you might like to know about:
 		/// </summary>
 		public static string HereIsALinkIThinkYouMightLikeToKnowAbout => I18NResource.GetString(ResourceDirectory, "HereIsALinkIThinkYouMightLikeToKnowAbout");
-
-		/// <summary>
-		///Hits
-		/// </summary>
-		public static string Hits => I18NResource.GetString(ResourceDirectory, "Hits");
 
 		/// <summary>
 		///Home Page
@@ -519,49 +804,9 @@ namespace Frapid.WebsiteBuilder
 		public static string InvalidUrl => I18NResource.GetString(ResourceDirectory, "InvalidUrl");
 
 		/// <summary>
-		///Ip Address
-		/// </summary>
-		public static string IpAddress => I18NResource.GetString(ResourceDirectory, "IpAddress");
-
-		/// <summary>
-		///Is Blog
-		/// </summary>
-		public static string IsBlog => I18NResource.GetString(ResourceDirectory, "IsBlog");
-
-		/// <summary>
-		///Is Default
-		/// </summary>
-		public static string IsDefault => I18NResource.GetString(ResourceDirectory, "IsDefault");
-
-		/// <summary>
-		///Is Draft
-		/// </summary>
-		public static string IsDraft => I18NResource.GetString(ResourceDirectory, "IsDraft");
-
-		/// <summary>
-		///Is Homepage
-		/// </summary>
-		public static string IsHomepage => I18NResource.GetString(ResourceDirectory, "IsHomepage");
-
-		/// <summary>
 		///Is Markdown
 		/// </summary>
 		public static string IsMarkdown => I18NResource.GetString(ResourceDirectory, "IsMarkdown");
-
-		/// <summary>
-		///Last Edited On
-		/// </summary>
-		public static string LastEditedOn => I18NResource.GetString(ResourceDirectory, "LastEditedOn");
-
-		/// <summary>
-		///Last Editor Id
-		/// </summary>
-		public static string LastEditorId => I18NResource.GetString(ResourceDirectory, "LastEditorId");
-
-		/// <summary>
-		///Last Name
-		/// </summary>
-		public static string LastName => I18NResource.GetString(ResourceDirectory, "LastName");
 
 		/// <summary>
 		///Leave a Message
@@ -584,44 +829,14 @@ namespace Frapid.WebsiteBuilder
 		public static string Location => I18NResource.GetString(ResourceDirectory, "Location");
 
 		/// <summary>
-		///Markdown
-		/// </summary>
-		public static string Markdown => I18NResource.GetString(ResourceDirectory, "Markdown");
-
-		/// <summary>
-		///Menu Id
-		/// </summary>
-		public static string MenuId => I18NResource.GetString(ResourceDirectory, "MenuId");
-
-		/// <summary>
-		///Menu Item Id
-		/// </summary>
-		public static string MenuItemId => I18NResource.GetString(ResourceDirectory, "MenuItemId");
-
-		/// <summary>
 		///Menu Items
 		/// </summary>
 		public static string MenuItems => I18NResource.GetString(ResourceDirectory, "MenuItems");
 
 		/// <summary>
-		///Menu Name
-		/// </summary>
-		public static string MenuName => I18NResource.GetString(ResourceDirectory, "MenuName");
-
-		/// <summary>
-		///Menus
-		/// </summary>
-		public static string Menus => I18NResource.GetString(ResourceDirectory, "Menus");
-
-		/// <summary>
 		///Message
 		/// </summary>
 		public static string Message => I18NResource.GetString(ResourceDirectory, "Message");
-
-		/// <summary>
-		///Name
-		/// </summary>
-		public static string Name => I18NResource.GetString(ResourceDirectory, "Name");
 
 		/// <summary>
 		///No, Don't Delete This Theme
@@ -644,11 +859,6 @@ namespace Frapid.WebsiteBuilder
 		public static string Or => I18NResource.GetString(ResourceDirectory, "Or");
 
 		/// <summary>
-		///Parent Menu Item Id
-		/// </summary>
-		public static string ParentMenuItemId => I18NResource.GetString(ResourceDirectory, "ParentMenuItemId");
-
-		/// <summary>
 		///Path to the file or directory is invalid.
 		/// </summary>
 		public static string PathToFileOrDirectoryInvalid => I18NResource.GetString(ResourceDirectory, "PathToFileOrDirectoryInvalid");
@@ -659,34 +869,14 @@ namespace Frapid.WebsiteBuilder
 		public static string Phone => I18NResource.GetString(ResourceDirectory, "Phone");
 
 		/// <summary>
-		///Position
-		/// </summary>
-		public static string Position => I18NResource.GetString(ResourceDirectory, "Position");
-
-		/// <summary>
-		///Postal Code
-		/// </summary>
-		public static string PostalCode => I18NResource.GetString(ResourceDirectory, "PostalCode");
-
-		/// <summary>
 		///Proceed With Caution!
 		/// </summary>
 		public static string ProceedWithCaution => I18NResource.GetString(ResourceDirectory, "ProceedWithCaution");
 
 		/// <summary>
-		///Publish On
-		/// </summary>
-		public static string PublishOn => I18NResource.GetString(ResourceDirectory, "PublishOn");
-
-		/// <summary>
 		///Read More
 		/// </summary>
 		public static string ReadMore => I18NResource.GetString(ResourceDirectory, "ReadMore");
-
-		/// <summary>
-		///Recipients
-		/// </summary>
-		public static string Recipients => I18NResource.GetString(ResourceDirectory, "Recipients");
 
 		/// <summary>
 		///Released On
@@ -724,11 +914,6 @@ namespace Frapid.WebsiteBuilder
 		public static string SendThisOnEmail => I18NResource.GetString(ResourceDirectory, "SendThisOnEmail");
 
 		/// <summary>
-		///SEO Description
-		/// </summary>
-		public static string SeoDescription => I18NResource.GetString(ResourceDirectory, "SeoDescription");
-
-		/// <summary>
 		///Share This Blog
 		/// </summary>
 		public static string ShareThisBlog => I18NResource.GetString(ResourceDirectory, "ShareThisBlog");
@@ -764,39 +949,14 @@ namespace Frapid.WebsiteBuilder
 		public static string ShareThisOnStumbleUpon => I18NResource.GetString(ResourceDirectory, "ShareThisOnStumbleUpon");
 
 		/// <summary>
-		///Sort
-		/// </summary>
-		public static string Sort => I18NResource.GetString(ResourceDirectory, "Sort");
-
-		/// <summary>
-		///State
-		/// </summary>
-		public static string State => I18NResource.GetString(ResourceDirectory, "State");
-
-		/// <summary>
-		///Status
-		/// </summary>
-		public static string Status => I18NResource.GetString(ResourceDirectory, "Status");
-
-		/// <summary>
 		///Subject
 		/// </summary>
 		public static string Subject => I18NResource.GetString(ResourceDirectory, "Subject");
 
 		/// <summary>
-		///Subscribed On
-		/// </summary>
-		public static string SubscribedOn => I18NResource.GetString(ResourceDirectory, "SubscribedOn");
-
-		/// <summary>
 		///Subscription Removed Email
 		/// </summary>
 		public static string SubscriptionRemovedEmail => I18NResource.GetString(ResourceDirectory, "SubscriptionRemovedEmail");
-
-		/// <summary>
-		///Subscription Type
-		/// </summary>
-		public static string SubscriptionType => I18NResource.GetString(ResourceDirectory, "SubscriptionType");
 
 		/// <summary>
 		///Subscription Welcome Email
@@ -814,34 +974,9 @@ namespace Frapid.WebsiteBuilder
 		public static string SuccessfullySavedMinifiedCssFile => I18NResource.GetString(ResourceDirectory, "SuccessfullySavedMinifiedCssFile");
 
 		/// <summary>
-		///Tag
-		/// </summary>
-		public static string Tag => I18NResource.GetString(ResourceDirectory, "Tag");
-
-		/// <summary>
-		///Tag Id
-		/// </summary>
-		public static string TagId => I18NResource.GetString(ResourceDirectory, "TagId");
-
-		/// <summary>
-		///Tags
-		/// </summary>
-		public static string Tags => I18NResource.GetString(ResourceDirectory, "Tags");
-
-		/// <summary>
 		///Comma separated list of tags.
 		/// </summary>
 		public static string TagsDescription => I18NResource.GetString(ResourceDirectory, "TagsDescription");
-
-		/// <summary>
-		///Target
-		/// </summary>
-		public static string Target => I18NResource.GetString(ResourceDirectory, "Target");
-
-		/// <summary>
-		///Telephone
-		/// </summary>
-		public static string Telephone => I18NResource.GetString(ResourceDirectory, "Telephone");
 
 		/// <summary>
 		///Thank you for contacting us.
@@ -889,11 +1024,6 @@ namespace Frapid.WebsiteBuilder
 		public static string TheRequestedPageDoesNotExist => I18NResource.GetString(ResourceDirectory, "TheRequestedPageDoesNotExist");
 
 		/// <summary>
-		///Title
-		/// </summary>
-		public static string Title => I18NResource.GetString(ResourceDirectory, "Title");
-
-		/// <summary>
 		///Tweet this link
 		/// </summary>
 		public static string TweetThisLink => I18NResource.GetString(ResourceDirectory, "TweetThisLink");
@@ -902,16 +1032,6 @@ namespace Frapid.WebsiteBuilder
 		///Unsubscribe
 		/// </summary>
 		public static string Unsubscribe => I18NResource.GetString(ResourceDirectory, "Unsubscribe");
-
-		/// <summary>
-		///Unsubscribed
-		/// </summary>
-		public static string Unsubscribed => I18NResource.GetString(ResourceDirectory, "Unsubscribed");
-
-		/// <summary>
-		///Unsubscribed On
-		/// </summary>
-		public static string UnsubscribedOn => I18NResource.GetString(ResourceDirectory, "UnsubscribedOn");
 
 		/// <summary>
 		///Unsubscribe from our mailing list
@@ -949,19 +1069,9 @@ namespace Frapid.WebsiteBuilder
 		public static string UploadATheme => I18NResource.GetString(ResourceDirectory, "UploadATheme");
 
 		/// <summary>
-		///Url
-		/// </summary>
-		public static string Url => I18NResource.GetString(ResourceDirectory, "Url");
-
-		/// <summary>
 		///View Subscriptions
 		/// </summary>
 		public static string ViewSubscriptions => I18NResource.GetString(ResourceDirectory, "ViewSubscriptions");
-
-		/// <summary>
-		///Website Name
-		/// </summary>
-		public static string WebsiteName => I18NResource.GetString(ResourceDirectory, "WebsiteName");
 
 		/// <summary>
 		///We will miss you!
@@ -982,26 +1092,6 @@ namespace Frapid.WebsiteBuilder
 		///Your Name
 		/// </summary>
 		public static string YourName => I18NResource.GetString(ResourceDirectory, "YourName");
-
-		/// <summary>
-		///Blog
-		/// </summary>
-		public static string Blog => I18NResource.GetString(ResourceDirectory, "Blog");
-
-		/// <summary>
-		///Blogs
-		/// </summary>
-		public static string Blogs => I18NResource.GetString(ResourceDirectory, "Blogs");
-
-		/// <summary>
-		///Create a New Page
-		/// </summary>
-		public static string CreateNewPage => I18NResource.GetString(ResourceDirectory, "CreateNewPage");
-
-		/// <summary>
-		///Create a New Blog Post
-		/// </summary>
-		public static string CreateNewBlogPost => I18NResource.GetString(ResourceDirectory, "CreateNewBlogPost");
 
 	}
 }
