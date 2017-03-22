@@ -29,94 +29,9 @@ namespace Frapid.Config
 		public static string Config => I18NResource.GetString(ResourceDirectory, "Config");
 
 		/// <summary>
-		///Custom Field Setup Id
-		/// </summary>
-		public static string CustomFieldSetupId => I18NResource.GetString(ResourceDirectory, "CustomFieldSetupId");
-
-		/// <summary>
-		///Table Name
-		/// </summary>
-		public static string TableName => I18NResource.GetString(ResourceDirectory, "TableName");
-
-		/// <summary>
-		///Custom Field Id
-		/// </summary>
-		public static string CustomFieldId => I18NResource.GetString(ResourceDirectory, "CustomFieldId");
-
-		/// <summary>
-		///Description
-		/// </summary>
-		public static string Description => I18NResource.GetString(ResourceDirectory, "Description");
-
-		/// <summary>
-		///Underlying Type
-		/// </summary>
-		public static string UnderlyingType => I18NResource.GetString(ResourceDirectory, "UnderlyingType");
-
-		/// <summary>
-		///Subject
-		/// </summary>
-		public static string Subject => I18NResource.GetString(ResourceDirectory, "Subject");
-
-		/// <summary>
-		///Send To
-		/// </summary>
-		public static string SendTo => I18NResource.GetString(ResourceDirectory, "SendTo");
-
-		/// <summary>
-		///Attachments
-		/// </summary>
-		public static string Attachments => I18NResource.GetString(ResourceDirectory, "Attachments");
-
-		/// <summary>
 		///Added On
 		/// </summary>
 		public static string AddedOn => I18NResource.GetString(ResourceDirectory, "AddedOn");
-
-		/// <summary>
-		///Smtp Password
-		/// </summary>
-		public static string SmtpPassword => I18NResource.GetString(ResourceDirectory, "SmtpPassword");
-
-		/// <summary>
-		///Kanban Id
-		/// </summary>
-		public static string KanbanId => I18NResource.GetString(ResourceDirectory, "KanbanId");
-
-		/// <summary>
-		///Reply To
-		/// </summary>
-		public static string ReplyTo => I18NResource.GetString(ResourceDirectory, "ReplyTo");
-
-		/// <summary>
-		///Canceled On
-		/// </summary>
-		public static string CanceledOn => I18NResource.GetString(ResourceDirectory, "CanceledOn");
-
-		/// <summary>
-		///Value
-		/// </summary>
-		public static string Value => I18NResource.GetString(ResourceDirectory, "Value");
-
-		/// <summary>
-		///Canceled
-		/// </summary>
-		public static string Canceled => I18NResource.GetString(ResourceDirectory, "Canceled");
-
-		/// <summary>
-		///Configuration Name
-		/// </summary>
-		public static string ConfigurationName => I18NResource.GetString(ResourceDirectory, "ConfigurationName");
-
-		/// <summary>
-		///From Name
-		/// </summary>
-		public static string FromName => I18NResource.GetString(ResourceDirectory, "FromName");
-
-		/// <summary>
-		///Smtp Host
-		/// </summary>
-		public static string SmtpHost => I18NResource.GetString(ResourceDirectory, "SmtpHost");
 
 		/// <summary>
 		///After Field
@@ -124,49 +39,64 @@ namespace Frapid.Config
 		public static string AfterField => I18NResource.GetString(ResourceDirectory, "AfterField");
 
 		/// <summary>
-		///Before Field
+		///Application Name
 		/// </summary>
-		public static string BeforeField => I18NResource.GetString(ResourceDirectory, "BeforeField");
+		public static string ApplicationName => I18NResource.GetString(ResourceDirectory, "ApplicationName");
 
 		/// <summary>
-		///Form Name
+		///Attachments
 		/// </summary>
-		public static string FormName => I18NResource.GetString(ResourceDirectory, "FormName");
+		public static string Attachments => I18NResource.GetString(ResourceDirectory, "Attachments");
 
 		/// <summary>
-		///Smtp Config Id
+		///Audit Ts
 		/// </summary>
-		public static string SmtpConfigId => I18NResource.GetString(ResourceDirectory, "SmtpConfigId");
-
-		/// <summary>
-		///Smtp Port
-		/// </summary>
-		public static string SmtpPort => I18NResource.GetString(ResourceDirectory, "SmtpPort");
-
-		/// <summary>
-		///Filter Name
-		/// </summary>
-		public static string FilterName => I18NResource.GetString(ResourceDirectory, "FilterName");
-
-		/// <summary>
-		///Object Name
-		/// </summary>
-		public static string ObjectName => I18NResource.GetString(ResourceDirectory, "ObjectName");
-
-		/// <summary>
-		///From Email Address
-		/// </summary>
-		public static string FromEmailAddress => I18NResource.GetString(ResourceDirectory, "FromEmailAddress");
-
-		/// <summary>
-		///Field Label
-		/// </summary>
-		public static string FieldLabel => I18NResource.GetString(ResourceDirectory, "FieldLabel");
+		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
 
 		/// <summary>
 		///Audit User Id
 		/// </summary>
 		public static string AuditUserId => I18NResource.GetString(ResourceDirectory, "AuditUserId");
+
+		/// <summary>
+		///Before Field
+		/// </summary>
+		public static string BeforeField => I18NResource.GetString(ResourceDirectory, "BeforeField");
+
+		/// <summary>
+		///Canceled
+		/// </summary>
+		public static string Canceled => I18NResource.GetString(ResourceDirectory, "Canceled");
+
+		/// <summary>
+		///Canceled On
+		/// </summary>
+		public static string CanceledOn => I18NResource.GetString(ResourceDirectory, "CanceledOn");
+
+		/// <summary>
+		///Column Name
+		/// </summary>
+		public static string ColumnName => I18NResource.GetString(ResourceDirectory, "ColumnName");
+
+		/// <summary>
+		///Configuration Name
+		/// </summary>
+		public static string ConfigurationName => I18NResource.GetString(ResourceDirectory, "ConfigurationName");
+
+		/// <summary>
+		///Custom Field Id
+		/// </summary>
+		public static string CustomFieldId => I18NResource.GetString(ResourceDirectory, "CustomFieldId");
+
+		/// <summary>
+		///Custom Field Setup Id
+		/// </summary>
+		public static string CustomFieldSetupId => I18NResource.GetString(ResourceDirectory, "CustomFieldSetupId");
+
+		/// <summary>
+		///Data Type
+		/// </summary>
+		public static string DataType => I18NResource.GetString(ResourceDirectory, "DataType");
 
 		/// <summary>
 		///Deleted
@@ -179,59 +109,14 @@ namespace Frapid.Config
 		public static string Delivered => I18NResource.GetString(ResourceDirectory, "Delivered");
 
 		/// <summary>
-		///From Display Name
+		///Delivered On
 		/// </summary>
-		public static string FromDisplayName => I18NResource.GetString(ResourceDirectory, "FromDisplayName");
+		public static string DeliveredOn => I18NResource.GetString(ResourceDirectory, "DeliveredOn");
 
 		/// <summary>
-		///Column Name
+		///Description
 		/// </summary>
-		public static string ColumnName => I18NResource.GetString(ResourceDirectory, "ColumnName");
-
-		/// <summary>
-		///Application Name
-		/// </summary>
-		public static string ApplicationName => I18NResource.GetString(ResourceDirectory, "ApplicationName");
-
-		/// <summary>
-		///Kanban Detail Id
-		/// </summary>
-		public static string KanbanDetailId => I18NResource.GetString(ResourceDirectory, "KanbanDetailId");
-
-		/// <summary>
-		///Field Name
-		/// </summary>
-		public static string FieldName => I18NResource.GetString(ResourceDirectory, "FieldName");
-
-		/// <summary>
-		///From Email
-		/// </summary>
-		public static string FromEmail => I18NResource.GetString(ResourceDirectory, "FromEmail");
-
-		/// <summary>
-		///Filter Condition
-		/// </summary>
-		public static string FilterCondition => I18NResource.GetString(ResourceDirectory, "FilterCondition");
-
-		/// <summary>
-		///Send On
-		/// </summary>
-		public static string SendOn => I18NResource.GetString(ResourceDirectory, "SendOn");
-
-		/// <summary>
-		///Smtp Enable Ssl
-		/// </summary>
-		public static string SmtpEnableSsl => I18NResource.GetString(ResourceDirectory, "SmtpEnableSsl");
-
-		/// <summary>
-		///Filter Value
-		/// </summary>
-		public static string FilterValue => I18NResource.GetString(ResourceDirectory, "FilterValue");
-
-		/// <summary>
-		///Resource Id
-		/// </summary>
-		public static string ResourceId => I18NResource.GetString(ResourceDirectory, "ResourceId");
+		public static string Description => I18NResource.GetString(ResourceDirectory, "Description");
 
 		/// <summary>
 		///Enabled
@@ -239,9 +124,19 @@ namespace Frapid.Config
 		public static string Enabled => I18NResource.GetString(ResourceDirectory, "Enabled");
 
 		/// <summary>
-		///Data Type
+		///Field Label
 		/// </summary>
-		public static string DataType => I18NResource.GetString(ResourceDirectory, "DataType");
+		public static string FieldLabel => I18NResource.GetString(ResourceDirectory, "FieldLabel");
+
+		/// <summary>
+		///Field Name
+		/// </summary>
+		public static string FieldName => I18NResource.GetString(ResourceDirectory, "FieldName");
+
+		/// <summary>
+		///Field Order
+		/// </summary>
+		public static string FieldOrder => I18NResource.GetString(ResourceDirectory, "FieldOrder");
 
 		/// <summary>
 		///Filter And Value
@@ -249,69 +144,9 @@ namespace Frapid.Config
 		public static string FilterAndValue => I18NResource.GetString(ResourceDirectory, "FilterAndValue");
 
 		/// <summary>
-		///From Number
+		///Filter Condition
 		/// </summary>
-		public static string FromNumber => I18NResource.GetString(ResourceDirectory, "FromNumber");
-
-		/// <summary>
-		///Smtp Username
-		/// </summary>
-		public static string SmtpUsername => I18NResource.GetString(ResourceDirectory, "SmtpUsername");
-
-		/// <summary>
-		///Rating
-		/// </summary>
-		public static string Rating => I18NResource.GetString(ResourceDirectory, "Rating");
-
-		/// <summary>
-		///Message
-		/// </summary>
-		public static string Message => I18NResource.GetString(ResourceDirectory, "Message");
-
-		/// <summary>
-		///Kanban Name
-		/// </summary>
-		public static string KanbanName => I18NResource.GetString(ResourceDirectory, "KanbanName");
-
-		/// <summary>
-		///Queue Id
-		/// </summary>
-		public static string QueueId => I18NResource.GetString(ResourceDirectory, "QueueId");
-
-		/// <summary>
-		///Is Default Admin
-		/// </summary>
-		public static string IsDefaultAdmin => I18NResource.GetString(ResourceDirectory, "IsDefaultAdmin");
-
-		/// <summary>
-		///Audit Ts
-		/// </summary>
-		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
-
-		/// <summary>
-		///Filter Statement
-		/// </summary>
-		public static string FilterStatement => I18NResource.GetString(ResourceDirectory, "FilterStatement");
-
-		/// <summary>
-		///Key Name
-		/// </summary>
-		public static string KeyName => I18NResource.GetString(ResourceDirectory, "KeyName");
-
-		/// <summary>
-		///Is Default
-		/// </summary>
-		public static string IsDefault => I18NResource.GetString(ResourceDirectory, "IsDefault");
-
-		/// <summary>
-		///Is Test
-		/// </summary>
-		public static string IsTest => I18NResource.GetString(ResourceDirectory, "IsTest");
-
-		/// <summary>
-		///User Id
-		/// </summary>
-		public static string UserId => I18NResource.GetString(ResourceDirectory, "UserId");
+		public static string FilterCondition => I18NResource.GetString(ResourceDirectory, "FilterCondition");
 
 		/// <summary>
 		///Filter Id
@@ -319,9 +154,109 @@ namespace Frapid.Config
 		public static string FilterId => I18NResource.GetString(ResourceDirectory, "FilterId");
 
 		/// <summary>
-		///Delivered On
+		///Filter Name
 		/// </summary>
-		public static string DeliveredOn => I18NResource.GetString(ResourceDirectory, "DeliveredOn");
+		public static string FilterName => I18NResource.GetString(ResourceDirectory, "FilterName");
+
+		/// <summary>
+		///Filter Statement
+		/// </summary>
+		public static string FilterStatement => I18NResource.GetString(ResourceDirectory, "FilterStatement");
+
+		/// <summary>
+		///Filter Value
+		/// </summary>
+		public static string FilterValue => I18NResource.GetString(ResourceDirectory, "FilterValue");
+
+		/// <summary>
+		///Form Name
+		/// </summary>
+		public static string FormName => I18NResource.GetString(ResourceDirectory, "FormName");
+
+		/// <summary>
+		///From Display Name
+		/// </summary>
+		public static string FromDisplayName => I18NResource.GetString(ResourceDirectory, "FromDisplayName");
+
+		/// <summary>
+		///From Email
+		/// </summary>
+		public static string FromEmail => I18NResource.GetString(ResourceDirectory, "FromEmail");
+
+		/// <summary>
+		///From Email Address
+		/// </summary>
+		public static string FromEmailAddress => I18NResource.GetString(ResourceDirectory, "FromEmailAddress");
+
+		/// <summary>
+		///From Name
+		/// </summary>
+		public static string FromName => I18NResource.GetString(ResourceDirectory, "FromName");
+
+		/// <summary>
+		///From Number
+		/// </summary>
+		public static string FromNumber => I18NResource.GetString(ResourceDirectory, "FromNumber");
+
+		/// <summary>
+		///Is Default
+		/// </summary>
+		public static string IsDefault => I18NResource.GetString(ResourceDirectory, "IsDefault");
+
+		/// <summary>
+		///Is Default Admin
+		/// </summary>
+		public static string IsDefaultAdmin => I18NResource.GetString(ResourceDirectory, "IsDefaultAdmin");
+
+		/// <summary>
+		///Is Test
+		/// </summary>
+		public static string IsTest => I18NResource.GetString(ResourceDirectory, "IsTest");
+
+		/// <summary>
+		///Kanban Detail Id
+		/// </summary>
+		public static string KanbanDetailId => I18NResource.GetString(ResourceDirectory, "KanbanDetailId");
+
+		/// <summary>
+		///Kanban Id
+		/// </summary>
+		public static string KanbanId => I18NResource.GetString(ResourceDirectory, "KanbanId");
+
+		/// <summary>
+		///Kanban Name
+		/// </summary>
+		public static string KanbanName => I18NResource.GetString(ResourceDirectory, "KanbanName");
+
+		/// <summary>
+		///Key Name
+		/// </summary>
+		public static string KeyName => I18NResource.GetString(ResourceDirectory, "KeyName");
+
+		/// <summary>
+		///Message
+		/// </summary>
+		public static string Message => I18NResource.GetString(ResourceDirectory, "Message");
+
+		/// <summary>
+		///Object Name
+		/// </summary>
+		public static string ObjectName => I18NResource.GetString(ResourceDirectory, "ObjectName");
+
+		/// <summary>
+		///Queue Id
+		/// </summary>
+		public static string QueueId => I18NResource.GetString(ResourceDirectory, "QueueId");
+
+		/// <summary>
+		///Rating
+		/// </summary>
+		public static string Rating => I18NResource.GetString(ResourceDirectory, "Rating");
+
+		/// <summary>
+		///Reply To
+		/// </summary>
+		public static string ReplyTo => I18NResource.GetString(ResourceDirectory, "ReplyTo");
 
 		/// <summary>
 		///Reply To Name
@@ -329,9 +264,74 @@ namespace Frapid.Config
 		public static string ReplyToName => I18NResource.GetString(ResourceDirectory, "ReplyToName");
 
 		/// <summary>
-		///Field Order
+		///Resource Id
 		/// </summary>
-		public static string FieldOrder => I18NResource.GetString(ResourceDirectory, "FieldOrder");
+		public static string ResourceId => I18NResource.GetString(ResourceDirectory, "ResourceId");
+
+		/// <summary>
+		///Send On
+		/// </summary>
+		public static string SendOn => I18NResource.GetString(ResourceDirectory, "SendOn");
+
+		/// <summary>
+		///Send To
+		/// </summary>
+		public static string SendTo => I18NResource.GetString(ResourceDirectory, "SendTo");
+
+		/// <summary>
+		///Smtp Config Id
+		/// </summary>
+		public static string SmtpConfigId => I18NResource.GetString(ResourceDirectory, "SmtpConfigId");
+
+		/// <summary>
+		///Smtp Enable Ssl
+		/// </summary>
+		public static string SmtpEnableSsl => I18NResource.GetString(ResourceDirectory, "SmtpEnableSsl");
+
+		/// <summary>
+		///Smtp Host
+		/// </summary>
+		public static string SmtpHost => I18NResource.GetString(ResourceDirectory, "SmtpHost");
+
+		/// <summary>
+		///Smtp Password
+		/// </summary>
+		public static string SmtpPassword => I18NResource.GetString(ResourceDirectory, "SmtpPassword");
+
+		/// <summary>
+		///Smtp Port
+		/// </summary>
+		public static string SmtpPort => I18NResource.GetString(ResourceDirectory, "SmtpPort");
+
+		/// <summary>
+		///Smtp Username
+		/// </summary>
+		public static string SmtpUsername => I18NResource.GetString(ResourceDirectory, "SmtpUsername");
+
+		/// <summary>
+		///Subject
+		/// </summary>
+		public static string Subject => I18NResource.GetString(ResourceDirectory, "Subject");
+
+		/// <summary>
+		///Table Name
+		/// </summary>
+		public static string TableName => I18NResource.GetString(ResourceDirectory, "TableName");
+
+		/// <summary>
+		///Underlying Type
+		/// </summary>
+		public static string UnderlyingType => I18NResource.GetString(ResourceDirectory, "UnderlyingType");
+
+		/// <summary>
+		///User Id
+		/// </summary>
+		public static string UserId => I18NResource.GetString(ResourceDirectory, "UserId");
+
+		/// <summary>
+		///Value
+		/// </summary>
+		public static string Value => I18NResource.GetString(ResourceDirectory, "Value");
 
 		/// <summary>
 		///Offices

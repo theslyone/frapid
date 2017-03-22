@@ -10,6 +10,15 @@ namespace Moneywave.Net
 {
     public class Cards : MoneywaveClient
     {
+        public CardDetail Validate(string cardNumber)
+        {
+            //[POST] /v1/user/card/check
+            var request = new RestRequest();
+            request.JsonSerializer = new RestSharpJsonNetSerializer();
+            request.Resource = "v1/user/card/check";
+            request.AddJsonBody(new { cardNumber = cardNumber });
+            return Execute<CardDetail>(request).Data;
+        }
 
         public string Tokenize(Card card)
         {

@@ -58,6 +58,13 @@ namespace Moneywave.Net.Requests
         [JsonProperty("phonenumber")]
         public string PhoneNumber { get; set; }
 
+        [JsonProperty("pin")]
+        public string Pin { get; set; }
+
+        [JsonProperty("charge_auth")]
+        public string ChargeAuth { get; set; }
+
+
         [JsonProperty("recipient")]
         [JsonConverter(typeof(StringEnumConverter))]
         public RecipientType Recipient { get; set; }

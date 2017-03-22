@@ -11,7 +11,7 @@ namespace Moneywave.Net.Test
     {
         public MoneywaveFixture()
         {
-            Api = new MoneywaveApi("ts_LI2BPJTYK6TIV3GI2K21", "ts_44CGM6X9DIYEEEJEL7FRS9K02HMO1Z", ClientMode.Test);
+            Api = new MoneywaveApi("ts_KZ1HPL6JRGJK2J08FB44", "ts_H8HVTV6LR6LMZT42PI6KJVGNA9HIMZ", ClientMode.Test);
         }
 
         public void Dispose()
@@ -69,6 +69,16 @@ namespace Moneywave.Net.Test
         [Fact]
         public void Transfer()
         {
+            Card card = new Card
+            {
+                CardNumber =  "5455844437306780",// "5061020000000000094"
+                Cvv = "373",
+                ExpiryMonth = "06",
+                ExpiryYear = "19"
+            };
+
+            var cardDetails = Api.Cards.Validate(card.CardNumber);
+
             TransferRequest request = new TransferRequest();
             request.FirstName = "Sylvester";
             request.LastName = "Okonkwo";
@@ -77,44 +87,38 @@ namespace Moneywave.Net.Test
             request.Recipient = RecipientType.Account;
             request.RecipientBank = "058";
             request.RecipientAccountNumber = "0921318712";
-            
-            /*request.CardNumber = "4960092279520867";
-            request.Cvv = "922";
-            request.ExpiryYear = "18";
-            request.ExpiryMonth = "12";
+                                  
+            /*request.CardNumber = card.CardNumber;
+            request.Cvv = card.Cvv;
+            request.ExpiryMonth = card.ExpiryMonth;
+            request.ExpiryYear = card.ExpiryYear;
             */
-            //Card card = new Card { CardNumber = "4960092279520867", Cvv = "922", ExpiryMonth = "12", ExpiryYear = "18" };
-            Card card = new Card { CardNumber = "5327320102996706", Cvv = "931", ExpiryMonth = "03", ExpiryYear = "18" };
             var token = Api.Cards.Tokenize(card);
             request.CardToken = token;
-            
-            request.Amount = 1000;
-            request.Fee = 50;
+
+            request.ChargeWith = ChargeType.TokenizedCard;
+
+            request.Pin = "1111";
+            request.Amount = 10;
+            request.Fee = 0;
             request.RedirectUrl = "https://freebe.ngrok";
             request.Medium = "mobile";
 
             request.SenderAccountNumber = "0690000005";
             request.SenderBank = "044";
-            request.Passcode = "";
+            request.ChargeAuth = "PIN";
             
-            request.ChargeWith = ChargeType.TokenizedCard;
-
+            
             var response = Api.Transactions.Transfer(request);
-            /*Assert.Equal(request.RecipientAccountNumber, response.Transfer.Beneficiary.AccountNumber);
+            Assert.Equal(request.RecipientAccountNumber, response.Transfer.Beneficiary.AccountNumber);
             //Assert.Equal(request.SenderAccountNumber, response.Transfer.Account.AccountNumber);
             Assert.IsType<string>(response.Transfer.FlutterChargeReference);
             Assert.Matches("^.{1,}$", response.Transfer.FlutterChargeReference);
 
 
             var reference = response.Transfer.FlutterChargeReference;
-            var transfer = Api.Transactions.ValidateTransfer(ChargeType.Card, reference, "12345", Transactions.AuthType.OTP);
-            transfer = Api.Transactions.Get(transfer.Id);
-            */
-            
-            /*request.SenderAccountNumber = "0921318712";
-            request.SenderBank = "58";
-            Assert.Throws<MoneywaveException>(() => Api.Transactions.Transfer(request));
-        */    
+            var transfer = Api.Transactions.ValidateTransfer(ChargeType.Card, reference, "123456", Transactions.AuthType.OTP);
+            transfer = Api.Transactions.Get(transfer.Id);              
         }
 
 

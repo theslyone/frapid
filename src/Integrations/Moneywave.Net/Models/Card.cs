@@ -21,4 +21,28 @@ namespace Moneywave.Net.Models
         [JsonProperty("cvv")]
         public string Cvv { get; set; }
     }
+
+    public class CardDetail
+    {
+        [JsonProperty("cardClass")]
+        public string Class { get; set; }
+
+        [JsonProperty("countryOfIssue")]
+        public string CountryOfIssue { get; set; }
+
+        [JsonProperty("countryOfIssueISO")]
+        public string CountryOfIssueISO { get; set; }
+
+        [JsonProperty("issuer")]
+        public string Issuer { get; set; }
+
+        [JsonProperty("cardType")]
+        public string Type { get; set; }
+
+        [JsonProperty("foreign")]
+        public bool IsForeign { get; set; }
+
+        [JsonProperty("cardBrand")]
+        public string Brand { get; set; }
+    }
 }

@@ -24,9 +24,9 @@ namespace Frapid.Calendar
 		}
 
 		/// <summary>
-		///Calendar
+		///Alarm
 		/// </summary>
-		public static string Calendar => I18NResource.GetString(ResourceDirectory, "Calendar");
+		public static string Alarm => I18NResource.GetString(ResourceDirectory, "Alarm");
 
 		/// <summary>
 		///All Day
@@ -34,19 +34,19 @@ namespace Frapid.Calendar
 		public static string AllDay => I18NResource.GetString(ResourceDirectory, "AllDay");
 
 		/// <summary>
-		///Note
+		///Audit Ts
 		/// </summary>
-		public static string Note => I18NResource.GetString(ResourceDirectory, "Note");
+		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
 
 		/// <summary>
-		///Location
+		///Audit User Id
 		/// </summary>
-		public static string Location => I18NResource.GetString(ResourceDirectory, "Location");
+		public static string AuditUserId => I18NResource.GetString(ResourceDirectory, "AuditUserId");
 
 		/// <summary>
-		///Reminder Types
+		///Category Id
 		/// </summary>
-		public static string ReminderTypes => I18NResource.GetString(ResourceDirectory, "ReminderTypes");
+		public static string CategoryId => I18NResource.GetString(ResourceDirectory, "CategoryId");
 
 		/// <summary>
 		///Category Name
@@ -54,39 +54,14 @@ namespace Frapid.Calendar
 		public static string CategoryName => I18NResource.GetString(ResourceDirectory, "CategoryName");
 
 		/// <summary>
-		///Is Private
-		/// </summary>
-		public static string IsPrivate => I18NResource.GetString(ResourceDirectory, "IsPrivate");
-
-		/// <summary>
-		///Is Local Calendar
-		/// </summary>
-		public static string IsLocalCalendar => I18NResource.GetString(ResourceDirectory, "IsLocalCalendar");
-
-		/// <summary>
-		///Starts At
-		/// </summary>
-		public static string StartsAt => I18NResource.GetString(ResourceDirectory, "StartsAt");
-
-		/// <summary>
-		///Name
-		/// </summary>
-		public static string Name => I18NResource.GetString(ResourceDirectory, "Name");
-
-		/// <summary>
 		///Category Order
 		/// </summary>
 		public static string CategoryOrder => I18NResource.GetString(ResourceDirectory, "CategoryOrder");
 
 		/// <summary>
-		///Recurrence
+		///Color Code
 		/// </summary>
-		public static string Recurrence => I18NResource.GetString(ResourceDirectory, "Recurrence");
-
-		/// <summary>
-		///Audit User Id
-		/// </summary>
-		public static string AuditUserId => I18NResource.GetString(ResourceDirectory, "AuditUserId");
+		public static string ColorCode => I18NResource.GetString(ResourceDirectory, "ColorCode");
 
 		/// <summary>
 		///Deleted
@@ -104,14 +79,49 @@ namespace Frapid.Calendar
 		public static string EventId => I18NResource.GetString(ResourceDirectory, "EventId");
 
 		/// <summary>
-		///Alarm
+		///Is Local
 		/// </summary>
-		public static string Alarm => I18NResource.GetString(ResourceDirectory, "Alarm");
+		public static string IsLocal => I18NResource.GetString(ResourceDirectory, "IsLocal");
 
 		/// <summary>
-		///Until
+		///Is Local Calendar
 		/// </summary>
-		public static string Until => I18NResource.GetString(ResourceDirectory, "Until");
+		public static string IsLocalCalendar => I18NResource.GetString(ResourceDirectory, "IsLocalCalendar");
+
+		/// <summary>
+		///Is Private
+		/// </summary>
+		public static string IsPrivate => I18NResource.GetString(ResourceDirectory, "IsPrivate");
+
+		/// <summary>
+		///Location
+		/// </summary>
+		public static string Location => I18NResource.GetString(ResourceDirectory, "Location");
+
+		/// <summary>
+		///Name
+		/// </summary>
+		public static string Name => I18NResource.GetString(ResourceDirectory, "Name");
+
+		/// <summary>
+		///Note
+		/// </summary>
+		public static string Note => I18NResource.GetString(ResourceDirectory, "Note");
+
+		/// <summary>
+		///Recurrence
+		/// </summary>
+		public static string Recurrence => I18NResource.GetString(ResourceDirectory, "Recurrence");
+
+		/// <summary>
+		///Reminder Types
+		/// </summary>
+		public static string ReminderTypes => I18NResource.GetString(ResourceDirectory, "ReminderTypes");
+
+		/// <summary>
+		///Starts At
+		/// </summary>
+		public static string StartsAt => I18NResource.GetString(ResourceDirectory, "StartsAt");
 
 		/// <summary>
 		///Time Zone
@@ -119,9 +129,9 @@ namespace Frapid.Calendar
 		public static string TimeZone => I18NResource.GetString(ResourceDirectory, "TimeZone");
 
 		/// <summary>
-		///Category Id
+		///Until
 		/// </summary>
-		public static string CategoryId => I18NResource.GetString(ResourceDirectory, "CategoryId");
+		public static string Until => I18NResource.GetString(ResourceDirectory, "Until");
 
 		/// <summary>
 		///Url
@@ -129,29 +139,9 @@ namespace Frapid.Calendar
 		public static string Url => I18NResource.GetString(ResourceDirectory, "Url");
 
 		/// <summary>
-		///Audit Ts
-		/// </summary>
-		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
-
-		/// <summary>
 		///User Id
 		/// </summary>
 		public static string UserId => I18NResource.GetString(ResourceDirectory, "UserId");
-
-		/// <summary>
-		///Color Code
-		/// </summary>
-		public static string ColorCode => I18NResource.GetString(ResourceDirectory, "ColorCode");
-
-		/// <summary>
-		///Is Local
-		/// </summary>
-		public static string IsLocal => I18NResource.GetString(ResourceDirectory, "IsLocal");
-
-		/// <summary>
-		///Tasks
-		/// </summary>
-		public static string Tasks => I18NResource.GetString(ResourceDirectory, "Tasks");
 
 		/// <summary>
 		///Access is denied!
@@ -172,6 +162,11 @@ namespace Frapid.Calendar
 		///Agendas
 		/// </summary>
 		public static string Agendas => I18NResource.GetString(ResourceDirectory, "Agendas");
+
+		/// <summary>
+		///Calendar
+		/// </summary>
+		public static string Calendar => I18NResource.GetString(ResourceDirectory, "Calendar");
 
 		/// <summary>
 		///Calendar Event Reminder: {0} at {1}
@@ -492,6 +487,11 @@ namespace Frapid.Calendar
 		///Sunday
 		/// </summary>
 		public static string Sunday => I18NResource.GetString(ResourceDirectory, "Sunday");
+
+		/// <summary>
+		///Tasks
+		/// </summary>
+		public static string Tasks => I18NResource.GetString(ResourceDirectory, "Tasks");
 
 		/// <summary>
 		///Third
