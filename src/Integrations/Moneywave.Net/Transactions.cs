@@ -44,14 +44,19 @@ namespace Moneywave.Net
         {
             //[POST] /v1/transfer
             transferRequest.ApiKey = ApiKey;
-            transferRequest.SenderBank = transferRequest.SenderBank.PadLeft(3, '0');
-            transferRequest.RecipientBank = transferRequest.RecipientBank.PadLeft(3, '0');
+            transferRequest.SenderBank = transferRequest.SenderBank?.PadLeft(3, '0');
+            transferRequest.RecipientBank = transferRequest.RecipientBank?.PadLeft(3, '0');
             var request = new RestRequest();
             request.JsonSerializer = new RestSharpJsonNetSerializer();
 
             request.Resource = "v1/transfer";
             request.AddJsonBody(transferRequest);
-            return Execute<TransferResponse>(request).Data;
+            var response = Execute<TransferResponse>(request).Data;
+            if (!response.PendingValidation)
+            {
+                response.Transfer = Get(response.Id);
+            }
+            return response;
         }
 
         public DisburseResponse Disburse(DisburseRequest disburseRequest)

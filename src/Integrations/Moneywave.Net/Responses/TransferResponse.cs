@@ -12,6 +12,9 @@ namespace Moneywave.Net.Responses
 {
     public class TransferResponse
     {
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
         [JsonProperty("transfer")]
         public Transfer Transfer { get; set; }
 
