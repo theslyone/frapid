@@ -41,7 +41,7 @@ $("#ApproveButton").click(function () {
     var verifyAjax = verify(primaryKey, verificationStatusId, reason);
 
     verifyAjax.success(function () {
-        docready();
+        prepareScrudView();
         displayMessage(window.translate("TaskCompletedSuccessfully"), "success");
     });
 });
@@ -64,7 +64,7 @@ $("#RejectButton").click(function () {
     var verifyAjax = verify(primaryKey, verificationStatusId, reason);
 
     verifyAjax.success(function () {
-        docready();
+        prepareScrudView();
         displayMessage(window.translate("TaskCompletedSuccessfully"), "success");
     });
 });

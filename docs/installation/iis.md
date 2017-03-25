@@ -49,7 +49,7 @@ Alternatively, you can also build frapid by running this batch file:
 
 Edit the configuration files:
 
-* [DbServer.config](../configs/DbServer.config.md) for database access.
+* [PostgreSQL.config](../configs/PostgreSQL.config.md) or [SQLServer.config](../configs/SQLServer.config.md) (ideally both) for database access.
 * [DomainsApproved.json](../configs/DomainsApproved.json.md) and change the "AdminEmail" for localhost domain to your own email address.
 
 ## Browse Frapid
@@ -62,8 +62,8 @@ You will notice that a database name "localhost" has been automatically created 
 Since you still do not have access to the admin area, you need to create an account for yourself. To verify your account, frapid will send account verification email.
 You need to configure a transactional email provider.
 
-Create an account with [SendGrid](http://sendgrid.com/) and edit the configuration file [~/Tenants/localhost/Configs/SMTP/SendGrid.json](../configs/SendGrid.json.md).
-
+- Create an account with [SendGrid](http://sendgrid.com/) and edit the configuration file `~/Tenants/localhost/Configs/SMTP/SendGrid.json`.
+- Or create an account with [SparkPost](https://www.sparkpost.com/) and edit the configuration file `~/Tenants/localhost/Configs/SMTP/SparkPost.json`.
 * Enter from email.
 * Enter API User.
 * Enter API Key.

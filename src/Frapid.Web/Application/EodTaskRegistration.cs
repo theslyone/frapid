@@ -5,7 +5,7 @@ using Frapid.Web.Jobs;
 using Quartz;
 using Quartz.Impl;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     public class EodTaskRegistration
     {

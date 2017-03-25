@@ -165,6 +165,8 @@
   <ItemGroup>
     <Compile Include="AreaRegistration.cs" />
     <Compile Include="Controllers\Backend\EmailController.cs" />
+    <Compile Include="Engine\Generators\ScriptGenerator.cs" />
+    <Compile Include="Engine\Parsers\ScriptParser.cs" />
     <Compile Include="Helpers\LocalizationHelper.cs" />
     <Compile Include="I18N.cs" />
     <Compile Include="Models\EmailException.cs" />

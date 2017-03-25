@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Frapid.Framework;
 using Frapid.Web;
+using Frapid.Web.Application;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.Owin;

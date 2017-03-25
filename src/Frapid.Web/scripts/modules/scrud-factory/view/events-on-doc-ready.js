@@ -1,10 +1,9 @@
-﻿function docready() {
+﻿function prepareScrudView() {
     $("#ExportDropDown").dropdown();
     window.scrudForm = $(".form.factory");
     window.scrudView = $(".view.factory");
 
-    var defaultView = window.getQueryStringByName("View");
-
+    var defaultView = window.getDefaultScrudView();
     if ((defaultView || "") === "form-view") {
         scrudView.hide();
     };

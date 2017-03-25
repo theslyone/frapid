@@ -3,7 +3,7 @@ using Frapid.Framework.Extensions;
 using Frapid.Framework.StaticContent;
 using Serilog;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     public static class AssetConfig
     {

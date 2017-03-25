@@ -28,6 +28,7 @@
         case "float8":
         case "decimal":
         case "decimal_strict":
+        case "decimal_strict2":
         case "numeric":
             return $("<input type='text' class='decimal' />");
         case "money_strict2":

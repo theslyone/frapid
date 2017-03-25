@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     public class FilterConfig
     {

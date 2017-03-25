@@ -6,7 +6,7 @@ using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     internal static class LogManager
     {

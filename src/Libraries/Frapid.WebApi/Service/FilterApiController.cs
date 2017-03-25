@@ -13,6 +13,7 @@ namespace Frapid.WebApi.Service
     {
         [AcceptVerbs("PUT")]
         [Route("~/api/filters/make-default/{objectName}/{filterName}")]
+        [RestAuthorize]
         public async Task MakeDefaultAsync(string objectName, string filterName)
         {
             try
@@ -44,6 +45,7 @@ namespace Frapid.WebApi.Service
 
         [AcceptVerbs("DELETE")]
         [Route("~/api/filters/remove-default/{objectName}")]
+        [RestAuthorize]
         public async Task RemoveDefaultAsync(string objectName)
         {
             try
@@ -75,6 +77,7 @@ namespace Frapid.WebApi.Service
 
         [AcceptVerbs("DELETE")]
         [Route("~/api/filters/delete/by-name/{filterName}")]
+        [RestAuthorize]
         public async Task DeleteAsync(string filterName)
         {
             try
@@ -106,6 +109,7 @@ namespace Frapid.WebApi.Service
 
         [AcceptVerbs("PUT")]
         [Route("~/api/filters/recreate/{objectName}/{filterName}")]
+        [RestAuthorize]
         public async Task RecreateFiltersAsync(string objectName, string filterName, [FromBody] List<Filter> collection)
         {
             try

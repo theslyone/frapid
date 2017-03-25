@@ -7,16 +7,31 @@ When you create IIS website (for frapid application) and enable it to listen on 
 ```json
 [
   {
-	"DomainName": "localhost",
-	"AdminEmail": "youremail@provider.com"
+    "DbProvider": "Npgsql",
+    "DomainName": "postgres.localhost",
+    "BackupDirectory": "/backups/mixerp",
+    "BackupDirectoryIsFixedPath": false,
+    "EnforceSsl": false,
+    "CdnDomain": "cdn2.mixerp.com",
+    "AdminEmail": "demo@mixerp.com",
+    "BcryptedAdminPassword": "$2a$10$PdCGxBu65cEmBy.suBS2H..KYEd/1bMTx3hk1nUSD/k6s6948weZK",
+    "Synonyms": [
+      "init01.salesific.com",
+      "localhost"
+    ]
   },
   {
-	"DomainName": "frapid.com",
-	"AdminEmail": "admin@frapid.com"
-  },
-  {
-	"DomainName": "docs.frapid.com",
-	"AdminEmail": "admin@frapid.com"
+    "DbProvider": "System.Data.SqlClient",
+    "DomainName": "frapid.localhost",
+    "BackupDirectory": "/backups/frapid",
+    "BackupDirectoryIsFixedPath": false,
+    "EnforceSsl": false,
+    "CdnDomain": "",
+    "AdminEmail": "demo@mixerp.net",
+    "BcryptedAdminPassword": "$2a$10$PdCGxBu65cEmBy.suBS2H..YKDe/1bMTx3hk1nUSD/k6s6948weZK",
+    "Synonyms": [
+      "sqlserver.frapid.com"
+    ]
   }
 ]
 ```
@@ -27,6 +42,19 @@ If the requested DNS domain name (say `example.com`) is resolved back and served
 name (`example.com`) is not present in the list of approved domains.
 
 If the requested DNS domain has an entry in the list of approved domains, it will be served automatically and installed (if not already).
+
+## How does Frapid use CDN?
+
+Frapid automatically converts the HTML output so that the static resources are served from the `CdnDomain`. For example,
+
+http://postgres.localhost/static.png
+
+will be converted to
+
+http://cdn2.mixerp.com/static.png
+
+Remember that, in order for this to work, both DNS names `CdnDomain` and `DomainName` should resolve to the same web server.
+
 
 ## Why Cannot I Login to Admin Area?
 

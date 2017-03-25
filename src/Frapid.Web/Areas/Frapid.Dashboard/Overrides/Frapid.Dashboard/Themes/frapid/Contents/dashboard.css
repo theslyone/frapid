@@ -135,7 +135,7 @@ html, body, .jstree {
 }
 
     .apps > .item {
-        display: inline-flex;
+        display: inline-block;
         flex-direction: column;
         padding: 0.2em 0em 0 0em;
         border: 1px solid transparent;

@@ -348,7 +348,15 @@ function showFilters(filters) {
 
     $(".filter.section").show();
     $(".filter.member.label i").click(function () {
-        $(this).parent().remove();
+
+        var anchor = $(this).parent();
+        var container = anchor.parent();
+        anchor.remove();
+
+        if (!container.find(".label").length) {
+            $(".filter.section").hide();
+        };
+
         loadPageCount(loadGrid);
     });
 };

@@ -5,7 +5,7 @@ using Frapid.Framework.Extensions;
 using Quartz;
 using Quartz.Impl;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     public class BackupRegistration
     {

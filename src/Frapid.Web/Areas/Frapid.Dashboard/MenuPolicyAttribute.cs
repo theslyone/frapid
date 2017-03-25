@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Web;
 using System.Web.Mvc;
 using Frapid.ApplicationState.Cache;
 using Frapid.ApplicationState.CacheFactory;
@@ -9,14 +11,12 @@ using Frapid.Configuration;
 using Frapid.Dashboard.DAL;
 using Frapid.Dashboard.DTO;
 using Frapid.Framework.Extensions;
-using Frapid.i18n;
 
 namespace Frapid.Dashboard
 {
     public class MenuPolicyAttribute : ActionFilterAttribute
     {
         public string OverridePath { get; set; }
-        public bool StatusResponse { get; set; }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
@@ -35,14 +35,7 @@ namespace Frapid.Dashboard
                 return;
             }
 
-            if (this.StatusResponse)
-            {
-                filterContext.Result = new HttpUnauthorizedResult(Resources.AccessIsDenied);
-            }
-            else
-            {
-                filterContext.Result = new RedirectResult("/account/sign-in");
-            }
+            filterContext.Result = new HttpUnauthorizedResult(Resources.AccessIsDenied);
         }
 
         private IEnumerable<Menu> GetAllMenus(string tenant, int userId, int officeId)

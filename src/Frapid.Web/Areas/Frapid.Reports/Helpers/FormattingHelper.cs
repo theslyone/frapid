@@ -14,22 +14,32 @@ namespace Frapid.Reports.Helpers
             if (value is DateTime)
             {
                 var date = value.To<DateTime>();
-                cellValue = date.ToString("o");
+
+                if (date.Date == date)
+                {
+                    return date.ToString("d");
+                }
+
+                cellValue = date.ToLocalTime().ToString("g");
             }
 
             if (value is DateTimeOffset)
             {
                 var date = value.To<DateTimeOffset>();
-                cellValue = date.ToString("o");
+
+                if (date.Date == date)
+                {
+                    return date.ToString("d");
+                }
+
+                cellValue = date.ToLocalTime().ToString("g");
             }
 
             if (value is decimal || value is double || value is float)
             {
                 decimal amount = value.To<decimal>();
 
-                cellValue =
-                    amount.ToString("C", CultureManager.GetCurrentUiCulture())
-                        .Replace(CultureManager.GetCurrentUiCulture().NumberFormat.CurrencySymbol, "");
+                cellValue = amount.ToString("C", CultureManager.GetCurrentUiCulture()).Replace(CultureManager.GetCurrentUiCulture().NumberFormat.CurrencySymbol, "");
             }
 
             return HttpUtility.HtmlEncode(cellValue);

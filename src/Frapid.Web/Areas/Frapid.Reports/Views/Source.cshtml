@@ -9,13 +9,12 @@
     <meta charset="utf-8">
     <title>@I18N.FrapidReport</title>
     <link rel="stylesheet" type="text/css" href="/Areas/Frapid.Reports/styles/source.css" />
-</head>
-<body>
-    @Html.Action("ReportMarkup", new { path = Model })
-
     <script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
     <script src="/assets/js/backend.js"></script>
     <script src="/Areas/Frapid.Reports/scripts/jquery.tablesorter/jquery.tablesorter.min.js"></script>
+</head>
+<body>
+    @Html.Action("ReportMarkup", new { path = Model })
 <script>
     $(document).ready(function () {
         (function () {

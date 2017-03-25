@@ -40,13 +40,13 @@ Once you finish this step, you have a local frapid git repository on your hard d
 
 ## Rename "_Config" Directory
 
-Rename the directory `~/Resources/_Config` to `~/Resources/Config`.
+Rename (or copy) the directory `~/Resources/_Config` to `~/Resources/Config`.
 
 
-## Convention and Configuration over Convention or Configuration
+## Conventions and Configurations
 
 Configuration enables you to customize application behaviors whereas convention 
-forces you to follow and keep track of things. Frapid uses best of both worlds.
+forces you to follow and keep track of things. Frapid uses the best of both worlds.
 
 ### Master Configuration
 

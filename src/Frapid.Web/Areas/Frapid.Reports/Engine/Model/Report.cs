@@ -13,5 +13,6 @@ namespace Frapid.Reports.Engine.Model
         public string BottomSection { get; set; }
         public List<DataSource> DataSources { get; set; }
         public List<Parameter> Parameters { get; set; }
+        public string Script { get; set; }
     }
 }

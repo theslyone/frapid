@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Frapid.Framework;
 using Serilog;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     public class StartupRegistration
     {

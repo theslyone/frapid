@@ -5,7 +5,7 @@ using System.Web.Http.Dispatcher;
 using Frapid.WebApi;
 using Serilog;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     public static class WebApiConfig
     {

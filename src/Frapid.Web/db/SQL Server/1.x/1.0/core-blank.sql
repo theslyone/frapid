@@ -644,7 +644,8 @@ BEGIN
 		)
 
 		INSERT INTO @result
-		SELECT * FROM generate_series;
+		SELECT * FROM generate_series
+		OPTION(MAXRECURSION 0);
 	END;
 
 	RETURN;

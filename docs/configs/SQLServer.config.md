@@ -8,20 +8,20 @@ Please be advised that once you correctly configure this file, frapid will autom
 <?xml version="1.0"?>
 <configuration>
   <appSettings>
-    <add key="Server" value="localhost" />
-    <add key="Port" value="" />
-    <add key="MetaDatabase" value="master" />
+	<add key="Server" value="localhost" />
+	<add key="Port" value="" />
+	<add key="MetaDatabase" value="master" />
 	<add key="EnablePooling" value="true" />
 	<add key="MinPoolSize" value="0" />
 	<add key="MaxPoolSize" value="100" />
-    <add key="SuperUserId" value="sa" /><!-- Super user account is needed only to create database(s). -->
-    <add key="SuperUserPassword" value="???" />
+	<add key="SuperUserId" value="sa" /><!-- Super user account is needed only to create database(s). -->
+	<add key="SuperUserPassword" value="???" />
 	<add key="TrustedSuperUserConnection" value="true" />
-    <add key="UserId" value="frapid_db_user" /><!-- If not found, Frapid automatically creates the login: frapid_db_user/change-on-deployment@123. -->
-    <add key="Password" value="change-on-deployment@123" />
-    <add key="ReportUserId" value="report_user" /><!-- If not found, Frapid automatically creates the login: report_user/change-on-deployment@123. Make sure that you do not allow write permission to this user.-->
-    <add key="ReportUserPassword" value="change-on-deployment@123" />
-    <add key="DatabaseBackupDirectory" value="/Backups/" />
+	<add key="UserId" value="frapid_db_user" /><!-- If not found, Frapid automatically creates the login: frapid_db_user/change-on-deployment@123. -->
+	<add key="Password" value="change-on-deployment@123" />
+	<add key="ReportUserId" value="report_user" /><!-- If not found, Frapid automatically creates the login: report_user/change-on-deployment@123. Make sure that you do not allow write permission to this user.-->
+	<add key="ReportUserPassword" value="change-on-deployment@123" />
+	<add key="DatabaseBackupDirectory" value="/Backups/" />
   </appSettings>
 </configuration>
 ```

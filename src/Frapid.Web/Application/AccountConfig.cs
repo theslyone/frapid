@@ -9,7 +9,7 @@ using Microsoft.Owin.Security.Jwt;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     public static class AccountConfig
     {

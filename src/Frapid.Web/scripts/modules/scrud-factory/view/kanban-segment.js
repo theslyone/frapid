@@ -82,7 +82,7 @@ function refreshKanbans(dontRefresh) {
         //    };
         //};
 
-        var defaultView = window.getQueryStringByName("View") || "kanban";
+        var defaultView = window.getDefaultScrudView();
         showView(defaultView, dontRefresh);
 
         createKanbans(response);

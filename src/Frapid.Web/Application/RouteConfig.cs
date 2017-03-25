@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace Frapid.Web
+namespace Frapid.Web.Application
 {
     public class RouteConfig
     {

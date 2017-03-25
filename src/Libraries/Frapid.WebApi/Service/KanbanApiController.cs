@@ -12,6 +12,7 @@ namespace Frapid.WebApi.Service
     {
         [AcceptVerbs("GET", "HEAD")]
         [Route("~/api/kanbans/get-by-resources")]
+        [RestAuthorize]
         public async Task<IEnumerable<dynamic>> GetAsync([FromUri] long[] kanbanIds, [FromUri] object[] resourceIds)
         {
             if (kanbanIds == null || resourceIds == null)
