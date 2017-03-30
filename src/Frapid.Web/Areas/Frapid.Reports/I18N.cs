@@ -289,6 +289,7 @@ namespace Frapid.Reports
 		public static string Recipients => I18NResource.GetString(ResourceDirectory, "Recipients");
 
 		/// <summary>
+<<<<<<< HEAD
 		///Seo Description
 		/// </summary>
 		public static string SeoDescription => I18NResource.GetString(ResourceDirectory, "SeoDescription");
@@ -297,19 +298,52 @@ namespace Frapid.Reports
 		///Sort
 		/// </summary>
 		public static string Sort => I18NResource.GetString(ResourceDirectory, "Sort");
+=======
+		///Last Editor Id
+		/// </summary>
+		public static string LastEditorId => I18NResource.GetString(ResourceDirectory, "LastEditorId");
 
 		/// <summary>
 		///State
 		/// </summary>
 		public static string State => I18NResource.GetString(ResourceDirectory, "State");
+>>>>>>> a64747d65c2151b27997e174ef78cea71963bdee
 
 		/// <summary>
+		///Blog Id
+		/// </summary>
+		public static string BlogId => I18NResource.GetString(ResourceDirectory, "BlogId");
+
+		/// <summary>
+<<<<<<< HEAD
 		///Status
+=======
+		///Blog Category Id
+		/// </summary>
+		public static string BlogCategoryId => I18NResource.GetString(ResourceDirectory, "BlogCategoryId");
+
+		/// <summary>
+		///Content Id
+		/// </summary>
+		public static string ContentId => I18NResource.GetString(ResourceDirectory, "ContentId");
+
+		/// <summary>
+		///Website Name
+>>>>>>> a64747d65c2151b27997e174ef78cea71963bdee
 		/// </summary>
 		public static string Status => I18NResource.GetString(ResourceDirectory, "Status");
 
 		/// <summary>
+<<<<<<< HEAD
 		///Subscribed On
+=======
+		///Is Default
+		/// </summary>
+		public static string IsDefault => I18NResource.GetString(ResourceDirectory, "IsDefault");
+
+		/// <summary>
+		///Is Homepage
+>>>>>>> a64747d65c2151b27997e174ef78cea71963bdee
 		/// </summary>
 		public static string SubscribedOn => I18NResource.GetString(ResourceDirectory, "SubscribedOn");
 
@@ -319,7 +353,11 @@ namespace Frapid.Reports
 		public static string SubscriptionType => I18NResource.GetString(ResourceDirectory, "SubscriptionType");
 
 		/// <summary>
+<<<<<<< HEAD
 		///Tag
+=======
+		///Blog Title
+>>>>>>> a64747d65c2151b27997e174ef78cea71963bdee
 		/// </summary>
 		public static string Tag => I18NResource.GetString(ResourceDirectory, "Tag");
 

@@ -44,7 +44,7 @@ namespace MixERP.Social.Models
                 Icon = "users",
                 Url = "/dashboard/social?FeedId=" + item.FeedId,
                 OfficeId = meta.OfficeId,
-                AssociatedApp = "Social"
+                AssociatedApp = "MixERP.Social"
             };
 
             foreach (int participant in participants)

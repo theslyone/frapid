@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Frapid.Configuration.Db;
 using Frapid.DataAccess.Models;
+using Frapid.Framework.Extensions;
 using Frapid.Mapper.Database;
 
 namespace Frapid.DataAccess.DAL
@@ -22,7 +23,7 @@ namespace Frapid.DataAccess.DAL
 
             var columns = (await Factory.GetAsync<EntityColumn>(tenant, sql, schemaName, tableName).ConfigureAwait(false)).ToList();
 
-            var candidate = columns.FirstOrDefault(x => x.PrimaryKey.ToUpperInvariant().StartsWith("Y"));
+            var candidate = columns.FirstOrDefault(x => x.PrimaryKey.Or("").ToUpperInvariant().StartsWith("Y"));
 
             if (candidate != null)
             {

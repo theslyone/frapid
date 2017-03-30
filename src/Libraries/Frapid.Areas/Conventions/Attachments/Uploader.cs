@@ -11,20 +11,23 @@ namespace Frapid.Areas.Conventions.Attachments
 {
     public class Uploader
     {
-        public Uploader(ILogger logger, AreaRegistration area, HttpFileCollectionBase files, string tenant, string[] allowedExtensions)
+        public Uploader(ILogger logger, AreaRegistration area, HttpFileCollectionBase files, string tenant, string[] allowedExtensions, bool keepOriginalFileNames = false)
         {
             this.Logger = logger;
             this.Area = area;
             this.Files = files;
             this.Tenant = tenant;
             this.AllowedExtensions = allowedExtensions;
+            this.KeepOrignalFileNames = keepOriginalFileNames;
         }
 
         public ILogger Logger { get; }
         public AreaRegistration Area { get; }
         public HttpFileCollectionBase Files { get; }
         public string Tenant { get; }
+        public bool KeepOrignalFileNames { get; }
         public string[] AllowedExtensions { get; }
+        public string Id { get; set; }
 
         public string Upload()
         {
@@ -67,20 +70,28 @@ namespace Frapid.Areas.Conventions.Attachments
 
             string extension = Path.GetExtension(fileName);
 
-            if (!this.AllowedExtensions.Contains(extension))
+            if (!this.AllowedExtensions.Contains(extension.ToLower()))
             {
-                this.Logger.Warning("Could not upload avatar resource because the uploaded file {file} has invalid extension.",
-                    fileName);
+                this.Logger.Warning("Could not upload avatar resource because the uploaded file {file} has invalid extension.", fileName);
                 throw new UploadException("Invalid data.");
             }
 
             var stream = file.InputStream;
+            string id = Guid.NewGuid().ToString();
 
-            fileName = Guid.NewGuid() + extension;
+            if (this.KeepOrignalFileNames && !string.IsNullOrWhiteSpace(path))
+            {
+                path = Path.Combine(path, id);
+                Directory.CreateDirectory(path);
+            }
+            else
+            {
+                fileName = id + extension;
+            }
 
             if (path == null)
             {
-                return fileName;
+                return string.Empty;
             }
 
             path = Path.Combine(path, fileName);
@@ -88,6 +99,11 @@ namespace Frapid.Areas.Conventions.Attachments
             using (var fileStream = File.Create(path))
             {
                 stream.CopyTo(fileStream);
+            }
+
+            if (this.KeepOrignalFileNames)
+            {
+                fileName = id + "/" + fileName;
             }
 
             return fileName;

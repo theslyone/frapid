@@ -132,14 +132,14 @@ namespace Frapid.Authorization
 		public static string EntityAccessPolicyId => I18NResource.GetString(ResourceDirectory, "EntityAccessPolicyId");
 
 		/// <summary>
-		///Office Id
-		/// </summary>
-		public static string OfficeId => I18NResource.GetString(ResourceDirectory, "OfficeId");
-
-		/// <summary>
 		///Access Type Id
 		/// </summary>
 		public static string AccessTypeId => I18NResource.GetString(ResourceDirectory, "AccessTypeId");
+
+		/// <summary>
+		///Office Id
+		/// </summary>
+		public static string OfficeId => I18NResource.GetString(ResourceDirectory, "OfficeId");
 
 		/// <summary>
 		///Table Type

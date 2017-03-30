@@ -1239,3 +1239,7 @@ select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
+
+.flat.form input[readonly]{
+	background: #fafafa!important;
+}

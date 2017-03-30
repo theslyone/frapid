@@ -34,7 +34,12 @@ function serializeForm(el) {
     function getVal(el){
         var val = el.val();
         var type = el.attr("type");
-        		
+        var dataType = el.attr("data-type");
+		
+		if(dataType === "number"){
+			type = "number";
+		};
+		
 		if(el.hasClass("hasDatepicker")){
 			type = "datepicker";
 		};
@@ -70,7 +75,7 @@ function serializeForm(el) {
                 };
 
                 return el.calendar("get date");
-            case "checkbox":                
+            case "checkbox":
                 return el.is(":checked");
             case "number":                
                 return parseFloat(val || null);
@@ -85,7 +90,18 @@ function serializeForm(el) {
 
     members.each(function () {
         var item = $(this);
+        var type = item.attr("type");
         var id = item.attr("id");
+		
+		if(type === "file"){
+			return true;
+		};
+		
+		var nameMember = item.is("[data-name-member]");
+		if(nameMember){
+			id = "";
+		};
+
         var name = item.attr("name");
         
         if (id) {
