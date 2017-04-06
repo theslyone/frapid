@@ -28,6 +28,7 @@ namespace Moneywave.Net
         protected static string ApiKey { get; set; }
         protected static string Secret { get; set; }
         protected static string Token { get; set; }
+        public string WalletLock { get; set; }
 
         protected string GetToken()
         {
@@ -51,18 +52,43 @@ namespace Moneywave.Net
             request.AddHeader("content-type", "application/json");
             var response = client.Execute<MoneywaveResponse<dynamic>>(request);
             
+            MoneywaveResponse<T> moneywaveResponse = ProcessResponse<T>(response);
+            return moneywaveResponse;
+        }
+
+        protected Task<MoneywaveResponse<T>> ExecuteAync<T>(RestRequest request) where T : class
+        {
+            var client = new RestClient();
+            client.BaseUrl = new Uri(BaseUrl);
+            request.Method = Method.POST;
+            request.RequestFormat = DataFormat.Json;
+
+            request.AddHeader("Authorization", Token);
+            request.AddHeader("content-type", "application/json");
+
+            var taskCompletionSource = new TaskCompletionSource<MoneywaveResponse<T>>();
+
+            client.ExecuteAsync<MoneywaveResponse<dynamic>>(request, (response) => {                
+                MoneywaveResponse<T> moneywaveResponse = ProcessResponse<T>(response);
+                taskCompletionSource.SetResult(moneywaveResponse);
+            });
+            return taskCompletionSource.Task;           
+        }
+
+        private MoneywaveResponse<T> ProcessResponse<T>(IRestResponse<MoneywaveResponse<dynamic>> response) where T : class
+        {
             if (response.ErrorException != null || response.Data.Status != Status.Success)
             {
-                string message = response.Data != null 
+                string message = response.Data != null
                     ? !string.IsNullOrEmpty(response.Data.Code) ? response.Data.Code
                     : !string.IsNullOrEmpty(response.Data.Data) ? response.Data.Data
-                    : !string.IsNullOrEmpty(response.Data.Message) ? response.Data.Message 
-                    : "Freebe encountered an error while processing your request. It is very likely that your account has been charged, please do not try again"
-                    : "Freebe encountered an error while processing your request. It is very likely that your account has been charged, please do not try again";
+                    : !string.IsNullOrEmpty(response.Data.Message) ? response.Data.Message
+                    : "Freebe encountered an error while processing your request."// It is very likely that your account has been charged, please do not try again"
+                    : "Freebe encountered an error while processing your request.";// It is very likely that your account has been charged, please do not try again";
                 var moneywaveException = new MoneywaveException(message, response.ErrorException);
                 throw moneywaveException;
             }
-            MoneywaveResponse<T> moneywaveResponse = JsonConvert.DeserializeObject<MoneywaveResponse<T>>(response.Content);         
+            MoneywaveResponse<T> moneywaveResponse = JsonConvert.DeserializeObject<MoneywaveResponse<T>>(response.Content);
             return moneywaveResponse;
         }
     }

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moneywave.Net
+namespace Flutterwave.BillPayment
 {
     public class RestSharpJsonNetSerializer : ISerializer
     {
@@ -23,7 +23,7 @@ namespace Moneywave.Net
             {
                 MissingMemberHandling = MissingMemberHandling.Ignore,
                 NullValueHandling = NullValueHandling.Ignore,//.Include,
-                DefaultValueHandling = DefaultValueHandling.Include
+                DefaultValueHandling = DefaultValueHandling.Ignore//.Include
             };
         }
 

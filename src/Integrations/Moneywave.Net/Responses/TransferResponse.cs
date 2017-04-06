@@ -45,6 +45,9 @@ namespace Moneywave.Net.Responses
         [JsonProperty("status")]
         public string Status { get; set; }
 
+        [JsonProperty("is_completed")]
+        public bool IsCompleted { get; set; }
+
         [JsonProperty("flutterChargeReference")]
         public string FlutterChargeReference { get; set; }
 
@@ -52,9 +55,7 @@ namespace Moneywave.Net.Responses
         public string FlutterChargeResponseCode { get; set; }
 
         [JsonProperty("flutterChargeResponseMessage")]
-        public string FlutterChargeResponseMessage { get; set; }
-
-        
+        public string FlutterChargeResponseMessage { get; set; }      
         
         [JsonProperty("flutterDisburseReference")]
         public string FlutterDisburseReference { get; set; }

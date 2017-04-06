@@ -62,6 +62,8 @@ namespace Moneywave.Net
         public DisburseResponse Disburse(DisburseRequest disburseRequest)
         {
             //[POST] /v1/disburse
+            disburseRequest.BankCode = disburseRequest.BankCode?.PadLeft(3, '0');
+
             var request = new RestRequest();
             request.JsonSerializer = new RestSharpJsonNetSerializer();
 
@@ -83,7 +85,6 @@ namespace Moneywave.Net
             //used for card validation
             request.AddParameter("otp", authValue);
             return Execute<Transfer>(request).Data;
-
         }
 
 

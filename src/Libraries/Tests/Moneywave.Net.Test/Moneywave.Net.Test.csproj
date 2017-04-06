@@ -39,6 +39,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>\\vmware-host\Shared Folders\Documents\Visual Studio 2015\Projects\Moneywave\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
@@ -70,10 +75,16 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="ApiTests.cs" />
+    <Compile Include="BillPaymentApiTests.cs" />
+    <Compile Include="KeyGenerator.cs" />
+    <Compile Include="MoneywaveApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Integrations\Flutterwave.BillPayment\Flutterwave.BillPayment.csproj">
+      <Project>{713F19ED-08A6-4D13-BA90-B6AB8DAFF43A}</Project>
+      <Name>Flutterwave.BillPayment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Integrations\Moneywave.Net\Moneywave.Net.csproj">
       <Project>{60642823-cdb1-48da-944a-501109bbf65b}</Project>
       <Name>Moneywave.Net</Name>

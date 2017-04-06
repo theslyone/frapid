@@ -23,10 +23,10 @@ namespace Moneywave.Net.Test
         public MoneywaveApi Api { get; private set; }
     }
 
-    public sealed class ApiTests : IClassFixture<MoneywaveFixture>
+    public sealed class MoneywaveApiTests : IClassFixture<MoneywaveFixture>
     {
         MoneywaveApi Api; 
-        public ApiTests(MoneywaveFixture fixture)
+        public MoneywaveApiTests(MoneywaveFixture fixture)
         {
             this.Api = fixture.Api;
         }
@@ -35,7 +35,7 @@ namespace Moneywave.Net.Test
         public void GetBanks()
         {
             var banks = Api.GetBanks();
-            Assert.Equal(banks.Count, 29);
+            Assert.NotEmpty(banks);
         }
 
         [Fact]
@@ -68,7 +68,68 @@ namespace Moneywave.Net.Test
         }
 
         [Fact]
-        public void Transfer()
+        public void TransferToAccount()
+        {
+            Card card = new Card
+            {
+                CardNumber = "5314992834267591",
+                Cvv = "342",
+                ExpiryMonth = "09",
+                ExpiryYear = "19"
+            };
+
+            card = new Card
+            {
+                CardNumber = "5061020000000000094",
+                Cvv = "931",
+                ExpiryMonth = "03",
+                ExpiryYear = "18"
+            };
+
+            var cardDetails = Api.Cards.Validate(card.CardNumber);
+
+            TransferRequest request = new TransferRequest();
+            request.FirstName = "Sylvester";
+            request.LastName = "Okonkwo";
+            request.PhoneNumber = "+2348030469664";
+            request.Email = "theslyguy@icloud.com";
+            request.Recipient = RecipientType.Account;
+            request.RecipientBank = "044";
+            request.RecipientAccountNumber = "0690000004";
+            /*                      
+            request.CardNumber = card.CardNumber;
+            request.Cvv = card.Cvv;
+            request.ExpiryMonth = card.ExpiryMonth;
+            request.ExpiryYear = card.ExpiryYear;
+            */
+            var token = Api.Cards.Tokenize(card);
+            request.CardToken = token;
+
+            request.ChargeWith = ChargeType.TokenizedCard;
+            request.Pin = "1111";
+            request.ChargeAuth = "PIN";
+       
+            request.Amount = 3500;
+            request.Fee = 0;
+            request.RedirectUrl = "https://freebe.ngrok";
+            request.Medium = "mobile";
+            
+            var response = Api.Transactions.Transfer(request);
+            Assert.Equal(request.RecipientAccountNumber, response.Transfer.Beneficiary.AccountNumber);
+            Assert.IsType<string>(response.Transfer.FlutterChargeReference);
+            Assert.Matches("^.{1,}$", response.Transfer.FlutterChargeReference);
+
+            if (response.PendingValidation)
+            {
+                var reference = response.Transfer.FlutterChargeReference;
+                Transfer transfer = Api.Transactions.ValidateTransfer(ChargeType.Card, reference, "123456", Transactions.AuthType.OTP);
+                transfer = Api.Transactions.Get(response.Transfer.Id);
+                Assert.Equal(transfer.FlutterChargeResponseCode, "00");
+            }
+        }        
+
+        [Fact]
+        public void TransferToWallet()
         {
             Card card = new Card
             {
@@ -93,15 +154,8 @@ namespace Moneywave.Net.Test
             request.LastName = "Okonkwo";
             request.PhoneNumber = "+2348030469664";
             request.Email = "theslyguy@icloud.com";
-            request.Recipient = RecipientType.Account;
-            request.RecipientBank = "058";
-            request.RecipientAccountNumber = "0921318712";
-            /*                      
-            request.CardNumber = card.CardNumber;
-            request.Cvv = card.Cvv;
-            request.ExpiryMonth = card.ExpiryMonth;
-            request.ExpiryYear = card.ExpiryYear;
-            */
+            request.Recipient = RecipientType.Wallet;
+
             var token = Api.Cards.Tokenize(card);
             request.CardToken = token;
 
@@ -109,16 +163,12 @@ namespace Moneywave.Net.Test
             request.Pin = "1111";
             request.ChargeAuth = "PIN";
 
-            request.Amount = 10;
+            request.Amount = 30000;
             request.Fee = 0;
             request.RedirectUrl = "https://freebe.ngrok";
             request.Medium = "mobile";
-
-            //request.SenderAccountNumber = "0690000005";
-            //request.SenderBank = "044";            
             
             var response = Api.Transactions.Transfer(request);
-            Assert.Equal(request.RecipientAccountNumber, response.Transfer.Beneficiary.AccountNumber);
             Assert.IsType<string>(response.Transfer.FlutterChargeReference);
             Assert.Matches("^.{1,}$", response.Transfer.FlutterChargeReference);
 
@@ -126,25 +176,32 @@ namespace Moneywave.Net.Test
             {
                 var reference = response.Transfer.FlutterChargeReference;
                 Transfer transfer = Api.Transactions.ValidateTransfer(ChargeType.Card, reference, "123456", Transactions.AuthType.OTP);
-                transfer = Api.Transactions.Get(transfer.Id);
+                transfer = Api.Transactions.Get(response.Transfer.Id);
                 Assert.Equal(transfer.FlutterChargeResponseCode, "00");
             }
         }
 
+        [Fact]
+        public void TransferStatus()
+        {
+            var response = Api.Transactions.Get("6045");
+            Assert.Equal(response.FlutterChargeResponseCode, "00");
+        }
 
         [Fact]
         public void Disburse()
         {
             DisburseRequest request = new DisburseRequest();
             request.SenderName = "Okonkwo Sylvester";
-            request.BankCode = "058";
-            request.AccountNumber = "0921318712";
-            request.Amount = 10;
-            request.Ref = "TMW000000317";
-            request.Lock = "0987654321";
-
-            Assert.Throws<MoneywaveException>(() => Api.Transactions.Disburse(request));
-            //var response = Api.Transactions.Disburse(request);
+            request.BankCode = "044";
+            request.AccountNumber = "0690000005";
+            //request.BankCode = "058";
+            //request.AccountNumber = "0921318712";
+            request.Amount = 40;
+            request.Ref = $"TMW{KeyGenerator.GetUniqueAlphaNumericCode(10)}";
+            request.Lock = "*Passw0rd#";
+            DisburseResponse response = response = Api.Transactions.Disburse(request);
+            Assert.Equal("00", response.Data.ResponseCode);
         }
     }
 }
