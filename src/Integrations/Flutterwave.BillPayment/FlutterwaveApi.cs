@@ -1,29 +1,27 @@
 ﻿using Flutterwave.BillPayment.Models;
 using Flutterwave.BillPayment.Requests;
 using Flutterwave.BillPayment.Responses;
+using Frapid.RestApi;
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Flutterwave.BillPayment
 {
-    public class BillPaymentApi : BillPaymentClient
+    public class FlutterwaveApi : FlutterwaveClient
     {
-        public BillPaymentApi(string clientId, string clientSecret) : this(clientId, clientSecret, ClientMode.Test)
+        
+        public FlutterwaveApi(string clientId, string clientSecret) : this(clientId, clientSecret, ClientMode.Test)
         {
 
         }
 
-        public BillPaymentApi(string clientId, string clientSecret, ClientMode mode) : base(mode)
+        public FlutterwaveApi(string clientId, string clientSecret, ClientMode mode) : base(mode)
         {
             ClientId = clientId;
             ClientSecret = clientSecret;
             Token = GetToken();           
-        }
-
+        }        
 
         public List<Merchant> GetMerchants()
         {

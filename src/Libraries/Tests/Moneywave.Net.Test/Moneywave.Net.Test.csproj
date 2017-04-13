@@ -75,7 +75,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="BillPaymentApiTests.cs" />
+    <Compile Include="MobileAirtimeApiTests.cs" />
+    <Compile Include="FlutterwaveApiTests.cs" />
     <Compile Include="KeyGenerator.cs" />
     <Compile Include="MoneywaveApiTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,9 +86,17 @@
       <Project>{713F19ED-08A6-4D13-BA90-B6AB8DAFF43A}</Project>
       <Name>Flutterwave.BillPayment</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Integrations\MobileAirtime.BillPayment\MobileAirtime.BillPayment.csproj">
+      <Project>{DC6982F8-4012-4A1A-BB1A-A7F35C7DF647}</Project>
+      <Name>MobileAirtime.BillPayment</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Integrations\Moneywave.Net\Moneywave.Net.csproj">
       <Project>{60642823-cdb1-48da-944a-501109bbf65b}</Project>
       <Name>Moneywave.Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Frapid.RestApiClient\Frapid.RestApi.csproj">
+      <Project>{23C3552D-33C7-454D-B4A4-5A9FF9B798C1}</Project>
+      <Name>Frapid.RestApi</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

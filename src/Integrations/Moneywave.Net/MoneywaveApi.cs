@@ -1,4 +1,5 @@
-﻿using Moneywave.Net.Models;
+﻿using Frapid.RestApi;
+using Moneywave.Net.Models;
 using Moneywave.Net.Requests;
 using Moneywave.Net.Responses;
 using Newtonsoft.Json.Linq;

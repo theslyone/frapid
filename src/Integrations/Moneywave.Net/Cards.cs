@@ -1,10 +1,6 @@
-﻿using Moneywave.Net.Models;
+﻿using Frapid.RestApi;
+using Moneywave.Net.Models;
 using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Moneywave.Net
 {

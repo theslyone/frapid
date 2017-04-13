@@ -14,7 +14,7 @@ namespace Moneywave.Net.Test
     {
         public BillPaymentFixture()
         {
-            Api = new BillPaymentApi("57503cb75d1a5111002cfa5a", "Zs0PavPCFWPXZeHOA1ZgU92K6P3X3c1ogTye18RmvGJglwBsthcyW97rKxWHbFLJmJn9QWqA9sOg2HINR3uH9SgaI7dD04R3GaIk");
+            Api = new FlutterwaveApi("57503cb75d1a5111002cfa5a", "Zs0PavPCFWPXZeHOA1ZgU92K6P3X3c1ogTye18RmvGJglwBsthcyW97rKxWHbFLJmJn9QWqA9sOg2HINR3uH9SgaI7dD04R3GaIk");
         }
 
         public void Dispose()
@@ -22,13 +22,13 @@ namespace Moneywave.Net.Test
 
         }
 
-        public BillPaymentApi Api { get; private set; }
+        public FlutterwaveApi Api { get; private set; }
     }
 
-    public sealed class BillPaymentApiTests : IClassFixture<BillPaymentFixture>
+    public sealed class FlutterwaveApiTests : IClassFixture<BillPaymentFixture>
     {
-        BillPaymentApi Api;
-        public BillPaymentApiTests(BillPaymentFixture fixture)
+        FlutterwaveApi Api;
+        public FlutterwaveApiTests(BillPaymentFixture fixture)
         {
             this.Api = fixture.Api;
         }

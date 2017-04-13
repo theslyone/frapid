@@ -2,17 +2,23 @@
 using Newtonsoft.Json.Converters;
 using System.Runtime.Serialization;
 
-namespace Flutterwave.BillPayment.Responses
+namespace Frapid.RestApi.Responses
 {
-    public class BillPaymentResponse<T> where T : class
+    public class RestApiResponse<T> where T : class
     {
         [JsonProperty("status")]
-        //[JsonConverter(typeof(StringEnumConverter))]
-        public string Status { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Status Status { get; set; }
+
+        [JsonProperty("code")]
+        public string Code { get; set; }
+
+        [JsonProperty("Message")]
+        public string Message { get; set; }
 
         [JsonProperty("data")]
         public T Data { get; set; }
-
+        
     }
 
     public enum Status {

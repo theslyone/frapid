@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{713F19ED-08A6-4D13-BA90-B6AB8DAFF43A}</ProjectGuid>
+    <ProjectGuid>{23C3552D-33C7-454D-B4A4-5A9FF9B798C1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Flutterwave.BillPayment</RootNamespace>
-    <AssemblyName>Flutterwave.BillPayment</AssemblyName>
+    <RootNamespace>Frapid.RestApi</RootNamespace>
+    <AssemblyName>Frapid.RestApi</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -49,23 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FlutterwaveApi.cs" />
-    <Compile Include="FlutterwaveClient.cs" />
-    <Compile Include="FlutterwaveException.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\Merchant.cs" />
+    <Compile Include="RestApiException.cs" />
+    <Compile Include="Responses\RestApiResponse.cs" />
+    <Compile Include="RestApiClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\PayRequest.cs" />
-    <Compile Include="Responses\PayResponse.cs" />
+    <Compile Include="RestSharpJsonNetDeserializer.cs" />
+    <Compile Include="RestSharpJsonNetSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\Frapid.RestApiClient\Frapid.RestApi.csproj">
-      <Project>{23c3552d-33c7-454d-b4a4-5a9ff9b798c1}</Project>
-      <Name>Frapid.RestApi</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

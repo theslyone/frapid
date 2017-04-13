@@ -1,4 +1,5 @@
-﻿using Moneywave.Net.Requests;
+﻿using Frapid.RestApi;
+using Moneywave.Net.Requests;
 using Moneywave.Net.Responses;
 using RestSharp;
 using System;

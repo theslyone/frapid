@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moneywave.Net
+namespace Frapid.RestApi
 {
     public class RestSharpJsonNetSerializer : ISerializer
     {

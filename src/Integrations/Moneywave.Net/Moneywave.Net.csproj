@@ -67,12 +67,16 @@
     <Compile Include="Responses\DisburseResponse.cs" />
     <Compile Include="Responses\MoneywaveResponse.cs" />
     <Compile Include="Responses\TransferResponse.cs" />
-    <Compile Include="RestSharpJsonNetDeserializer.cs" />
-    <Compile Include="RestSharpJsonNetSerializer.cs" />
     <Compile Include="Transactions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Libraries\Frapid.RestApiClient\Frapid.RestApi.csproj">
+      <Project>{23C3552D-33C7-454D-B4A4-5A9FF9B798C1}</Project>
+      <Name>Frapid.RestApi</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

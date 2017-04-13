@@ -1,4 +1,5 @@
-﻿using Moneywave.Net;
+﻿using Frapid.RestApi;
+using Moneywave.Net;
 using Moneywave.Net.Models;
 using Moneywave.Net.Requests;
 using Moneywave.Net.Responses;
@@ -163,7 +164,7 @@ namespace Moneywave.Net.Test
             request.Pin = "1111";
             request.ChargeAuth = "PIN";
 
-            request.Amount = 30000;
+            request.Amount = 10000;
             request.Fee = 0;
             request.RedirectUrl = "https://freebe.ngrok";
             request.Medium = "mobile";
