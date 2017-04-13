@@ -1232,6 +1232,7 @@ select {
   background-repeat: no-repeat;
   border-color: green;
   outline: 0;
+  padding-right: 2em!important;
 }
 
 
@@ -1255,3 +1256,12 @@ select:-moz-focusring {
 	cursor: not-allowed;
 }
 
+
+.flat.form select:focus {
+  background: #FAF7DE!important;;
+}
+
+.flat.form select:-moz-focusring {
+    color: transparent!important;
+    text-shadow: 0 0 0 #000!important;
+}

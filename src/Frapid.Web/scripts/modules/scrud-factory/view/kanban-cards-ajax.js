@@ -28,15 +28,21 @@
         return;
     };
 
+    $.each(kanbanIds, function(){
+        var kanbanId = (this || 0);
+        $("#kanban" + kanbanId + " .kanban.holder").html("");
+    });
 
     var ajax = request(kanbanIds, resourceIds);
 
     ajax.success(function (response) {
+
         $.each(window.scrudjson, function (i, v) {
             var key = getCardKey(v);
             var kanbanDetail = (Enumerable.From(response).Where(function(detail) {
                     return detail.ResourceId.toString() === key.toString();
             }).ToArray()[0] || new Object());
+
 
             createCard(this, key, kanbanDetail);
         });

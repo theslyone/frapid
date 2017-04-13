@@ -1,10 +1,6 @@
 var parseFloat2 = function (arg) {
-    if (typeof (arg) === "undefined") {
-        return null;
-    };
-	
 	if(!arg){
-		return null;
+		return 0;
 	};
 
     var input = arg;
@@ -22,13 +18,21 @@ var parseFloat2 = function (arg) {
     return val;
 };
 
-var parseInt2 = function (arg) {
+var parseFloatStrict = function (arg) {
     if (typeof (arg) === "undefined") {
         return null;
     };
 	
 	if(!arg){
 		return null;
+	};
+	
+	return parseFloat2(arg);
+};
+
+var parseInt2 = function (arg) {
+	if(!arg){
+		return 0;
 	};
 
     var val = parseInt(parseFormattedNumber(arg.toString()) || 0);
@@ -38,6 +42,19 @@ var parseInt2 = function (arg) {
     }
 
     return val;
+};
+
+
+var parseIntStrict = function (arg) {
+    if (typeof (arg) === "undefined") {
+        return null;
+    };
+	
+	if(!arg){
+		return null;
+	};
+
+	return parseInt2(arg);
 };
 
 function parseDate(str) {

@@ -1188,7 +1188,7 @@ EXECUTE PROCEDURE account.token_auto_expiry_trigger();
 
 
 -->-->-- src/Frapid.Web/Areas/Frapid.Account/db/PostgreSQL/1.x/1.0/src/03.menus/menus.sql --<--<--
-SELECT * FROM core.create_app('Frapid.Account', 'Account', 'Account', '1.0', 'MixERP Inc.', 'December 1, 2015', 'grey lock', '/dashboard/account/configuration-profile', NULL::text[]);
+SELECT * FROM core.create_app('Frapid.Account', 'Account', 'Account', '1.0', 'MixERP Inc.', 'December 1, 2015', 'grey lock', '/dashboard/account/user/list', NULL::text[]);
 
 SELECT * FROM core.create_menu('Frapid.Account', 'Roles', 'Roles', '/dashboard/account/roles', 'users', '');
 SELECT * FROM core.create_menu('Frapid.Account', 'Users', 'Users', '', 'user', '');

@@ -78,7 +78,7 @@ function serializeForm(el) {
             case "checkbox":
                 return el.is(":checked");
             case "number":                
-                return window.parseFloat2(val || null);
+                return window.parseFloatStrict(val || null);
             default:
                 return val;
         };

@@ -678,7 +678,6 @@ CREATE TABLE core.offices
 );
 
 
-
 CREATE TABLE core.verification_statuses
 (
     verification_status_id                  smallint PRIMARY KEY,
