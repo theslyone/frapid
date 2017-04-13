@@ -56,7 +56,7 @@ namespace Frapid.WebApi.DataAccess
             }
 
             long offset = (pageNumber - 1)*50;
-            var sql = new Sql("SELECT * FROM config.filters WHERE 1 = 1");
+            var sql = new Sql("SELECT * FROM config.filters WHERE deleted = @0", false);
 
             FilterManager.AddFilters(ref sql, new Filter(), filters);
 

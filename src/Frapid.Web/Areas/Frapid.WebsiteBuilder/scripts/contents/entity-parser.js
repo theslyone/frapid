@@ -9,11 +9,11 @@ var entityParser = {
             };
 
             if (typeClass.indexOf("integer") !== -1) {
-                return parseInt(value) || null;
+                return window.parseInt2(value) || null;
             };
 
             if (typeClass.indexOf("float") !== -1) {
-                return parseFloat(value) || null;
+                return window.parseFloat2(value) || null;
             };
 
             if (typeClass.indexOf("date") !== -1) {

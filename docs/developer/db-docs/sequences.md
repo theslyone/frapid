@@ -56,7 +56,6 @@
 | 52 | core.app_dependencies_app_dependency_id_seq | frapid_db_user | bigint | 1 | 1 |  |
 | 53 | core.apps_app_id_seq | frapid_db_user | bigint | 1 | 1 |  |
 | 54 | core.currencies_currency_id_seq | frapid_db_user | bigint | 1 | 1 |  |
-| 55 | core.frequencies_frequency_id_seq | frapid_db_user | bigint | 1 | 1 |  |
 | 56 | core.marital_statuses_marital_status_id_seq | frapid_db_user | bigint | 1 | 1 |  |
 | 57 | core.menus_menu_id_seq | frapid_db_user | bigint | 1 | 1 |  |
 | 58 | core.offices_office_id_seq | frapid_db_user | bigint | 1 | 1 |  |

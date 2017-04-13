@@ -30,6 +30,7 @@ namespace Frapid.ApplicationState.Models
         public string State { get; set; }
         public string ZipCode { get; set; }
         public string Country { get; set; }
+        public string OfficeEmail { get; set; }
         public string Phone { get; set; }
         public string Fax { get; set; }
         public string Url { get; set; }

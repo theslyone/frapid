@@ -76,7 +76,6 @@
 | 72 | [core](schemas/core.md) | [apps](tables/core/apps.md) | frapid_db_user | DEFAULT |  |
 | 73 | [core](schemas/core.md) | [countries](tables/core/countries.md) | frapid_db_user | DEFAULT |  |
 | 74 | [core](schemas/core.md) | [currencies](tables/core/currencies.md) | frapid_db_user | DEFAULT |  |
-| 75 | [core](schemas/core.md) | [frequencies](tables/core/frequencies.md) | frapid_db_user | DEFAULT |  |
 | 76 | [core](schemas/core.md) | [genders](tables/core/genders.md) | frapid_db_user | DEFAULT |  |
 | 77 | [core](schemas/core.md) | [marital_statuses](tables/core/marital_statuses.md) | frapid_db_user | DEFAULT |  |
 | 78 | [core](schemas/core.md) | [menus](tables/core/menus.md) | frapid_db_user | DEFAULT |  |

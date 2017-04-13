@@ -1,4 +1,4 @@
-EXECUTE core.create_app 'Frapid.Account', 'Account', 'Account', '1.0', 'MixERP Inc.', 'December 1, 2015', 'grey lock', '/dashboard/account/configuration-profile', NULL;
+EXECUTE core.create_app 'Frapid.Account', 'Account', 'Account', '1.0', 'MixERP Inc.', 'December 1, 2015', 'grey lock', '/dashboard/account/user/list', NULL;
 
 EXECUTE core.create_menu 'Frapid.Account', 'Roles', 'Roles', '/dashboard/account/roles', 'users', '';
 

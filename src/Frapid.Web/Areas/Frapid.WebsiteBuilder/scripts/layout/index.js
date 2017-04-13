@@ -53,7 +53,7 @@ uploadButton.click(function() {
 });
 
 function confirmAction() {
-    const areYouSure = window.Resources.AreYouSure || "Are you sure?";
+    const areYouSure = window.translate("AreYouSure") || "Are you sure?";
     return confirm(areYouSure);
 };
 

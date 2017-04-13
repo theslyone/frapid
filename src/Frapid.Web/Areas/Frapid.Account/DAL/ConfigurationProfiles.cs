@@ -16,6 +16,7 @@ namespace Frapid.Account.DAL
             {
                 var sql = new Sql("SELECT * FROM account.configuration_profiles");
                 sql.Where("is_active=@0", true);
+                sql.And("deleted=@0",false);
 
                 var awaiter = await db.SelectAsync<ConfigurationProfile>(sql).ConfigureAwait(false);
                 return awaiter.FirstOrDefault();

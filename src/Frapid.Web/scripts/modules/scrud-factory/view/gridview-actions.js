@@ -88,7 +88,7 @@ function loadActions() {
         var titleSuffix = actionTemplate.match("TitleSuffix={Col:(.*)}");
 
         if(titleSuffix){
-            var position = parseInt(titleSuffix.pop() || 0);
+            var position = window.parseInt2(titleSuffix.pop() || 0);
             var selector = "td:nth-child(" + (position - 2) + ")";
             var suffix = el.find(selector).html();
             var find = "TitleSuffix={Col:" + position + "}";

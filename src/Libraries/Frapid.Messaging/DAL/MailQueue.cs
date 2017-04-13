@@ -23,6 +23,7 @@ namespace Frapid.Messaging.DAL
             {
                 var sql = new Sql("SELECT * FROM config.email_queue");
                 sql.Where("is_test=@0", false);
+                sql.And("deleted=@0",false);
                 sql.Append("AND delivered=@0", false);
                 sql.Append("AND canceled=@0", false);
                 sql.Append("AND send_on<=" + FrapidDbServer.GetDbTimestampFunction(database));

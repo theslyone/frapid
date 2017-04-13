@@ -39,8 +39,8 @@ namespace Frapid.Account.DAL
 
         public static async Task<Registration> GetAsync(string tenant, Guid token)
         {
-            const string sql = "SELECT * FROM account.registrations WHERE registration_id=@0;";
-            return (await Factory.GetAsync<Registration>(tenant, sql, token).ConfigureAwait(false)).FirstOrDefault();
+            const string sql = "SELECT * FROM account.registrations WHERE registration_id=@0 AND deleted=@1;";
+            return (await Factory.GetAsync<Registration>(tenant, sql, token, false).ConfigureAwait(false)).FirstOrDefault();
         }
     }
 }

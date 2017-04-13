@@ -15,6 +15,7 @@ namespace Frapid.Authorization.DAL
             using (var db = DbProvider.Get(FrapidDbServer.GetConnectionString(tenant), tenant).GetDatabase())
             {
                 var sql = new Sql("SELECT * FROM account.roles");
+                sql.Where("deleted=@0", false);
                 sql.OrderBy("role_id DESC");
 
                 return await db.SelectAsync<Role>(sql).ConfigureAwait(false);

@@ -1,4 +1,20 @@
-﻿function showView(target, dontRefresh) {
+﻿function getDefaultScrudView(){
+    var defaultView = "kanban";
+    
+    if(window.defaultScrudView){
+        defaultView = window.defaultScrudView;
+    };
+
+    var queryStringView = window.getQueryStringByName("View");
+
+    if(queryStringView){
+        return queryStringView;
+    };
+
+    return defaultView;
+};
+
+function showView(target, dontRefresh) {
     if (!target) {
         target = $(".active[data-target]").attr("data-target") || "kanban";
     };

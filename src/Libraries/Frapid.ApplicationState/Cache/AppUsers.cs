@@ -118,6 +118,7 @@ namespace Frapid.ApplicationState.Cache
             dictionary.Add("Database", database);
             dictionary.Add("Culture", metaLogin.Culture);
             dictionary.Add("Email", metaLogin.Email);
+            dictionary.Add("OfficeEmail", metaLogin.OfficeEmail);
             dictionary.Add("Office", metaLogin.Office);
             dictionary.Add("OfficeId", metaLogin.OfficeId);
             dictionary.Add("OfficeCode", metaLogin.OfficeCode);

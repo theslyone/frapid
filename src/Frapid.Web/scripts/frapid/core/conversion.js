@@ -1,7 +1,11 @@
 var parseFloat2 = function (arg) {
     if (typeof (arg) === "undefined") {
-        return 0;
+        return null;
     };
+	
+	if(!arg){
+		return null;
+	};
 
     var input = arg;
 
@@ -20,8 +24,12 @@ var parseFloat2 = function (arg) {
 
 var parseInt2 = function (arg) {
     if (typeof (arg) === "undefined") {
-        return 0;
+        return null;
     };
+	
+	if(!arg){
+		return null;
+	};
 
     var val = parseInt(parseFormattedNumber(arg.toString()) || 0);
 

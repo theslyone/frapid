@@ -24,49 +24,9 @@ namespace MixERP.Social
 		}
 
 		/// <summary>
-		///Attachments
+		///Social
 		/// </summary>
-		public static string Attachments => I18NResource.GetString(ResourceDirectory, "Attachments");
-
-		/// <summary>
-		///Audit Ts
-		/// </summary>
-		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
-
-		/// <summary>
-		///Created By
-		/// </summary>
-		public static string CreatedBy => I18NResource.GetString(ResourceDirectory, "CreatedBy");
-
-		/// <summary>
-		///Deleted
-		/// </summary>
-		public static string Deleted => I18NResource.GetString(ResourceDirectory, "Deleted");
-
-		/// <summary>
-		///Deleted By
-		/// </summary>
-		public static string DeletedBy => I18NResource.GetString(ResourceDirectory, "DeletedBy");
-
-		/// <summary>
-		///Deleted On
-		/// </summary>
-		public static string DeletedOn => I18NResource.GetString(ResourceDirectory, "DeletedOn");
-
-		/// <summary>
-		///Event Timestamp
-		/// </summary>
-		public static string EventTimestamp => I18NResource.GetString(ResourceDirectory, "EventTimestamp");
-
-		/// <summary>
-		///Feed Id
-		/// </summary>
-		public static string FeedId => I18NResource.GetString(ResourceDirectory, "FeedId");
-
-		/// <summary>
-		///Formatted Text
-		/// </summary>
-		public static string FormattedText => I18NResource.GetString(ResourceDirectory, "FormattedText");
+		public static string Social => I18NResource.GetString(ResourceDirectory, "Social");
 
 		/// <summary>
 		///Is Public
@@ -74,14 +34,29 @@ namespace MixERP.Social
 		public static string IsPublic => I18NResource.GetString(ResourceDirectory, "IsPublic");
 
 		/// <summary>
-		///Liked By
+		///Role Id
 		/// </summary>
-		public static string LikedBy => I18NResource.GetString(ResourceDirectory, "LikedBy");
+		public static string RoleId => I18NResource.GetString(ResourceDirectory, "RoleId");
 
 		/// <summary>
-		///Liked By Name
+		///Deleted
 		/// </summary>
-		public static string LikedByName => I18NResource.GetString(ResourceDirectory, "LikedByName");
+		public static string Deleted => I18NResource.GetString(ResourceDirectory, "Deleted");
+
+		/// <summary>
+		///Audit Ts
+		/// </summary>
+		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
+
+		/// <summary>
+		///Scope
+		/// </summary>
+		public static string Scope => I18NResource.GetString(ResourceDirectory, "Scope");
+
+		/// <summary>
+		///Attachments
+		/// </summary>
+		public static string Attachments => I18NResource.GetString(ResourceDirectory, "Attachments");
 
 		/// <summary>
 		///Liked On
@@ -89,19 +64,49 @@ namespace MixERP.Social
 		public static string LikedOn => I18NResource.GetString(ResourceDirectory, "LikedOn");
 
 		/// <summary>
+		///Created By
+		/// </summary>
+		public static string CreatedBy => I18NResource.GetString(ResourceDirectory, "CreatedBy");
+
+		/// <summary>
+		///Liked By Name
+		/// </summary>
+		public static string LikedByName => I18NResource.GetString(ResourceDirectory, "LikedByName");
+
+		/// <summary>
+		///Formatted Text
+		/// </summary>
+		public static string FormattedText => I18NResource.GetString(ResourceDirectory, "FormattedText");
+
+		/// <summary>
+		///User Id
+		/// </summary>
+		public static string UserId => I18NResource.GetString(ResourceDirectory, "UserId");
+
+		/// <summary>
+		///Liked By
+		/// </summary>
+		public static string LikedBy => I18NResource.GetString(ResourceDirectory, "LikedBy");
+
+		/// <summary>
+		///Feed Id
+		/// </summary>
+		public static string FeedId => I18NResource.GetString(ResourceDirectory, "FeedId");
+
+		/// <summary>
+		///Deleted On
+		/// </summary>
+		public static string DeletedOn => I18NResource.GetString(ResourceDirectory, "DeletedOn");
+
+		/// <summary>
+		///Deleted By
+		/// </summary>
+		public static string DeletedBy => I18NResource.GetString(ResourceDirectory, "DeletedBy");
+
+		/// <summary>
 		///Parent Feed Id
 		/// </summary>
 		public static string ParentFeedId => I18NResource.GetString(ResourceDirectory, "ParentFeedId");
-
-		/// <summary>
-		///Role Id
-		/// </summary>
-		public static string RoleId => I18NResource.GetString(ResourceDirectory, "RoleId");
-
-		/// <summary>
-		///Scope
-		/// </summary>
-		public static string Scope => I18NResource.GetString(ResourceDirectory, "Scope");
 
 		/// <summary>
 		///Unliked
@@ -114,9 +119,14 @@ namespace MixERP.Social
 		public static string UnlikedOn => I18NResource.GetString(ResourceDirectory, "UnlikedOn");
 
 		/// <summary>
-		///User Id
+		///Event Timestamp
 		/// </summary>
-		public static string UserId => I18NResource.GetString(ResourceDirectory, "UserId");
+		public static string EventTimestamp => I18NResource.GetString(ResourceDirectory, "EventTimestamp");
+
+		/// <summary>
+		///Tasks
+		/// </summary>
+		public static string Tasks => I18NResource.GetString(ResourceDirectory, "Tasks");
 
 		/// <summary>
 		///Access is denied!
@@ -229,19 +239,9 @@ namespace MixERP.Social
 		public static string ShowPreviousComments => I18NResource.GetString(ResourceDirectory, "ShowPreviousComments");
 
 		/// <summary>
-		///Social
-		/// </summary>
-		public static string Social => I18NResource.GetString(ResourceDirectory, "Social");
-
-		/// <summary>
 		///Something went wrong. :(
 		/// </summary>
 		public static string SomethingWentWrong => I18NResource.GetString(ResourceDirectory, "SomethingWentWrong");
-
-		/// <summary>
-		///Tasks
-		/// </summary>
-		public static string Tasks => I18NResource.GetString(ResourceDirectory, "Tasks");
 
 		/// <summary>
 		///Unlike

@@ -63,9 +63,9 @@
                 val = null;
             } else {
                 if (wholeNumbers.indexOf(type) > -1) {
-                    val = parseInt(val);
+                    val = window.parseInt2(val);
                 } else if (decimalNumber.indexOf(type) > -1) {
-                    val = parseFloat(val);
+                    val = window.parseFloat2(val);
                 } else if (dateTypes.indexOf(type) > -1) {
                     if (dbDataType === "time") {
                         val = val || null;

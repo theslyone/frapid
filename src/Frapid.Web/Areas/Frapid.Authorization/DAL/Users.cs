@@ -16,6 +16,7 @@ namespace Frapid.Authorization.DAL
             {
                 var sql = new Sql("SELECT * FROM account.users");
                 sql.Where("status=@0", true);
+                sql.And("deleted=@0", false);
 
                 return await db.SelectAsync<User>(sql).ConfigureAwait(false);
             }

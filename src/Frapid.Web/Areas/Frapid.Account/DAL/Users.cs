@@ -21,6 +21,8 @@ namespace Frapid.Account.DAL
             {
                 var sql = new Sql("SELECT * FROM account.users");
                 sql.Where("email=@0", email);
+                sql.And("deleted=@0",false);
+
                 sql.Limit(db.DatabaseType, 1, 0, "user_id");
 
                 var awaiter = await db.SelectAsync<User>(sql).ConfigureAwait(false);

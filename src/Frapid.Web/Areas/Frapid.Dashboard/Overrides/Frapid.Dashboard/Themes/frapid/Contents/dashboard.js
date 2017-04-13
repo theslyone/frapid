@@ -6,7 +6,7 @@ function setMoments() {
         var val = el.attr("data-time");
 
         if (!val) {
-            val = parseInt(el.attr("data-server-time"));
+            val = window.parseInt2(el.attr("data-server-time"));
         };
 
         const time = new Date(val);
@@ -61,7 +61,7 @@ function loadUI() {
     window.localize();
 
     window.loadDatepicker();
-    window.setNumberFormat();
+    window.setRegionalFormat();
 };
 
 var frapidApp = angular.module('FrapidApp', ['ngRoute']);

@@ -70,7 +70,7 @@ function createLayout(collection, container) {
 
     if (window.scrudFactory.hidePrimaryKey) {
         var pki = getPrimaryKeyIndex(collection);
-        missing = Enumerable.From(missing).Where(function (x) { return parseInt(x || 0) !== pki; }).ToArray();
+        missing = Enumerable.From(missing).Where(function (x) { return window.parseInt2(x || 0) !== pki; }).ToArray();
         missing.push(pki);
     };
 

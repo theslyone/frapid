@@ -113,8 +113,8 @@
             return;
         };
 
-        const userId = parseInt($("#UserDropdown").val() || 0);
-        const officeId = parseInt($("#OfficeDropdown").val() || 0);
+        const userId = window.parseInt2($("#UserDropdown").val() || 0);
+        const officeId = window.parseInt2($("#OfficeDropdown").val() || 0);
 
         if (!userId || !officeId) {
             return;
@@ -171,8 +171,8 @@
             return window.getAjaxRequest(url);
         };
 
-        const userId = parseInt($("#UserDropdown").val() || 0);
-        const officeId = parseInt($("#OfficeDropdown").val() || 0);
+        const userId = window.parseInt2($("#UserDropdown").val() || 0);
+        const officeId = window.parseInt2($("#OfficeDropdown").val() || 0);
 
         if (!userId || !officeId) {
             return;

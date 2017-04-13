@@ -15,6 +15,7 @@ namespace Frapid.Messaging.DAL
             {
                 var sql = new Sql("SELECT * FROM config.smtp_configs");
                 sql.Where("enabled=@0", true);
+                sql.And("deleted=@0",false);
                 sql.And("is_default=@0", true);
                 sql.Limit(db.DatabaseType, 1, 0, "smtp_config_id");
 

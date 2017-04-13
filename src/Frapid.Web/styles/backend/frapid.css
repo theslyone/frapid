@@ -1243,3 +1243,15 @@ select:-moz-focusring {
 .flat.form input[readonly]{
 	background: #fafafa!important;
 }
+
+
+[disabled] {
+	pointer-events: auto!important;
+}
+
+.flat.form [disabled], .flat.form [readonly]{
+	background:transparent!important;
+	color:#888!important;
+	cursor: not-allowed;
+}
+

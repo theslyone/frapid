@@ -37,8 +37,8 @@ function save() {
         return;
     };
 
-    const roleId = parseInt($("#RoleDropdown").val() || 0);
-    const officeId = parseInt($("#OfficeDropdown").val() || 0);
+    const roleId = window.parseInt2($("#RoleDropdown").val() || 0);
+    const officeId = window.parseInt2($("#OfficeDropdown").val() || 0);
 
     if (!roleId || !officeId) {
         return;
@@ -78,8 +78,8 @@ $("[data-get-menu-policy-button]").off("click").on("click", function() {
         return window.getAjaxRequest(url);
     };
 
-    const roleId = parseInt($("#RoleDropdown").val() || 0);
-    const officeId = parseInt($("#OfficeDropdown").val() || 0);
+    const roleId = window.parseInt2($("#RoleDropdown").val() || 0);
+    const officeId = window.parseInt2($("#OfficeDropdown").val() || 0);
 
     if (!roleId || !officeId) {
         return;

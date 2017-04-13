@@ -21,6 +21,7 @@ namespace Frapid.Authorization.DAL
                 var sql = new Sql("SELECT * FROM auth.group_entity_access_policy");
                 sql.Where("office_id=@0", officeId);
                 sql.And("role_id=@0", roleId);
+                sql.And("deleted=@0", false);
 
                 return await db.SelectAsync<GroupEntityAccessPolicy>(sql).ConfigureAwait(false);
             }
@@ -74,6 +75,7 @@ namespace Frapid.Authorization.DAL
                 var sql = new Sql("SELECT * FROM auth.entity_access_policy");
                 sql.Where("office_id=@0", officeId);
                 sql.And("user_id=@0", userId);
+                sql.And("deleted=@0", false);
 
                 return await db.SelectAsync<EntityAccessPolicy>(sql).ConfigureAwait(false);
             }

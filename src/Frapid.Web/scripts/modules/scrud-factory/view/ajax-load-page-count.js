@@ -44,7 +44,7 @@
     var ajax = request(filterName, filters);
 
     ajax.success(function (response) {
-        var pages = (Math.ceil(parseInt(response) / 10) || 1);
+        var pages = (Math.ceil(window.parseInt2(response) / 10) || 1);
 
         $(".total.pages.anchor").text(pages);
 

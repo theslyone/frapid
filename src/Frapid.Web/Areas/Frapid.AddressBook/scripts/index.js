@@ -94,7 +94,7 @@ $("#SaveButton").off("click").on("click", function() {
             model.ContactId = contactId;
         };
 
-        model.AssociatedUserId = parseInt(model.AssociatedUserId) || null;
+        model.AssociatedUserId = window.parseInt2(model.AssociatedUserId) || null;
 
         return model;
     };

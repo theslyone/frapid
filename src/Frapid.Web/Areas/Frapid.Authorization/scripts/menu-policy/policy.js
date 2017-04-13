@@ -58,8 +58,8 @@ function save() {
         return;
     };
 
-    const userId = parseInt($("#UserSelect").val() || 0);
-    const officeId = parseInt($("#OfficeSelect").val() || 0);
+    const userId = window.parseInt2($("#UserSelect").val() || 0);
+    const officeId = window.parseInt2($("#OfficeSelect").val() || 0);
 
     if (!userId || !officeId) {
         return;
@@ -104,8 +104,8 @@ $("[data-get-menu-policy-button]").off("click").on("click", function() {
         return window.getAjaxRequest(url);
     };
 
-    const userId = parseInt($("#UserSelect").val() || 0);
-    const officeId = parseInt($("#OfficeSelect").val() || 0);
+    const userId = window.parseInt2($("#UserSelect").val() || 0);
+    const officeId = window.parseInt2($("#OfficeSelect").val() || 0);
 
     if (!userId || !officeId) {
         return;

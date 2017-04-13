@@ -11,7 +11,7 @@ function deleteKanban(el) {
 
     el = $(el);
     var label = el.parent().parent().find(".label");
-    var kanbanId = parseInt(label.attr("data-kanban-id"));
+    var kanbanId = window.parseInt2(label.attr("data-kanban-id"));
 
     if (kanbanId) {
         var confirmed = confirmAction();
@@ -32,7 +32,7 @@ function editKanban(el) {
     el = $(el);
     var label = el.parent().parent().find(".left.label");
 
-    var kanbanId = parseInt(label.attr("data-kanban-id"));
+    var kanbanId = window.parseInt2(label.attr("data-kanban-id"));
     var kanbanName = label.text();
     var description = label.attr("title");
 
@@ -71,7 +71,7 @@ function saveOrUpdateKanban() {
     removeDirty(kanbanNameInputText);
 
     var kanban = new Object();
-    kanban.KanbanId = parseInt(kanbanIdInputText.val() || null);
+    kanban.KanbanId = window.parseInt2(kanbanIdInputText.val() || null);
     kanban.ObjectName = window.scrudFactory.viewTableName;
     kanban.UserId = window.userId;
     kanban.KanbanName = kanbanNameInputText.val();

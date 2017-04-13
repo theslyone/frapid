@@ -32,7 +32,7 @@ function serializeForm(el) {
     };
 
     function getVal(el){
-        var val = el.val();
+        var val = el.val() || "";
         var type = el.attr("type");
         var dataType = el.attr("data-type");
 		
@@ -78,7 +78,7 @@ function serializeForm(el) {
             case "checkbox":
                 return el.is(":checked");
             case "number":                
-                return parseFloat(val || null);
+                return window.parseFloat2(val || null);
             default:
                 return val;
         };
@@ -87,7 +87,6 @@ function serializeForm(el) {
     var members = el.find("input, select, textarea, div.date.calendar, div.ui.tags");
 
     var form = {};
-
     members.each(function () {
         var item = $(this);
         var type = item.attr("type");

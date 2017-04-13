@@ -1300,6 +1300,7 @@ SELECT
     core.offices.state,
     core.offices.zip_code,
     core.offices.country,
+    core.offices.email AS office_email,
     core.offices.phone,
     core.offices.fax,
     core.offices.url,

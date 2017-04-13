@@ -21,6 +21,7 @@ namespace Frapid.WebsiteBuilder.DAL
             {
                 var sql = new Sql("SELECT * FROM website.contents");
                 sql.Where("is_homepage=@0", true);
+                sql.And("deleted=@0",false);
 
                 return await db.SelectAsync<Content>(sql).ConfigureAwait(false);
             }
@@ -56,6 +57,7 @@ namespace Frapid.WebsiteBuilder.DAL
             {
                 var sql = new Sql("SELECT * FROM website.contents");
                 sql.Where("content_id=@0", contentId);
+                sql.And("deleted=@0",false);
 
                 var awaiter = await db.SelectAsync<Content>(sql).ConfigureAwait(false);
                 return awaiter.FirstOrDefault();

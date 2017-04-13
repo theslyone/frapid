@@ -15,6 +15,7 @@ namespace Frapid.Authorization.DAL
             using (var db = DbProvider.Get(FrapidDbServer.GetConnectionString(tenant), tenant).GetDatabase())
             {
                 var sql = new Sql("SELECT * FROM core.offices");
+                sql.Where("deleted=@0", false);
                 sql.OrderBy("office_id");
 
                 return await db.SelectAsync<Office>(sql).ConfigureAwait(false);

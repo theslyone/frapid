@@ -214,6 +214,11 @@ namespace Frapid.Config
 		public static string FromName => I18NResource.GetString(ResourceDirectory, "FromName");
 
 		/// <summary>
+		///Field Order
+		/// </summary>
+		public static string FieldOrder => I18NResource.GetString(ResourceDirectory, "FieldOrder");
+
+		/// <summary>
 		///Kanban Name
 		/// </summary>
 		public static string KanbanName => I18NResource.GetString(ResourceDirectory, "KanbanName");
@@ -327,11 +332,6 @@ namespace Frapid.Config
 		///Reply To Name
 		/// </summary>
 		public static string ReplyToName => I18NResource.GetString(ResourceDirectory, "ReplyToName");
-
-		/// <summary>
-		///Field Order
-		/// </summary>
-		public static string FieldOrder => I18NResource.GetString(ResourceDirectory, "FieldOrder");
 
 		/// <summary>
 		///Offices

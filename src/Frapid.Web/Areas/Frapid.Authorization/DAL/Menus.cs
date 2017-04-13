@@ -17,6 +17,7 @@ namespace Frapid.Authorization.DAL
             using (var db = DbProvider.Get(FrapidDbServer.GetConnectionString(tenant), tenant).GetDatabase())
             {
                 var sql = new Sql("SELECT * FROM core.menus");
+                sql.Where("deleted=@0", false);
                 sql.OrderBy("sort, menu_id");
 
                 return await db.SelectAsync<Menu>(sql).ConfigureAwait(false);
@@ -30,6 +31,7 @@ namespace Frapid.Authorization.DAL
                 var sql = new Sql("SELECT * FROM auth.group_menu_access_policy");
                 sql.Where("office_id=@0", officeId);
                 sql.And("role_id=@0", roleId);
+                sql.And("deleted=@0",false);
 
                 var awaiter = await db.SelectAsync<GroupMenuAccessPolicy>(sql).ConfigureAwait(false);
 
@@ -44,6 +46,7 @@ namespace Frapid.Authorization.DAL
                 var sql = new Sql("SELECT * FROM auth.menu_access_policy");
                 sql.Where("office_id=@0", officeId);
                 sql.And("user_id=@0", userId);
+                sql.And("deleted=@0",false);
 
                 return await db.SelectAsync<MenuAccessPolicy>(sql).ConfigureAwait(false);
             }

@@ -8,7 +8,6 @@
 | 2 | [apps](../tables/core/apps.md) | frapid_db_user | DEFAULT |  |
 | 3 | [countries](../tables/core/countries.md) | frapid_db_user | DEFAULT |  |
 | 4 | [currencies](../tables/core/currencies.md) | frapid_db_user | DEFAULT |  |
-| 5 | [frequencies](../tables/core/frequencies.md) | frapid_db_user | DEFAULT |  |
 | 6 | [genders](../tables/core/genders.md) | frapid_db_user | DEFAULT |  |
 | 7 | [marital_statuses](../tables/core/marital_statuses.md) | frapid_db_user | DEFAULT |  |
 | 8 | [menus](../tables/core/menus.md) | frapid_db_user | DEFAULT |  |

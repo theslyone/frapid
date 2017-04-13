@@ -10,6 +10,7 @@ using Frapid.Configuration.Db;
 using Frapid.DataAccess;
 using Frapid.DataAccess.Models;
 using Frapid.DbPolicy;
+using Frapid.Framework.Extensions;
 using Frapid.i18n;
 using Frapid.Mapper;
 using Frapid.Mapper.Database;
@@ -528,7 +529,7 @@ namespace Frapid.WebApi.DataAccess
 
                 int index = 0;
 
-                foreach (var prop in item.Where(x => !x.Key.Equals(this.IdentityColumn.ToPascalCase())))
+                foreach (var prop in item.Where(x => !x.Key.Equals(this.IdentityColumn.Or(string.Empty).ToPascalCase())))
                 {
                     if (index > 0)
                     {

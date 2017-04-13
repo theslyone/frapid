@@ -677,25 +677,6 @@ CREATE TABLE core.offices
 	deleted										boolean DEFAULT(false)
 );
 
-CREATE TABLE core.frequencies
-(
-    frequency_id                            SERIAL PRIMARY KEY,
-    frequency_code                          national character varying(12) NOT NULL,
-    frequency_name                          national character varying(50) NOT NULL,
-    audit_user_id                           integer,
-    audit_ts                                TIMESTAMP WITH TIME ZONE DEFAULT(NOW()),
-	deleted									boolean DEFAULT(false)
-);
-
-
-CREATE UNIQUE INDEX frequencies_frequency_code_uix
-ON core.frequencies(UPPER(frequency_code))
-WHERE NOT deleted;
-
-CREATE UNIQUE INDEX frequencies_frequency_name_uix
-ON core.frequencies(UPPER(frequency_name))
-WHERE NOT deleted;
-
 
 CREATE TABLE core.verification_statuses
 (

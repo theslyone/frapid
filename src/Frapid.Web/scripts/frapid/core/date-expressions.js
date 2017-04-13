@@ -1,6 +1,6 @@
 function convertDate(d) {
     try {
-        const date = new Date(parseInt(d.substr(6)));
+        const date = new Date(window.parseInt2(d.substr(6)));
         return date;
     } catch (e) {
         return null;
@@ -34,7 +34,7 @@ function getTime(date) {
     };
 
     function padMinutes(minutes) {
-        if (parseInt(minutes || 0) < 10) {
+        if (window.parseInt2(minutes || 0) < 10) {
             return `0${minutes}`;
         };
 
@@ -52,15 +52,15 @@ function dateAdd(d, expression, number) {
     var ret = new Date();
 
     if (expression === "d") {
-        ret = new Date(d.getFullYear(), d.getMonth(), d.getDate() + parseInt(number));
+        ret = new Date(d.getFullYear(), d.getMonth(), d.getDate() + window.parseInt2(number));
     };
 
     if (expression === "m") {
-        ret = new Date(d.getFullYear(), d.getMonth() + parseInt(number), d.getDate());
+        ret = new Date(d.getFullYear(), d.getMonth() + window.parseInt2(number), d.getDate());
     };
 
     if (expression === "y") {
-        ret = new Date(d.getFullYear() + parseInt(number), d.getMonth(), d.getDate());
+        ret = new Date(d.getFullYear() + window.parseInt2(number), d.getMonth(), d.getDate());
     };
 
     return ret.toString(window.shortDateFormat);
@@ -240,19 +240,19 @@ function loadDatepicker() {
 
         if (!result) {
             if (expression.indexOf("d") >= 0) {
-                number = parseInt(expression.replace("d"));
+                number = window.parseInt2(expression.replace("d"));
                 result = dateAdd(date, "d", number);
             };
             if (expression.indexOf("w") >= 0) {
-                number = parseInt(expression.replace("w"));
+                number = window.parseInt2(expression.replace("w"));
                 result = dateAdd(date, "d", number * 7);
             };
             if (expression.indexOf("m") >= 0) {
-                number = parseInt(expression.replace("m"));
+                number = window.parseInt2(expression.replace("m"));
                 result = dateAdd(date, "m", number);
             };
             if (expression.indexOf("y") >= 0) {
-                number = parseInt(expression.replace("y"));
+                number = window.parseInt2(expression.replace("y"));
                 result = dateAdd(date, "y", number);
             };
         };

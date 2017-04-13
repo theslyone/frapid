@@ -21,9 +21,20 @@ namespace Frapid.Areas.Conventions.Attachments
             this.KeepOrignalFileNames = keepOriginalFileNames;
         }
 
+        public Uploader(ILogger logger, AreaRegistration area, HttpPostedFileBase file, string tenant, string[] allowedExtensions, bool keepOriginalFileNames = false)
+        {
+            this.Logger = logger;
+            this.Area = area;
+            this.File = file;
+            this.Tenant = tenant;
+            this.AllowedExtensions = allowedExtensions;
+            this.KeepOrignalFileNames = keepOriginalFileNames;
+        }
+
         public ILogger Logger { get; }
         public AreaRegistration Area { get; }
         public HttpFileCollectionBase Files { get; }
+        public HttpPostedFileBase File { get; }
         public string Tenant { get; }
         public bool KeepOrignalFileNames { get; }
         public string[] AllowedExtensions { get; }
@@ -31,12 +42,12 @@ namespace Frapid.Areas.Conventions.Attachments
 
         public string Upload()
         {
-            if (this.Files.Count > 1)
+            if (this.Files != null && this.Files.Count > 1)
             {
                 throw new UploadException(Resources.OnlyASingleFileMayBeUploaded);
             }
 
-            var file = this.Files[0];
+            var file = this.Files?[0] ?? this.File;
 
             if (file == null)
             {
@@ -96,7 +107,7 @@ namespace Frapid.Areas.Conventions.Attachments
 
             path = Path.Combine(path, fileName);
 
-            using (var fileStream = File.Create(path))
+            using (var fileStream = System.IO.File.Create(path))
             {
                 stream.CopyTo(fileStream);
             }

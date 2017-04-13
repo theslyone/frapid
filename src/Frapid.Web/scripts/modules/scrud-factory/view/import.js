@@ -11,9 +11,9 @@
                 val = null;
             } else {
                 if (wholeNumbers.indexOf(type) > -1) {
-                    val = parseInt(val);
+                    val = window.parseInt2(val);
                 } else if (decimalNumber.indexOf(type) > -1) {
-                    val = parseFloat(val);
+                    val = window.parseFloat2(val);
                 } else if (dateTypes.indexOf(type) > -1) {
                     //
                 } else if (booleans.indexOf(type) > -1) {

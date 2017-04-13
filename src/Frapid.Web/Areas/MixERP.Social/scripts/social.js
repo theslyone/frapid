@@ -494,7 +494,7 @@ function deleteFeed(element) {
     };
 
     const el = $(element);
-    const feedId = window.parseInt(el.attr("data-feed-id"));
+    const feedId = window.parseInt2(el.attr("data-feed-id"));
 
     if (!feedId) {
         return;
@@ -647,7 +647,7 @@ function unlike(el) {
         counterEl.attr("title", likedBy.join(", "));
     };
 
-    const totalLikes = window.parseInt(counterEl.find("span").html());
+    const totalLikes = window.parseInt2(counterEl.find("span").html());
     if (!feedId) {
         return;
     };
@@ -687,7 +687,7 @@ function like(el) {
 
     counterEl.attr("title", likedBy);
 
-    const totalLikes = window.parseInt(counterEl.find("span").html());
+    const totalLikes = window.parseInt2(counterEl.find("span").html());
     if (!feedId) {
         return;
     };

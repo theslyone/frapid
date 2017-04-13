@@ -12,6 +12,7 @@
     "/scripts/shortcut.js",
     "/scripts/papaparse/papaparse.min.js",
     "/scripts/jqueryNumber/jquery.number.js",
+    "/scripts/cleave.min.js",
     "/scripts/date.js",
     "/scripts/chartjs/Chart.min.js",
     "/scripts/chartjs/legend.js",

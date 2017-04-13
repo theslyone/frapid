@@ -113,8 +113,8 @@
             return;
         };
 
-        const roleId = parseInt($("#RoleDropdown").val() || 0);
-        const officeId = parseInt($("#OfficeDropdown").val() || 0);
+        const roleId = window.parseInt2($("#RoleDropdown").val() || 0);
+        const officeId = window.parseInt2($("#OfficeDropdown").val() || 0);
 
         if (!roleId || !officeId) {
             return;
@@ -171,8 +171,8 @@
             return window.getAjaxRequest(url);
         };
 
-        const roleId = parseInt($("#RoleDropdown").val() || 0);
-        const officeId = parseInt($("#OfficeDropdown").val() || 0);
+        const roleId = window.parseInt2($("#RoleDropdown").val() || 0);
+        const officeId = window.parseInt2($("#OfficeDropdown").val() || 0);
 
         if (!roleId || !officeId) {
             return;

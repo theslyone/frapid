@@ -50,11 +50,8 @@
 | # | Column Name | Default |
 | --- | --- | --- |
 | 1 | frequency_id | nextval('finance.frequencies_frequency_id_seq'::regclass) |
-| 1 | frequency_id | nextval('core.frequencies_frequency_id_seq'::regclass) |
-| 5 | audit_ts | now() |
-| 5 | audit_ts | now() |
-| 6 | deleted | false |
-| 6 | deleted | false |
+| 2 | audit_ts | now() |
+| 3 | deleted | false |
 
 
 **Triggers**

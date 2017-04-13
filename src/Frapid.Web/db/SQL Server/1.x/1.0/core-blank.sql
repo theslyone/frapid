@@ -778,25 +778,6 @@ CREATE TABLE core.offices
 	deleted										bit DEFAULT(0)
 );
 
-CREATE TABLE core.frequencies
-(
-    frequency_id								int IDENTITY PRIMARY KEY,
-    frequency_code								national character varying(12) NOT NULL,
-    frequency_name								national character varying(50) NOT NULL,
-    audit_user_id                           	integer,
-    audit_ts                                	DATETIMEOFFSET NULL DEFAULT(GETUTCDATE()),
-	deleted										bit DEFAULT(0)
-);
-
-
-CREATE UNIQUE INDEX frequencies_frequency_code_uix
-ON core.frequencies(frequency_code)
-WHERE deleted = 0;
-
-CREATE UNIQUE INDEX frequencies_frequency_name_uix
-ON core.frequencies(frequency_name)
-WHERE deleted = 0;
-
 
 CREATE TABLE core.verification_statuses
 (

@@ -61,7 +61,7 @@ namespace Frapid.WebApi.DataAccess
             }
 
 
-            var sql = new Sql("SELECT * FROM config.kanban_details WHERE");
+            var sql = new Sql("SELECT * FROM config.kanban_details WHERE deleted=@0 AND", false);
             sql.In("kanban_id IN(@0)", kanbanIds);
             sql.Append("AND");
             sql.In("resource_id IN(@0)", resourceIds);

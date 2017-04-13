@@ -9,8 +9,8 @@ namespace Frapid.Account.DAL
     {
         public static async Task<IEnumerable<Office>> GetOfficesAsync(string tenant)
         {
-            const string sql = "SELECT office_id, office_name FROM core.offices;";
-            return await Factory.GetAsync<Office>(tenant, sql).ConfigureAwait(false);
+            const string sql = "SELECT office_id, office_name FROM core.offices WHERE core.offices.deleted = @0;";
+            return await Factory.GetAsync<Office>(tenant, sql, false).ConfigureAwait(false);
         }
     }
 }

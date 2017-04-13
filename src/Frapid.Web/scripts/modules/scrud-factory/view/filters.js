@@ -51,9 +51,9 @@ var getQuerystringFilters = function () {
             val = null;
         } else {
             if (wholeNumbers.indexOf(type) > -1) {
-                val = parseInt(val);
+                val = window.parseInt2(val);
             } else if (decimalNumber.indexOf(type) > -1) {
-                val = parseFloat(val);
+                val = window.parseFloat2(val);
             } else if (dateTypes.indexOf(type) > -1) {
                 val = window.parseLocalizedDate(val);
             } else if (booleans.indexOf(type) > -1) {
@@ -118,7 +118,7 @@ $("#FilterNameInputText").keyup(function () {
 });
 
 filterConditionSelect.change(function () {
-    var val = parseFloat(filterConditionSelect.val() || 0);
+    var val = window.parseFloat2(filterConditionSelect.val() || 0);
 
     if (val >= 6 && val <= 7) {
         andInputText.removeAttr("disabled");
@@ -265,7 +265,7 @@ $("#SaveFilterButton").click(function () {
 
         filter.DataType = getFilterType(filter.ColumnName);
 
-        filter.FilterCondition = parseInt(
+        filter.FilterCondition = window.parseInt2(
             Enumerable.From(filterConditions)
             .Where(function (x) { return x.text === condition })
             .ToArray()[0].value

@@ -1,31 +1,112 @@
-$(document).ready(function () {
-    setCurrencyFormat();
-    setNumberFormat();
-});
-
 function setRegionalFormat()
 {
-    setCurrencyFormat();
-    setNumberFormat();
-};
-
-var setCurrencyFormat = function () {
-    if (typeof currencyDecimalPlaces === "undefined" || typeof decimalSeparator === "undefined" || typeof thousandSeparator === "undefined") {
-        return;
-    };
-
-    $("input.currency").number(true, currencyDecimalPlaces, decimalSeparator, thousandSeparator);
-};
-
-var setNumberFormat = function () {
     if (typeof decimalSeparator === "undefined" || typeof thousandSeparator === "undefined") {
         return;
     };
 
-    $("input.decimal").number(true, currencyDecimalPlaces, decimalSeparator, thousandSeparator);
-    $('input.decimal4').number(true, 4, decimalSeparator, thousandSeparator);
-    $('input.integer').number(true, 0, decimalSeparator, thousandSeparator);
+	var candidates = $("input.decimal:not(.hasCleave):not(:disabled):not([readonly]), input.decimal4:not(.hasCleave):not(:disabled):not([readonly]), input.integer:not(.hasCleave):not(:disabled):not([readonly]), input.currency:not(.hasCleave):not(:disabled):not([readonly])");	
+	$.each(candidates, function(){
+		var el = $(this).addClass("hasCleave");
+		var prefix = "";
+		var decimalPlaces = currencyDecimalPlaces;
+		
+		if(el.is(".currency")){
+			prefix = window.currencySymbol;
+		};
+		
+		if(el.is(".integer")){
+			decimalPlaces = 0;
+		};
+		
+		if(el.is(".decimal4")){
+			decimalPlaces = 4;
+		};
+		
+		new Cleave(this, {
+			numeral: true,
+			numeralThousandsGroupStyle: 'thousand',
+			numeralDecimalScale: decimalPlaces,
+			numeralDecimalMark: decimalSeparator,
+			delimiter: thousandSeparator,
+			prefix: prefix
+		});
+	});	
+
+	var disabledOnes = $("input.decimal[disabled],input.decimal[readonly],input.decimal4[disabled], input.decimal4[readonly],input.currency[disabled], input.currency[readonly],input.integer[disabled], input.integer[readonly]");
+
+	disabledOnes.on("change", function(){
+		var el = $(this);
+		var value = el.val();
+		
+		if(!value){
+			return;
+		};
+		
+		var number = window.parseFloat2(value);
+		var isInteger = el.is(".integer");
+		
+		el.val(window.getFormattedNumber(number, isInteger));
+	});
 };
+
+
+(function ($) {
+  var originalVal = $.fn.val;
+  $.fn.val = function(value) {
+    if (arguments.length >= 1) {
+      // setter invoked, do processing	  
+      var value = originalVal.call(this, value); 
+	  return value;
+    };
+	
+	var el =$(this[0]);
+	
+	if(el.is("input.decimal, input.decimal4, input.integer")){
+		return getRawCleaveValue(this[0]);
+	}else{
+		return originalVal.call(this);
+	};
+  };
+})(jQuery);
+
+
+
+function getRawCleaveValue(el){
+	var cleave;
+	
+	if($(el).is(".decimal")){
+		cleave = new Cleave(el, {
+			numeral: true,
+			numeralThousandsGroupStyle: 'thousand',
+			numeralDecimalScale: currencyDecimalPlaces,
+			numeralDecimalMark: decimalSeparator,
+			delimiter: thousandSeparator
+		});		
+	};
+	
+	if($(el).is(".decimal4")){
+		cleave = new Cleave(el, {
+			numeral: true,
+			numeralThousandsGroupStyle: 'thousand',
+			numeralDecimalScale: 4,
+			numeralDecimalMark: decimalSeparator,
+			delimiter: thousandSeparator
+		});		
+	};
+	
+	if($(el).is(".integer")){
+		cleave = new Cleave(el, {
+			numeral: true,
+			numeralThousandsGroupStyle: 'thousand',
+			numeralDecimalScale: 0,
+			numeralDecimalMark: decimalSeparator,
+			delimiter: thousandSeparator
+		});		
+	};
+	
+	return cleave.getRawValue();
+};
+
 
 var parseFormattedNumber = function (input) {
     if (typeof window.thousandSeparator === "undefined") {
@@ -150,3 +231,7 @@ String.prototype.toFormattedMinutes = function () {
     var val = stringFormat(window.i18n.NMinutes, this);
     return val;
 };
+
+$(document).ready(function () {
+    //setRegionalFormat();
+});

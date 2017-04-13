@@ -17,12 +17,12 @@
     $('.ui.rating i').dblclick(function () {
         var el = $(this);
         var card = el.parent().parent().parent();
-        var kanbanDetailId = parseInt(card.attr("data-kanban-detail-id") || null);
+        var kanbanDetailId = window.parseInt2(card.attr("data-kanban-detail-id") || null);
 
         if (kanbanDetailId) {
             var kanbanDetail = new Object();
             kanbanDetail.KanbanDetailId = kanbanDetailId;
-            kanbanDetail.KanbanId = parseInt(card.closest(".segment").attr("id").replace("kanban", "") || null);
+            kanbanDetail.KanbanId = window.parseInt2(card.closest(".segment").attr("id").replace("kanban", "") || null);
             kanbanDetail.ResourceId = card.attr("data-key");
             kanbanDetail.Rating = el.parent().find("i.active").length;
 

@@ -164,14 +164,14 @@ namespace Frapid.Account
 		public static string LastBrowser => I18NResource.GetString(ResourceDirectory, "LastBrowser");
 
 		/// <summary>
-		///Facebook Scope
-		/// </summary>
-		public static string FacebookScope => I18NResource.GetString(ResourceDirectory, "FacebookScope");
-
-		/// <summary>
 		///Fb User Id
 		/// </summary>
 		public static string FbUserId => I18NResource.GetString(ResourceDirectory, "FbUserId");
+
+		/// <summary>
+		///Facebook Scope
+		/// </summary>
+		public static string FacebookScope => I18NResource.GetString(ResourceDirectory, "FacebookScope");
 
 		/// <summary>
 		///Version Number

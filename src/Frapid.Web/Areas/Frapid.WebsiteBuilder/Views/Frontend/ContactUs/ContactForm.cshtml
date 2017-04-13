@@ -1,5 +1,4 @@
-﻿@using Frapid.i18n
-@using Frapid.WebsiteBuilder
+﻿@using Frapid.WebsiteBuilder
 @model  Frapid.WebsiteBuilder.ViewModels.ContactForm
 <div class="ui contact form" style="display: none;">
     <div class="big error"></div>
@@ -42,7 +41,7 @@
 </div>
 
 
-<script src="/i18n/resources.js?cultureCode=@CultureManager.GetCurrentUiCulture().Name"></script>
+<script src="/i18n/resources.js?cultureCode=@Frapid.i18n.CultureManager.GetCurrentUiCulture().Name"></script>
 <script src="/assets/js/backend.js"></script>
 <script src="/scripts/jssha1.5/src/sha.js"></script>
 <script src="~/Areas/Frapid.WebsiteBuilder/scripts/contact-us/contact-form.js"></script>

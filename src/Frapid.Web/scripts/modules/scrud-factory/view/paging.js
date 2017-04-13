@@ -1,6 +1,6 @@
 ﻿function getPageNumber() {
-    var page = parseInt(getQueryStringByName("Page") || 0);
-    var totalPage = parseInt($(".total.pages.anchor:first").text() || 1);
+    var page = window.parseInt2(getQueryStringByName("Page") || 0);
+    var totalPage = window.parseInt2($(".total.pages.anchor:first").text() || 1);
 
     if (!page) {
         return 1;
@@ -19,7 +19,7 @@ function setPageNumber(pageNumber) {
 };
 
 function showNextPage() {
-    var totalPage = parseInt($(".total.pages.anchor:first").text() || 1);
+    var totalPage = window.parseInt2($(".total.pages.anchor:first").text() || 1);
     var nextPage = getPageNumber() + 1;
 
     if (nextPage > totalPage) {

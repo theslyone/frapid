@@ -57,7 +57,7 @@ function getKanbans() {
 
     var filters = [];
     filters.push(getAjaxColumnFilter("WHERE", "ObjectName", "string", FilterConditions.IsEqualTo, window.scrudFactory.viewTableName));
-    filters.push(getAjaxColumnFilter("WHERE", "UserId", "int", FilterConditions.IsEqualTo, parseInt(window.userId)));
+    filters.push(getAjaxColumnFilter("WHERE", "UserId", "int", FilterConditions.IsEqualTo, window.parseInt2(window.userId)));
 
     var data = JSON.stringify(filters);
 
