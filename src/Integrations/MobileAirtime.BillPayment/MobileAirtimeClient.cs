@@ -6,7 +6,6 @@ using RestSharp;
 
 namespace MobileAirtime.BillPayment
 {
-    public enum ClientMode { Test, Production}
     public class MobileAirtimeClient : RestApiClient
     {
         private const string Url = "https://mobileairtimeng.com/httpapi";
