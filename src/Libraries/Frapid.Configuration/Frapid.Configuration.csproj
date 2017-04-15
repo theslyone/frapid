@@ -62,7 +62,8 @@
   <ItemGroup>
     <Compile Include="AppResolver.cs" />
     <Compile Include="ApprovedDomain.cs" />
-    <Compile Include="BillPayment\BillPaymentConfiguration.cs" />
+    <Compile Include="BillPayment\MobileAirtimeBillPaymentConfiguration.cs" />
+    <Compile Include="BillPayment\FlutterwaveBillPaymentConfiguration.cs" />
     <Compile Include="ConsolePathMapper.cs" />
     <Compile Include="Db\DbProvider.cs" />
     <Compile Include="DefaultDomainSerializer.cs" />

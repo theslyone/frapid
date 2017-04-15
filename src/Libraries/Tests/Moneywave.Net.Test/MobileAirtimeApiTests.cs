@@ -31,10 +31,10 @@ namespace Moneywave.Net.Test
         }
 
         [Fact]
-        public void GetCustomerInformation()
+        public void ResolveCustomerInfo()
         {
-            var customerInfo = Api.CustomerInformation("startimes", "42909174908");
-            //customerInfo = Api.CustomerInformation("startimes", "41192391344");
+            var customerInfo = Api.Resolve("dstv", "41192391344");
+            //customerInfo = Api.CustomerInformation("dstv", "42909174908");
             Assert.NotNull(customerInfo);
         }
     }

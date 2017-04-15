@@ -43,7 +43,7 @@ namespace Flutterwave.BillPayment
             return Execute<List<Product>>(request).Data;
         }
 
-        public PayResponse Pay(string merchantId, PayRequest payRequest)
+        public PayResponse Pay(PayRequest payRequest)
         {
             var request = new RestRequest();
             request.JsonSerializer = new RestSharpJsonNetSerializer();

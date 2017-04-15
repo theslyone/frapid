@@ -3,6 +3,8 @@ using System;
 using Frapid.RestApi;
 using Frapid.RestApi.Responses;
 using RestSharp;
+using RestSharp.Deserializers;
+using Newtonsoft.Json.Linq;
 
 namespace MobileAirtime.BillPayment
 {
@@ -22,11 +24,20 @@ namespace MobileAirtime.BillPayment
         {
             var client = new RestClient();
             client.BaseUrl = new Uri(BaseUrl);
-            //request.Method = Method.POST;
-            //request.RequestFormat = DataFormat.Json;
-
+            //client.AddHandler("text/plain", new JsonDeserializer());
+            request.RequestFormat = DataFormat.Json;
+            request.OnBeforeDeserialization = resp => 
+            {
+                if (resp.ContentType.Equals("text/html"))
+                {
+                    JObject data = new JObject();
+                    //resp.Content = 
+                    resp.ContentType = "application/json";
+                }                
+            };
+            
             request.AddHeader("Authorization", Token);
-            request.AddHeader("content-type", "text/html");
+            request.AddHeader("content-type", "application/json");
             var response = client.Execute<RestApiResponse<dynamic>>(request);
 
             RestApiResponse<T> restApiResponse = ProcessResponse<T>(response);
