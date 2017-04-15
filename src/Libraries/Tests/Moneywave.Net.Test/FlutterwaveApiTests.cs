@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.CSharp;
 using Xunit;
+using Moneywave.Net.Test.Models;
+using Newtonsoft.Json.Linq;
+using System.Dynamic;
+using Newtonsoft.Json.Converters;
 
 namespace Moneywave.Net.Test
 {
@@ -61,22 +65,30 @@ namespace Moneywave.Net.Test
         [Fact]
         public void Pay()
         {
+            Bill bill = new Bill() { Amount = 500, PhoneNumber = "2348064678376" };
+
             var merchant = Api.GetMerchants()[0];
             var products = Api.GetProducts(merchant.Id);
             PayRequest pay = new PayRequest();
             pay.ProductId = products[0].Id;
 
-            pay.HookData.amount = "500.00";
+            string hookData = JsonConvert.SerializeObject(bill, Formatting.None, new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            });
+            pay.HookData = JsonConvert.DeserializeObject<ExpandoObject>(hookData, new ExpandoObjectConverter());
+
+            /*pay.HookData.amount = "500.00";
             pay.HookData.recipient_phone_number = "2348064678376";
-            /*pay.HookData.phone = "2348064678376";
+            pay.HookData.phone = "2348064678376";
             pay.HookData.email = "theslyguy@icloud.com";
             pay.HookData.account_id = "2345678987654";
             */
             pay.Description = "test for bills payment - airtime purchase";
-            pay.TransactionId = "BILLS-01900";
+            pay.TransactionId = $"BILLS-{KeyGenerator.GetUniqueAlphaNumericCode(6)}";
             pay.Processor = "wallet";
-            var response = Api.Pay(merchant.Id, pay);
-            Assert.Equal(1, 1);
+            var response = Api.Pay(pay);
+            Assert.True(response.Paid);
         }
     }
 }

@@ -60,7 +60,7 @@ namespace Moneywave.Net
 
         protected override RestApiResponse<T> ProcessResponse<T>(IRestResponse<RestApiResponse<dynamic>> response)
         {
-            if (response.ErrorException != null || response.Data.Status != Status.Success)
+            if (response.ErrorException != null || response.Data.Status != "success"/*Status.Success*/)
             {
                 string message = response.Data != null
                     ? !string.IsNullOrEmpty(response.Data.Code) ? response.Data.Code

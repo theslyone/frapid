@@ -7,8 +7,8 @@ namespace Frapid.RestApi.Responses
     public class RestApiResponse<T> where T : class
     {
         [JsonProperty("status")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public Status Status { get; set; }
+        //[JsonConverter(typeof(StringEnumConverter))]
+        public string Status { get; set; }
 
         [JsonProperty("code")]
         public string Code { get; set; }
