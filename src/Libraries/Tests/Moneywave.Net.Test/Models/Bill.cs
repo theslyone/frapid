@@ -21,8 +21,12 @@ namespace Moneywave.Net.Test.Models
         [JsonProperty("amount")]
         public decimal Amount { get; set; }
 
+        private string phoneNumber = "";
         [JsonProperty("recipient_phone_number")]
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get { return phoneNumber; } set { phoneNumber = value; } }
+
+        [JsonProperty("phone")]
+        public string Phone { get { return phoneNumber; } set { phoneNumber = value; } }
 
         [JsonProperty("email")]
         public string Email { get; set; }

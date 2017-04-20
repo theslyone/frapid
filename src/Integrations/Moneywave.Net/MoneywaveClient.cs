@@ -34,7 +34,7 @@ namespace Moneywave.Net
         protected static string Secret { get; set; }
         public string WalletLock { get; set; }
 
-        protected string GetToken()
+        protected override string GetToken()
         {
             //[POST] /v1/merchant/verify
             var request = new RestRequest();
@@ -57,14 +57,14 @@ namespace Moneywave.Net
 
             return response.Data["token"];
         }
-
+        
         protected override RestApiResponse<T> ProcessResponse<T>(IRestResponse<RestApiResponse<dynamic>> response)
         {
             if (response.ErrorException != null || response.Data.Status != "success"/*Status.Success*/)
             {
                 string message = response.Data != null
                     ? !string.IsNullOrEmpty(response.Data.Code) ? response.Data.Code
-                    : !string.IsNullOrEmpty(response.Data.Data) ? response.Data.Data
+                    : response.Data.Data != null ? response.Data.Data
                     : !string.IsNullOrEmpty(response.Data.Message) ? response.Data.Message
                     : "Freebe encountered an error while processing your request."
                     : "Freebe encountered an error while processing your request.";

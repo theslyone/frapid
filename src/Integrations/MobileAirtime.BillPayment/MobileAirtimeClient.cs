@@ -59,5 +59,10 @@ namespace MobileAirtime.BillPayment
             RestApiResponse<T> RestApiResponse = JsonConvert.DeserializeObject<RestApiResponse<T>>(response.Content);
             return RestApiResponse;
         }
+
+        protected override string GetToken()
+        {
+            return "";
+        }
     }
 }

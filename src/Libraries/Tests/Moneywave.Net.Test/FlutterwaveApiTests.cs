@@ -65,7 +65,7 @@ namespace Moneywave.Net.Test
         [Fact]
         public void Pay()
         {
-            Bill bill = new Bill() { Amount = 500, PhoneNumber = "2348064678376" };
+            Bill bill = new Bill() { Amount = 500, PhoneNumber = "+2348064678376" };
 
             var merchant = Api.GetMerchants()[0];
             var products = Api.GetProducts(merchant.Id);
@@ -78,12 +78,7 @@ namespace Moneywave.Net.Test
             });
             pay.HookData = JsonConvert.DeserializeObject<ExpandoObject>(hookData, new ExpandoObjectConverter());
 
-            /*pay.HookData.amount = "500.00";
-            pay.HookData.recipient_phone_number = "2348064678376";
-            pay.HookData.phone = "2348064678376";
-            pay.HookData.email = "theslyguy@icloud.com";
-            pay.HookData.account_id = "2345678987654";
-            */
+           
             pay.Description = "test for bills payment - airtime purchase";
             pay.TransactionId = $"BILLS-{KeyGenerator.GetUniqueAlphaNumericCode(6)}";
             pay.Processor = "wallet";

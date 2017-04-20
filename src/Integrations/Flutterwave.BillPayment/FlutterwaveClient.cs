@@ -31,7 +31,7 @@ namespace Flutterwave.BillPayment
             return "";
         }
         
-        protected string GetToken()
+        protected override string GetToken()
         {
             var request = new RestRequest();
             request.AddHeader("content-type", "application/x-www-form-urlencoded");
@@ -61,7 +61,7 @@ namespace Flutterwave.BillPayment
             //request.Method = Method.POST;
             request.RequestFormat = DataFormat.Json;
 
-            request.AddHeader("Authorization", $"Bearer {Token}");
+            request.AddHeader("Authorization", $"Bearer {GetToken()}");
             request.AddHeader("content-type", "application/json");
             request.AddHeader("Cache-Control", "no-cache");
             var response = client.Execute<RestApiResponse<dynamic>>(request);
@@ -75,7 +75,7 @@ namespace Flutterwave.BillPayment
             if (response.ErrorException != null || response.Data.Status != "success"/*Status.Success*/)
             {
                 string message = response.Data != null
-                   ? !string.IsNullOrEmpty(response.Data.Data) ? response.Data.Data
+                   ? !string.IsNullOrEmpty(response.Data.Data) ? response.Data.Data["error_description"]
                    : "Bill payment exception"
                    : "Bill payment exception";
                 var billPaymentException = new RestApiException(message, response.ErrorException);

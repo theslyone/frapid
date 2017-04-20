@@ -25,7 +25,7 @@ namespace Frapid.RestApi
             request.Method = Method.POST;
             request.RequestFormat = DataFormat.Json;
 
-            request.AddHeader("Authorization", Token);
+            request.AddHeader("Authorization", GetToken());
             request.AddHeader("content-type", "application/json");
             var response = client.Execute<RestApiResponse<dynamic>>(request);
 
@@ -52,6 +52,7 @@ namespace Frapid.RestApi
             return taskCompletionSource.Task;
         }
 
+        protected abstract string GetToken();
         protected abstract RestApiResponse<T> ProcessResponse<T>(IRestResponse<RestApiResponse<dynamic>> response) where T : class;
     }
 }
