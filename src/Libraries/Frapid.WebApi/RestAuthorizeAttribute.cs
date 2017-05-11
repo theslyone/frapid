@@ -30,7 +30,7 @@ namespace Frapid.WebApi
             long userId = context.RequestContext.ReadClaim<int>("userid");
             long officeId = context.RequestContext.ReadClaim<int>("officeid");
             string email = context.RequestContext.ReadClaim<string>(ClaimTypes.Email);
-
+            
             var expriesOn = new DateTime(context.RequestContext.ReadClaim<long>("exp"), DateTimeKind.Utc);
             string ipAddress = context.Request.GetClientIpAddress();
             string userAgent = context.Request.GetUserAgent();

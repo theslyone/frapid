@@ -32,7 +32,7 @@ namespace MobileAirtime.BillPayment
         {
             var request = new RestRequest();
             request.JsonSerializer = new RestSharpJsonNetSerializer();
-            request.Resource = $"/?userid={UserId}&pass={Password}&network={network}&phone={phoneNumber}&amt={amount}";
+            request.Resource = $"/?userid={UserId}&pass={Password}&network={(int)network}&phone={phoneNumber}&amt={amount}";
             request.Method = Method.GET;
 
             return Execute<dynamic>(request).Data;

@@ -74,10 +74,10 @@ namespace Flutterwave.BillPayment
         {
             if (response.ErrorException != null || response.Data.Status != "success"/*Status.Success*/)
             {
-                string message = response.Data != null
-                   ? !string.IsNullOrEmpty(response.Data.Data) ? response.Data.Data["error_description"]
+                string message = "Error processing request";/*response.Data != null
+                   ? response.Data.Data ? response.Data.Data["error_description"] != null
                    : "Bill payment exception"
-                   : "Bill payment exception";
+                   : "Bill payment exception";*/
                 var billPaymentException = new RestApiException(message, response.ErrorException);
                 throw billPaymentException;
             }

@@ -32,8 +32,7 @@ namespace Moneywave.Net
 
         protected static string ApiKey { get; set; }
         protected static string Secret { get; set; }
-        public string WalletLock { get; set; }
-
+        
         protected override string GetToken()
         {
             //[POST] /v1/merchant/verify

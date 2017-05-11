@@ -71,8 +71,9 @@
     <Compile Include="Installables.cs" />
     <Compile Include="InstalledDomainSerializer.cs" />
     <Compile Include="Models\Installable.cs" />
-    <Compile Include="Moneywave\MoneywaveConfiguration.cs" />
-    <Compile Include="Moneywave\MoneywaveConfig.cs" />
+    <Compile Include="Paylink\Charges.cs" />
+    <Compile Include="Paylink\MoneywaveConfiguration.cs" />
+    <Compile Include="Paylink\MoneywaveConfig.cs" />
     <Compile Include="PaylinkConfig.cs" />
     <Compile Include="TenantServices\DomainValidator.cs" />
     <Compile Include="TenantServices\Contracts\ISslDomainCheck.cs" />

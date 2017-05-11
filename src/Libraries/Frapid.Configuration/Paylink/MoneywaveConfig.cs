@@ -1,4 +1,4 @@
-﻿namespace Frapid.Configuration.Moneywave
+﻿namespace Frapid.Configuration.Paylink
 {
     public class MoneywaveConfig
     {
@@ -13,7 +13,6 @@
         public string ApiKey { get; set; }
         public string Secret { get; set; }
         public string WalletLock { get; set; }
-    }
-
-    
+        public Charges Charges { get; set; }
+    }    
 }

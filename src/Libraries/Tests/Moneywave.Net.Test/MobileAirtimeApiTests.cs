@@ -37,5 +37,19 @@ namespace Moneywave.Net.Test
             //customerInfo = Api.CustomerInformation("dstv", "42909174908");
             Assert.NotNull(customerInfo);
         }
+
+        [Fact]
+        public void TopUp()
+        {
+            var topUpResponse = Api.TopUp(AirTimeCode.Airtel, "08030469664", 1);
+            Assert.NotNull(topUpResponse);
+        }
+
+        [Fact]
+        public void Pay()
+        {
+            var customerInfo = Api.Pay("dstv", "plan", "08030469664", "41192391344", 10);
+            Assert.NotNull(customerInfo);
+        }
     }
 }

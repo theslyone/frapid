@@ -306,6 +306,7 @@
     <Content Include="Resources\Configs\web.config" />
     <Content Include="Resources\web.config" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\cleave.min.js" />
     <Content Include="scripts\frapid\core\array.js" />
     <Content Include="scripts\frapid\core\browser.js" />
     <Content Include="scripts\frapid\core\conversion.js" />

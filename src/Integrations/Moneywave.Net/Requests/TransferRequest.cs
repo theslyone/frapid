@@ -40,7 +40,7 @@ namespace Moneywave.Net.Requests
         public string ExpiryYear { get; set; }
 
         [JsonProperty("fee")]
-        public double Fee { get; set; }
+        public decimal Fee { get; set; }
 
         [JsonProperty("firstname")]
         public string FirstName { get; set; }

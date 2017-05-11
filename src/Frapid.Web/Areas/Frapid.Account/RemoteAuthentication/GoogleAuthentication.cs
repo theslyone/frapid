@@ -39,7 +39,10 @@ namespace Frapid.Account.RemoteAuthentication
                 return false;
             }
 
-            var client = GlobalHttpClient.Get();
+            //var client = GlobalHttpClient.Get();
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.ConnectionClose = true;
+
             string url = "https://www.googleapis.com";
             client.BaseAddress = new Uri(url);
             client.DefaultRequestHeaders.Accept.Clear();

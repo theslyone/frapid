@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frapid.Configuration.Moneywave
+namespace Frapid.Configuration.Paylink
 {
     public static class MoneywaveConfiguration
     {

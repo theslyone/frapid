@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Frapid.Twilio")]
+[assembly: AssemblyTitle("Quickteller.BillPayment")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Frapid.Twilio")]
+[assembly: AssemblyProduct("Quickteller.BillPayment")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("20ba9d66-d484-4017-8723-776e080e7937")]
+[assembly: Guid("a9a1463b-2710-49a1-86f1-7fd5c7d9c132")]
 
 // Version information for an assembly consists of the following four values:
 //
