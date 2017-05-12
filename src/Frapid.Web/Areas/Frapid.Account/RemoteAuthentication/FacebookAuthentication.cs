@@ -7,6 +7,10 @@ using Frapid.Account.InputModels;
 using Frapid.Account.ViewModels;
 using Frapid.Areas;
 using Frapid.i18n;
+using Frapid.Events.EventPublishers;
+using Frapid.Events;
+using System;
+using Frapid.Events.Interfaces;
 
 namespace Frapid.Account.RemoteAuthentication
 {
@@ -59,6 +63,13 @@ namespace Frapid.Account.RemoteAuthentication
 
             if (result.Status)
             {
+                UserEvent userEvent = new UserEvent();
+                userEvent.User.Email = facebookUser.Email;
+                userEvent.User.Name = facebookUser.Name;
+                userEvent.CreationDate = DateTime.Now;
+                userEvent.Tenant = this.Tenant;
+                DefaultEventPublisher.GetInstance().EntityInserted(userEvent);
+                
                 if (!await Registrations.HasAccountAsync(this.Tenant, account.Email).ConfigureAwait(false))
                 {
                     string template = "~/Tenants/{tenant}/Areas/Frapid.Account/EmailTemplates/welcome-email-other.html";

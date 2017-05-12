@@ -41,7 +41,29 @@ namespace Frapid.Account.DAL
                 //TokenId = token.TokenId,
                 TokenId = tenant + "/" + token.LoginId,
                 UserAgent = userAgent
-            }).ConfigureAwait(false);
+            });//.ConfigureAwait(false);
+        }
+
+        public static object Save(string tenant, Token token, string ipAddress, string userAgent)
+        {
+            return Factory.InsertAsync(tenant, new AccessToken
+            {
+                ApplicationId = token.ApplicationId,
+                //Audience = token.Audience,
+                Audience = tenant,
+                Claims = JsonConvert.SerializeObject(token.Claims),
+                ClientToken = token.ClientToken,
+                CreatedOn = token.CreatedOn,
+                ExpiresOn = token.ExpiresOn,
+                Header = JsonConvert.SerializeObject(token.Header),
+                IpAddress = ipAddress,
+                IssuedBy = token.IssuedBy,
+                LoginId = token.LoginId,
+                Subject = token.Subject,
+                //TokenId = token.TokenId,
+                TokenId = tenant + "/" + token.LoginId,
+                UserAgent = userAgent
+            }).GetAwaiter().GetResult();
         }
 
     }

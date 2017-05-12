@@ -50,6 +50,10 @@ namespace Frapid.Account.Controllers
             var token = manager.GetToken();
 
             await AccessTokens.SaveAsync(this.Tenant, token, this.RemoteUser.IpAddress, this.RemoteUser.UserAgent).ConfigureAwait(true);
+            //AccessTokens.Save(this.Tenant, token, this.RemoteUser.IpAddress, this.RemoteUser.UserAgent);
+            
+            //time to propagate and save access token to database
+            await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(true);
 
             string domain = TenantConvention.GetDomain();
 

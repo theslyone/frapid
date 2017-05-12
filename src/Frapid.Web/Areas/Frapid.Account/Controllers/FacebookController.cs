@@ -4,6 +4,8 @@ using Frapid.Account.InputModels;
 using Frapid.Account.RemoteAuthentication;
 using Frapid.Areas.CSRF;
 using Npgsql;
+using System.Data.Common;
+using Frapid.ApplicationState.CacheFactory;
 
 namespace Frapid.Account.Controllers
 {
@@ -19,9 +21,14 @@ namespace Frapid.Account.Controllers
             try
             {
                 var result = await auth.AuthenticateAsync(account, this.RemoteUser).ConfigureAwait(false);
+
+                string key = "access_tokens_" + this.Tenant;
+                var factory = new DefaultCacheFactory();
+                factory.Remove(key);
+
                 return await this.OnAuthenticatedAsync(result).ConfigureAwait(true);
             }
-            catch (NpgsqlException)
+            catch (DbException)
             {
                 return this.Json("Access is denied.");
             }

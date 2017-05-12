@@ -31,7 +31,7 @@ namespace Frapid.TokenManager.DAL
             var factory = new DefaultCacheFactory();
             var tokens = factory.Get<IEnumerable<AccessToken>>(key);
 
-            if (tokens != null && tokens.ToList().Count > 0)
+            if (tokens != null)
             {
                 return tokens;
             }
