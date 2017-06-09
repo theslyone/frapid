@@ -23,7 +23,7 @@ namespace Frapid.Mapper.Query.Select
                     operation = new PostgreSQLSelect();
                     break;
             }
-
+            
             return operation;
         }
 
