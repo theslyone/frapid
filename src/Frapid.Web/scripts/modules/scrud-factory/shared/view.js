@@ -1,5 +1,5 @@
 ﻿function getDefaultScrudView(){
-    var defaultView = "kanban";
+    var defaultView = "grid";
     
     if(window.defaultScrudView){
         defaultView = window.defaultScrudView;

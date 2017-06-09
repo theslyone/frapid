@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frapid.Configuration;
+using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -44,7 +45,7 @@ namespace Frapid.Areas.Drawing
 
         public static byte[] ResizeCropExcess(string path, int destinationWidth = 0, int destinationHeight = 0)
         {
-            if (!File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return null;
             }

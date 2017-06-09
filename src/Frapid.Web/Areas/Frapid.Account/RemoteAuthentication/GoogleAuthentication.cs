@@ -93,13 +93,6 @@ namespace Frapid.Account.RemoteAuthentication
 
             if (result.Status)
             {
-                UserEvent userEvent = new UserEvent();
-                userEvent.User.Email = gUser.Email;
-                userEvent.User.Name = gUser.Name;
-                userEvent.CreationDate = DateTime.Now;
-                userEvent.Tenant = this.Tenant;
-                DefaultEventPublisher.GetInstance().EntityInserted(userEvent);
-
                 if (!await Registrations.HasAccountAsync(this.Tenant, account.Email).ConfigureAwait(false))
                 {
                     string template = "~/Tenants/{tenant}/Areas/Frapid.Account/EmailTemplates/welcome-email-other.html";

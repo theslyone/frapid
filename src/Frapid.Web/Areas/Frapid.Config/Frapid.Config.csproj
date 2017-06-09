@@ -144,6 +144,44 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\PostgreSQL\1.x\1.0\bundler\SqlBundler.exe" />
+    <Content Include="db\PostgreSQL\1.x\1.0\config.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\index.html" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.scrud-views\config.smtp_config_scrud_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.views\config.custom_field_definition_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.views\config.custom_field_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.views\config.filter_name_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\06.functions-and-logic\config.create_custom_field.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\06.functions-and-logic\config.get_custom_field_form_name.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\06.functions-and-logic\config.get_custom_field_setup_id_by_table_name.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\06.functions-and-logic\config.get_server_timezone%28%29.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\06.functions-and-logic\config.get_user_id_by_login_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\09.menus\0.menu.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\09.menus\1.menu-policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\10.policy\access_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\99.ownership.sql" />
+    <Content Include="db\PostgreSQL\config.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\bundler\SqlBundler.exe" />
+    <Content Include="db\SQL Server\1.x\1.0\config.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\index.html" />
+    <Content Include="db\SQL Server\1.x\1.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.scrud-views\config.smtp_config_scrud_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.views\config.custom_field_definition_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.views\config.custom_field_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.views\config.filter_name_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\06.functions-and-logic\config.get_custom_field_definition.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\06.functions-and-logic\config.get_custom_field_form_name.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\06.functions-and-logic\config.get_custom_field_setup_id_by_table_name.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\06.functions-and-logic\config.get_user_id_by_login_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\09.menus\0.menu.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\09.menus\1.menu-policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\10.policy\access_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\99.ownership.sql" />
+    <Content Include="db\SQL Server\config.sql" />
+    <Content Include="Overrides\Frapid.Config\attachments\index.html" />
     <Content Include="styles\file-manager\index.css" />
     <Content Include="scripts\file-manager\Index.js" />
     <Content Include="Views\web.config" />
@@ -159,6 +197,21 @@
     <Content Include="web.config" />
     <Content Include="AppInfo.json" />
     <Content Include="packages.config" />
+    <Content Include="db\PostgreSQL\1.x\1.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\PostgreSQL\1.x\1.0\config.sqlbundle" />
+    <Content Include="db\PostgreSQL\1.x\1.0\rebundle.bat" />
+    <Content Include="db\SQL Server\1.x\1.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\SQL Server\1.x\1.0\config.sqlbundle" />
+    <Content Include="db\SQL Server\1.x\1.0\rebundle.bat" />
+    <Content Include="i18N\ar\resources.yaml" />
+    <Content Include="i18N\de\resources.yaml" />
+    <Content Include="i18N\es\resources.yaml" />
+    <Content Include="i18N\fr\resources.yaml" />
+    <Content Include="i18N\ne\resources.yaml" />
+    <Content Include="i18N\recreate-i18n-paused.bat" />
+    <Content Include="i18N\recreate-i18n.bat" />
+    <Content Include="i18N\resources.yaml" />
+    <Content Include="i18N\ru\resources.yaml" />
     <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
     <Content Include="Views\FileManager\Index.cshtml" />
     <Content Include="Views\FileManager\Shared\FileModal.cshtml">
@@ -191,7 +244,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>54701</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

@@ -11,6 +11,7 @@ using Frapid.Areas.Caching;
 using Frapid.Areas.CSRF;
 using MixERP.Social.DTO;
 using MixERP.Social.Models;
+using Frapid.Configuration;
 
 namespace MixERP.Social.Controllers.Service
 {
@@ -50,13 +51,13 @@ namespace MixERP.Social.Controllers.Service
             string path = Attachments.GetUploadDirectory(this.Tenant);
             path = Path.Combine(path, fileName);
 
-            if (!System.IO.File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return this.HttpNotFound();
             }
 
             string mimeType = MimeMapping.GetMimeMapping(path);
-            return this.File(path, mimeType);
+            return this.File(Storage.GetLocalFilePath(path), mimeType);
         }
     }
 }

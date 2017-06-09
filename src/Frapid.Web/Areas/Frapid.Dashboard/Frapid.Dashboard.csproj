@@ -51,10 +51,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.Areas.dll</HintPath>
     </Reference>
-    <Reference Include="Frapid.Configuration, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Frapid.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="Frapid.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.DataAccess.dll</HintPath>
@@ -174,6 +170,21 @@
     <Compile Include="ViewModels\Widget.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\antique-1869598_1920.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\baffin-island-1858603.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\blur-1869454_1920.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\candies-1853287_1920.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\dessert-1850216_1920.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\landscape-1869192_1920.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\redwood-national-park-1587301.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\sunrise-1892493.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\backgrounds\zion-national-park-1883645.jpg" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\contents\apps.html" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\contents\apps.js" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\contents\dashboard.css" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\contents\dashboard.js" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\contents\theme-selector.js" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\Preview.png" />
     <Content Include="scripts\default\console.js" />
     <Content Include="scripts\jquery-3.1.1.js" />
     <Content Include="scripts\jquery-3.1.1.min.js" />
@@ -190,10 +201,25 @@
     <Content Include="Views\Default\LandingPage.cshtml" />
     <Content Include="widgets\frequently-accessed-menus.html" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\Frapid.Configuration\Frapid.Configuration.csproj">
+      <Project>{ca3c3d39-6775-4234-b343-38f0724adcf8}</Project>
+      <Name>Frapid.Configuration</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="AppInfo.json" />
+    <Content Include="i18N\recreate-i18n-paused.bat" />
+    <Content Include="i18N\recreate-i18n.bat" />
+    <Content Include="i18N\resources.yaml" />
+    <Content Include="Overrides\Frapid.Dashboard\Dashboard.config" />
+    <Content Include="Overrides\Frapid.Dashboard\Resources\readme.md" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\Layout.cshtml" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\Theme.config" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\ThemeSelector.cshtml" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\Views\web.config" />
+    <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\web.config" />
     <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
     <Content Include="Views\Default\Console.cshtml" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />

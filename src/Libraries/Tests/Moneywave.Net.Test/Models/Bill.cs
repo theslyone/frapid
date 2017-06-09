@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Moneywave.Net.Test.Models
+namespace Integrations.Test.Models
 {
     public class Bill
     {

@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+  <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+  <script src="bower_components/ng-image-crop/ng-image-crop.js"></script>
+  <script>
+    var app = angular.module('fileUpload', ['ngFileUpload', 'ngImgCrop']);
+
+    /*app.controller('MyCtrl', ['$scope', 'Upload', '$timeout', function($scope, Upload, $timeout) {
+      $scope.upload = function(dataUrl, name) {
+        Upload.upload({
+          url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+          data: {
+            file: Upload.dataUrltoBlob(dataUrl, name)
+          },
+        }).then(function(response) {
+          $timeout(function() {
+            $scope.result = response.data;
+          });
+        }, function(response) {
+          if (response.status > 0) $scope.errorMsg = response.status +
+            ': ' + response.data;
+        }, function(evt) {
+          $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+        });
+      }
+    }]);*/
+  </script>
+</head>
+
+<body ng-app="fileUpload">
+    <div>Crop Image and Upload</div>
+    <button ngf-select="JSON.stringify(picFile, null, 4)" ng-model="picFile" accept="image/*">
+            Select Picture</button>
+    <div ngf-drop ng-model="picFile" ngf-pattern="image/*" class="cropArea">
+      <img-crop image="picFile  | ngfDataUrl" result-image="croppedDataUrl" ng-init="croppedDataUrl=''">
+      </img-crop>
+    </div>
+    <div>
+      <img ng-src="{{croppedDataUrl}}" />
+    </div>
+    <button ng-click="upload(croppedDataUrl, picFile.name)">Submit</button>
+
+    <span class="progress" ng-show="progress >= 0">
+          <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+        </span>
+    <span ng-show="result">Upload Successful</span>
+    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+</body>
+
+</html>

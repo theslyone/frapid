@@ -38,7 +38,8 @@ namespace Frapid.Areas
             {
                 //This is a well-known file type
                 string path = rootDirectory + requestedFile;
-                if (File.Exists(HostingEnvironment.MapPath(path)))
+
+                if (Storage.FileExists(Storage.MapPath(path)))
                 {
                     return path + query;
                 }
@@ -50,9 +51,9 @@ namespace Frapid.Areas
 
         public static string GetConfig(string tenant, string key)
         {
-            string configFile = HostingEnvironment.MapPath($"~/Tenants/{tenant}/Configs/Frapid.config");
-
-            return !File.Exists(configFile) ? string.Empty : ConfigurationManager.ReadConfigurationValue(configFile, key);
+            string configFile = Storage.MapPath("~/Tenants/{0}/Configs/Frapid.config", tenant);
+            
+            return !Storage.FileExists(configFile) ? string.Empty : ConfigurationManager.ReadConfigurationValue(configFile, key);
         }
     }
 }

@@ -57,12 +57,12 @@ namespace Frapid.Installer.DAL
         {
             fromFile = fromFile.Replace("{DbServer}", "PostgreSQL");
             if (string.IsNullOrWhiteSpace(fromFile) ||
-                File.Exists(fromFile).Equals(false))
+                Storage.FileExists(fromFile).Equals(false))
             {
                 return;
             }
 
-            string sql = File.ReadAllText(fromFile, Encoding.UTF8);
+            string sql = Storage.ReadAllText(fromFile, Encoding.UTF8);
 
             //PetaPoco/NPoco Escape
             //ORM: Remove this behavior if you change the ORM.

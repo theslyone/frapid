@@ -55,11 +55,11 @@ namespace Frapid.Backups
 
             if (!string.IsNullOrWhiteSpace(domain.BackupDirectory))
             {
-                return HostingEnvironment.MapPath(domain.BackupDirectory);
+                return Storage.MapPath(domain.BackupDirectory);
             }
 
             string path = $"/Backups/{tenant}/backup";
-            return HostingEnvironment.MapPath(path);
+            return Storage.MapPath(path);
         }
 
 

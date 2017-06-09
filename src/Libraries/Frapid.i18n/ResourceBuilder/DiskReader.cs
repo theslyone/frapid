@@ -4,6 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Frapid.Configuration.Models;
 using YamlDotNet.Serialization;
+using Frapid.Configuration;
 
 namespace Frapid.i18n.ResourceBuilder
 {
@@ -18,7 +19,7 @@ namespace Frapid.i18n.ResourceBuilder
                 return new Dictionary<string, string>();
             }
 
-            string contents = File.ReadAllText(path, Encoding.UTF8);
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
             var deserializer = new Deserializer();
             return deserializer.Deserialize<Dictionary<string, string>>(contents);
         }

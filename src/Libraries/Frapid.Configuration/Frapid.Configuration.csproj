@@ -30,6 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AWSSDK.Core, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AWSSDK.Core.3.3.14\lib\net45\AWSSDK.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AWSSDK.S3, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AWSSDK.S3.3.3.6.1\lib\net45\AWSSDK.S3.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -62,19 +70,18 @@
   <ItemGroup>
     <Compile Include="AppResolver.cs" />
     <Compile Include="ApprovedDomain.cs" />
-    <Compile Include="BillPayment\MobileAirtimeBillPaymentConfiguration.cs" />
-    <Compile Include="BillPayment\FlutterwaveBillPaymentConfiguration.cs" />
     <Compile Include="ConsolePathMapper.cs" />
     <Compile Include="Db\DbProvider.cs" />
     <Compile Include="DefaultDomainSerializer.cs" />
+    <Compile Include="FileHelper.cs" />
     <Compile Include="IDomainSerializer.cs" />
     <Compile Include="Installables.cs" />
     <Compile Include="InstalledDomainSerializer.cs" />
     <Compile Include="Models\Installable.cs" />
-    <Compile Include="Paylink\Charges.cs" />
-    <Compile Include="Paylink\MoneywaveConfiguration.cs" />
-    <Compile Include="Paylink\MoneywaveConfig.cs" />
-    <Compile Include="PaylinkConfig.cs" />
+    <Compile Include="StorageServices\AmazonStorage.cs" />
+    <Compile Include="StorageServices\IStorage.cs" />
+    <Compile Include="StorageServices\LocalStorage.cs" />
+    <Compile Include="StorageServices\Storage.cs" />
     <Compile Include="TenantServices\DomainValidator.cs" />
     <Compile Include="TenantServices\Contracts\ISslDomainCheck.cs" />
     <Compile Include="TenantServices\SslDomainCheck.cs" />
@@ -105,6 +112,7 @@
     <Compile Include="DbServer\SqlServer.cs" />
     <Compile Include="TenantServices\Contracts\IByConvention.cs" />
     <Compile Include="TenantServices\TenantValidator.cs" />
+    <Compile Include="FrapidVirtualPathProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -119,6 +127,9 @@
       <Project>{86545C4A-5202-4368-B013-EA37615CBD8E}</Project>
       <Name>Frapid.Mapper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\AWSSDK.S3.3.3.6.1\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

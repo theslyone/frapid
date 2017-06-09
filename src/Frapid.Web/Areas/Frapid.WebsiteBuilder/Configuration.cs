@@ -1,13 +1,11 @@
 ﻿using System.Globalization;
-using System.IO;
-using System.Web.Hosting;
 using Frapid.Configuration;
 using static System.String;
 
 namespace Frapid.WebsiteBuilder
 {
     public class Configuration
-    {
+    {        
         private const string Path = "~/Tenants/{0}/Areas/Frapid.WebsiteBuilder/";
         private const string ConfigFile = "WebsiteBuilder.config";
         private const string DefaultThemeKey = "DefaultTheme";
@@ -29,9 +27,7 @@ namespace Frapid.WebsiteBuilder
 
         public static string GetWebsiteBuilderPath(string tenant)
         {
-            string path = HostingEnvironment.MapPath(Format(CultureInfo.InvariantCulture, Path, tenant));
-
-            return path != null && !Directory.Exists(path) ? Empty : path;
+            return Storage.MapPath(Path, tenant);            
         }
 
         public static string GetDefaultTheme(string tenant)

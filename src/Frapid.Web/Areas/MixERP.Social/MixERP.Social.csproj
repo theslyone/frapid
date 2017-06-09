@@ -163,6 +163,44 @@
     <Compile Include="ViewModels\Attachment.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe" />
+    <Content Include="db\PostgreSQL\2.x\2.0\index.html" />
+    <Content Include="db\PostgreSQL\2.x\2.0\social-blank.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\social-sample.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.count_comments.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.get_followers.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.get_next_top_feeds.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.get_root_feed_id.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.like.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.unlike.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\03.menus\menus.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\05.triggers\social.update_audit_timestamp_trigger.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\05.views\social.liked_by_view.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\99.ownership.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\99.sample-data\social.sample.sql" />
+    <Content Include="db\PostgreSQL\social-blank.sql" />
+    <Content Include="db\PostgreSQL\social-sample.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe" />
+    <Content Include="db\SQL Server\2.x\2.0\index.html" />
+    <Content Include="db\SQL Server\2.x\2.0\social-blank.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\social-sample.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.count_comments.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.get_followers.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.get_next_top_feeds.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.get_root_feed_id.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.like.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.unlike.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\03.menus\menus.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\05.triggers\social.update_audit_timestamp_trigger.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\05.views\social.liked_by_view.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\99.ownership.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\99.sample-data\social.sample.sql" />
+    <Content Include="db\SQL Server\social-blank.sql" />
+    <Content Include="db\SQL Server\social-sample.sql" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +211,16 @@
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-with-sample.bat" />
+    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-without-sample.bat" />
+    <Content Include="db\PostgreSQL\2.x\2.0\social.sqlbundle" />
+    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-with-sample.bat" />
+    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-without-sample.bat" />
+    <Content Include="db\SQL Server\2.x\2.0\social.sqlbundle" />
+    <Content Include="AppInfo.json" />
+    <None Include="Properties\PublishProfiles\mixerp-publish-profile.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

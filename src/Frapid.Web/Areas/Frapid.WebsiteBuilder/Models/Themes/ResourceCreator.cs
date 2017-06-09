@@ -1,3 +1,4 @@
+using Frapid.Configuration;
 using System.IO;
 using System.Text;
 using System.Web.Hosting;
@@ -21,34 +22,34 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             }
 
             string path = $"~/Tenants/{tenant}/Areas/Frapid.WebsiteBuilder/Themes/{this.ThemeName}";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
-            if (path == null || !Directory.Exists(path))
+            if (path == null || !Storage.DirectoryExists(path))
             {
                 throw new ResourceCreateException(Resources.CouldNotCreateFileOrDirectoryMissingThemeDirectory);
             }
 
             path = Path.Combine(path, this.Container);
 
-            if (!Directory.Exists(path))
+            if (!Storage.DirectoryExists(path))
             {
                 throw new ResourceCreateException(Resources.CouldNotCreateFileOrDirectoryInvalidDestination);
             }
 
             path = Path.Combine(path, this.File);
 
-            if (this.Rewrite.Equals(false) && System.IO.File.Exists(path))
+            if (this.Rewrite.Equals(false) && Storage.FileExists(path))
             {
                 return;
             }
 
             if (this.IsDirectory)
             {
-                Directory.CreateDirectory(path);
+                Storage.CreateDirectory(path);
                 return;
             }
 
-            System.IO.File.WriteAllText(path, this.Contents, new UTF8Encoding(false));
+            Storage.WriteAllText(path, this.Contents, new UTF8Encoding(false));
         }
     }
 }

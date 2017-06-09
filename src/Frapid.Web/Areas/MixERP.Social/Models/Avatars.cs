@@ -24,24 +24,23 @@ namespace MixERP.Social.Models
         public static string GetAvatarImagePath(string tenant, string userId)
         {
             string path = $"~/Tenants/{tenant}/Areas/MixERP.Social/avatars/";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
-            if (path == null || !Directory.Exists(path))
+            if (path == null || !Storage.DirectoryExists(path))
             {
                 return string.Empty;
             }
 
             var extensions = new[] {".png", ".jpg", ".jpeg", ".gif"};
-            var directory = new DirectoryInfo(path);
-
-            var files = directory.GetFiles();
+            
+            var files = Storage.GetFiles(path, extensions);
 
             var candidate = files.FirstOrDefault(
-                f => Path.GetFileNameWithoutExtension(f.Name) == userId
-                     && extensions.Select(x=>x.ToLower()).Contains(f.Extension.ToLower())
+                file => Path.GetFileNameWithoutExtension(file) == userId
+                     && extensions.Select(x=>x.ToLower()).Contains(Path.GetExtension(file).ToLower())
                 );
 
-            return candidate?.FullName ?? string.Empty;
+            return string.IsNullOrEmpty(candidate) ? Storage.MapPath($"{path}{candidate}") : string.Empty;
         }
 
 

@@ -121,7 +121,6 @@
     <Compile Include="Extensions\RequestExtensions.cs" />
     <Compile Include="Extensions\StringExtensionMethods.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="FileHelper.cs" />
     <Compile Include="FrapidHttpContext.cs" />
     <Compile Include="IAttributeValueInvestigator.cs" />
     <Compile Include="ICastable.cs" />

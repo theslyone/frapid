@@ -18,7 +18,7 @@ namespace Frapid.Configuration
         {
             if (string.IsNullOrWhiteSpace(PathToRootDirectory))
             {
-                PathToRootDirectory = HostingEnvironment.MapPath("~/");
+                PathToRootDirectory = Storage.MapPath("~/");
             }
 
             if (string.IsNullOrWhiteSpace(PathToRootDirectory))

@@ -1,3 +1,4 @@
+using Frapid.Configuration;
 using System.IO;
 using System.Threading.Tasks;
 using System.Web.Hosting;
@@ -31,15 +32,15 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             }
 
             string path = $"~/Tenants/{this.Tenant}/Areas/Frapid.WebsiteBuilder/Themes/{this.ThemeName}";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             if (path == null ||
-                !Directory.Exists(path))
+                !Storage.DirectoryExists(path))
             {
                 throw new ThemeRemoveException(Resources.InvalidTheme);
             }
 
-            Directory.Delete(path, true);
+            Storage.DeleteDirectory(path, true);
         }
     }
 }

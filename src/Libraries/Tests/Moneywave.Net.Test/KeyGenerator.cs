@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Moneywave.Net.Test
+namespace Integrations.Test
 {
     public static class KeyGenerator
     {

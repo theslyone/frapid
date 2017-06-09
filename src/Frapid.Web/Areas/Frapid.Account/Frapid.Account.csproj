@@ -101,10 +101,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.WebApi.dll</HintPath>
     </Reference>
-    <Reference Include="Frapid.WebsiteBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Frapid.WebsiteBuilder.dll</HintPath>
-    </Reference>
     <Reference Include="jose-jwt, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\jose-jwt.2.1.0\lib\net40\jose-jwt.dll</HintPath>
       <Private>True</Private>
@@ -212,9 +208,101 @@
     <Compile Include="ViewModels\UserInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\PostgreSQL\1.x\1.0\account-blank.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\bundler\SqlBundler.exe" />
+    <Content Include="db\PostgreSQL\1.x\1.0\index.html" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.add_installed_domain.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.can_confirm_registration.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.can_register_with_facebook.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.can_register_with_google.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.complete_reset.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.confirm_registration.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.email_exists.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.fb_sign_in.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.fb_user_exists.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.get_email_by_user_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.get_name_by_user_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.get_office_id_by_login_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.get_registration_office_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.get_registration_role_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.get_role_name_by_role_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.get_user_id_by_email.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.get_user_id_by_login_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.google_sign_in.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.google_user_exists.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.has_account.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.has_active_reset_request.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.is_admin.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.is_restricted_user.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.is_valid_client_token.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.is_valid_login_id.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.reset_account.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.sign_in.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\account.user_exists.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.relationships\auth.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.relationships\core.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.triggers\account.token_auto_expiry_trigger.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\03.menus\menus.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.scrud-views\account.configuration_profile_scrud_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.scrud-views\account.user_scrud_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.scrud-views\account.user_selector_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.views\account.sign_in_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\99.ownership.sql" />
+    <Content Include="db\PostgreSQL\account-blank.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\account-blank.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\bundler\SqlBundler.exe" />
+    <Content Include="db\SQL Server\1.x\1.0\index.html" />
+    <Content Include="db\SQL Server\1.x\1.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.add_installed_domain.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.can_confirm_registration.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.can_register_with_facebook.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.can_register_with_google.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.complete_reset.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.confirm_registration.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.email_exists.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.fb_sign_in.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.fb_user_exists.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.get_email_by_user_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.get_name_by_user_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.get_office_id_by_login_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.get_registration_office_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.get_registration_role_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.get_role_name_by_role_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.get_user_id_by_email.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.get_user_id_by_login_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.google_sign_in.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.google_user_exists.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.has_account.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.has_active_reset_request.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.is_admin.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.is_restricted_user.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.is_valid_client_token.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.is_valid_login_id.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.reset_account.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.sign_in.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\account.user_exists.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.relationships\auth.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.relationships\core.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.triggers\account.token_auto_expiry_trigger.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\03.menus\menus.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.scrud-views\account.configuration_profile_scrud_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.scrud-views\account.user_scrud_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.scrud-views\account.user_selector_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.views\account.sign_in_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\99.ownership.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\99.sample-data\sample.sample.sql" />
+    <Content Include="db\SQL Server\account-blank.sql" />
+    <Content Include="Overrides\Frapid.Account\EmailTemplates\account-verification.html" />
+    <Content Include="Overrides\Frapid.Account\EmailTemplates\password-reset.html" />
+    <Content Include="Overrides\Frapid.Account\EmailTemplates\welcome-3rd-party.html" />
+    <Content Include="Overrides\Frapid.Account\EmailTemplates\welcome-email-other.html" />
+    <Content Include="Overrides\Frapid.Account\EmailTemplates\welcome-email.html" />
+    <Content Include="Overrides\Frapid.Account\EmailTemplates\welcome.html" />
     <Content Include="scripts\account\change-password\index.js" />
     <Content Include="scripts\account\reset-confirmation\index.js" />
-    <Content Include="scripts\account\reset\index.js" />
     <Content Include="scripts\account\sign-in\default.js" />
     <Content Include="scripts\account\sign-in\facebook.js" />
     <Content Include="scripts\account\sign-in\google.js" />
@@ -232,6 +320,32 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="AppInfo.json" />
+    <Content Include="db\PostgreSQL\1.x\1.0\account.sqlbundle" />
+    <Content Include="db\PostgreSQL\1.x\1.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\PostgreSQL\1.x\1.0\rebundle-db-without-sample.bat" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\99.sample-data\sample.sql.sample" />
+    <Content Include="db\SQL Server\1.x\1.0\account.sqlbundle" />
+    <Content Include="db\SQL Server\1.x\1.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\SQL Server\1.x\1.0\rebundle-db-without-sample.bat" />
+    <Content Include="i18N\ar\resources.yaml" />
+    <Content Include="i18N\de\resources.yaml" />
+    <Content Include="i18N\es\resources.yaml" />
+    <Content Include="i18N\fr\resources.yaml" />
+    <Content Include="i18N\ne\resources.yaml" />
+    <Content Include="i18N\recreate-i18n-paused.bat" />
+    <Content Include="i18N\recreate-i18n.bat" />
+    <Content Include="i18N\resources.yaml" />
+    <Content Include="i18N\ru\resources.yaml" />
+    <Content Include="Overrides\Frapid.Account\Views\Reset\Do.cshtml" />
+    <Content Include="Overrides\Frapid.Account\Views\Reset\Index.cshtml" />
+    <Content Include="Overrides\Frapid.Account\Views\Reset\ResetEmailSent.cshtml" />
+    <Content Include="Overrides\Frapid.Account\Views\SignIn\Index.cshtml" />
+    <Content Include="Overrides\Frapid.Account\Views\SignUp\EmailSent.cshtml" />
+    <Content Include="Overrides\Frapid.Account\Views\SignUp\Index.cshtml" />
+    <Content Include="Overrides\Frapid.Account\Views\SignUp\InvalidToken.cshtml" />
+    <Content Include="Overrides\Frapid.Account\Views\SignUp\Welcome.cshtml" />
+    <Content Include="Overrides\Frapid.Account\Views\web.config" />
+    <Content Include="Overrides\Frapid.Account\web.config" />
     <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
     <Content Include="Views\ChangePassword\Success.cshtml" />
     <None Include="Views\EmailTemplate\Index.cshtml" />
@@ -255,6 +369,10 @@
     <ProjectReference Include="..\..\..\Libraries\Frapid.Events\Frapid.Events.csproj">
       <Project>{37e1dc19-363e-49ca-853f-7113075296d7}</Project>
       <Name>Frapid.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Frapid.WebsiteBuilder\Frapid.WebsiteBuilder.csproj">
+      <Project>{f25bc404-d8cb-45cb-97d3-8de0e538f6ac}</Project>
+      <Name>Frapid.WebsiteBuilder</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

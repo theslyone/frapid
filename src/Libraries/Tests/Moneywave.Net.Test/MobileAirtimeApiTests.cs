@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.IO;
 using Xunit;
 
-namespace Moneywave.Net.Test
+namespace Integrations.Test
 {
     public class MobileAirtimeFixture : IDisposable
     {

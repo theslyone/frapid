@@ -68,7 +68,7 @@ namespace Frapid.Configuration.Db
 
             path = PathMapper.MapPath(path);
 
-            if (File.Exists(path))
+            if (Storage.FileExists(path))
             {
                 meta = ConfigurationManager.ReadConfigurationValue(path, "MetaDatabase");
             }

@@ -8,6 +8,7 @@ using System.Web.Hosting;
 using Frapid.Messaging;
 using Frapid.Messaging.DTO;
 using Frapid.WebsiteBuilder.ViewModels;
+using Frapid.Configuration;
 
 namespace Frapid.WebsiteBuilder.Emails
 {
@@ -20,15 +21,15 @@ namespace Frapid.WebsiteBuilder.Emails
             string siteUrl = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
             string domain = HttpContext.Current.Request.Url.Host;
 
-            string file = HostingEnvironment.MapPath(string.Format(CultureInfo.InvariantCulture, TemplatePath, tenant));
+            string file = Storage.MapPath(TemplatePath, tenant);
 
             if (file == null ||
-                !File.Exists(file))
+                !Storage.FileExists(file))
             {
                 return string.Empty;
             }
 
-            string message = File.ReadAllText(file, Encoding.UTF8);
+            string message = Storage.ReadAllText(file, Encoding.UTF8);
 
             message = message.Replace("{{Domain}}", domain);
             message = message.Replace("{{SiteUrl}}", siteUrl);

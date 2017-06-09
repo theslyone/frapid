@@ -7,6 +7,7 @@ using System.Web.Hosting;
 using Frapid.Account.ViewModels;
 using Frapid.Messaging;
 using Frapid.Messaging.DTO;
+using Frapid.Configuration;
 
 namespace Frapid.Account.Emails
 {
@@ -29,14 +30,14 @@ namespace Frapid.Account.Emails
         {
             string path = this._template;
             path = path.Replace("{tenant}", tenant);
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
-            if (!File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return string.Empty;
             }
 
-            return path != null ? File.ReadAllText(path, Encoding.UTF8) : string.Empty;
+            return path != null ? Storage.ReadAllText(path, Encoding.UTF8) : string.Empty;
         }
 
         private string ParseTemplate(string template)

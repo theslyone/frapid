@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 using Frapid.Framework;
+using Frapid.Configuration;
 
 namespace frapid.Commands.Create
 {

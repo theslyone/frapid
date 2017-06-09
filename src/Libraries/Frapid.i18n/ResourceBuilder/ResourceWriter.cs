@@ -130,7 +130,7 @@ namespace Frapid.i18n.ResourceBuilder
 
             Console.WriteLine($"Writing resource on " + target);
             Console.WriteLine(builder.ToString());
-            File.WriteAllText(target, builder.ToString(), Encoding.UTF8);
+            Storage.WriteAllText(target, builder.ToString(), new UTF8Encoding(false));
         }
     }
 }

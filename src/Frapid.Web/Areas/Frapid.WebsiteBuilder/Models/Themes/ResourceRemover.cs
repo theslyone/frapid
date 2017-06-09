@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Frapid.Configuration;
+using System.IO;
 using System.Web.Hosting;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
@@ -17,7 +18,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         public void Delete(string tenant)
         {
             string path = $"~/Tenants/{tenant}/Areas/Frapid.WebsiteBuilder/Themes/{this.ThemeName}";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             if (path == null)
             {
@@ -26,15 +27,15 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             path = Path.Combine(path, this.Resource);
 
-            if (Directory.Exists(path))
+            if (Storage.DirectoryExists(path))
             {
-                Directory.Delete(path);
+                Storage.DeleteDirectory(path, true);
                 return;
             }
 
-            if (File.Exists(path))
+            if (Storage.FileExists(path))
             {
-                File.Delete(path);
+                Storage.DeleteFile(path);
                 return;
             }
 

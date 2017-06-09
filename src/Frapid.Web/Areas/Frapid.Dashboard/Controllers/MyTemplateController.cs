@@ -25,9 +25,9 @@ namespace Frapid.Dashboard.Controllers
         public ActionResult Get(string resource = "")
         {
             string configFile =
-                HostingEnvironment.MapPath($"~/Tenants/{this.Tenant}/Configs/Frapid.config");
+                Storage.MapPath($"~/Tenants/{this.Tenant}/Configs/Frapid.config");
 
-            if (!System.IO.File.Exists(configFile))
+            if (!Storage.FileExists(configFile))
             {
                 return this.HttpNotFound();
             }
@@ -39,7 +39,7 @@ namespace Frapid.Dashboard.Controllers
                 return this.HttpNotFound();
             }
 
-            string directory = HostingEnvironment.MapPath(Configuration.GetCurrentThemePath(this.Tenant));
+            string directory = Storage.MapPath(Configuration.GetCurrentThemePath(this.Tenant));
 
             if (directory == null)
             {
@@ -48,7 +48,7 @@ namespace Frapid.Dashboard.Controllers
 
             string path = Path.Combine(directory, resource);
 
-            if (!System.IO.File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return this.HttpNotFound();
             }
@@ -66,7 +66,7 @@ namespace Frapid.Dashboard.Controllers
             }
 
             string mimeType = GetMimeType(path);
-            return this.File(path, mimeType);
+            return this.File(Storage.GetLocalFilePath(path), mimeType);
         }
 
         private static string GetMimeType(string fileName)

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.UI;
 using Frapid.Areas;
 using Frapid.Areas.Caching;
+using Frapid.Configuration;
 
 namespace Frapid.Dashboard.Controllers
 {
@@ -23,7 +24,7 @@ namespace Frapid.Dashboard.Controllers
 
             string directory = "~/Tenants/{0}/Areas/Frapid.Dashboard/Resources/";
             directory = string.Format(CultureInfo.InvariantCulture, directory, this.Tenant);
-            directory = HostingEnvironment.MapPath(directory);
+            directory = Storage.MapPath(directory);
 
             if (directory == null)
             {
@@ -32,13 +33,13 @@ namespace Frapid.Dashboard.Controllers
 
             string path = Path.Combine(directory, resource);
 
-            if (!System.IO.File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return this.HttpNotFound();
             }
 
             string mimeType = MimeMapping.GetMimeMapping(path);
-            return this.File(path, mimeType);
+            return this.File(Storage.GetLocalFilePath(path), mimeType);
         }
     }
 }

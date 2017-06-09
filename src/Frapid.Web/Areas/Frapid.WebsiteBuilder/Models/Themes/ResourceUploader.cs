@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Hosting;
 using Serilog;
+using Frapid.Configuration;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
@@ -28,9 +29,9 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             }
 
             string path = $"~/Tenants/{tenant}/Areas/Frapid.WebsiteBuilder/Themes/{this.ThemeName}";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
-            if (path == null || !Directory.Exists(path))
+            if (path == null || !Storage.DirectoryExists(path))
             {
                 Log.Warning("Could not upload resource because the directory {directory} does not exist.", path);
                 throw new ResourceUploadException(Resources.InvalidPathCheckLogs);
@@ -38,7 +39,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
             path = Path.Combine(path, this.Container);
 
-            if (!Directory.Exists(path))
+            if (!Storage.DirectoryExists(path))
             {
                 Log.Warning("Could not upload resource because the directory {directory} does not exist.", path);
                 throw new ResourceUploadException(Resources.InvalidPathCheckLogs);
@@ -65,10 +66,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             var stream = this.PostedFile.InputStream;
             path = Path.Combine(Path.Combine(path, fileName));
 
-            using (var fileStream = File.Create(path))
-            {
-                stream.CopyTo(fileStream);
-            }
+            Storage.CreateFile(path, stream);
         }
     }
 }

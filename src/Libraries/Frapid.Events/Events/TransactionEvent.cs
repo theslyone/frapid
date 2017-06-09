@@ -22,17 +22,11 @@ namespace Frapid.Events
         [JsonProperty("toCustomer")]
         public User ToCustomer { get; set; }
 
-        [JsonProperty("fromSubaccountId")]
-        public int FromSubaccountId { get; set; }
+        [JsonProperty("sourceAccount")]
+        public Account SourceAccount { get; set; }
 
-        [JsonProperty("fromAccount")]
-        public Account FromSubaccount { get; set; }
-
-        [JsonProperty("toAccount")]
-        public Account ToSubaccount { get; set; }
-
-        [JsonProperty("toSubaccountId")]
-        public int? ToSubaccountId { get; set; }
+        [JsonProperty("destinationAccount")]
+        public Account DestinationAccount { get; set; }
 
         [JsonProperty("reference")]
         public string Reference { get; set; }
@@ -54,6 +48,10 @@ namespace Frapid.Events
 
         [JsonProperty("message")]
         public string Message { get; set; }
+
+        [JsonProperty("purpose")]
+        public string Purpose { get; set; }
+
 
 
         [JsonProperty("type")]

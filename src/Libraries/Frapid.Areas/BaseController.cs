@@ -59,11 +59,10 @@ namespace Frapid.Areas
 
                     foreach (string member in members)
                     {
-                        var value = Versioned.CallByName(dynamic, member, CallType.Get);
+                        var value = Versioned.CallByName(dynamic, member, CallType.Get); 
                         dictionary.Add(member, value);
                     }
                 }
-
 
                 var viewContext = new ViewContext(controllerContext, result.View, dictionary, controllerContext.Controller.TempData, output);
 

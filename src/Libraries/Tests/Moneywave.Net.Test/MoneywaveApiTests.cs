@@ -7,7 +7,7 @@ using System;
 using System.Linq;
 using Xunit;
 
-namespace Moneywave.Net.Test
+namespace Integrations.Test
 {
     public class MoneywaveFixture : IDisposable
     {

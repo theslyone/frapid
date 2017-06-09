@@ -149,6 +149,10 @@
       <HintPath>..\packages\Quartz.2.4.1\lib\net40\Quartz.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RouteDebugger, Version=2.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\routedebugger.2.1.5\lib\net40\RouteDebugger.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
       <HintPath>..\packages\Serilog.2.3.0\lib\net46\Serilog.dll</HintPath>
       <Private>True</Private>
@@ -280,9 +284,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="images\social\facebook.png" />
-    <Content Include="images\social\linkedin.png" />
-    <Content Include="images\social\twitter.png" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="packages.config" />
@@ -299,12 +300,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
-    <Content Include="Resources\Configs\DomainsApproved.json" />
-    <Content Include="Resources\Configs\DomainsInstalled.json" />
-    <Content Include="Resources\Configs\JwtConfig.json" />
-    <Content Include="Resources\Configs\Parameters.config" />
-    <Content Include="Resources\Configs\web.config" />
-    <Content Include="Resources\web.config" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\cleave.min.js" />
     <Content Include="scripts\frapid\core\array.js" />

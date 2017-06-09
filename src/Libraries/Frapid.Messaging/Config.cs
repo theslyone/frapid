@@ -2,6 +2,7 @@
 using System.Text;
 using System.Web.Hosting;
 using Newtonsoft.Json;
+using Frapid.Configuration;
 
 namespace Frapid.Messaging
 {
@@ -12,12 +13,12 @@ namespace Frapid.Messaging
         public static MessagingConfig Get(string tenant)
         {
             string path = $"/Tenants/{tenant}/Configs/Smtp.json";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             if (path != null &&
-                File.Exists(path))
+                Storage.FileExists(path))
             {
-                string contents = File.ReadAllText(path, Encoding.UTF8);
+                string contents = Storage.ReadAllText(path, Encoding.UTF8);
                 return JsonConvert.DeserializeObject<MessagingConfig>(contents);
             }
 

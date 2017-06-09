@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Frapid.Mapper.Helpers;
 using YamlDotNet.Serialization;
+using Frapid.Configuration;
 
 namespace Frapid.i18n
 {
@@ -44,7 +45,7 @@ namespace Frapid.i18n
             {
                 path = Path.Combine(resourceDirectory, cultureCode, "resources.yaml");
 
-                if (File.Exists(path))
+                if (Storage.FileExists(path))
                 {
                     return path;
                 }
@@ -55,7 +56,7 @@ namespace Frapid.i18n
             {
                 path = Path.Combine(resourceDirectory, culture.Name, "resources.yaml");
 
-                if (File.Exists(path))
+                if (Storage.FileExists(path))
                 {
                     return path;
                 }
@@ -71,7 +72,7 @@ namespace Frapid.i18n
 
             //Fallback to neutral resource
             path = Path.Combine(resourceDirectory, "resources.yaml");
-            if (File.Exists(path))
+            if (Storage.FileExists(path))
             {
                 return path;
             }
@@ -113,7 +114,7 @@ namespace Frapid.i18n
                 return new Dictionary<string, string>();
             }
 
-            string contents = File.ReadAllText(path, Encoding.UTF8);
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
             var deserializer = new Deserializer();
             return deserializer.Deserialize<Dictionary<string, string>>(contents);
         }

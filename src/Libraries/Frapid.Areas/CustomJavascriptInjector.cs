@@ -10,7 +10,7 @@ namespace Frapid.Areas
         {
             string file = path + ".custom.js";
 
-            if (!File.Exists(PathMapper.MapPath(file)))
+            if (!Storage.FileExists(PathMapper.MapPath(file)))
             {
                 return html;
             }

@@ -14,7 +14,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         {
             var theme = new ThemeInfo();
 
-            if (path == null || !File.Exists(path))
+            if (path == null || !Storage.FileExists(path))
             {
                 theme.IsValid = false;
             }
@@ -40,12 +40,12 @@ namespace Frapid.WebsiteBuilder.Models.Themes
                 return theme;
             }
 
-            if (!File.Exists(Path.Combine(directory, theme.HomepageLayout)))
+            if (!Storage.FileExists(Path.Combine(directory, theme.HomepageLayout)))
             {
                 throw new ThemeInfoException(Resources.InvalidThemeInvalidHomepageLayoutPath);
             }
 
-            if (!File.Exists(Path.Combine(directory, theme.DefaultLayout)))
+            if (!Storage.FileExists(Path.Combine(directory, theme.DefaultLayout)))
             {
                 throw new ThemeInfoException(Resources.InvalidThemeInvalidDefaultLayoutPath);
             }

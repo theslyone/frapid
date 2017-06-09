@@ -200,6 +200,31 @@
     <Compile Include="ViewModels\Recurrence.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe" />
+    <Content Include="db\PostgreSQL\2.x\2.0\calendar-blank.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\calendar-sample.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\index.html" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\03.menus\menus.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\05.views\calendar.event_view.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\99.ownership.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\99.sample-data\calendar.sample.sql" />
+    <Content Include="db\PostgreSQL\calendar-blank.sql" />
+    <Content Include="db\PostgreSQL\calendar-sample.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe" />
+    <Content Include="db\SQL Server\2.x\2.0\calendar-blank.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\calendar-sample.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\index.html" />
+    <Content Include="db\SQL Server\2.x\2.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\03.menus\menus.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\05.views\calendar.event_view.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\99.ownership.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\99.sample-data\calendar.sample.sql" />
+    <Content Include="db\SQL Server\calendar-blank.sql" />
+    <Content Include="db\SQL Server\calendar-sample.sql" />
+    <Content Include="Overrides\Frapid.Calendar\Templates\Email.html" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -211,9 +236,28 @@
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="Views\Backend\Index.cshtml" />
+    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\PostgreSQL\2.x\2.0\calendar.sqlbundle" />
+    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-with-sample.bat" />
+    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-without-sample.bat" />
+    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\SQL Server\2.x\2.0\calendar.sqlbundle" />
+    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-with-sample.bat" />
+    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-without-sample.bat" />
+    <Content Include="i18N\ar\resources.yaml" />
+    <Content Include="i18N\de\resources.yaml" />
+    <Content Include="i18N\es\resources.yaml" />
+    <Content Include="i18N\fr\resources.yaml" />
+    <Content Include="i18N\ne\resources.yaml" />
+    <Content Include="i18N\recreate-i18n-paused.bat" />
+    <Content Include="i18N\recreate-i18n.bat" />
+    <Content Include="i18N\resources.yaml" />
+    <Content Include="i18N\ru\resources.yaml" />
+    <Content Include="AppInfo.json" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

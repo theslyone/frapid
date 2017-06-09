@@ -1,3 +1,4 @@
+using Frapid.Configuration;
 using System.IO;
 using System.Text;
 using System.Web.Hosting;
@@ -19,7 +20,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         private void CreateDirectory(string tenant)
         {
             string directory = $"~/Tenants/{tenant}/Areas/Frapid.WebsiteBuilder/Themes/{this.Info.ThemeName}";
-            directory = HostingEnvironment.MapPath(directory);
+            directory = Storage.MapPath(directory);
 
             this.ThemeDirectory = directory;
 
@@ -28,12 +29,12 @@ namespace Frapid.WebsiteBuilder.Models.Themes
                 throw new ThemeCreateException(Resources.CouldNotCreateThemeInvalidDestinationDirectory);
             }
 
-            if (Directory.Exists(directory))
+            if (Storage.DirectoryExists(directory))
             {
                 throw new ThemeCreateException(Resources.CouldNotCreateThemeDestinationDirectoryAlreadyExists);
             }
 
-            Directory.CreateDirectory(directory);
+            Storage.CreateDirectory(directory);
         }
 
         private void AddKey(XmlTextWriter xml, string key, string value)

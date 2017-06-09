@@ -16,7 +16,7 @@ namespace Frapid.Installer
         {
             string root = PathMapper.MapPath("~/");
             var files = Directory.GetFiles(root, "AppInfo.json", SearchOption.AllDirectories).ToList();
-            Installables = files.Select(file => File.ReadAllText(file, Encoding.UTF8)).Select(JsonConvert.DeserializeObject<Installable>).ToList();            
+            Installables = files.Select(file => Storage.ReadAllText(file, Encoding.UTF8)).Select(JsonConvert.DeserializeObject<Installable>).ToList();            
         }
     }
 }

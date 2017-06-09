@@ -155,6 +155,51 @@
     <Compile Include="ViewModels\UserMenuPolicyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\PostgreSQL\1.x\1.0\auth-blank.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\bundler\SqlBundler.exe" />
+    <Content Include="db\PostgreSQL\1.x\1.0\index.html" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.create_api_access_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.create_app_menu_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.get_apps.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.get_group_menu_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.get_menu.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.get_user_menu_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.has_access.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.save_api_group_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.save_group_menu_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\02.functions-and-logic\auth.save_user_menu_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\03.menus\0.menus.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\03.menus\1.menu-policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\03.menus\2.menu-policy-account.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\05.views\auth.entity_view.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\10.policy\access_policy.sql" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\99.ownership.sql" />
+    <Content Include="db\PostgreSQL\auth-blank.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\auth-blank.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\bundler\SqlBundler.exe" />
+    <Content Include="db\SQL Server\1.x\1.0\index.html" />
+    <Content Include="db\SQL Server\1.x\1.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.create_api_access_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.create_app_menu_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.get_apps.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.get_group_menu_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.get_menu.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.get_user_menu_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.has_access.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.save_api_group_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.save_group_menu_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\02.functions-and-logic\auth.save_user_menu_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\03.menus\0.menus.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\03.menus\1.menu-policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\03.menus\2.menu-policy-account.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\05.views\auth.entity_view.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\10.policy\access_policy.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\99.ownership.sql" />
+    <Content Include="db\SQL Server\1.x\1.0\src\99.sample-data\sample.sample.sql" />
+    <Content Include="db\SQL Server\auth-blank.sql" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +213,24 @@
     <Content Include="Views\MenuPolicy\Policy.cshtml" />
     <Content Include="Views\AccessPolicy\GroupPolicy.cshtml" />
     <Content Include="Views\AccessPolicy\Policy.cshtml" />
+    <Content Include="db\PostgreSQL\1.x\1.0\auth.sqlbundle" />
+    <Content Include="db\PostgreSQL\1.x\1.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\PostgreSQL\1.x\1.0\rebundle-db-without-sample.bat" />
+    <Content Include="db\PostgreSQL\1.x\1.0\src\99.sample-data\sample.sql.sample" />
+    <Content Include="db\SQL Server\1.x\1.0\auth.sqlbundle" />
+    <Content Include="db\SQL Server\1.x\1.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\SQL Server\1.x\1.0\rebundle-db-without-sample.bat" />
+    <Content Include="i18N\ar\resources.yaml" />
+    <Content Include="i18N\de\resources.yaml" />
+    <Content Include="i18N\es\resources.yaml" />
+    <Content Include="i18N\fr\resources.yaml" />
+    <Content Include="i18N\ne\resources.yaml" />
+    <Content Include="i18N\recreate-i18n-paused.bat" />
+    <Content Include="i18N\recreate-i18n.bat" />
+    <Content Include="i18N\resources.yaml" />
+    <Content Include="i18N\ru\resources.yaml" />
+    <Content Include="AppInfo.json" />
+    <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

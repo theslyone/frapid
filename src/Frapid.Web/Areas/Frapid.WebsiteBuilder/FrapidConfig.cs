@@ -23,9 +23,9 @@ namespace Frapid.WebsiteBuilder
 
         public static string Get(string tenant, string key)
         {
-            string configFile = HostingEnvironment.MapPath($"~/Tenants/{tenant}/Configs/Frapid.config");
+            string configFile = Storage.MapPath($"~/Tenants/{tenant}/Configs/Frapid.config");
 
-            return !File.Exists(configFile) ? string.Empty : ConfigurationManager.ReadConfigurationValue(configFile, key);
+            return !Storage.FileExists(configFile) ? string.Empty : ConfigurationManager.ReadConfigurationValue(configFile, key);
         }
     }
 }

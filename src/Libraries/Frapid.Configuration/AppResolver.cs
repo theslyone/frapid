@@ -12,13 +12,13 @@ namespace Frapid.Configuration
         static AppResolver()
         {
             string root = PathMapper.MapPath("~/");
-            var files = Directory.GetFiles(root, "AppInfo.json", SearchOption.AllDirectories).ToList();
+            var files = Storage.GetFiles(root, "AppInfo.json", SearchOption.AllDirectories).ToList();
 
             var installables = new List<Installable>();
 
             foreach (string file in files)
             {
-                string contents = File.ReadAllText(file, Encoding.UTF8);
+                string contents = Storage.ReadAllText(file, Encoding.UTF8);
                 var installable = JsonConvert.DeserializeObject<Installable>(contents);
                 installable.DirectoryPath = Path.GetDirectoryName(file);
                 installables.Add(installable);

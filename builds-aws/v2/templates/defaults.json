@@ -1,0 +1,34 @@
+[
+    {
+        "ParameterKey": "pDBPassword",
+        "ParameterValue": "$[alfred_genpass_28]"
+    },
+    {
+        "ParameterKey": "pNotifyEmail",
+        "ParameterValue": "distlist@example.org"
+    },
+    {
+        "ParameterKey": "pEC2KeyPairBastion",
+        "ParameterValue": "cikey"
+    },
+    {
+        "ParameterKey": "pEC2KeyPair",
+        "ParameterValue": "cikey"
+    },
+    {
+        "ParameterKey": "pSupportsConfig",
+        "ParameterValue": "No"
+    },
+    {
+        "ParameterKey": "pAvailabilityZoneA",
+        "ParameterValue": "$[alfred_gensingleaz_1]"
+    },
+    {
+        "ParameterKey": "pAvailabilityZoneB",
+        "ParameterValue": "$[alfred_gensingleaz_2]"
+    },
+    {
+        "ParameterKey": "pVPCTenancy",
+        "ParameterValue": "default"
+    }
+]

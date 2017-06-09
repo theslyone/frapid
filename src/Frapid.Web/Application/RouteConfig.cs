@@ -10,15 +10,11 @@ namespace Frapid.Web.Application
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
             routes.MapRoute
-                (
+            (
                     "Dashboard",
                     "dashboard/{controller}/{action}/{id}",
-                    new
-                    {
-                        controller = "Dashboard",
-                        action = "Index",
-                        id = UrlParameter.Optional
-                    });
+                    new { controller = "Dashboard", action = "Index", id = UrlParameter.Optional }
+            );
         }
     }
 }

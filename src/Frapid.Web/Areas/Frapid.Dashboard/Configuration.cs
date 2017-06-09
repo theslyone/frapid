@@ -22,11 +22,9 @@ namespace Frapid.Dashboard
 
         public static string GetDashboardPath(string tenant)
         {
-            string path = HostingEnvironment.MapPath(Format(CultureInfo.InvariantCulture, Path, tenant));
-
-            return path != null && !Directory.Exists(path) ? Empty : path;
+            return Storage.MapPath(Format(CultureInfo.InvariantCulture, Path, tenant));
         }
-
+    
         public static string GetDefaultTheme(string tenant)
         {
             return Get(tenant, DefaultThemeKey);

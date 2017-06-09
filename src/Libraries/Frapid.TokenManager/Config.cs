@@ -3,6 +3,7 @@ using System.Text;
 using System.Web.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Frapid.Configuration;
 
 namespace Frapid.TokenManager
 {
@@ -11,15 +12,15 @@ namespace Frapid.TokenManager
         public static JObject Get()
         {
             string path = "~/Resources/Configs/JwtConfig.json";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             if (string.IsNullOrWhiteSpace(path) ||
-                !File.Exists(path))
+                !Storage.FileExists(path))
             {
                 return new JObject();
             }
 
-            string contents = File.ReadAllText(path, Encoding.UTF8);
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
             return JsonConvert.DeserializeObject<JObject>(contents);
         }
     }

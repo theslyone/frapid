@@ -157,13 +157,13 @@ namespace Frapid.Installer
                 return;
             }
 
-            if (!Directory.Exists(source))
+            if (!Storage.DirectoryExists(source))
             {
                 return;
             }
 
-            InstallerLog.Verbose($"Creating overide. Source: {source}, desitation: {destination}.");
-            FileHelper.CopyDirectory(source, destination);
+            InstallerLog.Verbose($"Creating override. Source: {source}, desitation: {destination}.");
+            Storage.CopyDirectory(source, destination);
         }
     }
 }

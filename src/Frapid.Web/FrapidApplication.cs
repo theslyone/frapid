@@ -125,6 +125,7 @@ namespace Frapid.Web
             {
                 "/api",
                 "/dashboard",
+                "paylink",
                 "/content-not-found"
             };
 

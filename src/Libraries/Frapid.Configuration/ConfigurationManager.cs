@@ -39,7 +39,7 @@ namespace Frapid.Configuration
         {
             var configFileMap = new ExeConfigurationFileMap
             {
-                ExeConfigFilename = path
+                ExeConfigFilename = Storage.GetLocalFilePath(path)
             };
 
             var config = System.Configuration.ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);

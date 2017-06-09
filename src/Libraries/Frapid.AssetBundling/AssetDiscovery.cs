@@ -13,12 +13,12 @@ namespace Frapid.AssetBundling
             string assetsDirectory = PathMapper.MapPath(Configs.AssetsDirectory);
             string path = Path.Combine(assetsDirectory, name + ".json");
 
-            if (!File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return null;
             }
 
-            string contents = File.ReadAllText(path, Encoding.UTF8);
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
             return JsonConvert.DeserializeObject<Asset>(contents);
         }
     }

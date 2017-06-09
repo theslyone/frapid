@@ -14,6 +14,7 @@ using Frapid.WebsiteBuilder.Controllers;
 using Newtonsoft.Json;
 using Frapid.Events;
 using Frapid.Events.EventPublishers;
+using System.Collections.Specialized;
 
 namespace Frapid.Account.Controllers
 {
@@ -58,6 +59,7 @@ namespace Frapid.Account.Controllers
             string domain = TenantConvention.GetDomain();
 
             this.AddAuthenticationCookie(domain, token);
+            this.AddAuthenticationHeader(domain, token);
             this.AddCultureCookie(domain, model?.Culture.Or("en-US"));
 
             LoginEvent loginEvent = new LoginEvent();
@@ -67,7 +69,40 @@ namespace Frapid.Account.Controllers
             loginEvent.CreationDate = DateTime.Now;
             DefaultEventPublisher.GetInstance().Publish(loginEvent);
 
-            return this.Ok(token.ClientToken);
+            var appUser = new AppUser() {
+                ClientToken = token.ClientToken,
+                LoginId = loginView.LoginId,
+                Email = loginView.Email,
+                Name = loginView.Name
+            };
+            return OkResponse(appUser);
+        }
+
+        protected ActionResult OnValidateToken(AppUser appUser)
+        {
+            var provider = new Provider();
+            var token = provider.GetToken(AppUser.ClientToken);
+
+            string domain = TenantConvention.GetDomain();
+            //AddAuthenticationCookie(domain, token);
+            AddAuthenticationHeader(domain, token);
+
+            return OkResponse(appUser);
+        }
+
+        private ActionResult OkResponse(AppUser appUser)
+        {
+            return this.Ok(
+                new
+                {
+                    token = appUser?.ClientToken,
+                    data = new
+                    {
+                        loginId = appUser.LoginId,
+                        email = appUser?.Email,
+                        name = appUser?.Name
+                    }
+                });
         }
 
         private void AddCultureCookie(string domain, string culture)
@@ -104,6 +139,15 @@ namespace Frapid.Account.Controllers
             }
 
             this.Response.Cookies.Add(cookie);
+        }
+
+        private void AddAuthenticationHeader(string domain, Token token)
+        {
+            var customHeader = new NameValueCollection();
+            customHeader.Add("access-token", token.ClientToken);
+            customHeader.Add("expiry", token.ExpiresOn.ToUnixTimeMilliseconds().ToString());
+            customHeader.Add("clientId", token.LoginId.ToString());            
+            this.Response.Headers.Add(customHeader);
         }
     }
 }

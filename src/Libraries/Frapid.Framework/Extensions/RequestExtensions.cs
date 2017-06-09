@@ -108,7 +108,7 @@ namespace Frapid.Framework.Extensions
         public static string GetClientIpAddress(this HttpRequestMessage request)
         {
             var context = request.Properties["MS_HttpContext"] as HttpContextBase;
-            string ipAddress = GetClientIpAddress(context);
+            string ipAddress = GetClientIpAddress(context, true);
 
             if (!string.IsNullOrWhiteSpace(ipAddress))
             {

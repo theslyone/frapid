@@ -70,13 +70,6 @@ namespace Frapid.Account.Controllers.Frontend
             var email = new WelcomeEmail(registration);
             await email.SendAsync(this.Tenant).ConfigureAwait(true);
 
-            UserEvent userEvent = new UserEvent();
-            userEvent.User.Email = registration.Email;
-            userEvent.User.Name = registration.Name;
-            userEvent.CreationDate = DateTime.Now;
-            userEvent.Tenant = this.Tenant;
-            DefaultEventPublisher.GetInstance().EntityInserted(userEvent);
-
             return this.View(this.GetRazorView<AreaRegistration>("SignUp/Welcome.cshtml", this.Tenant));
         }
 

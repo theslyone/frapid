@@ -1,6 +1,7 @@
 ﻿using Frapid.RestApi.Responses;
 using Newtonsoft.Json;
 using RestSharp;
+using RestSharp.Deserializers;
 using System;
 using System.Threading.Tasks;
 
@@ -22,25 +23,28 @@ namespace Frapid.RestApi
         {
             var client = new RestClient();
             client.BaseUrl = new Uri(BaseUrl);
+            client.AddHandler("text/html", new JsonDeserializer());
+
             request.Method = Method.POST;
             request.RequestFormat = DataFormat.Json;
 
             request.AddHeader("Authorization", GetToken());
             request.AddHeader("content-type", "application/json");
+
             var response = client.Execute<RestApiResponse<dynamic>>(request);
 
             RestApiResponse<T> restApiResponse = ProcessResponse<T>(response);
             return restApiResponse;
         }
 
-        protected Task<RestApiResponse<T>> ExecuteAync<T>(RestRequest request) where T : class
+        protected Task<RestApiResponse<T>> ExecuteAsync<T>(RestRequest request) where T : class
         {
             var client = new RestClient();
             client.BaseUrl = new Uri(BaseUrl);
             request.Method = Method.POST;
             request.RequestFormat = DataFormat.Json;
 
-            request.AddHeader("Authorization", Token);
+            request.AddHeader("Authorization", GetToken());
             request.AddHeader("content-type", "application/json");
 
             var taskCompletionSource = new TaskCompletionSource<RestApiResponse<T>>();

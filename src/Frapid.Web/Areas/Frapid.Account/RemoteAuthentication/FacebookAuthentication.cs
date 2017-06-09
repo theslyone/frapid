@@ -46,7 +46,7 @@ namespace Frapid.Account.RemoteAuthentication
         public async Task<LoginResult> AuthenticateAsync(FacebookAccount account, RemoteUser user)
         {
             var facebookUser = this.GetFacebookUserInfo(account.Token);
-
+            
             if (!this.Validate(facebookUser, account.FacebookUserId, account.Email))
             {
                 return new LoginResult
@@ -63,13 +63,6 @@ namespace Frapid.Account.RemoteAuthentication
 
             if (result.Status)
             {
-                UserEvent userEvent = new UserEvent();
-                userEvent.User.Email = facebookUser.Email;
-                userEvent.User.Name = facebookUser.Name;
-                userEvent.CreationDate = DateTime.Now;
-                userEvent.Tenant = this.Tenant;
-                DefaultEventPublisher.GetInstance().EntityInserted(userEvent);
-                
                 if (!await Registrations.HasAccountAsync(this.Tenant, account.Email).ConfigureAwait(false))
                 {
                     string template = "~/Tenants/{tenant}/Areas/Frapid.Account/EmailTemplates/welcome-email-other.html";

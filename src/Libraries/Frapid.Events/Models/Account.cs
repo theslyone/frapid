@@ -9,6 +9,10 @@ namespace Frapid.Events.Models
 {
     public class Account
     {
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
         [JsonProperty("accountName")]
         public string AccountName { get; set; }
 
@@ -16,10 +20,10 @@ namespace Frapid.Events.Models
         public string AccountNumber { get; set; }
 
         [JsonProperty("bankCode")]
-        public string SettlementBankCode { get; set; }
+        public string BankCode { get; set; }
 
         [JsonProperty("bankName")]
-        public string SettlementBank { get; set; }
+        public string BankName { get; set; }
         
     }
 }

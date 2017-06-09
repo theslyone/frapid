@@ -11,6 +11,7 @@ using Frapid.Areas.CSRF;
 using Frapid.WebsiteBuilder.Models.Themes;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Frapid.Configuration;
 
 namespace Frapid.WebsiteBuilder.Controllers.Backend
 {
@@ -78,10 +79,10 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
             }
 
             string path = $"~/Tenants/{this.Tenant}/Areas/Frapid.WebsiteBuilder/Themes/{themeName}/";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             if (path == null ||
-                !Directory.Exists(path))
+                !Storage.DirectoryExists(path))
             {
                 return this.Failed("Path not found", HttpStatusCode.NotFound);
             }

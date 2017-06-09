@@ -28,12 +28,12 @@ namespace Frapid.Configuration
                 return domains;
             }
 
-            if (!File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return domains;
             }
 
-            string contents = File.ReadAllText(path, Encoding.UTF8);
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
             domains = JsonConvert.DeserializeObject<List<ApprovedDomain>>(contents);
 
             return domains ?? new List<ApprovedDomain>();
@@ -85,7 +85,7 @@ namespace Frapid.Configuration
                 return;
             }
 
-            File.WriteAllText(path, contents, new UTF8Encoding(false));
+            Storage.WriteAllText(path, contents, new UTF8Encoding(false));
         }
     }
 }

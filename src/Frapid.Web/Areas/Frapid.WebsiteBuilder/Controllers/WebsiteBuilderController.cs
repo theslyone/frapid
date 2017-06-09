@@ -15,8 +15,8 @@ namespace Frapid.WebsiteBuilder.Controllers
             string theme = this.GetTheme();
 
             this.ViewBag.LayoutPath = GetLayoutPath(this.Tenant);
-            this.ViewBag.Layout = this.GetLayout(theme);
-            this.ViewBag.HomepageLayout = this.GetHomepageLayout(theme);
+            this.ViewBag.Layout = GetLayout(theme);
+            this.ViewBag.HomepageLayout = GetHomepageLayout(theme);
 
             Log.Verbose($"The layout path for \"{this.CurrentPageUrl}\" is \"{this.ViewBag.LayoutPath}\".");
             Log.Verbose($"The layout for \"{this.CurrentPageUrl}\" is \"{this.ViewBag.Layout}\".");
@@ -43,9 +43,9 @@ namespace Frapid.WebsiteBuilder.Controllers
         {
             string layout = Configuration.GetCurrentThemePath(tenant);
 
-            string layoutDirectory = HostingEnvironment.MapPath(layout);
+            string layoutDirectory = Storage.MapPath(layout);
 
-            if (layoutDirectory != null && Directory.Exists(layoutDirectory))
+            if (layoutDirectory != null && Storage.DirectoryExists(layoutDirectory))
             {
                 return layout;
             }
@@ -98,19 +98,20 @@ namespace Frapid.WebsiteBuilder.Controllers
             Log.Verbose($"Resolved tenant \"{tenant}\" and theme \"{theme}\".");
 
             string overridePath = $"~/Tenants/{tenant}/Areas/Frapid.WebsiteBuilder/Themes/{theme}/Areas/{areaName}/Views/" + path;
+
             Log.Verbose($"Checking if there is an overridden view present on the theme path \"{overridePath}\".");
 
-            if (System.IO.File.Exists(HostingEnvironment.MapPath(overridePath)))
+            if (Storage.FileExists(Storage.MapPath(overridePath)))
             {
                 Log.Verbose($"The view \"{path}\" was overridden by the theme \"{theme}\".");
                 return overridePath;
             }
 
             overridePath = $"~/Tenants/{tenant}/Areas/{areaName}/Views/" + path;
-
+            
             Log.Verbose($"Checking if there is an overridden view present on the tenant path \"{overridePath}\".");
 
-            if (System.IO.File.Exists(HostingEnvironment.MapPath(overridePath)))
+            if (Storage.FileExists(Storage.MapPath(overridePath)))
             {
                 Log.Verbose($"The view \"{path}\" was overridden by the tenant \"{tenant}\".");
                 return overridePath;

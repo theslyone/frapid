@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Frapid.Configuration;
+using System.IO;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
@@ -18,25 +19,25 @@ namespace Frapid.Dashboard.Controllers
         private string GetCustomJavascriptPath()
         {
             string path = Configuration.GetCurrentThemePath(this.Tenant) + "/custom.js";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
-            return !System.IO.File.Exists(path) ? string.Empty : "/dashboard/my/template/custom.js";
+            return !Storage.FileExists(path) ? string.Empty : "/dashboard/my/template/custom.js";
         }
 
         private string GetCustomStylesheetPath()
         {
             string path = Configuration.GetCurrentThemePath(this.Tenant) + "/custom.css";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
-            return !System.IO.File.Exists(path) ? string.Empty : "/dashboard/my/template/custom.css";
+            return !Storage.FileExists(path) ? string.Empty : "/dashboard/my/template/custom.css";
         }
 
         private string GetLayoutPath()
         {
             string layout = Configuration.GetCurrentThemePath(this.Tenant);
-            string layoutDirectory = HostingEnvironment.MapPath(layout);
+            string layoutDirectory = Storage.MapPath(layout);
 
-            if (layoutDirectory != null && Directory.Exists(layoutDirectory))
+            if (layoutDirectory != null && Storage.DirectoryExists(layoutDirectory))
             {
                 return layout;
             }

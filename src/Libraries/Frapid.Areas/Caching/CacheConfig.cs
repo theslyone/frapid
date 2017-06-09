@@ -7,6 +7,7 @@ using System.Web.UI;
 using DevTrends.MvcDonutCaching;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Frapid.Configuration;
 
 namespace Frapid.Areas.Caching
 {
@@ -28,18 +29,18 @@ namespace Frapid.Areas.Caching
 
         public static CacheConfig Get(string tenant, string profile)
         {
-            string path = HostingEnvironment.MapPath($"~/Tenants/{tenant}/Configs/OutputCache.json");
+            string path = Storage.MapPath($"~/Tenants/{tenant}/Configs/OutputCache.json");
             if (path == null)
             {
                 return null;
             }
 
-            if (!File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return null;
             }
 
-            string contents = File.ReadAllText(path, Encoding.UTF8);
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
             var profiles = JsonConvert.DeserializeObject<List<CacheConfig>>(contents);
 
             return profiles.FirstOrDefault(item => item.CacheProfile.ToUpperInvariant().Equals(profile.ToUpperInvariant()));

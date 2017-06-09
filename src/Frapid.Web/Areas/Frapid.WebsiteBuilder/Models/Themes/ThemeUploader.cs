@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Hosting;
 using Frapid.Framework;
 using Serilog;
+using Frapid.Configuration;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
@@ -62,9 +63,9 @@ namespace Frapid.WebsiteBuilder.Models.Themes
 
         private string GetUploadDirectory(string tenant)
         {
-            string uploadDirectory = HostingEnvironment.MapPath($"~/Tenants/{tenant}/Temp/");
+            string uploadDirectory = Storage.MapPath($"~/Tenants/{tenant}/Temp/");
 
-            if (uploadDirectory == null || !Directory.Exists(uploadDirectory))
+            if (uploadDirectory == null || !Storage.DirectoryExists(uploadDirectory))
             {
                 Log.Warning("Could not upload theme because the temporary directory {uploadDirectory} does not exist.", uploadDirectory);
                 throw new ThemeUploadException(Resources.CouldNotUploadThemeCheckLogs);
@@ -86,11 +87,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             }
 
             var stream = this.PostedFile.InputStream;
-
-            using (var fileStream = File.Create(this.ArchivePath))
-            {
-                stream.CopyTo(fileStream);
-            }
+            Storage.CreateFile(this.ArchivePath, stream);
         }
 
         private void ExtractTheme()
@@ -111,7 +108,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         {
             string configFile = Path.Combine(this.ExtractedDirectory, "Theme.config");
 
-            if (!File.Exists(configFile))
+            if (!Storage.FileExists(configFile))
             {
                 return false;
             }
@@ -131,7 +128,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         {
             string source = this.ExtractedDirectory;
             string destination =
-                HostingEnvironment.MapPath(
+                Storage.MapPath(
                     $"~/Tenants/{tenant}/Areas/Frapid.WebsiteBuilder/Themes/{this.ThemeInfo.ThemeName}");
 
             if (destination == null)
@@ -140,7 +137,7 @@ namespace Frapid.WebsiteBuilder.Models.Themes
                 throw new ThemeInstallException(Resources.CouldNotInstallThemeCheckLogs);
             }
 
-            if (Directory.Exists(destination))
+            if (Storage.DirectoryExists(destination))
             {
                 throw new ThemeInstallException(Resources.CouldNotInstallThemeBecauseItExists);
             }
@@ -175,13 +172,13 @@ namespace Frapid.WebsiteBuilder.Models.Themes
             }
             finally
             {
-                if (Directory.Exists(this.ArchivePath.Replace(".zip", "")))
+                if (Storage.DirectoryExists(this.ArchivePath.Replace(".zip", "")))
                 {
-                    Directory.Delete(this.ArchivePath.Replace(".zip", ""), true);
+                    Storage.DeleteDirectory(this.ArchivePath.Replace(".zip", ""), true);
                 }
-                if (File.Exists(this.ArchivePath))
+                if (Storage.FileExists(this.ArchivePath))
                 {
-                    File.Delete(this.ArchivePath);
+                    Storage.DeleteFile(this.ArchivePath);
                 }
             }
         }

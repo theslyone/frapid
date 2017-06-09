@@ -6,6 +6,8 @@ obj
 *.suo
 *.user
 .my
+src/Frapid.Web/bower_components/
+src/Frapid.Web/lib/
 src/Frapid.Web/Backups/
 src/Frapid.Web/favicon
 src/Frapid.Web/Tenants/

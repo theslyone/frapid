@@ -26,9 +26,9 @@ namespace Frapid.AssetBundling
         {
             string pathToFile = PathMapper.MapPath(fileName);
 
-            if (File.Exists(pathToFile))
+            if (Storage.FileExists(pathToFile))
             {
-                return File.ReadAllText(pathToFile, Encoding.UTF8);
+                return Storage.ReadAllText(pathToFile, Encoding.UTF8);
             }
 
             return string.Empty;

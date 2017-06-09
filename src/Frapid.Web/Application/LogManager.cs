@@ -16,7 +16,7 @@ namespace Frapid.Web.Application
 
             if (string.IsNullOrWhiteSpace(path))
             {
-                return HostingEnvironment.MapPath("~/Resource/Temp");
+                return Storage.MapPath("~/Resource/Temp");
             }
 
             if (!Directory.Exists(path))

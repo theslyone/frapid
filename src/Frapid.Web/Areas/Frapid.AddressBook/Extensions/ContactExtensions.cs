@@ -10,6 +10,7 @@ using Frapid.Framework.Extensions;
 using MixERP.Net.VCards;
 using MixERP.Net.VCards.Models;
 using MixERP.Net.VCards.Types;
+using Frapid.Configuration;
 
 namespace Frapid.AddressBook.Extensions
 {
@@ -174,22 +175,24 @@ namespace Frapid.AddressBook.Extensions
             }
             
             string relativePath = $"/Tenants/{tenant}/Areas/Frapid.AddressBook/avatars";
-            string path = HostingEnvironment.MapPath(relativePath);
+            string path = Storage.MapPath(relativePath);
 
-            if (path == null || !Directory.Exists(path))
+            if (path == null || !Storage.DirectoryExists(path))
             {
                 return null;
             }
 
             var extensions = new[] {".png", ".jpg", ".jpeg", ".gif"};
-            var directory = new DirectoryInfo(path);
 
-            var candidate = directory.GetFiles().FirstOrDefault(
-                f => Path.GetFileNameWithoutExtension(f.Name) == contact.ContactId.ToString()
-                     && extensions.Select(x => x.ToLower()).Contains(f.Extension.ToLower())
+            var files = Storage.GetFiles(path, extensions);
+
+            var candidate = files.FirstOrDefault(
+                file => Path.GetFileNameWithoutExtension(file) == userId
+                     && extensions.Select(x => x.ToLower()).Contains(Path.GetExtension(file).ToLower())
                 );
 
-            string fileName = candidate?.Name ?? string.Empty;
+
+            string fileName = candidate ?? string.Empty;
 
             if (string.IsNullOrWhiteSpace(fileName))
             {

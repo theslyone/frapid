@@ -6,9 +6,9 @@ function setRegionalFormat()
 
 	var candidates = $("input.decimal:not(.hasCleave):not(:disabled):not([readonly]), input.decimal4:not(.hasCleave):not(:disabled):not([readonly]), input.integer:not(.hasCleave):not(:disabled):not([readonly]), input.currency:not(.hasCleave):not(:disabled):not([readonly])");	
 	$.each(candidates, function(){
-		var el = $(this).addClass("hasCleave");
-		var prefix = "";
-		var decimalPlaces = currencyDecimalPlaces;
+	    var el = $(this).addClass("hasCleave");
+	    var prefix = "";
+	    var decimalPlaces = window.currencyDecimalPlaces || 2;
 		
 		if(el.is(".currency")){
 			prefix = window.currencySymbol;
@@ -78,7 +78,7 @@ function getRawCleaveValue(el){
 		cleave = new Cleave(el, {
 			numeral: true,
 			numeralThousandsGroupStyle: 'thousand',
-			numeralDecimalScale: currencyDecimalPlaces,
+			numeralDecimalScale: window.currencyDecimalPlaces || 2,
 			numeralDecimalMark: decimalSeparator,
 			delimiter: thousandSeparator
 		});		

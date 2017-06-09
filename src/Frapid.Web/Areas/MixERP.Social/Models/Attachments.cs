@@ -17,9 +17,9 @@ namespace MixERP.Social.Models
             string path = $"/Tenants/{tenant}/Areas/MixERP.Social/uploads/";
             path = PathMapper.MapPath(path);
 
-            if (!Directory.Exists(path))
+            if (!Storage.DirectoryExists(path))
             {
-                Directory.CreateDirectory(path);
+                Storage.CreateDirectory(path);
             }
 
             return path;
@@ -53,11 +53,8 @@ namespace MixERP.Social.Models
             var stream = file.InputStream;
             string path = Path.Combine(uploadDirectory, savedFile);
 
-            using (var fileStream = File.Create(path))
-            {
-                stream.CopyTo(fileStream);
-            }
-
+            Storage.CreateFile(path, stream);
+            
             return new UploadedFile
             {
                 OriginalFileName = fileName,

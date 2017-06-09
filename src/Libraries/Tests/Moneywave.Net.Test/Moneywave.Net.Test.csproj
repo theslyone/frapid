@@ -7,8 +7,8 @@
     <ProjectGuid>{0F9680BB-765D-4010-A66C-CAF6956ACF47}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Moneywave.Net.Test</RootNamespace>
-    <AssemblyName>Moneywave.Net.Test</AssemblyName>
+    <RootNamespace>Integrations.Test</RootNamespace>
+    <AssemblyName>Integrations.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -75,6 +75,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="BvnApiTests.cs" />
     <Compile Include="MobileAirtimeApiTests.cs" />
     <Compile Include="FlutterwaveApiTests.cs" />
     <Compile Include="KeyGenerator.cs" />
@@ -83,6 +84,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Integrations\Bvn.Net\Bvn.Net.csproj">
+      <Project>{750a1a54-3387-4050-9e70-a1b946464461}</Project>
+      <Name>Bvn.Net</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Integrations\Flutterwave.BillPayment\Flutterwave.BillPayment.csproj">
       <Project>{713F19ED-08A6-4D13-BA90-B6AB8DAFF43A}</Project>
       <Name>Flutterwave.BillPayment</Name>

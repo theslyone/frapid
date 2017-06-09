@@ -38,7 +38,7 @@ namespace Frapid.DbPolicy
         private static int GetTotalCacheDuration(string tenant)
         {
             string configFile = PathMapper.MapPath($"~/Tenants/{tenant}/Configs/Frapid.config");
-            string config = !File.Exists(configFile) ? string.Empty : ConfigurationManager.ReadConfigurationValue(configFile, "AccessPolicyCacheDurationInSeconds");
+            string config = !Storage.FileExists(configFile) ? string.Empty : ConfigurationManager.ReadConfigurationValue(configFile, "AccessPolicyCacheDurationInSeconds");
 
             return string.IsNullOrWhiteSpace(config) ? 60 : config.To<int>();
         }

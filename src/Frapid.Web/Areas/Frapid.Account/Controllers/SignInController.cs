@@ -13,6 +13,8 @@ using Frapid.Framework.Extensions;
 using Mapster;
 using Serilog;
 using SignIn = Frapid.Account.ViewModels.SignIn;
+using System;
+using Frapid.TokenManager;
 
 namespace Frapid.Account.Controllers
 {
@@ -71,6 +73,27 @@ namespace Frapid.Account.Controllers
                 return this.AccessDenied();
             }
         }
+
+        [Route("account/validate-token")]
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ValidateToken()
+        {          
+            try
+            {
+                if(AppUser != null && !string.IsNullOrWhiteSpace(AppUser.ClientToken))
+                {
+                    return OnValidateToken(AppUser);
+                }
+            }
+            catch (DbException ex)
+            {
+                Log.Information(ex.Message);
+                return this.AccessDenied();
+            }
+            return this.Failed("Token invalid", HttpStatusCode.BadRequest);
+        }
+
 
         [Route("account/sign-in/offices")]
         [Route("account/log-in/offices")]

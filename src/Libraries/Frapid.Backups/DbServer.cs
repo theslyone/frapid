@@ -34,7 +34,7 @@ namespace Frapid.Backups
         private string GetConfig(string key)
         {
             string path = DbProvider.GetDbConfigurationFilePath(this.Tenant);
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             return ConfigurationManager.ReadConfigurationValue(path, key);
         }

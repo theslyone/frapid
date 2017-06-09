@@ -25,7 +25,7 @@ $("#LoginForm").submit(function (e) {
 
     ajax.success(function (response) {
         if (response) {
-            localStorage.setItem("access_token", response);
+            localStorage.setItem("access_token", response.token);
             window.location = "/dashboard";
         } else {
             bigError.html(window.translate("AccessIsDenied"));

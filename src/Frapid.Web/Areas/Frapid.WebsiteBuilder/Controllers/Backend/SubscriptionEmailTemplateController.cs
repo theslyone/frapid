@@ -4,6 +4,7 @@ using Frapid.Areas.CSRF;
 using Frapid.Dashboard;
 using Frapid.Dashboard.Controllers;
 using Frapid.WebsiteBuilder.ViewModels;
+using Frapid.Configuration;
 
 namespace Frapid.WebsiteBuilder.Controllers.Backend
 {
@@ -33,7 +34,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         public ActionResult SaveWelcomeTemplate(Template model)
         {
             string path = this.GetWelcomeTemplatePath();
-            System.IO.File.WriteAllText(path, model.Contents, new UTF8Encoding(false));
+            Storage.WriteAllText(path, model.Contents, new UTF8Encoding(false));
             return this.Json("OK");
         }
 
@@ -42,7 +43,7 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
         public ActionResult SaveSubscriptionRemovedTemplate(Template model)
         {
             string path = this.GetSubscriptionRemovedTemplatePath();
-            System.IO.File.WriteAllText(path, model.Contents, new UTF8Encoding(false));
+            Storage.WriteAllText(path, model.Contents, new UTF8Encoding(false));
             return this.Json("OK");
         }
 
@@ -58,12 +59,12 @@ namespace Frapid.WebsiteBuilder.Controllers.Backend
 
         private Template GetModel(string path)
         {
-            if (!System.IO.File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return new Template();
             }
 
-            string contents = System.IO.File.ReadAllText(path, Encoding.UTF8);
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
 
             return new Template
             {

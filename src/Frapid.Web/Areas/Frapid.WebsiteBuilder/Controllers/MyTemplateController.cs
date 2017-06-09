@@ -5,6 +5,7 @@ using System.Web.Hosting;
 using System.Web.Mvc;
 using Frapid.Areas;
 using Frapid.Areas.Caching;
+using Frapid.Configuration;
 
 namespace Frapid.WebsiteBuilder.Controllers
 {
@@ -26,7 +27,7 @@ namespace Frapid.WebsiteBuilder.Controllers
                 return this.HttpNotFound();
             }
 
-            string directory = HostingEnvironment.MapPath(Configuration.GetCurrentThemePath(this.Tenant));
+            string directory = Storage.MapPath(Configuration.GetCurrentThemePath(this.Tenant));
 
             if (directory == null)
             {
@@ -35,7 +36,7 @@ namespace Frapid.WebsiteBuilder.Controllers
 
             string path = Path.Combine(directory, resource);
 
-            if (!System.IO.File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 return this.HttpNotFound();
             }
@@ -48,7 +49,8 @@ namespace Frapid.WebsiteBuilder.Controllers
             }
 
             string mimeType = this.GetMimeType(path);
-            return this.File(path, mimeType);
+
+            return this.File(Storage.GetLocalFilePath(path), mimeType);
         }
 
         private string GetMimeType(string fileName)

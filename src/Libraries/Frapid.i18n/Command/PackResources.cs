@@ -124,19 +124,19 @@ namespace Frapid.i18n.Command
             string target = this.GetPackingTarget(language);
             string contents = ResourceSerializer.GetSerializedResources(resources);
 
-            File.WriteAllText(target, contents, new UTF8Encoding(false));
+            Storage.WriteAllText(target, contents, new UTF8Encoding(false));
         }
 
         private Dictionary<string, string> GetResourcesFrom(string path)
         {
             string file = Path.Combine(path, "resources.yaml");
 
-            if (!File.Exists(file))
+            if (!Storage.FileExists(file))
             {
                 return new Dictionary<string, string>();
             }
 
-            string contents = File.ReadAllText(file, Encoding.UTF8);
+            string contents = Storage.ReadAllText(file, Encoding.UTF8);
             var deserializer = new Deserializer();
             return deserializer.Deserialize<Dictionary<string, string>>(contents);
         }

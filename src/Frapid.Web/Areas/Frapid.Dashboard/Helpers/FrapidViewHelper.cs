@@ -2,6 +2,7 @@
 using System.IO;
 using System.Web.Hosting;
 using Frapid.Areas;
+using Frapid.Configuration;
 
 namespace Frapid.Dashboard.Helpers
 {
@@ -20,7 +21,7 @@ namespace Frapid.Dashboard.Helpers
             string overridePath = "~/Tenants/{0}/Areas/Frapid.Dashboard/Themes/{1}/Areas/{2}/Views/" + path;
             overridePath = string.Format(CultureInfo.InvariantCulture, overridePath, tenant, theme, areaName);
 
-            if (File.Exists(HostingEnvironment.MapPath(overridePath)))
+            if (Storage.FileExists(Storage.MapPath(overridePath)))
             {
                 return overridePath;
             }
@@ -29,7 +30,7 @@ namespace Frapid.Dashboard.Helpers
             overridePath = "~/Tenants/{0}/Areas/{1}/Themes/{2}/Views/" + path;
             overridePath = string.Format(CultureInfo.InvariantCulture, overridePath, tenant, areaName, theme);
 
-            if (File.Exists(HostingEnvironment.MapPath(overridePath)))
+            if (Storage.FileExists(Storage.MapPath(overridePath)))
             {
                 return overridePath;
             }
@@ -37,7 +38,7 @@ namespace Frapid.Dashboard.Helpers
             overridePath = "~/Tenants/{0}/Areas/{1}/Views/" + path;
             overridePath = string.Format(CultureInfo.InvariantCulture, overridePath, tenant, areaName);
 
-            if (File.Exists(HostingEnvironment.MapPath(overridePath)))
+            if (Storage.FileExists(Storage.MapPath(overridePath)))
             {
                 return overridePath;
             }

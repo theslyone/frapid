@@ -18,16 +18,15 @@ namespace Frapid.Dashboard.Controllers
         public ActionResult GetThemes()
         {
             string path = $"~/Tenants/{this.Tenant}/Areas/Frapid.Dashboard/Themes";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             if(path == null ||
-               !Directory.Exists(path))
+               !Storage.DirectoryExists(path))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
 
-            var directories = Directory.GetDirectories(path);
-            var templates = directories.Select(directory => new DirectoryInfo(directory).Name).ToList();
+            var templates = Storage.GetDirectories(path);
 
             return this.Ok(templates);
         }
@@ -43,18 +42,18 @@ namespace Frapid.Dashboard.Controllers
             }
 
             string path = $"~/Tenants/{this.Tenant}/Areas/Frapid.Dashboard/Themes/{themeName}";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             if(path == null ||
-               !Directory.Exists(path))
+               !Storage.DirectoryExists(path))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
             path = $"~/Tenants/{this.Tenant}/Areas/Frapid.Dashboard/Dashboard.config";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
-            if(path == null || !System.IO.File.Exists(path))
+            if(path == null || !Storage.FileExists(path))
             {
                 return new HttpStatusCodeResult(HttpStatusCode.InternalServerError);
             }

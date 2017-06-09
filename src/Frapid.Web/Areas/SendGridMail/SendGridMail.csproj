@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7A5D03B8-72EB-4CD3-A606-BD81FAB083F5}</ProjectGuid>
+    <ProjectGuid>{467C9EA2-27EB-407D-949C-031F0E4C88C5}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -156,6 +156,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe" />
+    <Content Include="db\PostgreSQL\2.x\2.0\index.html" />
+    <Content Include="db\PostgreSQL\2.x\2.0\sendgrid-blank.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\03.menus\menus.sql" />
+    <Content Include="db\PostgreSQL\sendgrid-blank.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe" />
+    <Content Include="db\SQL Server\2.x\2.0\index.html" />
+    <Content Include="db\SQL Server\2.x\2.0\sendgrid-blank.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\03.menus\menus.sql" />
+    <Content Include="db\SQL Server\sendgrid-blank.sql" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +175,16 @@
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="Views\Backend\Index.cshtml" />
+    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-with-sample.bat" />
+    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-without-sample.bat" />
+    <Content Include="db\PostgreSQL\2.x\2.0\sendgrid.sqlbundle" />
+    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-with-sample.bat" />
+    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-without-sample.bat" />
+    <Content Include="db\SQL Server\2.x\2.0\sendgrid.sqlbundle" />
+    <Content Include="AppInfo.json" />
+    <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

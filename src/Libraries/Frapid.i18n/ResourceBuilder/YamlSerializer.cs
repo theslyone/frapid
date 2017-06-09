@@ -1,3 +1,4 @@
+using Frapid.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,7 @@ namespace Frapid.i18n.ResourceBuilder
 
             if (resources.Any())
             {
-                File.WriteAllText(path, builer.ToString(), new UTF8Encoding(false));
+                Storage.WriteAllText(path, builer.ToString(), new UTF8Encoding(false));
             }
         }
     }

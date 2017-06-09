@@ -27,10 +27,14 @@ namespace Frapid.WebsiteBuilder
 
         public static string Get(string tenant, string theme, string key)
         {
-            string path = Configuration.GetCurrentThemePath(tenant) + "/Theme.config";
-            path = HostingEnvironment.MapPath(path);
+            string themePath = Configuration.GetCurrentThemePath(tenant);
+            string path = themePath + "/Theme.config";
+            path = Storage.MapPath(path);
 
-            return !File.Exists(path) ? string.Empty : ConfigurationManager.ReadConfigurationValue(path, key);
+            string value = !Storage.FileExists(path) ? string.Empty : ConfigurationManager.ReadConfigurationValue(path, key);
+            if (!string.IsNullOrEmpty(value))
+                Storage.GetLocalFilePath(Path.Combine(themePath, value));
+            return value;
         }
     }
 }

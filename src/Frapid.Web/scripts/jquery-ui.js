@@ -27,7 +27,8 @@
 
 
 // $.ui might exist from components with no dependencies, e.g., $.ui.position
-$.ui = $.ui || {};
+$.ui = $.ui 
+;
 
 $.extend( $.ui, {
 	version: "1.11.3",

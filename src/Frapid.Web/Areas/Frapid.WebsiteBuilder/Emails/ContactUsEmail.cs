@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -27,12 +26,12 @@ namespace Frapid.WebsiteBuilder.Emails
 
             string file = PathMapper.MapPath(string.Format(CultureInfo.InvariantCulture, TemplatePath, tenant));
 
-            if (file == null || !File.Exists(file))
+            if (file == null || !Storage.FileExists(file))
             {
                 return fallback;
             }
 
-            string message = File.ReadAllText(file, Encoding.UTF8);
+            string message = Storage.ReadAllText(file, Encoding.UTF8);
 
             if (string.IsNullOrWhiteSpace(message))
             {

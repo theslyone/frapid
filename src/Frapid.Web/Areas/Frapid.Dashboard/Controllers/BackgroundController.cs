@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Web.Hosting;
 using System.Web.Mvc;
 using Frapid.Areas;
 using Frapid.Areas.Authorization;
+using Frapid.Configuration;
+using System.IO;
 
 namespace Frapid.Dashboard.Controllers
 {
@@ -16,17 +16,16 @@ namespace Frapid.Dashboard.Controllers
         [Route("dashboard/backgrounds")]
         public ActionResult Get()
         {
-            string resourceDirectory = HostingEnvironment.MapPath("~/Tenants/{0}/Areas/Frapid.Dashboard/Resources");
+            string resourceDirectory = Storage.MapPath("~/Tenants/{0}/Areas/Frapid.Dashboard/Resources", this.Tenant);
             string directory = "~/Tenants/{0}/Areas/Frapid.Dashboard/Resources/backgrounds";
-            directory = string.Format(CultureInfo.InvariantCulture, directory, this.Tenant);
-            directory = HostingEnvironment.MapPath(directory);
+            directory = Storage.MapPath(directory, this.Tenant);
 
             if (directory == null)
             {
                 return this.HttpNotFound();
             }
 
-            if (!Directory.Exists(directory))
+            if (!Storage.DirectoryExists(directory))
             {
                 return this.HttpNotFound();
             }
@@ -54,9 +53,7 @@ namespace Frapid.Dashboard.Controllers
         public IEnumerable<string> GetImages(string path, string resourceDirectory)
         {
             var imageFormats = new[] {".jpg", ".jpeg", ".png", ".gif", ".tiff", ".bmp"};
-            var directory = new DirectoryInfo(path);
-            var files = directory.EnumerateFiles().Where(f => imageFormats.Contains(f.Extension.ToLower()));
-            return Shuffle(files.Select(file => "/dashboard/resources/backgrounds/" + file.Name));
+            return Shuffle(Storage.GetFiles(path, imageFormats).Select(file => "/dashboard/resources/backgrounds/" + Path.GetFileName(file)));
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Web.Hosting;
 using System.Web.Mvc;
 
 namespace Frapid.Framework
@@ -13,6 +14,11 @@ namespace Frapid.Framework
             this.MasterLocationFormats = new[] {"~/Views/{1}/{0}.cshtml", "~/Views/Shared/{0}.cshtml"};
             this.PartialViewLocationFormats = new[] {"~/Views/{1}/{0}.cshtml", "~/Views/Shared/{0}.cshtml"};
             this.FileExtensions = new[] {"cshtml"};
+        }
+
+        public FrapidRazorViewEngine(VirtualPathProvider provider) : this()
+        {
+            VirtualPathProvider = provider ?? HostingEnvironment.VirtualPathProvider;
         }
     }
 }

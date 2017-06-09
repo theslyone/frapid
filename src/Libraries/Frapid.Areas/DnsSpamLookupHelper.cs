@@ -2,9 +2,9 @@
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Web.Hosting;
 using Frapid.ApplicationState.CacheFactory;
 using Frapid.Areas.SpamTrap;
+using Frapid.Configuration;
 
 namespace Frapid.Areas
 {
@@ -13,16 +13,16 @@ namespace Frapid.Areas
         private static string[] GetRblServers(string tenant)
         {
             //Check RBL server list in tenant directory.
-            string path = HostingEnvironment.MapPath($"/Tenants/{tenant}/Configs/RblServers.config");
+            string path = Storage.MapPath($"/Tenants/{tenant}/Configs/RblServers.config");
 
-            if (!File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 //Fallback to shared RBL server list.
-                path = HostingEnvironment.MapPath($"/Resources/Configs/RblServers.config");
+                path = Storage.MapPath($"/Resources/Configs/RblServers.config");
             }
 
             if (path == null ||
-                !File.Exists(path))
+                !Storage.FileExists(path))
             {
                 return new[]
                 {
@@ -30,7 +30,7 @@ namespace Frapid.Areas
                 };
             }
 
-            string contents = File.ReadAllText(path, Encoding.UTF8);
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
 
             return contents.Split
                 (

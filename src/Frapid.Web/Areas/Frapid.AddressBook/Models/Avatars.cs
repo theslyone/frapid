@@ -26,7 +26,7 @@ namespace Frapid.AddressBook.Models
         public static string GetAvatarImagePath(string tenant, string contactId)
         {
             string path = $"~/Tenants/{tenant}/Areas/Frapid.AddressBook/avatars/";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
             if (path == null || !Directory.Exists(path))
             {

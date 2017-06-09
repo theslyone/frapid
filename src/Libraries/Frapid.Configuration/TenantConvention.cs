@@ -5,7 +5,6 @@ using Frapid.Configuration.TenantServices;
 using Frapid.Configuration.TenantServices.Contracts;
 using Frapid.Framework;
 using Serilog;
-
 namespace Frapid.Configuration
 {
     public class TenantConvention
@@ -168,7 +167,6 @@ namespace Frapid.Configuration
         {
             return System.Configuration.ConfigurationManager.AppSettings["DefaultTenant"];
         }
-
         #endregion
     }
 }

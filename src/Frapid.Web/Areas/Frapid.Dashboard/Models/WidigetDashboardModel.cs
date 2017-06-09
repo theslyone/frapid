@@ -14,10 +14,7 @@ namespace Frapid.Dashboard.Models
 
         public static List<string> GetAreas()
         {
-            var areaRoot = new DirectoryInfo(PathMapper.MapPath("/Areas"));
-            var directories = areaRoot.GetDirectories().Where(x => x.GetDirectories("widgets", SearchOption.AllDirectories).Any());
-
-            return directories.Select(directory => directory.Name).ToList();
+            return Storage.GetDirectories(PathMapper.MapPath("/Areas"), "widgets");           
         }
 
         public static List<string> GetWidgets(string areaName)
@@ -26,15 +23,12 @@ namespace Frapid.Dashboard.Models
             string areaRoot = PathMapper.MapPath("/Areas");
             string widgetPath = Path.Combine(areaRoot, $"{areaName}/widgets");
 
-            if (!Directory.Exists(widgetPath))
+            if (!Storage.DirectoryExists(widgetPath))
             {
                 return widgets;
             }
 
-            var directory = new DirectoryInfo(widgetPath);
-            var files = directory.GetFiles("*.html", SearchOption.TopDirectoryOnly);
-            widgets.AddRange(files.Select(file => file.Name.Replace(".html", "")));
-
+            widgets.AddRange(Storage.GetFiles(widgetPath, "*.html").Select(file => file.Replace(".html", "")));
             return widgets;
         }
 
@@ -49,12 +43,12 @@ namespace Frapid.Dashboard.Models
 
             string filePath = Path.Combine(container, SanitizePath(info.Name) + ".json");
 
-            if (!File.Exists(filePath))
+            if (!Storage.FileExists(filePath))
             {
                 return;
             }
 
-            File.Delete(filePath);
+            Storage.DeleteFile(filePath);
         }
 
         public static MyWidgetInfo GetMy(string tenant, MyWidgetInfo info)
@@ -62,12 +56,12 @@ namespace Frapid.Dashboard.Models
             string container = PathMapper.MapPath($"{WidgetLocation.Replace("{tenant}", tenant)}/{info.Scope}/{info.Me}");
             string filePath = Path.Combine(container, SanitizePath(info.Name) + ".json");
 
-            if (!File.Exists(filePath))
+            if (!Storage.FileExists(filePath))
             {
                 return info;
             }
 
-            string contents = File.ReadAllText(filePath, new UTF8Encoding(false));
+            string contents = Storage.ReadAllText(filePath, new UTF8Encoding(false));
             info = JsonConvert.DeserializeObject<MyWidgetInfo>(contents);
 
             return info;
@@ -78,12 +72,12 @@ namespace Frapid.Dashboard.Models
             var widgets = new List<MyWidgetInfo>();
 
             string container = PathMapper.MapPath($"{WidgetLocation.Replace("{tenant}", tenant)}/{scope}/{userId}");
-            if (!Directory.Exists(container))
+            if (!Storage.DirectoryExists(container))
             {
                 return widgets;
             }
 
-            var files = new DirectoryInfo(container).GetFiles("*.json");
+            var files = Storage.GetFiles(container, "*.json");
             if (!files.Any())
             {
                 return widgets;
@@ -91,7 +85,7 @@ namespace Frapid.Dashboard.Models
 
             foreach (var file in files)
             {
-                string contents = File.ReadAllText(file.FullName, new UTF8Encoding(false));
+                string contents = Storage.ReadAllText(file/*.FullName*/, new UTF8Encoding(false));
                 var info = JsonConvert.DeserializeObject<MyWidgetInfo>(contents);
                 widgets.Add(info);
             }
@@ -103,9 +97,9 @@ namespace Frapid.Dashboard.Models
         {
             string container = PathMapper.MapPath($"{WidgetLocation.Replace("{tenant}", tenant)}/{info.Scope}/{info.Me}");
 
-            if (!Directory.Exists(container))
+            if (!Storage.DirectoryExists(container))
             {
-                Directory.CreateDirectory(container);
+                Storage.CreateDirectory(container);
             }
 
             string filePath = Path.Combine(container, SanitizePath(info.Name) + ".json");

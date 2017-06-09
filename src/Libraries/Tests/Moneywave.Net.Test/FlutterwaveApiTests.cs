@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.CSharp;
 using Xunit;
-using Moneywave.Net.Test.Models;
+using Integrations.Test.Models;
 using Newtonsoft.Json.Linq;
 using System.Dynamic;
 using Newtonsoft.Json.Converters;
 
-namespace Moneywave.Net.Test
+namespace Integrations.Test
 {
     public class BillPaymentFixture : IDisposable
     {

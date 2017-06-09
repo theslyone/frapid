@@ -1,4 +1,5 @@
-﻿using System.Web.Hosting;
+﻿using Frapid.Configuration;
+using System.Web.Hosting;
 
 namespace Frapid.WebsiteBuilder.Models.Themes
 {
@@ -16,9 +17,9 @@ namespace Frapid.WebsiteBuilder.Models.Themes
         public string Locate(string tenant)
         {
             string path = $"~/Tenants/{tenant}/Areas/Frapid.WebsiteBuilder/Themes/{this.ThemeName}/{this.File}";
-            path = HostingEnvironment.MapPath(path);
+            path = Storage.MapPath(path);
 
-            if (!System.IO.File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 throw new ThemeFileLocationException(Resources.CouldNotLocateRequestedFile);
             }

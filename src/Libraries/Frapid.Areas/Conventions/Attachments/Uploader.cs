@@ -9,7 +9,7 @@ using Serilog;
 
 namespace Frapid.Areas.Conventions.Attachments
 {
-    public class Uploader
+    public class Uploader : IUploader
     {
         public Uploader(ILogger logger, AreaRegistration area, HttpFileCollectionBase files, string tenant, string[] allowedExtensions, bool keepOriginalFileNames = false)
         {
@@ -53,7 +53,7 @@ namespace Frapid.Areas.Conventions.Attachments
             {
                 throw new UploadException(Resources.NoFileWasUploaded);
             }
-
+            
             string path = PathMapper.MapPath($"/Tenants/{this.Tenant}/Areas/{this.Area.AreaName}/attachments/");
 
             if (path == null)
@@ -61,13 +61,13 @@ namespace Frapid.Areas.Conventions.Attachments
                 this.Logger.Warning("The attachment directory could not be located.");
             }
 
-            if (!Directory.Exists(path))
+            if (!Storage.DirectoryExists(path))
             {
                 this.Logger.Warning("The attachment directory \"{path}\" does not exist.", path);
 
                 if (path != null)
                 {
-                    Directory.CreateDirectory(path);
+                    Storage.CreateDirectory(path);
                 }
             }
 
@@ -93,7 +93,7 @@ namespace Frapid.Areas.Conventions.Attachments
             if (this.KeepOrignalFileNames && !string.IsNullOrWhiteSpace(path))
             {
                 path = Path.Combine(path, id);
-                Directory.CreateDirectory(path);
+                Storage.CreateDirectory(path);
             }
             else
             {
@@ -107,10 +107,7 @@ namespace Frapid.Areas.Conventions.Attachments
 
             path = Path.Combine(path, fileName);
 
-            using (var fileStream = System.IO.File.Create(path))
-            {
-                stream.CopyTo(fileStream);
-            }
+            Storage.CreateFile(path, stream);
 
             if (this.KeepOrignalFileNames)
             {

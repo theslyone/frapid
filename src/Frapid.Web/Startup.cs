@@ -10,6 +10,8 @@ using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
+using System.Web.Hosting;
+using Frapid.Configuration;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace Frapid.Web
@@ -44,7 +46,11 @@ namespace Frapid.Web
 
 
             ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new FrapidRazorViewEngine());
+
+            VirtualPathProvider VirtualPathProvider = new FrapidVirtualPathProvider();
+            HostingEnvironment.RegisterVirtualPathProvider(VirtualPathProvider);
+            ViewEngines.Engines.Add(new FrapidRazorViewEngine(VirtualPathProvider));
+            
             LogManager.InternalizeLogger();
             //AreaRegistration.RegisterAllAreas();
             WebApiConfig.Register(GlobalConfiguration.Configuration);

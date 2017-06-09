@@ -54,7 +54,7 @@ namespace Frapid.i18n.Command
 
             path = string.Format(path, directory, this.AppName);
 
-            if (!File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 CommandProcessor.DisplayError(string.Empty, "Invalid application name \"{0}\".", this.AppName);
                 return;
