@@ -116,7 +116,7 @@ function loadFilterForEdit() {
 
     var filterName = $("#FilterSelect").getSelectedText();
     $("#FilterName").html(filterName);
-    $("#FilterNameInputText").val(filterName);
+    $("#FilterNameInputText").val(filterName).trigger("change");
 
     var ajax = request(filterName);
 

@@ -20,6 +20,7 @@ CREATE TABLE social.feeds
     scope                           national character varying(100),
     is_public                       bit NOT NULL DEFAULT(1),
     parent_feed_id                  bigint REFERENCES social.feeds,
+	url								national character varying(4000),
     audit_ts                        DATETIMEOFFSET NOT NULL DEFAULT(GETUTCDATE()),
     deleted                         bit NOT NULL DEFAULT(0),
     deleted_on                      DATETIMEOFFSET,
@@ -162,7 +163,7 @@ DROP FUNCTION social.get_next_top_feeds;
 
 GO
 
-CREATE FUNCTION social.get_next_top_feeds(@user_id integer, @last_feed_id bigint, @parent_feed_id bigint)
+CREATE FUNCTION social.get_next_top_feeds(@user_id integer, @last_feed_id bigint, @parent_feed_id bigint, @url national character varying(4000))
 RETURNS @results TABLE
 (
     row_number                      bigint,
@@ -204,6 +205,7 @@ BEGIN
     WHERE social.feeds.deleted = 0
     AND (@last_feed_id = 0 OR social.feeds.feed_id < @last_feed_id)
     AND COALESCE(social.feeds.parent_feed_id, 0) = COALESCE(@parent_feed_id, 0)
+	AND COALESCE(social.feeds.url, '') = COALESCE(@url, '')
     AND 
     (
         social.feeds.is_public = 1
@@ -292,7 +294,7 @@ END;
 
 GO
 
---SELECT * FROM social.get_next_top_feeds(1, 0, 0);
+--SELECT * FROM social.get_next_top_feeds(1, 0, 0, '');
 
 
 

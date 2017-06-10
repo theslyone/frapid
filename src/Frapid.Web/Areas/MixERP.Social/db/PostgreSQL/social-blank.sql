@@ -16,6 +16,7 @@ CREATE TABLE social.feeds
     scope                           national character varying(100),
     is_public                       boolean NOT NULL DEFAULT(true),
     parent_feed_id                  bigint REFERENCES social.feeds,
+	url								text,
     audit_ts                        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
     deleted                         boolean NOT NULL DEFAULT(false),
     deleted_on                      TIMESTAMP WITH TIME ZONE,
@@ -147,9 +148,9 @@ LANGUAGE plpgsql;
 
 
 -->-->-- src/Frapid.Web/Areas/MixERP.Social/db/PostgreSQL/2.x/2.0/src/02.functions-and-logic/social.get_next_top_feeds.sql --<--<--
-DROP FUNCTION IF EXISTS social.get_next_top_feeds(_user_id integer, _last_feed_id bigint, _parent_feed_id bigint);
+DROP FUNCTION IF EXISTS social.get_next_top_feeds(_user_id integer, _last_feed_id bigint, _parent_feed_id bigint, _url text);
 
-CREATE FUNCTION social.get_next_top_feeds(_user_id integer, _last_feed_id bigint, _parent_feed_id bigint)
+CREATE FUNCTION social.get_next_top_feeds(_user_id integer, _last_feed_id bigint, _parent_feed_id bigint, _url text)
 RETURNS TABLE
 (
     row_number                      bigint,
@@ -207,6 +208,7 @@ BEGIN
     WHERE NOT social.feeds.deleted
     AND (_last_feed_id = 0 OR social.feeds.feed_id < _last_feed_id)
     AND COALESCE(social.feeds.parent_feed_id, 0) = COALESCE(_parent_feed_id, 0)
+    AND COALESCE(social.feeds.url, '') = COALESCE(_url, '')
     AND 
     (
         social.feeds.is_public
@@ -283,7 +285,7 @@ END
 $$
 LANGUAGE plpgsql;
 
-SELECT * FROM social.get_next_top_feeds(1, 0, 0);
+--SELECT * FROM social.get_next_top_feeds(1, 0, 0, '');
 
 
 

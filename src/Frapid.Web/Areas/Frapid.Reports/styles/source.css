@@ -129,28 +129,26 @@ h1, h2 {
     width: 100%;
 }
 
-table {
+table:not(.borderless) {
     border: 1px solid #ddd;
     border-collapse: collapse;
 }
 
-    table td {
-        border: 1px solid #ddd;
+    table:not(.borderless) td {
         padding: 0.5em;
     }
 
-    table thead tr, table tfoot tr {
+    table:not(.borderless) thead tr, table tfoot tr {
         background-color: #efefef;
         text-transform: uppercase;
         font-size: 0.87em;
     }
 
-        table thead tr th, table tfoot tr th {
+        table:not(.borderless) thead tr th, table:not(.borderless) tfoot tr th {
             padding: 1em;
-            border: 1px solid #ddd;
         }
 
-    table tbody tr:nth-child(odd) {
+    table:not(.borderless) tbody tr:nth-child(odd) {
         background-color: #fafafa;
     }
 

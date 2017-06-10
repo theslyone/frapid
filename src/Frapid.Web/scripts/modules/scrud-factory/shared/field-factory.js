@@ -11,7 +11,7 @@
         .Where(function (x) { return x.property === propertyName }).ToArray()[0];
 
     if (hasKey) {
-        return $("<select class='ui search fluid dropdown' />");
+        return $("<select class='' />");//$("<select class='' />");
     };
 
     switch (dataType.replace("?")) {
@@ -34,12 +34,13 @@
         case "money_strict2":
         case "money_strict":
             return $("<input type='text' class='currency' />");
+        case "varchar":
         case "nvarchar":
             if (maxLength === -1) {
                 return $("<textarea />");
-            } else {
-                return $("<input type='text' />");
             };
+
+            return $("<input type='text' />");
         case "text":
             return $("<textarea />");
         case "datetimeoffset":
@@ -50,7 +51,7 @@
             return $("<input type='text' class='date' />");
         case "bool":
         case "bit":
-            var el = $("<select class='ui search dropdown' />");
+            var el = $("<select class='' />");//$("<select class='chosen' />");
             var option = "<option";
 
             if (nullable) {
@@ -82,7 +83,7 @@ function editScrudFormElement(targetEl, value) {
             //value = getTime(value);
         //};
 
-        targetEl.val(value);
+        targetEl.val(value).trigger("change");
 
         if (targetEl.attr("data-type") === "photo") {
             if (window.scrudFactory.uploadHanlder) {
@@ -107,9 +108,7 @@ function editScrudFormElement(targetEl, value) {
                 };
             };
 
-            //Todo: Remove Semantic UI Dropdown dependency 
-            //targetEl.dropdown("set selected", value.toString());
-            targetEl.val(value.toString());
+            targetEl.val(value.toString()).trigger("change");
             
             targetEl.trigger("blur");
             targetEl.trigger("change");

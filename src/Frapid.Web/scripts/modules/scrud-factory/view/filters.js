@@ -76,7 +76,7 @@ var getQuerystringFilters = function () {
             if (type) {
                 var targetEl = $("#filter_" + key);
                 if (targetEl.length) {
-                    targetEl.val(value);
+                    targetEl.val(value).trigger("change");
                 };
 
                 if (isString(item.key)) {
@@ -95,18 +95,12 @@ var getQuerystringFilters = function () {
 function loadFilterConditions() {
     var el = $('[data-scope="filter-condition"]');
     bindSelect(el, filterConditions, "value", "text");
-
-    //Todo: Remove Semantic UI Dropdown dependency 
-    //el.dropdown({placeholder: false, forceSelection: false});
 };
 
 function loadColumns() {
     var el = $('[data-scope="column"]');
     el.html("");
     bindSelect(el, localizedHeaders, "columnName", "localized");
-
-    //Todo: Remove Semantic UI Dropdown dependency 
-    //el.dropdown({placeholder: false, forceSelection: false});
 };
 
 $("#FilterNameInputText").keyup(function () {
@@ -126,7 +120,7 @@ filterConditionSelect.change(function () {
     };
 
     andInputText.attr("disabled", "disabled");
-    andInputText.val("");
+    andInputText.val("").trigger("change");
 });
 
 

@@ -541,7 +541,7 @@ CHECK
 
 DROP DOMAIN IF EXISTS public.decimal_strict CASCADE;
 CREATE DOMAIN public.decimal_strict
-AS decimal(30, 6)
+AS numeric(30, 6)
 CHECK
 (
     VALUE > 0
@@ -549,7 +549,7 @@ CHECK
 
 DROP DOMAIN IF EXISTS public.decimal_strict2 CASCADE;
 CREATE DOMAIN public.decimal_strict2
-AS decimal(30, 6)
+AS numeric(30, 6)
 CHECK
 (
     VALUE >= 0
@@ -778,7 +778,7 @@ SELECT 'WID', 'Widower',                false UNION ALL
 SELECT 'CIV', 'Civil Union',            true;
 
 INSERT INTO core.currencies(currency_code, currency_symbol, currency_name, hundredth_name)
-SELECT 'NPR', 'रू.',       'Nepali Rupees',        'paisa'     UNION ALL
+SELECT 'NPR', 'Rs ',       'Nepali Rupees',        'paisa'     UNION ALL
 SELECT 'USD', '$',      'United States Dollar', 'cents'     UNION ALL
 SELECT 'GBP', '£',      'Pound Sterling',       'penny'     UNION ALL
 SELECT 'EUR', '€',      'Euro',                 'cents'     UNION ALL

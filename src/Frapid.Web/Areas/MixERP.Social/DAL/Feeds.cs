@@ -13,23 +13,24 @@ using Frapid.Mapper.Query.NonQuery;
 using Frapid.Mapper.Query.Select;
 using Frapid.Mapper.Query.Update;
 using MixERP.Social.DTO;
+using MixERP.Social.ViewModels;
 
 namespace MixERP.Social.DAL
 {
     public static class Feeds
     {
-        public static async Task<IEnumerable<FeedItem>> GetFeedsAsync(string tenant, int userId, long lastFeedId, long parentFeedId)
+        public static async Task<IEnumerable<FeedItem>> GetFeedsAsync(string tenant, int userId, FeedQuery query)
         {
             using (var db = DbProvider.Get(FrapidDbServer.GetConnectionString(tenant), tenant).GetDatabase())
             {
-                string sql = "SELECT * FROM social.get_next_top_feeds(@0::integer, @1::bigint, @2::bigint);";
+                string sql = "SELECT * FROM social.get_next_top_feeds(@0::integer, @1::bigint, @2::bigint, @3::text);";
 
                 if (db.DatabaseType == DatabaseType.SqlServer)
                 {
-                    sql = "SELECT * FROM social.get_next_top_feeds(@0, @1, @2);";
+                    sql = "SELECT * FROM social.get_next_top_feeds(@0, @1, @2, @3);";
                 }
 
-                return await db.SelectAsync<FeedItem>(sql, userId, lastFeedId, parentFeedId).ConfigureAwait(false);
+                return await db.SelectAsync<FeedItem>(sql, userId, query.LastFeedId, query.ParentFeedId, query.Url).ConfigureAwait(false);
             }
         }
 

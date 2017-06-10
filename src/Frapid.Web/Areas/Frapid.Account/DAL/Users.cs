@@ -21,9 +21,22 @@ namespace Frapid.Account.DAL
             {
                 var sql = new Sql("SELECT * FROM account.users");
                 sql.Where("email=@0", email);
-                sql.And("deleted=@0",false);
+                sql.And("deleted=@0", false);
 
                 sql.Limit(db.DatabaseType, 1, 0, "user_id");
+
+                var awaiter = await db.SelectAsync<User>(sql).ConfigureAwait(false);
+                return awaiter.FirstOrDefault();
+            }
+        }
+
+        public static async Task<User> GetAsync(string tenant, int userId)
+        {
+            using (var db = DbProvider.Get(FrapidDbServer.GetConnectionString(tenant), tenant).GetDatabase())
+            {
+                var sql = new Sql("SELECT * FROM account.users");
+                sql.Where("user_id=@0", userId);
+                sql.And("deleted=@0", false);
 
                 var awaiter = await db.SelectAsync<User>(sql).ConfigureAwait(false);
                 return awaiter.FirstOrDefault();
@@ -51,7 +64,7 @@ namespace Frapid.Account.DAL
             using (var db = DbProvider.Get(FrapidDbServer.GetSuperUserConnectionString(tenant), tenant).GetDatabase())
             {
                 string encryptedPassword = EncryptPassword(model.Email, model.Password);
-                await db.NonQueryAsync("UPDATE account.users SET password = @0 WHERE user_id=@1;", encryptedPassword, model.UserId, encryptedPassword).ConfigureAwait(false);
+                await db.NonQueryAsync("UPDATE account.users SET password = @0 WHERE user_id=@1;", encryptedPassword, model.UserId).ConfigureAwait(false);
             }
         }
 

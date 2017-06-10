@@ -6,6 +6,7 @@
     "/scripts/jquery-ui/css/custom-theme/jquery-ui.css",
     "/scripts/semantic-ui/semantic.css",
     "/scripts/jquery.notify-1.0/css/jquery.notify.css",
+	"/scripts/chosen/chosen.css",
     "/styles/backend/frapid.css"
   ],
   "CacheDurationInMinutes": 10080

@@ -12,9 +12,6 @@
     loadMeta(loadFilterNames);
     loadFilterConditions();
 
-    //Todo: Remove Semantic UI Dropdown dependency 
-    //$("#ExportDropDown").dropdown({placeholder: false, forceSelection: false});
-
     if (window.scrudFactory.title) {
         $(".scrud.title").html(window.scrudFactory.title);
 
@@ -24,9 +21,9 @@
         };
     };
     if (window.scrudFactory.description) {
-        $("#description").html(window.scrudFactory.description).show();
+        $("#scrud-factory-description").html(window.scrudFactory.description).show();
     } else {
-        $("#description").remove();
+        $("#scrud-factory-description").remove();
     };
 
     if (typeof (window.scrudFactory.back) === "object") {

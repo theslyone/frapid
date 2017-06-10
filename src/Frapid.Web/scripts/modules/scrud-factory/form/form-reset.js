@@ -29,12 +29,12 @@
                 var search = el.find(".search");
                 var text = el.find(".text");
 
-                select.val("");
-                search.html("");
-                text.html("");
+                select.val("").trigger("change");
+                search.html("").trigger("change");
+                text.html("").trigger("change");
             };
         } else {
-            el.val(defaultValue);
+            el.val(defaultValue).trigger("change");
             el.attr("data-val", defaultValue);
         };
     });

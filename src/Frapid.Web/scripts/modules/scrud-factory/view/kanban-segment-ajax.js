@@ -1,5 +1,5 @@
 ﻿function addKanban() {
-    $("#KanbanIdInputText").val("");
+    $("#KanbanIdInputText").val("").trigger("change");
     $("#KanbanForm").modal("show");
 };
 
@@ -38,9 +38,9 @@ function editKanban(el) {
 
 
     if (kanbanId) {
-        $("#KanbanIdInputText").val(kanbanId);
-        $("#KanbanNameInputText").val(kanbanName);
-        $("#KanbanDescriptionTextArea").val(description);
+        $("#KanbanIdInputText").val(kanbanId).trigger("change");
+        $("#KanbanNameInputText").val(kanbanName).trigger("change");
+        $("#KanbanDescriptionTextArea").val(description).trigger("change");
 
         $("#KanbanForm").modal("show");
     };

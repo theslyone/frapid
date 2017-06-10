@@ -58,11 +58,12 @@
                             @if (!string.IsNullOrWhiteSpace(parameter.PopulateFrom))
                             {
                                 <select data-paramter="@name" id="@(name)Select"
-                                        class="ui search dropdown"
+                                        class="chosen"
                                         data-key-field="@parameter.KeyField"
                                         data-value-field="@parameter.ValueField"
                                         data-default-value="@parameter.DefaultValue"
-                                        data-url="@parameter.PopulateFrom" data-optional="@parameter.Optional.ToString().ToLowerInvariant()">
+                                        data-url="@parameter.PopulateFrom" 
+                                        data-optional="@parameter.Optional.ToString().ToLowerInvariant()">
                                 </select>
                             }
                             else
@@ -327,7 +328,7 @@
 
         var contents = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
         contents += "\n";
-        contents += `<Report title="${reportTitle}"  exportedOn="${(new Date()).toLocaleFormat()}" exportedBy="${window
+        contents += `<Report title="${reportTitle}"  exportedOn="${(new Date()).toLocaleString()}" exportedBy="${window
             .metaView.Name}" userId="${window.metaView.UserId}" loginId="${window.metaView.LoginId}" officeId="${window
             .metaView.OfficeId}">`;
 

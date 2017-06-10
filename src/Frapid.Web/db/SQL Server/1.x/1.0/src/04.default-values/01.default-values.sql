@@ -15,7 +15,7 @@ SELECT 'WID', 'Widower',                0 UNION ALL
 SELECT 'CIV', 'Civil Union',            1;
 
 INSERT INTO core.currencies(currency_code, currency_symbol, currency_name, hundredth_name)
-SELECT 'NPR', 'रू.',       'Nepali Rupees',        'paisa'     UNION ALL
+SELECT 'NPR', 'Rs ',       'Nepali Rupees',        'paisa'     UNION ALL
 SELECT 'USD', '$',      'United States Dollar', 'cents'     UNION ALL
 SELECT 'GBP', '£',      'Pound Sterling',       'penny'     UNION ALL
 SELECT 'EUR', '€',      'Euro',                 'cents'     UNION ALL

@@ -1,21 +1,67 @@
-var tableToJSON = function (grid) {
-    var colData = [];
-    var rowData = [];
-    var rows = grid.find("tr:not(:last-child)");
+//table to JSON
+function serializeTable(table, strict) {
+    function getMeta() {
+        const candidates = table.find("thead th[data-member]");
+        const keys = [];
 
-    rows.each(function () {
-        var row = $(this);
+        $.each(candidates, function () {
+            const el = $(this);
+            const index = el.index();
+            const member = el.attr("data-member");
+            const dataType = el.attr("data-member-data-type");
 
-        colData = [];
-
-        row.find("td:not(:last-child)").each(function () {
-            colData.push($(this).text());
+            keys.push({
+                Key: member,
+                Index: index,
+                DataType: dataType
+            });
         });
 
-        rowData.push(colData);
+        return keys;
+    };
+
+    const collection = [];
+
+    const meta = getMeta();
+
+    table.find("tbody tr").each(function () {
+        const row = $(this);
+        const item = {};
+
+        $.each(meta, function () {
+            const cell = row.find("td:eq(" + this.Index + ")");
+            var value = cell.text();
+
+            switch (this.DataType) {
+                case "date":
+                    value = window.parseDate(value);
+                    break;
+                case "integer":
+                case "int":
+                    if (strict) {
+                        value = window.parseIntStrict(value);
+                    } else {
+                        value = window.parseInt2(value);
+                    }
+                    break;
+                case "float":
+                case "currency":
+                case "money":
+                case "decimal":
+                    if (strict) {
+                        value = window.parseFloatStrict(value);
+                    } else {
+                        value = window.parseFloat2(value);
+                    }
+                    break;
+            };
+
+
+            item[this.Key] = value;
+        });
+
+        collection.push(item);
     });
 
-    var data = JSON.stringify(rowData);
-
-    return data;
+    return collection;
 };

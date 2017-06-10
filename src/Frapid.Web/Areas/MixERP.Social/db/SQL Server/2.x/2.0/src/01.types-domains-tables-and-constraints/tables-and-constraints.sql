@@ -19,6 +19,7 @@ CREATE TABLE social.feeds
     scope                           national character varying(100),
     is_public                       bit NOT NULL DEFAULT(1),
     parent_feed_id                  bigint REFERENCES social.feeds,
+	url								national character varying(4000),
     audit_ts                        DATETIMEOFFSET NOT NULL DEFAULT(GETUTCDATE()),
     deleted                         bit NOT NULL DEFAULT(0),
     deleted_on                      DATETIMEOFFSET,

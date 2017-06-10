@@ -53,14 +53,10 @@ function displayFieldBinder(el, url, notNull, filters, callback) {
 			option = option.replace("{key}", this.Key);
 			option = option.replace("{value}", this.Value);
 			
-			if(totalItems === 1){
-				option = option.replace("{selected}", "selected='selected'");
-			} else{
-				if(notNull && i === 0){
-					option = option.replace("{selected}", "selected='selected'");									
-				}else{
-					option = option.replace("{selected}", "");													
-				};
+			if(notNull && i === 0){
+				option = option.replace("{selected}", "selected='selected'");									
+			}else{
+				option = option.replace("{selected}", "");													
 			};
 
 			options += option;

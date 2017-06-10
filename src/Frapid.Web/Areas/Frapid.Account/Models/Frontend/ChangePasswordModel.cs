@@ -4,7 +4,7 @@ using Frapid.Account.InputModels;
 using Frapid.Areas;
 using Frapid.TokenManager;
 
-namespace Frapid.Account.Models
+namespace Frapid.Account.Models.Frontend
 {
     public static class ChangePasswordModel
     {
@@ -28,6 +28,7 @@ namespace Frapid.Account.Models
             var frapidUser = await Users.GetAsync(current.Tenant, email).ConfigureAwait(false);
 
             bool oldPasswordIsValid = PasswordManager.ValidateBcrypt(current.Email, model.OldPassword, frapidUser.Password);
+
             if (!oldPasswordIsValid)
             {
                 await Task.Delay(2000).ConfigureAwait(false);

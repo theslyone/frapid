@@ -34,24 +34,9 @@ namespace MixERP.Social
 		public static string IsPublic => I18NResource.GetString(ResourceDirectory, "IsPublic");
 
 		/// <summary>
-		///Role Id
-		/// </summary>
-		public static string RoleId => I18NResource.GetString(ResourceDirectory, "RoleId");
-
-		/// <summary>
 		///Deleted
 		/// </summary>
 		public static string Deleted => I18NResource.GetString(ResourceDirectory, "Deleted");
-
-		/// <summary>
-		///Audit Ts
-		/// </summary>
-		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
-
-		/// <summary>
-		///Scope
-		/// </summary>
-		public static string Scope => I18NResource.GetString(ResourceDirectory, "Scope");
 
 		/// <summary>
 		///Attachments
@@ -74,6 +59,46 @@ namespace MixERP.Social
 		public static string LikedByName => I18NResource.GetString(ResourceDirectory, "LikedByName");
 
 		/// <summary>
+		///Url
+		/// </summary>
+		public static string Url => I18NResource.GetString(ResourceDirectory, "Url");
+
+		/// <summary>
+		///Feed Id
+		/// </summary>
+		public static string FeedId => I18NResource.GetString(ResourceDirectory, "FeedId");
+
+		/// <summary>
+		///Deleted On
+		/// </summary>
+		public static string DeletedOn => I18NResource.GetString(ResourceDirectory, "DeletedOn");
+
+		/// <summary>
+		///Unliked
+		/// </summary>
+		public static string Unliked => I18NResource.GetString(ResourceDirectory, "Unliked");
+
+		/// <summary>
+		///Unliked On
+		/// </summary>
+		public static string UnlikedOn => I18NResource.GetString(ResourceDirectory, "UnlikedOn");
+
+		/// <summary>
+		///Role Id
+		/// </summary>
+		public static string RoleId => I18NResource.GetString(ResourceDirectory, "RoleId");
+
+		/// <summary>
+		///Audit Ts
+		/// </summary>
+		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
+
+		/// <summary>
+		///Scope
+		/// </summary>
+		public static string Scope => I18NResource.GetString(ResourceDirectory, "Scope");
+
+		/// <summary>
 		///Formatted Text
 		/// </summary>
 		public static string FormattedText => I18NResource.GetString(ResourceDirectory, "FormattedText");
@@ -89,16 +114,6 @@ namespace MixERP.Social
 		public static string LikedBy => I18NResource.GetString(ResourceDirectory, "LikedBy");
 
 		/// <summary>
-		///Feed Id
-		/// </summary>
-		public static string FeedId => I18NResource.GetString(ResourceDirectory, "FeedId");
-
-		/// <summary>
-		///Deleted On
-		/// </summary>
-		public static string DeletedOn => I18NResource.GetString(ResourceDirectory, "DeletedOn");
-
-		/// <summary>
 		///Deleted By
 		/// </summary>
 		public static string DeletedBy => I18NResource.GetString(ResourceDirectory, "DeletedBy");
@@ -107,16 +122,6 @@ namespace MixERP.Social
 		///Parent Feed Id
 		/// </summary>
 		public static string ParentFeedId => I18NResource.GetString(ResourceDirectory, "ParentFeedId");
-
-		/// <summary>
-		///Unliked
-		/// </summary>
-		public static string Unliked => I18NResource.GetString(ResourceDirectory, "Unliked");
-
-		/// <summary>
-		///Unliked On
-		/// </summary>
-		public static string UnlikedOn => I18NResource.GetString(ResourceDirectory, "UnlikedOn");
 
 		/// <summary>
 		///Event Timestamp
@@ -137,6 +142,11 @@ namespace MixERP.Social
 		///Add a New Post
 		/// </summary>
 		public static string AddANewPost => I18NResource.GetString(ResourceDirectory, "AddANewPost");
+
+		/// <summary>
+		///Add a New Reply
+		/// </summary>
+		public static string AddANewReply => I18NResource.GetString(ResourceDirectory, "AddANewReply");
 
 		/// <summary>
 		///All Stories
@@ -164,6 +174,11 @@ namespace MixERP.Social
 		public static string CouldNotFindAvatarDirectory => I18NResource.GetString(ResourceDirectory, "CouldNotFindAvatarDirectory");
 
 		/// <summary>
+		///Discussion
+		/// </summary>
+		public static string Discussion => I18NResource.GetString(ResourceDirectory, "Discussion");
+
+		/// <summary>
 		///Invalid File
 		/// </summary>
 		public static string InvalidFile => I18NResource.GetString(ResourceDirectory, "InvalidFile");
@@ -177,6 +192,11 @@ namespace MixERP.Social
 		///Invalid file name.
 		/// </summary>
 		public static string InvalidFileName => I18NResource.GetString(ResourceDirectory, "InvalidFileName");
+
+		/// <summary>
+		///Join the Discussion
+		/// </summary>
+		public static string JoinDiscussion => I18NResource.GetString(ResourceDirectory, "JoinDiscussion");
 
 		/// <summary>
 		///Like
@@ -197,6 +217,11 @@ namespace MixERP.Social
 		///MixERP Social App
 		/// </summary>
 		public static string MixERPSocialApp => I18NResource.GetString(ResourceDirectory, "MixERPSocialApp");
+
+		/// <summary>
+		///My Profile Picture
+		/// </summary>
+		public static string MyProfilePicture => I18NResource.GetString(ResourceDirectory, "MyProfilePicture");
 
 		/// <summary>
 		///No file was uploaded.

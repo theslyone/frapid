@@ -17,7 +17,7 @@
                 el.attr("data-value", value);
                 el.attr("data-default-value", value);
             } else {
-                el.val(value);
+                el.val(value).trigger("change");
             };
         };
     });

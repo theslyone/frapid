@@ -9,6 +9,7 @@ using Frapid.Dashboard.DTO;
 using Frapid.Dashboard.Helpers;
 using Frapid.Framework.Extensions;
 using MixERP.Social.DTO;
+using MixERP.Social.ViewModels;
 
 namespace MixERP.Social.Models
 {
@@ -118,9 +119,9 @@ namespace MixERP.Social.Models
             await DAL.Feeds.UnlikeAsync(tenant, feedId, meta).ConfigureAwait(false);
         }
 
-        public static async Task<IEnumerable<FeedItem>> GetFeedsAsync(string tenant, int userId, long lastFeedId, long parentFeedId)
+        public static async Task<IEnumerable<FeedItem>> GetFeedsAsync(string tenant, int userId, FeedQuery query)
         {
-            var awaiter = await DAL.Feeds.GetFeedsAsync(tenant, userId, lastFeedId, parentFeedId).ConfigureAwait(false);
+            var awaiter = await DAL.Feeds.GetFeedsAsync(tenant, userId, query).ConfigureAwait(false);
             var model = awaiter.ToList();
 
             if (model.Count == 0)

@@ -15,6 +15,7 @@ CREATE TABLE social.feeds
     scope                           national character varying(100),
     is_public                       boolean NOT NULL DEFAULT(true),
     parent_feed_id                  bigint REFERENCES social.feeds,
+	url								text,
     audit_ts                        TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT(NOW()),
     deleted                         boolean NOT NULL DEFAULT(false),
     deleted_on                      TIMESTAMP WITH TIME ZONE,

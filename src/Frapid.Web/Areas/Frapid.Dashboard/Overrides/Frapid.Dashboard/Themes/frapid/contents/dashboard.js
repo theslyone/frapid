@@ -38,7 +38,7 @@ $.getJSON("/dashboard/meta", function (response) {
     window.thousandSeparator = meta.ThousandSeparator;
     window.decimalSeparator = meta.DecimalSeparator;
     window.currencyDecimalPlaces = meta.CurrencyDecimalPlaces;
-    window.currencySymbol = meta.CurrencySymbol;
+    window.currencySymbol = meta.MetaView.CurrencySymbol || meta.CurrencySymbol;
     window.datepickerFormat = window.convertNetDateFormat(meta.ShortDateFormat);
     window.datepickerShowWeekNumber = meta.DatepickerShowWeekNumber;
     window.datepickerWeekStartDay = meta.DatepickerWeekStartDay;
@@ -178,6 +178,7 @@ var menuBuilder = {
             .Where(function (x) { return x.AppName === app; })
             .Where(function (x) { return x.ParentMenuId === menuId; })
             .OrderBy(function (x) { return x.Sort; })
+            .ThenBy(function (x) { return x.MenuId; })
             .ToArray();
 
 
@@ -294,6 +295,7 @@ function initializeSelectApis() {
         const valueField = el.attr("data-api-value-field") || "Value";
         const keyField = el.attr("data-api-key-field") || "Key";
         const isArray = el.attr("data-is-array") || false;
+        const removePlaceholder = el.attr("data-remove-placeholder") === "true" || false;
 
         window.ajaxDataBind(apiUrl, el, null, keyField, valueField, null, function () {
             var selectedValue = el.attr("data-api-selected-value");
@@ -317,9 +319,14 @@ function initializeSelectApis() {
                 const values = selectedValues.split(",");
                 el.val(values);
             };
+            
+            if(selectedValue || selectedValues){
+                setTimeout(function(){
+                    el.trigger("change");
+                }, 500);
+            };
 
-
-        }, isArray);
+        }, isArray, removePlaceholder);
     });
 };
 
@@ -858,3 +865,5 @@ $(document).ready(function () {
     });
 });
 
+$(".ui.theme.selector.dropdown").dropdown();
+$(".ui.select.language.dropdown").dropdown();

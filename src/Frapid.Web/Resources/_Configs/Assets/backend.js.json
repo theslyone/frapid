@@ -9,6 +9,7 @@
     "/scripts/jquery.address.js",
     "/scripts/jquery-ui.js",
     "/scripts/jquery-timepicker/jquery.timepicker.js",
+	"/scripts/chosen/chosen.jquery.min.js",
     "/scripts/shortcut.js",
     "/scripts/papaparse/papaparse.min.js",
     "/scripts/jqueryNumber/jquery.number.js",

@@ -7,7 +7,7 @@ using Frapid.Account.ViewModels;
 using Frapid.Areas;
 using Mapster;
 
-namespace Frapid.Account.Models
+namespace Frapid.Account.Models.Frontend
 {
     public static class SignUpModel
     {

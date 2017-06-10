@@ -26,6 +26,7 @@
 
     element.attr("id", column.ColumnName);
 
+
     if (column.DbDataType.indexOf("strict") > -1) {
         element.attr("data-validation", column.DbDataType);
     };
@@ -107,7 +108,7 @@
 
     if (value) {
         element.attr("data-value", value);
-        element.val(value);
+        element.val(value).trigger("change");
     };
 
     if (column.IsCustomField) {

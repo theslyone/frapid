@@ -155,6 +155,21 @@ if exist "../src/Frapid.Web/Areas/TheSmsCentral/TheSmsCentral.sln" (
 	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/TheSmsCentral/TheSmsCentral.sln /p:VisualStudioVersion=14.0
 )
 
+if exist "../src/Frapid.Web/Areas/MixCBS.Banking/MixCBS.Banking.sln" (
+	@echo Building MixCBS.Banking Module
+	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixCBS.Banking/MixCBS.Banking.sln /p:VisualStudioVersion=14.0
+)
+
+if exist "../src/Frapid.Web/Areas/MixCBS.Deposits/MixCBS.Deposits.sln" (
+	@echo Building MixCBS.Deposits Module
+	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixCBS.Deposits/MixCBS.Deposits.sln /p:VisualStudioVersion=14.0
+)
+
+if exist "../src/Frapid.Web/Areas/MixCBS.Lendings/MixCBS.Lendings.sln" (
+	@echo Building MixCBS.Lendings Module
+	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/MixCBS.Lendings/MixCBS.Lendings.sln /p:VisualStudioVersion=14.0
+)
+
 
 
 if exist "C:\Program Files\Redis\redis-cli.exe" (

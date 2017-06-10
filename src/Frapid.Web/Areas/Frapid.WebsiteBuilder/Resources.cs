@@ -89,14 +89,14 @@ namespace Frapid.WebsiteBuilder
 		public static string UnsubscribedOn => I18NResource.GetString(ResourceDirectory, "UnsubscribedOn");
 
 		/// <summary>
-		///Website Category Name
-		/// </summary>
-		public static string WebsiteCategoryName => I18NResource.GetString(ResourceDirectory, "WebsiteCategoryName");
-
-		/// <summary>
 		///Postal Code
 		/// </summary>
 		public static string PostalCode => I18NResource.GetString(ResourceDirectory, "PostalCode");
+
+		/// <summary>
+		///Website Category Name
+		/// </summary>
+		public static string WebsiteCategoryName => I18NResource.GetString(ResourceDirectory, "WebsiteCategoryName");
 
 		/// <summary>
 		///Configuration Id
@@ -114,6 +114,11 @@ namespace Frapid.WebsiteBuilder
 		public static string TagId => I18NResource.GetString(ResourceDirectory, "TagId");
 
 		/// <summary>
+		///Url
+		/// </summary>
+		public static string Url => I18NResource.GetString(ResourceDirectory, "Url");
+
+		/// <summary>
 		///Email
 		/// </summary>
 		public static string Email => I18NResource.GetString(ResourceDirectory, "Email");
@@ -122,11 +127,6 @@ namespace Frapid.WebsiteBuilder
 		///Subscribed On
 		/// </summary>
 		public static string SubscribedOn => I18NResource.GetString(ResourceDirectory, "SubscribedOn");
-
-		/// <summary>
-		///Url
-		/// </summary>
-		public static string Url => I18NResource.GetString(ResourceDirectory, "Url");
 
 		/// <summary>
 		///Browser
@@ -204,14 +204,14 @@ namespace Frapid.WebsiteBuilder
 		public static string SeoDescription => I18NResource.GetString(ResourceDirectory, "SeoDescription");
 
 		/// <summary>
-		///Unsubscribed
-		/// </summary>
-		public static string Unsubscribed => I18NResource.GetString(ResourceDirectory, "Unsubscribed");
-
-		/// <summary>
 		///Parent Menu Item Id
 		/// </summary>
 		public static string ParentMenuItemId => I18NResource.GetString(ResourceDirectory, "ParentMenuItemId");
+
+		/// <summary>
+		///Unsubscribed
+		/// </summary>
+		public static string Unsubscribed => I18NResource.GetString(ResourceDirectory, "Unsubscribed");
 
 		/// <summary>
 		///Menu Id
@@ -289,14 +289,14 @@ namespace Frapid.WebsiteBuilder
 		public static string State => I18NResource.GetString(ResourceDirectory, "State");
 
 		/// <summary>
-		///Blog Id
-		/// </summary>
-		public static string BlogId => I18NResource.GetString(ResourceDirectory, "BlogId");
-
-		/// <summary>
 		///Blog Category Id
 		/// </summary>
 		public static string BlogCategoryId => I18NResource.GetString(ResourceDirectory, "BlogCategoryId");
+
+		/// <summary>
+		///Blog Id
+		/// </summary>
+		public static string BlogId => I18NResource.GetString(ResourceDirectory, "BlogId");
 
 		/// <summary>
 		///Content Id
@@ -309,14 +309,14 @@ namespace Frapid.WebsiteBuilder
 		public static string WebsiteName => I18NResource.GetString(ResourceDirectory, "WebsiteName");
 
 		/// <summary>
-		///Is Homepage
-		/// </summary>
-		public static string IsHomepage => I18NResource.GetString(ResourceDirectory, "IsHomepage");
-
-		/// <summary>
 		///Is Default
 		/// </summary>
 		public static string IsDefault => I18NResource.GetString(ResourceDirectory, "IsDefault");
+
+		/// <summary>
+		///Is Homepage
+		/// </summary>
+		public static string IsHomepage => I18NResource.GetString(ResourceDirectory, "IsHomepage");
 
 		/// <summary>
 		///Subscription Type

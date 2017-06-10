@@ -40,12 +40,20 @@ function serializeForm(el) {
 			type = "number";
 		};
 		
+		if(el.is("select")){
+			type = "select";
+		};
+		
 		if(el.hasClass("hasDatepicker")){
 			type = "datepicker";
 		};
 		
 		if(el.hasClass("ui") && el.hasClass("calendar")){
 			type = "calendar";
+		};
+		
+		if(el.hasClass("decimal") || el.hasClass("decimal4") || el.hasClass("currency") || el.hasClass("integer")){
+			type = "number";
 		};
 		
 		if(el.hasClass("ui tags")){
@@ -79,6 +87,12 @@ function serializeForm(el) {
                 return el.is(":checked");
             case "number":                
                 return window.parseFloatStrict(val || null);
+			case "select":
+				if(val === window.translate("Select")){
+					val = null;
+				};
+				
+				return val;
             default:
                 return val;
         };

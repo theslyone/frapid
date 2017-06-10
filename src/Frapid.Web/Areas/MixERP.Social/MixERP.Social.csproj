@@ -9,7 +9,7 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{015FE01C-9F96-42BB-9518-B8A0B112C5E4}</ProjectGuid>
+    <ProjectGuid>{7A5D03B8-72EB-4CD3-A606-BD81FAB083F5}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -29,7 +29,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -142,7 +142,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AreaRegistration.cs" />
+    <Compile Include="Controllers\AttachmentController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\FeedController.cs" />
+    <Compile Include="Controllers\ReactionController.cs" />
     <Compile Include="Controllers\Service\AttachmentController.cs" />
     <Compile Include="Controllers\Service\AvatarController.cs" />
     <Compile Include="DAL\Feeds.cs" />
@@ -150,6 +153,7 @@
     <Compile Include="DTO\FeedItem.cs" />
     <Compile Include="DTO\LikedByView.cs" />
     <Compile Include="DTO\UploadedFile.cs" />
+    <Compile Include="Extensions\PartialViewExtensions.cs" />
     <Compile Include="Helpers\FeedHelper.cs" />
     <Compile Include="Models\Avatars.cs" />
     <Compile Include="Models\AttachmentException.cs" />
@@ -161,46 +165,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.cs" />
     <Compile Include="ViewModels\Attachment.cs" />
+    <Compile Include="ViewModels\FeedQuery.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe" />
-    <Content Include="db\PostgreSQL\2.x\2.0\index.html" />
-    <Content Include="db\PostgreSQL\2.x\2.0\social-blank.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\social-sample.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.count_comments.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.get_followers.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.get_next_top_feeds.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.get_root_feed_id.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.like.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\social.unlike.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\03.menus\menus.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\04.default-values\01.default-values.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\05.triggers\social.update_audit_timestamp_trigger.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\05.views\social.liked_by_view.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\99.ownership.sql" />
-    <Content Include="db\PostgreSQL\2.x\2.0\src\99.sample-data\social.sample.sql" />
-    <Content Include="db\PostgreSQL\social-blank.sql" />
-    <Content Include="db\PostgreSQL\social-sample.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe" />
-    <Content Include="db\SQL Server\2.x\2.0\index.html" />
-    <Content Include="db\SQL Server\2.x\2.0\social-blank.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\social-sample.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.count_comments.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.get_followers.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.get_next_top_feeds.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.get_root_feed_id.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.like.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\social.unlike.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\03.menus\menus.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\04.default-values\01.default-values.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\05.triggers\social.update_audit_timestamp_trigger.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\05.views\social.liked_by_view.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\99.ownership.sql" />
-    <Content Include="db\SQL Server\2.x\2.0\src\99.sample-data\social.sample.sql" />
-    <Content Include="db\SQL Server\social-blank.sql" />
-    <Content Include="db\SQL Server\social-sample.sql" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -211,16 +178,8 @@
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="Views\Tasks\Index.cshtml" />
-    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe.config" />
-    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-with-sample.bat" />
-    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-without-sample.bat" />
-    <Content Include="db\PostgreSQL\2.x\2.0\social.sqlbundle" />
-    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe.config" />
-    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-with-sample.bat" />
-    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-without-sample.bat" />
-    <Content Include="db\SQL Server\2.x\2.0\social.sqlbundle" />
-    <Content Include="AppInfo.json" />
-    <None Include="Properties\PublishProfiles\mixerp-publish-profile.pubxml" />
+    <Content Include="Views\Tasks\Embed.cshtml" />
+    <Content Include="Views\Shared\Social.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

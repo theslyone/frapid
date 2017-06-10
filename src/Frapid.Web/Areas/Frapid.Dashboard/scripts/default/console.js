@@ -88,6 +88,7 @@ function getWidgets(callback) {
 function loadWidget(widget) {
     $(".console.segment").addClass("loading");
     const path = "/Areas/" + widget.AreaName + "/widgets/" + widget.WidgetName + ".html";
+
     $.get(path, function (data) {
         const container = $(".widget-container");
         const el = $(data);
@@ -131,11 +132,13 @@ function loadWidget(widget) {
         });
 
 		window.localize();
-        $(".console.segment").removeClass("loading");
+
+		$(".console.segment").removeClass("loading");
     });
 };
 
 function loadConsole(console) {
+    //alert(JSON.stringify(console));
     $(".widget-container").html("");
 
     $(".document.heading").text(console.Name);
@@ -156,7 +159,8 @@ function loadConsole(console) {
 };
 
 function refreshWidgets() {
-    $(".widget-container").sortable();
+    $(".widget-container").html("");
+    $(".widget-container").sortable({ handle: '.widget.segment>.header' });
     window.initializeSelectApis();
 
     getWidgets(function (console) {

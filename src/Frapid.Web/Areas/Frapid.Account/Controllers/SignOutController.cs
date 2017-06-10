@@ -8,6 +8,21 @@ namespace Frapid.Account.Controllers
 {
     public class SignOutController : BaseAuthenticationController
     {
+        [Route("account/sign-out/revoke")]
+        [Route("account/log-out/revoke")]
+        public async Task<ActionResult> RevokeAsync()
+        {
+            if (!string.IsNullOrWhiteSpace(this.AppUser?.ClientToken))
+            {
+                await AccessTokens.RevokeAsync(this.Tenant, this.AppUser.ClientToken).ConfigureAwait(true);
+                string key = "access_tokens_" + this.Tenant;
+                var factory = new DefaultCacheFactory();
+                factory.Remove(key);
+            }
+
+            return this.Ok("OK");
+        }
+
         [Route("account/sign-out")]
         [Route("account/log-out")]
         public async Task<ActionResult> SignOutAsync()

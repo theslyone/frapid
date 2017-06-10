@@ -148,6 +148,7 @@
     width: 100%;
     border: none;
     padding: 1em;
+    outline: none;
 }
 
 .stories > .story a:hover {
@@ -180,7 +181,7 @@
 .social.network .heading {
     padding: 1em 0;
     font-size: 2em;
-    color: #222;
+    color: #B5474A;
     font-weight: 300;
 }
 

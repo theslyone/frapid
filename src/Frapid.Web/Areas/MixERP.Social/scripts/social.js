@@ -117,6 +117,15 @@ function displayFile(target, file, fileName, extension) {
     reader.readAsDataURL(file);
 };
 
+function isEmbeddedContent() {
+    return $(".social.network.container").is(".embedded");
+};
+
+function getUrl() {
+    return window.location.href.split('?')[0];
+};
+
+
 function uploadAttachments(el) {
     const handler = "/dashboard/social/attachment";
 
@@ -323,20 +332,25 @@ function createUI(lastFeedId, parentFeedId, model) {
 };
 
 function displayStories(lastFeedId, parentFeedId) {
-    function request() {
-        var url = "/dashboard/social/feeds/{lastFeedId}/{parentFeedId}";
-        url = url.replace("{lastFeedId}", lastFeedId);
-        url = url.replace("{parentFeedId}", parentFeedId);
+    function request(model) {
+        const url = "/dashboard/social/feeds";
+        const data = JSON.stringify(model);
 
-        return window.getAjaxRequest(url);
+        return window.getAjaxRequest(url, "POST", data);
     };
 
     lastFeedId = lastFeedId || 0;
     parentFeedId = parentFeedId || 0;
 
-    const ajax = request();
-    ajax.success(function (response) {
+    const model = {
+        LastFeedId: lastFeedId,
+        ParentFeedId: parentFeedId,
+        Url: isEmbeddedContent() ? getUrl() : ""
+    };
 
+    const ajax = request(model);
+
+    ajax.success(function (response) {
         const model = window.Enumerable.From(response).OrderBy(function (x) {
             return x.ParentFeedId || 0;
         }).ThenBy(function (x) {
@@ -354,7 +368,7 @@ displayStories();
 
 $("#PostButton").off("click").on("click", function () {
     function request(model) {
-        const url = "/dashboard/social";
+        const url = "/dashboard/social/new";
         const data = JSON.stringify(model);
 
         return window.getAjaxRequest(url, "POST", data);
@@ -388,7 +402,8 @@ $("#PostButton").off("click").on("click", function () {
             FormattedText: text,
             Attachments: getAttachments(),
             Scope: getScope(),
-            IsPublic: true
+            IsPublic: true,
+            Url: isEmbeddedContent() ? getUrl() : ""
         };
     };
 
@@ -422,7 +437,7 @@ $("#PostButton").off("click").on("click", function () {
 
 function postComment(element) {
     function request(model) {
-        const url = "/dashboard/social";
+        const url = "/dashboard/social/new";
         const data = JSON.stringify(model);
 
         return window.getAjaxRequest(url, "POST", data);

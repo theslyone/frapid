@@ -33,7 +33,7 @@ namespace Frapid.Dashboard.Controllers
                     UserId = this.AppUser.UserId,
                     User = this.AppUser.Email,
                     Office = this.AppUser.OfficeName,
-                    MetaView = this.AppUser,
+                    MetaView = AppUsers.GetCurrent(),
                     ShortDateFormat = CultureManager.GetShortDateFormat(),
                     LongDateFormat = CultureManager.GetCurrent().DateTimeFormat.LongDatePattern,
                     ThousandSeparator = CultureManager.GetThousandSeparator(),

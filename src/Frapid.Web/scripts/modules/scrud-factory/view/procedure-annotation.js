@@ -104,7 +104,7 @@ function addAnnotationField(item, fields, hidden) {
         };
 
         if (defaultValue) {
-            el.val(defaultValue.value);
+            el.val(defaultValue.value).trigger("change");
         };
     };
 

@@ -1,6 +1,6 @@
-﻿DROP FUNCTION IF EXISTS social.get_next_top_feeds(_user_id integer, _last_feed_id bigint, _parent_feed_id bigint);
+﻿DROP FUNCTION IF EXISTS social.get_next_top_feeds(_user_id integer, _last_feed_id bigint, _parent_feed_id bigint, _url text);
 
-CREATE FUNCTION social.get_next_top_feeds(_user_id integer, _last_feed_id bigint, _parent_feed_id bigint)
+CREATE FUNCTION social.get_next_top_feeds(_user_id integer, _last_feed_id bigint, _parent_feed_id bigint, _url text)
 RETURNS TABLE
 (
     row_number                      bigint,
@@ -58,6 +58,7 @@ BEGIN
     WHERE NOT social.feeds.deleted
     AND (_last_feed_id = 0 OR social.feeds.feed_id < _last_feed_id)
     AND COALESCE(social.feeds.parent_feed_id, 0) = COALESCE(_parent_feed_id, 0)
+    AND COALESCE(social.feeds.url, '') = COALESCE(_url, '')
     AND 
     (
         social.feeds.is_public
@@ -134,6 +135,6 @@ END
 $$
 LANGUAGE plpgsql;
 
-SELECT * FROM social.get_next_top_feeds(1, 0, 0);
+--SELECT * FROM social.get_next_top_feeds(1, 0, 0, '');
 
 

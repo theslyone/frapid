@@ -172,8 +172,9 @@
     <Compile Include="Exceptions\EmailConfirmException.cs" />
     <Compile Include="Emails\ResetEmail.cs" />
     <Compile Include="I18N.cs" />
-    <Compile Include="Models\ChangePasswordModel.cs" />
-    <Compile Include="Models\SignUpModel.cs" />
+    <Compile Include="Models\Backend\ChangePasswordModel.cs" />
+    <Compile Include="Models\Frontend\ChangePasswordModel.cs" />
+    <Compile Include="Models\Frontend\SignUpModel.cs" />
     <Compile Include="ViewModels\ChangePasswordInfo.cs" />
     <Compile Include="ViewModels\IUserInfo.cs" />
     <Compile Include="Emails\WelcomeEmail.cs" />

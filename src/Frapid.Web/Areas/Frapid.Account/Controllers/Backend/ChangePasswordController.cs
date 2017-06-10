@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Frapid.Account.DAL;
+using Frapid.Account.Models.Backend;
 using Frapid.Account.ViewModels;
 using Frapid.ApplicationState.Cache;
 using Frapid.Dashboard;
@@ -51,11 +52,10 @@ namespace Frapid.Account.Controllers.Backend
                 return this.Failed(I18N.ConfirmPasswordDoesNotMatch, HttpStatusCode.BadRequest);
             }
 
-            model.Email = meta.Email;
 
             try
             {
-                await Users.ChangePasswordAsync(this.Tenant, meta.UserId, model).ConfigureAwait(true);
+                await ChangePasswordModel.ChangePasswordAsync(this.Tenant, model).ConfigureAwait(true);
                 return this.Ok("OK");
             }
             catch (Exception ex)

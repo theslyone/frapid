@@ -15,12 +15,9 @@
                 selectedValue = dropdown.attr("data-value");
 
                 if (selectedValue) {
-                    dropdown.val(selectedValue.toString());
+                    dropdown.val(selectedValue.toString()).trigger("change");
                 };
             };
-
-            //Todo: Remove Semantic UI Dropdown dependency 
-            //dropdown.dropdown({ placeholder: false, forceSelection: false });
         });
 
         window.dropdownsLoaded = true;

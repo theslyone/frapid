@@ -18,7 +18,7 @@ namespace Frapid.Reports.Models
                 return string.Empty;
             }
 
-            string overridePath = $"Tenant/{tenant}/{path}";
+            string overridePath = $"Tenants/{tenant}/{path}";
             string suffix = this.GetSuffix(tenant);
             overridePath = overridePath.Replace(".xml", suffix + ".xml");
 

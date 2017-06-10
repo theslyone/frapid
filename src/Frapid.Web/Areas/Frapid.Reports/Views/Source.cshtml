@@ -73,6 +73,13 @@
             displayChart(selector, canvasId, legendId, chartType, hideGridView, titleColumnIndex, valueColumnIndex);
         });
 
+        $.each($("[data-remove-row-on-zero]"), function () {
+            const value = window.parseFloat2($(this).text().trim());
+            if (value === 0) {
+                $(this).closest("tr").remove();
+            };
+        });
+
         $("charts").remove();
         $("table").tablesorter();
     });

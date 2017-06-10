@@ -25,7 +25,7 @@ BEGIN
 
 	IF NOT EXISTS(SELECT * FROM config.custom_field_data_types WHERE data_type='Money (Positive Value Only)') THEN
 		INSERT INTO config.custom_field_data_types(data_type, underlying_type)
-		SELECT 'Money (Positive Value Only)', 'decimal(30, 6)';
+		SELECT 'Money (Positive Value Only)', 'numeric(30, 6)';
 	END IF;
 
 	IF NOT EXISTS(SELECT * FROM config.custom_field_data_types WHERE data_type='Date') THEN

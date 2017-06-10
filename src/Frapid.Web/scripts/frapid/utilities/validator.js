@@ -26,29 +26,23 @@
 
     var validateField = function (field) {
         var val = field.val();
-
+		
         if (isNullOrWhiteSpace(val)) {
             this.isValid = false;
             makeDirty(field);
         } else {
             removeDirty(field);
         };
+		
+		if(field.is(".currency")){
+			if(val === window.currencySymbol){
+				this.isValid = false;
+				makeDirty(field);				
+			};
+		};
     };
 
     this.initialize = function (el) {
-        //Todo: Remove Semantic UI Dropdown dependency 
-        //el.find(".dropdown input.search").blur(function () {
-        //    $(this).parent().find("select").trigger("blur");
-        //});
-
-        //el.find(".dropdown").dropdown({placeholder: false, forceSelection: false}).on("blur", function () {
-        //    $(this).parent().find("select").trigger("blur");
-        //});
-
-        //el.find(".dropdown").dropdown({placeholder: false, forceSelection: false}).on("change", function () {
-        //    $(this).parent().find("select").trigger("blur");
-        //});
-
         el.find("[required]:not(:disabled):not([readonly])").blur(function () {
             var field = $(this);
             validateField(field);

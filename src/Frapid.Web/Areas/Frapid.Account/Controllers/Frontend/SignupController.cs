@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Frapid.Account.DAL;
 using Frapid.Account.Emails;
-using Frapid.Account.Models;
+using Frapid.Account.Models.Frontend;
 using Frapid.Account.ViewModels;
 using Frapid.Areas;
 using Frapid.Areas.CSRF;
