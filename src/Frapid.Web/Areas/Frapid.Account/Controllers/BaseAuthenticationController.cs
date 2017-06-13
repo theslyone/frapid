@@ -12,8 +12,7 @@ using Frapid.Framework.Extensions;
 using Frapid.TokenManager;
 using Frapid.WebsiteBuilder.Controllers;
 using Newtonsoft.Json;
-using Frapid.Events;
-using Frapid.Events.EventPublishers;
+using Frapid.Configuration.Events;
 using System.Collections.Specialized;
 
 namespace Frapid.Account.Controllers
@@ -67,8 +66,8 @@ namespace Frapid.Account.Controllers
             loginEvent.User.Name = loginView.Name;
             loginEvent.Tenant = this.Tenant;
             loginEvent.CreationDate = DateTime.Now;
-            DefaultEventPublisher.GetInstance().Publish(loginEvent);
-
+            DefaultEventManager.GetInstance().Publish(loginEvent);
+            
             var appUser = new AppUser() {
                 ClientToken = token.ClientToken,
                 LoginId = loginView.LoginId,

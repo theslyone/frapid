@@ -38,6 +38,18 @@
       <HintPath>..\..\packages\AWSSDK.S3.3.3.6.1\lib\net45\AWSSDK.S3.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AWSSDK.SimpleNotificationService, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AWSSDK.SimpleNotificationService.3.3.0.17\lib\net45\AWSSDK.SimpleNotificationService.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AWSSDK.SQS, Version=3.3.0.0, Culture=neutral, PublicKeyToken=885c28607f98e604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AWSSDK.SQS.3.3.2.4\lib\net45\AWSSDK.SQS.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EasyNetQ, Version=1.1.1.494, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EasyNetQ.1.1.1.494\lib\net45\EasyNetQ.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
       <Private>True</Private>
@@ -48,6 +60,10 @@
     </Reference>
     <Reference Include="Npgsql, Version=3.1.9.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Npgsql.3.1.9\lib\net451\Npgsql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=3.6.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\RabbitMQ.Client.3.6.0\lib\net45\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
@@ -73,10 +89,24 @@
     <Compile Include="ConsolePathMapper.cs" />
     <Compile Include="Db\DbProvider.cs" />
     <Compile Include="DefaultDomainSerializer.cs" />
+    <Compile Include="Events\LoginEvent.cs" />
+    <Compile Include="Events\Models\Account.cs" />
+    <Compile Include="Events\Models\User.cs" />
+    <Compile Include="Events\AmazonEventManager.cs" />
+    <Compile Include="Events\DefaultEventManager.cs" />
+    <Compile Include="Events\EasyMQEventManager.cs" />
+    <Compile Include="Events\AmazonQueue.cs" />
+    <Compile Include="Events\Startup.cs" />
+    <Compile Include="Events\TransactionEvent.cs" />
+    <Compile Include="Events\UserEvent.cs" />
+    <Compile Include="Events\UserUpdateRequiredEvent.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="IDomainSerializer.cs" />
     <Compile Include="Installables.cs" />
     <Compile Include="InstalledDomainSerializer.cs" />
+    <Compile Include="Events\Interfaces\IEventManager.cs" />
+    <Compile Include="Events\Interfaces\IEventSubscriber.cs" />
+    <Compile Include="Events\Interfaces\IMessageEvent.cs" />
     <Compile Include="Models\Installable.cs" />
     <Compile Include="StorageServices\AmazonStorage.cs" />
     <Compile Include="StorageServices\IStorage.cs" />
@@ -130,6 +160,8 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\packages\AWSSDK.S3.3.3.6.1\analyzers\dotnet\cs\AWSSDK.S3.CodeAnalysis.dll" />
+    <Analyzer Include="..\..\packages\AWSSDK.SimpleNotificationService.3.3.0.17\analyzers\dotnet\cs\AWSSDK.SimpleNotificationService.CodeAnalysis.dll" />
+    <Analyzer Include="..\..\packages\AWSSDK.SQS.3.3.2.4\analyzers\dotnet\cs\AWSSDK.SQS.CodeAnalysis.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,9 +12,6 @@ using Frapid.Areas;
 using Frapid.i18n;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Frapid.Events.EventPublishers;
-using Frapid.Events;
-using Frapid.Events.Interfaces;
 
 namespace Frapid.Account.RemoteAuthentication
 {

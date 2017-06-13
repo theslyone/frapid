@@ -7,10 +7,6 @@ using Frapid.Account.InputModels;
 using Frapid.Account.ViewModels;
 using Frapid.Areas;
 using Frapid.i18n;
-using Frapid.Events.EventPublishers;
-using Frapid.Events;
-using System;
-using Frapid.Events.Interfaces;
 
 namespace Frapid.Account.RemoteAuthentication
 {

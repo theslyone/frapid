@@ -367,10 +367,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Libraries\Frapid.Events\Frapid.Events.csproj">
-      <Project>{37e1dc19-363e-49ca-853f-7113075296d7}</Project>
-      <Name>Frapid.Events</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Frapid.WebsiteBuilder\Frapid.WebsiteBuilder.csproj">
       <Project>{f25bc404-d8cb-45cb-97d3-8de0e538f6ac}</Project>
       <Name>Frapid.WebsiteBuilder</Name>

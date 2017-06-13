@@ -52,8 +52,6 @@ namespace Frapid.Events
         [JsonProperty("purpose")]
         public string Purpose { get; set; }
 
-
-
         [JsonProperty("type")]
         public string Type
         {
@@ -62,6 +60,10 @@ namespace Frapid.Events
                 return "TransactiontEvent";
             }
         }
+
+        [JsonProperty("customFields")]
+        public dynamic CustomFields { get; set; }
+
 
         public override string ToString()
         {

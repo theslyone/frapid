@@ -9,9 +9,6 @@ using Frapid.Areas;
 using Frapid.Areas.CSRF;
 using Frapid.Framework.Extensions;
 using Frapid.WebsiteBuilder.Controllers;
-using Frapid.Events;
-using Frapid.Events.Interfaces;
-using Frapid.Events.EventPublishers;
 
 namespace Frapid.Account.Controllers.Frontend
 {

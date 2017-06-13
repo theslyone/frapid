@@ -9,6 +9,7 @@ using Amazon.S3;
 using Amazon;
 using Amazon.S3.IO;
 using System;
+using Frapid.Framework.Extensions;
 
 namespace Frapid.Configuration
 {
@@ -25,7 +26,7 @@ namespace Frapid.Configuration
         {
             if (Store != null) return Store;
 
-            switch (FileStorageConfig.ToLower())
+            switch (FileStorageConfig?.ToLower().Or(local))
             {
                 case amazon:
                     Store = new AmazonStorage();
