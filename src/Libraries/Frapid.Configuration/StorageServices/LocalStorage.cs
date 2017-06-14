@@ -50,14 +50,14 @@ namespace Frapid.Configuration
         {
             var directory = new DirectoryInfo(path);
             var files = directory.EnumerateFiles().Where(f => format.Contains(f.Extension.ToLower()));
-            return files.Select(file => file.Name).ToList();
+            return files.Select(file => file.FullName).ToList();
         }
 
         public List<string> GetFiles(string path, string searchPattern, SearchOption searchOption)
         {
             var directory = new DirectoryInfo(path);
             var files = directory.GetFiles(searchPattern, searchOption);
-            return files.Select(file => file.Name).ToList();
+            return files.Select(file => file.FullName).ToList();
         }
 
         public string GetLocalFilePath(string path, bool returnAsRelativePath)

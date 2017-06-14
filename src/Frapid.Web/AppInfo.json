@@ -15,7 +15,7 @@
 	"Description": "Frapid",
 	"Category": "N/A",
 	"Bundle": "Frapid Framework",
-    "IsMeta": false,
+  "IsMeta": false,
 	"DbSchema": "core",
 	"BlankDbPath": "~/db/{DbServer}/core-blank.sql",
 	"SampleDbPath": "~/db/{DbServer}/core-sample.sql",

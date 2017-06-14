@@ -20,9 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frapid.Installer", "Libraries\Frapid.Installer\Frapid.Installer.csproj", "{BFFE76A6-7E9D-42FA-AB3A-108BD2125923}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{23C8FECB-C7F3-4FF1-B2FF-8B296420C8CB}"
-	ProjectSection(SolutionItems) = preProject
-		Frapid.Web\Areas\Frapid.Paylink\EventSubscribers\LoginEventSubscriber.cs = Frapid.Web\Areas\Frapid.Paylink\EventSubscribers\LoginEventSubscriber.cs
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frapid.ApplicationState", "Libraries\Frapid.ApplicationState\Frapid.ApplicationState.csproj", "{EF3D84F8-3D64-45D7-9050-3AE204F5AA72}"
 EndProject
