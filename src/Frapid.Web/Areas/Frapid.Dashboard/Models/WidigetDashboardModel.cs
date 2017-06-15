@@ -111,7 +111,7 @@ namespace Frapid.Dashboard.Models
 
             string contents = JsonConvert.SerializeObject(info, Formatting.Indented);
 
-            File.WriteAllText(filePath, contents, new UTF8Encoding(false));
+            Storage.WriteAllText(filePath, contents, new UTF8Encoding(false));
         }
     }
 }

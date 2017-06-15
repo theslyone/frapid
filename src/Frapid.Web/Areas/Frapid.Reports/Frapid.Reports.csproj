@@ -228,6 +228,7 @@
     <Content Include="web.config" />
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Source.cshtml" />
+    <Content Include="AppInfo.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

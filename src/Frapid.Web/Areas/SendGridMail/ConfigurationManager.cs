@@ -19,17 +19,17 @@ namespace SendGridMail
             string path = ConfigFile.Replace("{tenant}", tenant);
             path = PathMapper.MapPath(path);
 
-            if (!File.Exists(path))
+            if (!Storage.FileExists(path))
             {
                 string directory = new FileInfo(path).Directory?.FullName;
                 if (!string.IsNullOrWhiteSpace(directory))
                 {
-                    Directory.CreateDirectory(directory);
+                    Storage.CreateDirectory(directory);
                 }
             }
 
             string contents = JsonConvert.SerializeObject(config, Formatting.Indented);
-            File.WriteAllText(path, contents, new UTF8Encoding(false));
+            Storage.WriteAllText(path, contents, new UTF8Encoding(false));
         }
 
         public static Config Get(string tenant)
@@ -37,12 +37,12 @@ namespace SendGridMail
             string path = ConfigFile.Replace("{tenant}", tenant);
             path = PathMapper.MapPath(path);
 
-            if (path == null || !File.Exists(path))
+            if (path == null || !Storage.FileExists(path))
             {
                 return new Config();
             }
 
-            string contents = File.ReadAllText(path, Encoding.UTF8);
+            string contents =   Storage.ReadAllText(path, Encoding.UTF8);
             return string.IsNullOrWhiteSpace(contents) ? new Config() : JsonConvert.DeserializeObject<Config>(contents);
         }
     }

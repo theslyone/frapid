@@ -3,7 +3,9 @@ using Moneywave.Net;
 using Moneywave.Net.Models;
 using Moneywave.Net.Requests;
 using Moneywave.Net.Responses;
+using Newtonsoft.Json;
 using System;
+using System.IO;
 using System.Linq;
 using Xunit;
 
@@ -36,6 +38,10 @@ namespace Integrations.Test
         public void GetBanks()
         {
             var banks = Api.GetBanks();
+
+            string banksStr = JsonConvert.SerializeObject(banks, Formatting.Indented);
+            File.WriteAllText(@"C:\Users\mc\Documents\GitHub\Banks.json", banksStr);
+
             Assert.NotEmpty(banks);
         }
 

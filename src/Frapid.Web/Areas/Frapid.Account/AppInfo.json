@@ -17,7 +17,7 @@
 	"BlankDbPath": "~/Areas/Frapid.Account/db/{DbServer}/1.x/1.0/account-blank.sql",
 	"SampleDbPath": null,
 	"PatchFilePath": null,
-	"InstallSample": true,
+	"InstallSample": false,
 	"My": "~/Areas/Frapid.Account/.my/db.sql",
     "OverrideTemplatePath":"~/Areas/Frapid.Account/Overrides",
     "OverrideDestination":"~/Tenants/{0}/Areas",

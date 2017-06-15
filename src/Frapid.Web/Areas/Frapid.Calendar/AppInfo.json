@@ -18,7 +18,7 @@
 	"BlankDbPath": "~/Areas/Frapid.Calendar/db/{DbServer}/calendar-blank.sql",
 	"SampleDbPath": "~/Areas/Frapid.Calendar/db/{DbServer}/calendar-sample.sql",
     "PatchFilePath" : null,
-	"InstallSample": true,
+	"InstallSample": false,
 	"My": null,
 	"OverrideTemplatePath": "~/Areas/Frapid.Calendar/Overrides",
     "OverrideDestination":"~/Tenants/{0}/Areas",

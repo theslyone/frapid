@@ -19,7 +19,7 @@
 	"DbSchema": "core",
 	"BlankDbPath": "~/db/{DbServer}/core-blank.sql",
 	"SampleDbPath": "~/db/{DbServer}/core-sample.sql",
-    "PatchFilePath" : null,
+  "PatchFilePath" : null,
 	"InstallSample": false,
 	"My": null,
     "OverrideTemplatePath":"~/Overrides",

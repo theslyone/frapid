@@ -16,7 +16,7 @@
 	"DbSchema": "website",
 	"BlankDbPath": "",
 	"SampleDbPath": "",
-    "PatchFilePath" : null,
+  "PatchFilePath" : null,
 	"InstallSample": false,
 	"My": null,
 	"OverrideTemplatePath": "~/Areas/Frapid.Reports/Overrides",

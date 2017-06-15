@@ -157,6 +157,30 @@
     <Compile Include="ViewModels\SmsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="db\PostgreSQL\2.x\2.0\addressbook-blank.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\addressbook-sample.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe" />
+    <Content Include="db\PostgreSQL\2.x\2.0\index.html" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\02.functions-and-logic\addressbook.get_tags.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\03.menus\menus.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\99.ownership.sql" />
+    <Content Include="db\PostgreSQL\2.x\2.0\src\99.sample-data\addressbook.sample.sql" />
+    <Content Include="db\PostgreSQL\addressbook-blank.sql" />
+    <Content Include="db\PostgreSQL\addressbook-sample.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\addressbook-blank.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\addressbook-sample.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe" />
+    <Content Include="db\SQL Server\2.x\2.0\index.html" />
+    <Content Include="db\SQL Server\2.x\2.0\src\01.types-domains-tables-and-constraints\tables-and-constraints.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\02.functions-and-logic\addressbook.get_tags.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\03.menus\menus.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\04.default-values\01.default-values.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\99.ownership.sql" />
+    <Content Include="db\SQL Server\2.x\2.0\src\99.sample-data\addressbook.sample.sql" />
+    <Content Include="db\SQL Server\addressbook-blank.sql" />
+    <Content Include="db\SQL Server\addressbook-sample.sql" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +191,15 @@
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="Views\Backend\Index.cshtml" />
+    <Content Include="db\PostgreSQL\2.x\2.0\addressbook.sqlbundle" />
+    <Content Include="db\PostgreSQL\2.x\2.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-with-sample.bat" />
+    <Content Include="db\PostgreSQL\2.x\2.0\rebundle-db-without-sample.bat" />
+    <Content Include="db\SQL Server\2.x\2.0\addressbook.sqlbundle" />
+    <Content Include="db\SQL Server\2.x\2.0\bundler\SqlBundler.exe.config" />
+    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-with-sample.bat" />
+    <Content Include="db\SQL Server\2.x\2.0\rebundle-db-without-sample.bat" />
+    <Content Include="AppInfo.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

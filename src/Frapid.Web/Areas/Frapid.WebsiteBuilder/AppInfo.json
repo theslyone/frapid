@@ -18,7 +18,7 @@
 	"BlankDbPath": "~/Areas/Frapid.WebsiteBuilder/db/{DbServer}/website-blank.sql",
 	"SampleDbPath": "~/Areas/Frapid.WebsiteBuilder/db/{DbServer}/website-sample.sql",
     "PatchFilePath" : null,
-	"InstallSample": true,
+	"InstallSample": false,
 	"My": null,
 	"OverrideTemplatePath": "~/Areas/Frapid.WebsiteBuilder/Overrides",
     "OverrideDestination":"~/Tenants/{0}/Areas",

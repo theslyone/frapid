@@ -18,7 +18,7 @@
 	"BlankDbPath": "~/Areas/Frapid.AddressBook/db/{DbServer}/addressbook-blank.sql",
 	"SampleDbPath": "~/Areas/Frapid.AddressBook/db/{DbServer}/addressbook-sample.sql",
     "PatchFilePath" : null,
-	"InstallSample": true,
+	"InstallSample": false,
 	"My": null,
 	"OverrideTemplatePath": "~/Areas/Frapid.AddressBook/Overrides",
     "OverrideDestination":"~/Tenants/{0}/Areas",
