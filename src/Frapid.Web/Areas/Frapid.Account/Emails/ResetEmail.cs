@@ -13,10 +13,12 @@ namespace Frapid.Account.Emails
 {
     public class ResetEmail
     {
+        private readonly HttpContextBase _context;
         private readonly Reset _resetDetails;
 
-        public ResetEmail(Reset reset)
+        public ResetEmail(HttpContextBase context, Reset reset)
         {
+            this._context = context;
             this._resetDetails = reset;
         }
 
@@ -33,10 +35,16 @@ namespace Frapid.Account.Emails
 
             return path != null ? Storage.ReadAllText(path, Encoding.UTF8) : string.Empty;
         }
-
+        
         private string ParseTemplate(string template)
         {
-            string siteUrl = HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+            //string siteUrl =  HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority);
+            if (_context?.Request?.Url == null)
+            {
+                throw new ArgumentNullException(nameof(_context));
+            }
+
+            string siteUrl = _context.Request.Url.GetLeftPart(UriPartial.Authority);
             string link = siteUrl + "/account/reset/confirm?token=" + this._resetDetails.RequestId;
 
             string parsed = template.Replace("{{Name}}", this._resetDetails.Name);
@@ -66,7 +74,7 @@ namespace Frapid.Account.Emails
         {
             string template = this.GetTemplate(tenant);
             string parsed = this.ParseTemplate(template);
-            string subject = string.Format(I18N.YourPasswordResetLinkForSite, HttpContext.Current.Request.Url.Authority);
+            string subject = string.Format(I18N.YourPasswordResetLinkForSite, _context.Request.Url.GetLeftPart(UriPartial.Authority));
 
             var processor = EmailProcessor.GetDefault(tenant);
 

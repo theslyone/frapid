@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="EventSubscribers\SubdomainCreatedSubscriber.cs" />
     <Compile Include="EventSubscribers\TransactionCompleteSubscriber.cs" />
     <Compile Include="EventSubscribers\UserUpdateRequiredEventSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

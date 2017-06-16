@@ -9,7 +9,8 @@ $("#SetPasswordButton").click(function () {
         var url = "/account/reset/confirm?token=" + token;
         url += "&password=" + password;
 
-        return window.getAjaxRequest(url, "POST");
+        //return window.getAjaxRequest(url, "POST");
+        return window.getAjaxRequest(url, "POST", JSON.stringify({ Token: token, Password: password }));
     };
 
     function validate() {

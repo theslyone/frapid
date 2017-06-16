@@ -12,13 +12,13 @@ namespace Frapid.Account.DAL
     {
         public static async Task<Reset> GetIfActiveAsync(string tenant, string token)
         {
-            const string sql = "SELECT * FROM account.reset_requests WHERE request_id=@0 AND expires_on >= @1 AND confirmed=@2 AND deleted=@3;";
+            const string sql = "SELECT * FROM account.reset_requests WHERE request_id=@0::uuid AND expires_on >= @1 AND confirmed=@2 AND deleted=@3;";
             return (await Factory.GetAsync<Reset>(tenant, sql, token, DateTimeOffset.UtcNow, false, false).ConfigureAwait(false)).FirstOrDefault();
         }
 
         public static async Task CompleteResetAsync(string tenant, string requestId, string password)
         {
-            string sql = FrapidDbServer.GetProcedureCommand(tenant, "account.complete_reset", new[] {"@0", "@1"});
+            string sql = FrapidDbServer.GetProcedureCommand(tenant, "account.complete_reset", new[] {"@0::uuid", "@1"});
             await Factory.NonQueryAsync(tenant, sql, requestId, password).ConfigureAwait(false);
         }
 

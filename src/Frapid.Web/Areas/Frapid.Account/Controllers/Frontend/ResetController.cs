@@ -7,6 +7,7 @@ using Frapid.Account.ViewModels;
 using Frapid.Areas;
 using Frapid.Areas.CSRF;
 using Frapid.WebsiteBuilder.Controllers;
+using System.Net;
 
 namespace Frapid.Account.Controllers.Frontend
 {
@@ -23,6 +24,18 @@ namespace Frapid.Account.Controllers.Frontend
             }
 
             return this.View(this.GetRazorView<AreaRegistration>("Reset/Index.cshtml", this.Tenant), new Reset());
+        }
+
+        [Route("account/reset/get-token")]
+        [AllowAnonymous]
+        public ActionResult GetResetToken()
+        {
+            if (RemoteUser.IsListedInSpamDatabase(this.Tenant))
+            {
+                return Failed(I18N.RegistrationClosed, HttpStatusCode.BadRequest);
+            }
+
+            return Ok(new Reset());
         }
 
         [Route("account/reset")]
@@ -57,7 +70,7 @@ namespace Frapid.Account.Controllers.Frontend
             }
 
 
-            var email = new ResetEmail(result);
+            var email = new ResetEmail(this.HttpContext, result);
             await email.SendAsync(this.Tenant).ConfigureAwait(true);
             return this.Json(true);
         }
@@ -114,10 +127,10 @@ namespace Frapid.Account.Controllers.Frontend
         [Route("account/reset/confirm")]
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> DoAsync()
+        public async Task<ActionResult> DoAsync(ResetPassword resetPassword)
         {
-            string token = this.Request.QueryString["token"];
-            string password = this.Request.QueryString["password"];
+            string token = resetPassword.Token;// this.Request.QueryString["token"];
+            string password = resetPassword.Password;// this.Request.QueryString["password"];
 
             if (string.IsNullOrWhiteSpace(token) ||
                 string.IsNullOrWhiteSpace(password))
@@ -129,6 +142,8 @@ namespace Frapid.Account.Controllers.Frontend
 
             if (reset != null)
             {
+                password = PasswordManager.GetHashedPassword(reset.Email, password);
+
                 await ResetRequests.CompleteResetAsync(this.Tenant, token, password).ConfigureAwait(true);
                 return this.Json(true);
             }

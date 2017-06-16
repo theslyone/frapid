@@ -174,6 +174,7 @@
     <Compile Include="I18N.cs" />
     <Compile Include="Models\Backend\ChangePasswordModel.cs" />
     <Compile Include="Models\Frontend\ChangePasswordModel.cs" />
+    <Compile Include="InputModels\ResetPassword.cs" />
     <Compile Include="Models\Frontend\SignUpModel.cs" />
     <Compile Include="ViewModels\ChangePasswordInfo.cs" />
     <Compile Include="ViewModels\IUserInfo.cs" />
@@ -372,6 +373,7 @@
       <Name>Frapid.WebsiteBuilder</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

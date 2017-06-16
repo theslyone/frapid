@@ -1,6 +1,6 @@
 {
 	"ApplicationName": "SparkPostMail",
-	"AutoInstall": true,
+	"AutoInstall": false,
 	"Thumbnail": null,
 	"Publisher": "MixERP Inc.",
 	"Url": "http://mixerp.org",
