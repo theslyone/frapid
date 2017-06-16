@@ -56,7 +56,8 @@ namespace Frapid.Account.RemoteAuthentication
                 {
                     var result = JsonConvert.DeserializeObject<JObject>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult());
                     string aud = result["aud"].ToString();
-
+                    return true;
+                    //disabled because mobile app uses a different oauth client ID
                     if (aud == this.ClientId)
                     {
                         return true;
