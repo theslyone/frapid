@@ -671,7 +671,7 @@ CREATE TABLE core.offices
     parent_office_id                            integer NULL REFERENCES core.offices,
 	registration_number							national character varying(100),
 	pan_number									national character varying(50),
-	allow_transaction_posting					boolean NOT NULL DEFAULT(false),
+	allow_transaction_posting					boolean NOT NULL DEFAULT(true),
     audit_user_id                               integer,
     audit_ts                                	TIMESTAMP WITH TIME ZONE DEFAULT(NOW()),
 	deleted										boolean DEFAULT(false)
@@ -761,8 +761,8 @@ CREATE TABLE core.notification_statuses
 
 
 -->-->-- src/Frapid.Web/db/PostgreSQL/1.x/1.0/src/04.default-values/01.default-values.sql --<--<--
-INSERT INTO core.offices(office_code, office_name, currency_code, nick_name, po_box, address_line_1, address_line_2, street, city, state, country, phone, fax, email, url)
-SELECT 'DEF', 'Default', 'NGN', 'Freebe', '01234', 'Lekki Phase 1', '', '', 'Lagos', 'WA', 'Nigeria', '(234) 803 046 9664', '', 'info@freebe.com.ng', 'http://freebe.com.ng';
+INSERT INTO core.offices(office_code, office_name, currency_code, nick_name, po_box, address_line_1, address_line_2, street, city, state, country, phone, fax, email, url, allow_transaction_posting)
+SELECT 'DEF', 'Default', 'NGN', 'Freebe', '01234', 'Lekki Phase 1', '', '', 'Lagos', 'WA', 'Nigeria', '(234) 803 046 9664', '', 'info@freebe.com.ng', 'http://freebe.com.ng', true;
 
 INSERT INTO core.genders(gender_code, gender_name)
 SELECT 'M', 'Male' UNION ALL

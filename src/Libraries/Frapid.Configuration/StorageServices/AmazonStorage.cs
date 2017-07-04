@@ -78,7 +78,7 @@ namespace Frapid.Configuration
         {
             path = SanitizePath(path).Replace("/", "\\");
             S3DirectoryInfo s3DirectoryInfo;
-            if (string.IsNullOrWhiteSpace(path)) s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName);
+            if (IsNullOrWhiteSpace(path)) s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName);
             else s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, path);
             //var s3Files = s3DirectoryInfo.EnumerateFiles().Where(f => format.Contains(f.Extension.ToLower())).ToList();
             var s3Files = s3DirectoryInfo.GetFiles().ToList();
@@ -88,7 +88,7 @@ namespace Frapid.Configuration
 
         public List<string> GetFiles(string path, string searchPattern, SearchOption searchOption)
         {
-            path = SanitizePath(path);
+            path = SanitizePath(path).Replace("/", "\\");
             S3DirectoryInfo s3DirectoryInfo;
             if(string.IsNullOrWhiteSpace(path)) s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName);
             else s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, path);
@@ -136,43 +136,43 @@ namespace Frapid.Configuration
 
         public bool DirectoryExists(string path)
         {
-            path = SanitizePath(path);
+            path = SanitizePath(path).Replace("/", "\\");
             S3DirectoryInfo s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, path);
             return s3DirectoryInfo.Exists;
         }
 
         public void DeleteDirectory(string path, bool recursive)
         {
-            path = SanitizePath(path);
+            path = SanitizePath(path).Replace("/", "\\");
             S3DirectoryInfo directoryToDelete = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, path);
             directoryToDelete.Delete(true); // true will delete recursively in folder inside
         }
 
         public void CreateDirectory(string path)
         {
-            path = SanitizePath(path);
+            path = SanitizePath(path).Replace("/", "\\");
             S3DirectoryInfo s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, path);
             s3DirectoryInfo.Create();
         }
 
         public List<string> GetDirectories(string path)
         {
-            path = SanitizePath(path);
+            path = SanitizePath(path).Replace("/", "\\");
             S3DirectoryInfo s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, path);
             return s3DirectoryInfo.GetDirectories().Select(directory => directory.Name).ToList();
         }
 
         public List<string> GetDirectories(string path, string searchPattern)
         {
-            path = SanitizePath(path);
+            path = SanitizePath(path).Replace("/", "\\");
             S3DirectoryInfo s3DirectoryInfo = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, path);
             return s3DirectoryInfo.GetDirectories(searchPattern, SearchOption.AllDirectories).Select(directory => directory.Name).ToList();
         }
         
         public void CopyDirectory(string origin, string destination)
         {
-            origin = SanitizePath(origin);
-            destination = SanitizePath(destination);
+            origin = SanitizePath(origin).Replace("/", "\\");
+            destination = SanitizePath(destination).Replace("/", "\\");
             var source = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, origin);
             var target = new S3DirectoryInfo(GetAmazonS3Client(), awsBucketName, destination);
             if (!target.Exists) target.Create();

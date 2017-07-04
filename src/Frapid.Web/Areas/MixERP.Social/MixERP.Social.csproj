@@ -227,6 +227,15 @@
     <Content Include="db\SQL Server\2.x\2.0\rebundle-db-without-sample.bat" />
     <Content Include="db\SQL Server\2.x\2.0\social.sqlbundle" />
     <Content Include="AppInfo.json" />
+    <Content Include="i18n\ar\resources.yaml" />
+    <Content Include="i18n\de\resources.yaml" />
+    <Content Include="i18n\es\resources.yaml" />
+    <Content Include="i18n\fr\resources.yaml" />
+    <Content Include="i18n\ne\resources.yaml" />
+    <Content Include="i18n\recreate-i18n-paused.bat" />
+    <Content Include="i18n\recreate-i18n.bat" />
+    <Content Include="i18n\resources.yaml" />
+    <Content Include="i18n\ru\resources.yaml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

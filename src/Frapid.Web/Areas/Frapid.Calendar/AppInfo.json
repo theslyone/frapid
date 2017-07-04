@@ -1,6 +1,6 @@
 {
 	"ApplicationName": "Frapid.Calendar",
-	"AutoInstall": true,
+	"AutoInstall": false,
 	"Thumbnail": null,
 	"Publisher": "MixERP Inc.",
 	"Url": "http://frapid.com",

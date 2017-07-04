@@ -1,4 +1,6 @@
-﻿using System.Globalization;
+﻿using System.Configuration;
+using System.Globalization;
+using System.Threading;
 
 namespace Frapid.i18n
 {
@@ -30,7 +32,18 @@ namespace Frapid.i18n
 
         public static CultureInfo GetCurrentUiCulture()
         {
-            var culture = CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture;
+            string cultureStr = ConfigurationManager.AppSettings["DefaultCulture"].ToString();
+            CultureInfo culture = new CultureInfo(cultureStr);
+            if(cultureStr == "HA-LATN-NG")
+            {
+                culture.NumberFormat.CurrencySymbol = "₦";
+                culture.NumberFormat.CurrencyDecimalDigits = 2;
+            }
+            
+            Thread.CurrentThread.CurrentCulture = culture;
+            Thread.CurrentThread.CurrentUICulture = culture;
+
+            //var culture = CultureInfo.DefaultThreadCurrentUICulture ?? CultureInfo.CurrentUICulture;
             string cultureString = culture.ToString();
 
             if(cultureString.Equals("fr") ||

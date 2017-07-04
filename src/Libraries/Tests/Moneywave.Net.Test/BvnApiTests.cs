@@ -41,7 +41,7 @@ namespace Integrations.Test
         public void Verify()
         {
             
-            var response = Api.Verify("22186935992");
+            var response = Api.Verify("12345678901");
             Assert.NotNull(response.TransactionReference);
 
             response = Api.Verify("221869359924"); //invalid bvn
@@ -51,9 +51,9 @@ namespace Integrations.Test
         [Fact]
         public void Validate()
         {
-            string transactionReference = Api.Verify("22186935992").TransactionReference;
+            string transactionReference = Api.Verify("12345678901").TransactionReference;
             var status = Api.Resend(transactionReference);
-            var response = Api.Validate("22186935992", "otp", transactionReference);
+            var response = Api.Validate("22186935992", "12345", transactionReference);
             Assert.NotNull(response.TransactionReference);
         }
     }

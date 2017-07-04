@@ -29,7 +29,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>..\..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -229,6 +229,16 @@
     <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Source.cshtml" />
     <Content Include="AppInfo.json" />
+    <Content Include="i18n\ar\resources.yaml" />
+    <Content Include="i18n\de\resources.yaml" />
+    <Content Include="i18n\es\resources.yaml" />
+    <Content Include="i18n\fr\resources.yaml" />
+    <Content Include="i18n\ne\resources.yaml" />
+    <Content Include="i18n\recreate-i18n-paused.bat" />
+    <Content Include="i18n\recreate-i18n.bat" />
+    <Content Include="i18n\resources.yaml" />
+    <Content Include="i18n\ru\resources.yaml" />
+    <None Include="Properties\PublishProfiles\frapid-publish-profile.pubxml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

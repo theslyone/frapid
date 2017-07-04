@@ -144,7 +144,7 @@ namespace Frapid.i18n.Command
         private Dictionary<string, string> GetLocalizedResources(string path, string cultureCode)
         {
             string directory = Path.Combine(path, cultureCode);
-            if (!Directory.Exists(directory))
+            if (!Storage.DirectoryExists(directory))
             {
                 return new Dictionary<string, string>();
             }
@@ -157,8 +157,8 @@ namespace Frapid.i18n.Command
         {
             string root = PathMapper.PathToRootDirectory;
 
-            var directories = Directory.GetDirectories(root, "i18n", SearchOption.AllDirectories);
-            return directories;
+            var directories = Storage.GetDirectories(root, "i18n"/*, SearchOption.AllDirectories*/);
+            return directories.ToArray();
         }
     }
 }

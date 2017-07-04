@@ -45,7 +45,7 @@ namespace Frapid.Configuration.Tests.StorageServices
                     };
                     amazonS3Client.DeleteBucket(request);
                 }
-                catch (Exception exc)
+                catch (Exception)
                 {
 
                 }

@@ -21,7 +21,10 @@ namespace Frapid.Dashboard
 
             string value = !Storage.FileExists(path) ? string.Empty : ConfigurationManager.ReadConfigurationValue(path, key);
             if (!string.IsNullOrEmpty(value))
+            {
+                Storage.GetLocalFilePath(Path.Combine(themePath, "web.config"));
                 Storage.GetLocalFilePath(Path.Combine(themePath, value));
+            }
             return value;
         }
     }

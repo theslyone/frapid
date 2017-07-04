@@ -1,10 +1,10 @@
 @echo off
 SET builddir=%~dp0
 
-call build-resource.bat
+REM call build-resource.bat
 
 rmdir "%~dp0..\src\Frapid.Web\bin" /Q /S
-xcopy "%~dp0..\src\Frapid.Web\Resources\_Configs\Assets" "%~dp0..\src\Frapid.Web\Resources\Configs\Assets\" /s/y
+REM xcopy "%~dp0..\src\Frapid.Web\Resources\_Configs\Assets" "%~dp0..\src\Frapid.Web\Resources\Configs\Assets\" /s/y
 
 if exist "../src/Frapid.Web.sln" (
 	@echo Building Frapid.Web
@@ -21,11 +21,11 @@ if exist "../src/Frapid.Web/Areas/Frapid.WebsiteBuilder/Frapid.WebsiteBuilder.sl
 	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.WebsiteBuilder/Frapid.WebsiteBuilder.sln /p:VisualStudioVersion=14.0
 )
 
-if exist "../src/Frapid.Web/Areas/Frapid.AddressBook/Frapid.AddressBook.sln" (
-	@echo Building AddressBook
-	nuget.exe restore "../src/Frapid.Web/Areas/Frapid.AddressBook/Frapid.AddressBook.sln"
-	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.AddressBook/Frapid.AddressBook.sln /p:VisualStudioVersion=14.0
-)
+REM if exist "../src/Frapid.Web/Areas/Frapid.AddressBook/Frapid.AddressBook.sln" (
+REM	@echo Building AddressBook
+REM	nuget.exe restore "../src/Frapid.Web/Areas/Frapid.AddressBook/Frapid.AddressBook.sln"
+REM	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.AddressBook/Frapid.AddressBook.sln /p:VisualStudioVersion=14.0
+REM )
 
 if exist "../src/Frapid.Web/Areas/Frapid.Calendar/Frapid.Calendar.sln" (
 	@echo Building Calendar
@@ -63,10 +63,14 @@ if exist "../src/Frapid.Web/Areas/Frapid.Account/Frapid.Account.sln" (
 	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.Account/Frapid.Account.sln /p:VisualStudioVersion=14.0
 )
 
-
 if exist "../src/Frapid.Web/Areas/Frapid.Forms/Frapid.Forms.sln" (
 @echo Building Forms Module
 "%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.Forms/Frapid.Forms.sln /p:VisualStudioVersion=14.0
+)
+
+if exist "../src/Frapid.Web/Areas/Frapid.Paylink/Frapid.Paylink.sln" (
+	@echo Building Paylink Module
+	"%programfiles(x86)%\MSBuild\14.0\Bin\MSBuild.exe" /verbosity:quiet /nologo /property:Configuration=Debug ../src/Frapid.Web/Areas/Frapid.Paylink/Frapid.Paylink.sln /p:VisualStudioVersion=14.0
 )
 
 if exist "../src/Frapid.Web/Areas/MixERP.Forums/MixERP.Forums.sln" (

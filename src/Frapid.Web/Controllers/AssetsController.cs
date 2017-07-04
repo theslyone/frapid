@@ -8,10 +8,13 @@ using Frapid.Configuration;
 using Frapid.Framework.Extensions;
 using Frapid.Framework.StaticContent;
 using Serilog;
+using System.IO;
+using System.Text;
+using System.Web;
 
 namespace Frapid.Web.Controllers
 {
-    [Route("assets")]
+    //[Route("assets")]
     public sealed class AssetsController : BaseController
     {
         private bool IsDevelopment()
@@ -39,7 +42,7 @@ namespace Frapid.Web.Controllers
             }
 
             return new ProductionScriptBundler(Log.Logger, asset);
-        }
+        }        
 
         [Route("assets/js/{*name}")]
         [FileOutputCache(ProfileName = "StaticFile.xml", Duration = 60 * 60, Location = OutputCacheLocation.Client)]
@@ -71,6 +74,51 @@ namespace Frapid.Web.Controllers
 
             this.Response.Cache.SetMaxAge(TimeSpan.FromMinutes(asset.CacheDurationInMinutes));
             return this.Content(contents, "text/css");
+        }
+
+        [Route("assets/scripts/{*name}")]
+        //[Route("~/scripts/{*name}")]
+        [FileOutputCache(ProfileName = "StaticFile.xml", Duration = 60 * 60, Location = OutputCacheLocation.Client)]
+        public ActionResult Scripts(string name)
+        {
+            string scriptsDirectory = PathMapper.MapPath(Configs.ScriptsDirectory);
+            string path = Path.Combine(scriptsDirectory, name);
+
+            if (!Storage.FileExists(path))
+            {
+                return this.HttpNotFound();
+            }
+
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
+
+            Response.Cache.SetMaxAge(TimeSpan.FromMinutes(10080));
+            string mimeType = this.GetMimeType(path);
+
+            return Content(contents, mimeType);
+        }
+
+        [Route("assets/Areas/{*name}")]
+        //[Route("~/Areas/{*name}")]
+        [FileOutputCache(ProfileName = "StaticFile.xml", Duration = 60 * 60, Location = OutputCacheLocation.Client)]
+        public ActionResult Areas(string name)
+        {
+            string areasDirectory = PathMapper.MapPath(Configs.AreasDirectory);
+            string path = Path.Combine(areasDirectory, name);
+
+            if (!Storage.FileExists(path))
+            {
+                return this.HttpNotFound();
+            }
+
+            string contents = Storage.ReadAllText(path, Encoding.UTF8);
+
+            this.Response.Cache.SetMaxAge(TimeSpan.FromMinutes(10080));
+            return this.Content(contents, this.GetMimeType(path));
+        }
+
+        private string GetMimeType(string fileName)
+        {
+            return MimeMapping.GetMimeMapping(fileName);
         }
     }
 }

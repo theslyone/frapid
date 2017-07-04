@@ -244,15 +244,15 @@
     <Content Include="db\SQL Server\2.x\2.0\calendar.sqlbundle" />
     <Content Include="db\SQL Server\2.x\2.0\rebundle-db-with-sample.bat" />
     <Content Include="db\SQL Server\2.x\2.0\rebundle-db-without-sample.bat" />
-    <Content Include="i18N\ar\resources.yaml" />
-    <Content Include="i18N\de\resources.yaml" />
-    <Content Include="i18N\es\resources.yaml" />
-    <Content Include="i18N\fr\resources.yaml" />
-    <Content Include="i18N\ne\resources.yaml" />
-    <Content Include="i18N\recreate-i18n-paused.bat" />
-    <Content Include="i18N\recreate-i18n.bat" />
-    <Content Include="i18N\resources.yaml" />
-    <Content Include="i18N\ru\resources.yaml" />
+    <Content Include="i18n\ar\resources.yaml" />
+    <Content Include="i18n\de\resources.yaml" />
+    <Content Include="i18n\es\resources.yaml" />
+    <Content Include="i18n\fr\resources.yaml" />
+    <Content Include="i18n\ne\resources.yaml" />
+    <Content Include="i18n\recreate-i18n-paused.bat" />
+    <Content Include="i18n\recreate-i18n.bat" />
+    <Content Include="i18n\resources.yaml" />
+    <Content Include="i18n\ru\resources.yaml" />
     <Content Include="AppInfo.json" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>

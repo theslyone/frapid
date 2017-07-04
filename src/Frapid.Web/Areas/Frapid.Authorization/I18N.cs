@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Globalization;
 using Frapid.Configuration;
 using Frapid.i18n;
@@ -29,14 +29,24 @@ namespace Frapid.Authorization
 		public static string Authorization => I18NResource.GetString(ResourceDirectory, "Authorization");
 
 		/// <summary>
+		///Access Type Id
+		/// </summary>
+		public static string AccessTypeId => I18NResource.GetString(ResourceDirectory, "AccessTypeId");
+
+		/// <summary>
+		///Access Type Name
+		/// </summary>
+		public static string AccessTypeName => I18NResource.GetString(ResourceDirectory, "AccessTypeName");
+
+		/// <summary>
 		///Allow Access
 		/// </summary>
 		public static string AllowAccess => I18NResource.GetString(ResourceDirectory, "AllowAccess");
 
 		/// <summary>
-		///Menu Access Policy Id
+		///Audit Ts
 		/// </summary>
-		public static string MenuAccessPolicyId => I18NResource.GetString(ResourceDirectory, "MenuAccessPolicyId");
+		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
 
 		/// <summary>
 		///Audit User Id
@@ -49,6 +59,56 @@ namespace Frapid.Authorization
 		public static string Deleted => I18NResource.GetString(ResourceDirectory, "Deleted");
 
 		/// <summary>
+		///Disallow Access
+		/// </summary>
+		public static string DisallowAccess => I18NResource.GetString(ResourceDirectory, "DisallowAccess");
+
+		/// <summary>
+		///Entity Access Policy Id
+		/// </summary>
+		public static string EntityAccessPolicyId => I18NResource.GetString(ResourceDirectory, "EntityAccessPolicyId");
+
+		/// <summary>
+		///Entity Name
+		/// </summary>
+		public static string EntityName => I18NResource.GetString(ResourceDirectory, "EntityName");
+
+		/// <summary>
+		///Group Entity Access Policy Id
+		/// </summary>
+		public static string GroupEntityAccessPolicyId => I18NResource.GetString(ResourceDirectory, "GroupEntityAccessPolicyId");
+
+		/// <summary>
+		///Group Menu Access Policy Id
+		/// </summary>
+		public static string GroupMenuAccessPolicyId => I18NResource.GetString(ResourceDirectory, "GroupMenuAccessPolicyId");
+
+		/// <summary>
+		///Menu Access Policy Id
+		/// </summary>
+		public static string MenuAccessPolicyId => I18NResource.GetString(ResourceDirectory, "MenuAccessPolicyId");
+
+		/// <summary>
+		///Menu Id
+		/// </summary>
+		public static string MenuId => I18NResource.GetString(ResourceDirectory, "MenuId");
+
+		/// <summary>
+		///Object Name
+		/// </summary>
+		public static string ObjectName => I18NResource.GetString(ResourceDirectory, "ObjectName");
+
+		/// <summary>
+		///Office Id
+		/// </summary>
+		public static string OfficeId => I18NResource.GetString(ResourceDirectory, "OfficeId");
+
+		/// <summary>
+		///Role Id
+		/// </summary>
+		public static string RoleId => I18NResource.GetString(ResourceDirectory, "RoleId");
+
+		/// <summary>
 		///Table Name
 		/// </summary>
 		public static string TableName => I18NResource.GetString(ResourceDirectory, "TableName");
@@ -59,74 +119,14 @@ namespace Frapid.Authorization
 		public static string TableSchema => I18NResource.GetString(ResourceDirectory, "TableSchema");
 
 		/// <summary>
-		///Group Menu Access Policy Id
-		/// </summary>
-		public static string GroupMenuAccessPolicyId => I18NResource.GetString(ResourceDirectory, "GroupMenuAccessPolicyId");
-
-		/// <summary>
-		///Entity Name
-		/// </summary>
-		public static string EntityName => I18NResource.GetString(ResourceDirectory, "EntityName");
-
-		/// <summary>
-		///Entity Access Policy Id
-		/// </summary>
-		public static string EntityAccessPolicyId => I18NResource.GetString(ResourceDirectory, "EntityAccessPolicyId");
-
-		/// <summary>
-		///Office Id
-		/// </summary>
-		public static string OfficeId => I18NResource.GetString(ResourceDirectory, "OfficeId");
-
-		/// <summary>
-		///Access Type Id
-		/// </summary>
-		public static string AccessTypeId => I18NResource.GetString(ResourceDirectory, "AccessTypeId");
-
-		/// <summary>
 		///Table Type
 		/// </summary>
 		public static string TableType => I18NResource.GetString(ResourceDirectory, "TableType");
 
 		/// <summary>
-		///Role Id
-		/// </summary>
-		public static string RoleId => I18NResource.GetString(ResourceDirectory, "RoleId");
-
-		/// <summary>
-		///Menu Id
-		/// </summary>
-		public static string MenuId => I18NResource.GetString(ResourceDirectory, "MenuId");
-
-		/// <summary>
-		///Audit Ts
-		/// </summary>
-		public static string AuditTs => I18NResource.GetString(ResourceDirectory, "AuditTs");
-
-		/// <summary>
 		///User Id
 		/// </summary>
 		public static string UserId => I18NResource.GetString(ResourceDirectory, "UserId");
-
-		/// <summary>
-		///Object Name
-		/// </summary>
-		public static string ObjectName => I18NResource.GetString(ResourceDirectory, "ObjectName");
-
-		/// <summary>
-		///Access Type Name
-		/// </summary>
-		public static string AccessTypeName => I18NResource.GetString(ResourceDirectory, "AccessTypeName");
-
-		/// <summary>
-		///Disallow Access
-		/// </summary>
-		public static string DisallowAccess => I18NResource.GetString(ResourceDirectory, "DisallowAccess");
-
-		/// <summary>
-		///Group Entity Access Policy Id
-		/// </summary>
-		public static string GroupEntityAccessPolicyId => I18NResource.GetString(ResourceDirectory, "GroupEntityAccessPolicyId");
 
 		/// <summary>
 		///Entity Access Policy

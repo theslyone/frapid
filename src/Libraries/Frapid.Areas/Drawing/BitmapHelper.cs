@@ -50,6 +50,8 @@ namespace Frapid.Areas.Drawing
                 return null;
             }
 
+            path = Storage.GetLocalFilePath(path);
+
             using (var img = new Bitmap(path))
             {
                 if (destinationWidth == 0)

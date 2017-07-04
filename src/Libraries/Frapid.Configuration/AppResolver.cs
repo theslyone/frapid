@@ -13,9 +13,9 @@ namespace Frapid.Configuration
         {
             string root = PathMapper.MapPath("~/");
             var files = Storage.GetFiles(root, "AppInfo.json", SearchOption.AllDirectories).ToList();
-
+            
             var installables = new List<Installable>();
-
+            
             foreach (string file in files)
             {
                 string contents = Storage.ReadAllText(file, Encoding.UTF8);

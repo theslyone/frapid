@@ -50,14 +50,14 @@ namespace Frapid.Configuration
         {
             var directory = new DirectoryInfo(path);
             var files = directory.EnumerateFiles().Where(f => format.Contains(f.Extension.ToLower()));
-            return files.Select(file => file.FullName).ToList();
+            return files.Select(file => file.FullName).Where(file => !file.Contains("obj")).ToList();
         }
 
         public List<string> GetFiles(string path, string searchPattern, SearchOption searchOption)
         {
             var directory = new DirectoryInfo(path);
             var files = directory.GetFiles(searchPattern, searchOption);
-            return files.Select(file => file.FullName).ToList();
+            return files.Select(file => file.FullName).Where(file => !file.Contains("obj")).ToList();
         }
 
         public string GetLocalFilePath(string path, bool returnAsRelativePath)
@@ -88,14 +88,17 @@ namespace Frapid.Configuration
         public List<string> GetDirectories(string path)
         {
             var directories = Directory.GetDirectories(path);
-            return directories.Select(directory => new DirectoryInfo(directory).Name).ToList();
+            return directories.Where(dir => !dir.Contains("obj")).ToList();
+            //return directories.Select(directory => new DirectoryInfo(directory).Name).ToList();
         }
 
         public List<string> GetDirectories(string path, string searchPattern)
         {
-            var areaRoot = new DirectoryInfo(path);
+            var directories = Directory.GetDirectories(path, searchPattern, SearchOption.AllDirectories);
+            /*var areaRoot = new DirectoryInfo(path);
             var directories = areaRoot.GetDirectories().Where(x => x.GetDirectories(searchPattern, SearchOption.AllDirectories).Any());
-            return directories.Select(directory => directory.Name).ToList();
+            return directories.Select(directory => directory.Name).ToList();*/
+            return directories.Where(dir => !dir.Contains("obj")).ToList();
         }
 
         public void CopyDirectory(string origin, string destination)

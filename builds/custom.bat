@@ -10,6 +10,6 @@ cd %builddir%
 
 call test-postgres-tenant.bat
 
-cd %builddir%
+REM cd %builddir%
 
-call test-sql-server-tenant.bat
+REM call test-sql-server-tenant.bat

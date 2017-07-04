@@ -43,21 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Frapid.ApplicationState, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Frapid.ApplicationState.dll</HintPath>
-    </Reference>
-    <Reference Include="Frapid.Areas, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Frapid.Areas.dll</HintPath>
-    </Reference>
     <Reference Include="Frapid.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.DataAccess.dll</HintPath>
-    </Reference>
-    <Reference Include="Frapid.DbPolicy, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Frapid.DbPolicy.dll</HintPath>
     </Reference>
     <Reference Include="Frapid.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -70,10 +58,6 @@
     <Reference Include="Frapid.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\Frapid.Mapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Frapid.TokenManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Frapid.TokenManager.dll</HintPath>
     </Reference>
     <Reference Include="Mapster, Version=2.6.1.0, Culture=neutral, PublicKeyToken=2f39883af23c29a8, processorArchitecture=MSIL">
       <HintPath>packages\Mapster.2.6.1\lib\net45\Mapster.dll</HintPath>
@@ -202,17 +186,33 @@
     <Content Include="widgets\frequently-accessed-menus.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Libraries\Frapid.ApplicationState\Frapid.ApplicationState.csproj">
+      <Project>{ef3d84f8-3d64-45d7-9050-3ae204f5aa72}</Project>
+      <Name>Frapid.ApplicationState</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Frapid.Areas\Frapid.Areas.csproj">
+      <Project>{0361910a-7773-4ee9-861b-ffc5636d82d1}</Project>
+      <Name>Frapid.Areas</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Libraries\Frapid.Configuration\Frapid.Configuration.csproj">
       <Project>{ca3c3d39-6775-4234-b343-38f0724adcf8}</Project>
       <Name>Frapid.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Frapid.DbPolicy\Frapid.DbPolicy.csproj">
+      <Project>{e2c5690c-ef80-4afa-8107-5e58a936b15f}</Project>
+      <Name>Frapid.DbPolicy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Libraries\Frapid.TokenManager\Frapid.TokenManager.csproj">
+      <Project>{ef3bde7c-a3d5-493a-8817-bf47df9cae47}</Project>
+      <Name>Frapid.TokenManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config" />
     <Content Include="AppInfo.json" />
-    <Content Include="i18N\recreate-i18n-paused.bat" />
-    <Content Include="i18N\recreate-i18n.bat" />
-    <Content Include="i18N\resources.yaml" />
+    <Content Include="i18n\recreate-i18n-paused.bat" />
+    <Content Include="i18n\recreate-i18n.bat" />
+    <Content Include="i18n\resources.yaml" />
     <Content Include="Overrides\Frapid.Dashboard\Dashboard.config" />
     <Content Include="Overrides\Frapid.Dashboard\Resources\readme.md" />
     <Content Include="Overrides\Frapid.Dashboard\Themes\frapid\Layout.cshtml" />

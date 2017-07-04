@@ -113,8 +113,8 @@ namespace Frapid.Configuration.DbServer
                 Password = password,
                 Port = port,
                 Pooling = enablePooling,
-                UseSslStream = true,
-                SslMode = SslMode.Prefer,
+                //UseSslStream = true,
+                //SslMode = SslMode.Prefer,
                 MinPoolSize = minPoolSize,
                 MaxPoolSize = maxPoolSize,
                 ApplicationName = "Frapid"

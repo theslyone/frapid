@@ -30,7 +30,7 @@ namespace Frapid.Web.Application
 
             var trigger = TriggerBuilder.Create().WithIdentity("Backup", "PerformBackup").WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(hour, minute).InTimeZone(TimeZoneInfo.Utc)).Build();
 
-            scheduler.ScheduleJob(job, trigger);
+            //scheduler.ScheduleJob(job, trigger);
         }
     }
 }

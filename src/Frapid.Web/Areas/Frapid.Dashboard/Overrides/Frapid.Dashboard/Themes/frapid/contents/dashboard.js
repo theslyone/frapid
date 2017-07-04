@@ -78,7 +78,7 @@ frapidApp.config(function ($routeProvider, $locationProvider, $httpProvider) {
 
     $routeProvider.
         when('/dashboard', {
-            templateUrl: "/dashboard/my/template/Contents/apps.html"
+            templateUrl: "/dashboard/my/template/contents/apps.html"
         }).
         when('/dashboard/:url*', {
             templateUrl: function (url) {

@@ -413,7 +413,7 @@ namespace Frapid.WebApi.Service
                 var repository = new FormRepository(schemaName, tableName, this.AppUser.Tenant, this.AppUser.LoginId, this.AppUser.UserId);
                 return await repository.GetWhereAsync(pageNumber, filters).ConfigureAwait(false);
             }
-            catch (UnauthorizedException exc)
+            catch (UnauthorizedException)
             {
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.Forbidden));
             }

@@ -58,10 +58,10 @@ namespace Frapid.Account.RemoteAuthentication
                     string aud = result["aud"].ToString();
                     return true;
                     //disabled because mobile app uses a different oauth client ID
-                    if (aud == this.ClientId)
+                    /*if (aud == this.ClientId)
                     {
                         return true;
-                    }
+                    }*/
                 }
 
                 return false;
